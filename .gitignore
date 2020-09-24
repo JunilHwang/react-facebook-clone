@@ -1,0 +1,8 @@
+yarn-error.log
+dist/
+.cache/
+node_modules
+**/*.iml
+.idea/
+.DS_store
+.vscode
