@@ -1,14 +1,13 @@
 import React from 'react';
 import {Route} from "react-router-dom";
-import Header from "./Header";
 
 const PublicLayout = ({ component: Component, ...rest}) => {
   return (
     <Route {...rest} render={({ className, title, ...props }) => (
-      <>
-        <Header />
+      <div className={`${className} container`}>
+        <h1 className="text-center">{title}</h1>
         <Component {...props} />
-      </>
+      </div>
     )} />
   )
 };

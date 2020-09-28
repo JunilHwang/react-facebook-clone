@@ -1,14 +1,14 @@
 import React from 'react';
-import { Route } from "react-router-dom";
+import {Route} from "react-router-dom";
+import Header from "./Header";
 
 const DefaultLayout = ({ component: Component, ...rest}) => {
   return (
     <Route {...rest} render={props => (
-      <div className="DefaultLayout">
-        <div className="Header">Header</div>
+      <>
+        <Header />
         <Component {...props} />
-        <div className="Footer">Footer</div>
-      </div>
+      </>
     )} />
   )
 };
