@@ -13,7 +13,7 @@ const Comments = () => {
           <p className="comment-text">그래요 배워야죠 배워야 남는거죠...</p>
         </li>
       </ul>
-      <style>{commentStyle}</style>
+      <style jsx>{commentStyle}</style>
     </>
   );
 };
