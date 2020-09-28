@@ -29,9 +29,6 @@ const App = () => {
         body {
           padding: 100px 0;
         }
-        .container {
-          max-width: 600px;
-        }
       `}</style>
     </BrowserRouter>
   );
