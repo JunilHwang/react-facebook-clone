@@ -1,27 +1,15 @@
-import React, { Component } from "react";
+import React from 'react';
 import { Route } from "react-router-dom";
 
-class PublicLayout extends Component {
-  render() {
-    const { component: Component, ...rest } = this.props;
-
-    return (
-      <Route
-        {...rest}
-        render={matchProps => (
-          <>
-            <Component {...matchProps} />
-            <style jsx global>{`
-              .container {
-                padding: 0;
-                margin: 0 auto;
-              }
-            `}</style>
-          </>
-        )}
-      />
-    );
-  }
-}
+const PublicLayout = ({ component: Component, ...rest}) => {
+  return (
+    <Route {...rest} render={({ className, title, ...props }) => (
+      <div className={`${className} container`}>
+        <h1 className="text-center">{title}</h1>
+        <Component {...props} />
+      </div>
+    )} />
+  )
+};
 
 export default PublicLayout;

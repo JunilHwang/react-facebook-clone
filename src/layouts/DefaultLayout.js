@@ -1,29 +1,16 @@
-import React, { Component } from 'react';
-import Navigation from '../components/Navigation';
-import { Route } from 'react-router-dom';
+import React from 'react';
+import { Route } from "react-router-dom";
 
-class DefaultLayout extends Component {
-  render() {
-    const { component: Component, user, logOut, ...rest } = this.props;
-
-    return (
-      <Route
-        {...rest}
-        render={(matchProps) => (
-          <>
-            <Navigation user={user} onLogout={logOut} />
-            <Component {...matchProps} {...rest} />
-            <style jsx global>{`
-              .container {
-                padding: 0;
-                margin: 0 auto;
-              }
-            `}</style>
-          </>
-        )}
-      />
-    );
-  }
-}
+const DefaultLayout = ({ component: Component, ...rest}) => {
+  return (
+    <Route {...rest} render={props => (
+      <div className="DefaultLayout">
+        <div className="Header">Header</div>
+        <Component {...props} />
+        <div className="Footer">Footer</div>
+      </div>
+    )} />
+  )
+};
 
 export default DefaultLayout;
