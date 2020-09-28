@@ -1,14 +1,15 @@
 import React from 'react';
 import {Home, SignIn, SignUp} from "./pages";
-import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Switch} from 'react-router-dom';
+import {DefaultLayout, PublicLayout} from "./layouts";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={Home}/>
-        <Route path="/login" component={SignIn}/>
-        <Route path="/signup " component={SignUp}/>
+        <DefaultLayout path="/" component={Home}/>
+        <PublicLayout path="/login" component={<SignIn className="login" title="로그인" />}/>
+        <PublicLayout path="/signup" component={<SignUp className="signup" title="계정 만들기" />}/>
         <Redirect path="*" to="/"/>
       </Switch>
     </BrowserRouter>
