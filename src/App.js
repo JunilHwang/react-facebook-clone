@@ -7,8 +7,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <PublicLayout path="/login" className="login" title="로그인" component={SignIn} />
-        <PublicLayout path="/signup" className="signup" title="계정 만들기" component={SignUp} />
+        <PublicLayout path="/login" component={SignIn} />
+        <PublicLayout path="/signup" component={SignUp} />
         <DefaultLayout path="/" component={Home} />
         <Redirect path="*" to="/" />
       </Switch>

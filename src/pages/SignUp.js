@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 const SignUp = () => {
   return (
     <>
-      <form>
+      <h1 className="text-center">계정 만들기</h1>
+      <form className="signup">
         <input type="email" className="form-control" placeholder="Email" required />
         <input type="text" className="form-control" placeholder="Your Name" required />
         <input type="file" className="form-control" placeholder="Profile" />
@@ -21,20 +22,20 @@ const SignUp = () => {
         </Link>
       </p>
       <style jsx>{`
-        .signup form {
+        form {
           max-width: 320px;
           padding: 8px;
           margin: 0 auto;
         }
 
-        .signup input.form-control {
+        input.form-control {
           font-size: 16px;
           height: auto;
           padding: 10px;
           margin-bottom: 1rem;
         }
 
-        .signup button.btn {
+        button.btn {
           background-color: #3b5999;
           color: #fffffe;
           font-weight: 800;
@@ -42,13 +43,14 @@ const SignUp = () => {
           margin-top: 10px;
         }
 
-        .signup .text-help {
+        .text-help {
           margin-top: 10px;
         }
 
-        .signup .login-here {
+        .login-here {
           font-weight: 900;
           color: #3a5999;
+          margin-left: 5px;
         }
       `}</style>
     </>
