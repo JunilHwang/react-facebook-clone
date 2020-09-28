@@ -1,5 +1,5 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -9,10 +9,16 @@ const Header = () => {
       </a>
       <ul className="nav">
         <li className="nav-item">
-          <Link to="/login" className="nav-link"> 로그인 </Link>
+          <Link to="/login" className="nav-link">
+            {' '}
+            로그인{' '}
+          </Link>
         </li>
         <li className="nav-item">
-          <Link to="/signup" className="nav-link"> 회원가입 </Link>
+          <Link to="/signup" className="nav-link">
+            {' '}
+            회원가입{' '}
+          </Link>
         </li>
         <li className="nav-item">
           <a href="#!" className="nav-link">
@@ -23,18 +29,19 @@ const Header = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a href="#!" className="nav-link">로그아웃</a>
+          <a href="#!" className="nav-link">
+            로그아웃
+          </a>
         </li>
       </ul>
       <style jsx>{`
-      
         nav.fixed-top {
           height: 50px;
         }
         nav.navbar.bg-blue {
           background-color: #3b5999;
         }
-        
+
         .nav .nav-item .nav-link {
           color: white;
           font-weight: 800;
@@ -42,16 +49,16 @@ const Header = () => {
           cursor: pointer;
           line-height: 26px;
         }
-        
+
         .nav .nav-item .nav-link:hover {
           color: rgba(255, 255, 255, 0.75);
         }
-        
+
         .navbar-brand i.fa-facebook-square {
           font-size: 27px;
           color: white;
         }
-        
+
         .nav-link > img {
           width: 25px;
           height: 25px;
@@ -59,10 +66,9 @@ const Header = () => {
           overflow: hidden;
           margin-right: 5px;
         }
-        
       `}</style>
     </nav>
   );
-}
+};
 
 export default Header;
