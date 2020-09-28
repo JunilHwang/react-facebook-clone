@@ -22,8 +22,9 @@
     "prettier": "^2.1.2"
   },
   "dependencies": {
-    "react": "^16.13.1",
+    "react": ">=15",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "styled-jsx": "^3.3.0"
   }
 }
