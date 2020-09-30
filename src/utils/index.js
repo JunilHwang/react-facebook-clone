@@ -8,11 +8,11 @@ export const timeToString = (date) => {
   const year = day * 365;
   const fromTime = Date.now() - new Date(date).getTime();
 
-  if (fromTime < sec) return `${~~(fromTime / sec)}초 전`;
-  if (fromTime < min) return `${~~(fromTime / min)}분 전`;
-  if (fromTime < hour) return `${~~(fromTime / hour)}시간 전`;
-  if (fromTime < day) return `${~~(fromTime / day)}일 전`;
-  if (fromTime < week) return `${~~(fromTime / week)}주 전`;
-  if (fromTime < month) return `${~~(fromTime / month)}달 전`;
-  return `${~~(fromTime / year)}년 전`;
+  if (fromTime < min) return `${Math.floor(fromTime / sec)}초 전`;
+  if (fromTime < hour) return `${Math.floor(fromTime / min)}분 전`;
+  if (fromTime < day) return `${Math.floor(fromTime / hour)}시간 전`;
+  if (fromTime < week) return `${Math.floor(fromTime / day)}일 전`;
+  if (fromTime < month) return `${Math.floor(fromTime / week)}주 전`;
+  if (fromTime < year) return `${Math.floor(fromTime / month)}달 전`;
+  return `${Math.floor(fromTime / year)}년 전`;
 };
