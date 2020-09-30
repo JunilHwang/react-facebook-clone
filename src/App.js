@@ -23,14 +23,14 @@ const App = () => {
     },
   ]);
 
-  const HomeComponent = () => <Home posts={posts} setPosts={setPosts} user={user} />;
+  const HomeComponent = () => <Home posts={posts} setPosts={setPosts} />;
 
   return (
     <BrowserRouter>
       <Switch>
         <PublicLayout path="/login" component={SignIn} />
         <PublicLayout path="/signup" component={SignUp} />
-        <DefaultLayout path="/" component={HomeComponent} />
+        <DefaultLayout path="/" user={user} component={HomeComponent} />
         <Redirect path="*" to="/" />
       </Switch>
       <style jsx global>{`

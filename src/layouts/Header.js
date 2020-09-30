@@ -18,7 +18,9 @@ const linkImageStyle = css.resolve`
   margin-right: 5px;
 `;
 
-const Header = () => {
+const Header = ({ user }) => {
+  console.log(user);
+  const { name, profileImageUrl } = user;
   return (
     <nav className="navbar fixed-top bg-blue">
       <a href="/" className="navbar-brand">
@@ -32,7 +34,7 @@ const Header = () => {
         </li>
         <li className="nav-item">
           <Link to="/login" className={`nav-link ${linkStyle.className}`}>
-            Harry
+            {name}
           </Link>
         </li>
         <li className="nav-item">
@@ -42,11 +44,7 @@ const Header = () => {
         </li>
         <li className="nav-item">
           <a href="#!" className={`nav-link ${linkStyle.className}`}>
-            <img
-              className={linkImageStyle.className}
-              alt="user image"
-              src="https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/course9872/instructor_harry.png"
-            />
+            <img className={linkImageStyle.className} alt="user image" src={profileImageUrl} />
           </a>
         </li>
         <li className="nav-item">
