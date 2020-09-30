@@ -73,4 +73,4 @@ const cardStyle = css`
   }
 `;
 
-export default Card;
+export default React.memo(Card);

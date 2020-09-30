@@ -19,7 +19,6 @@ const linkImageStyle = css.resolve`
 `;
 
 const Header = ({ user }) => {
-  console.log(user);
   const { name, profileImageUrl } = user;
   return (
     <nav className="navbar fixed-top bg-blue">

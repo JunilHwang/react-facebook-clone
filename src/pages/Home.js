@@ -7,7 +7,9 @@ const Home = ({ posts, setPosts, user }) => {
   return (
     <div className="posts container">
       <CardForm setPosts={setPosts} user={user} />
-      <Card posts={posts} />
+      {posts.map((post) => (
+        <Card {...post} key={post.seq} />
+      ))}
       <style jsx>{HomeStyle}</style>
     </div>
   );
@@ -40,4 +42,4 @@ const HomeStyle = css`
   }
 `;
 
-export default React.memo(Home);
+export default Home;
