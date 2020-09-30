@@ -1,7 +1,7 @@
 import React from 'react';
 import css from 'styled-jsx/css';
 
-const Comments = () => {
+const Comments = ({ commentList }) => {
   return (
     <>
       <ul className="comment-list">

@@ -8,7 +8,7 @@ const Home = ({ posts, setPosts, user }) => {
     <div className="posts container">
       <CardForm setPosts={setPosts} user={user} />
       {posts.map((post) => (
-        <Card {...post} key={post.seq} />
+        <Card post={post} user={user} key={post.seq} />
       ))}
       <style jsx>{HomeStyle}</style>
     </div>

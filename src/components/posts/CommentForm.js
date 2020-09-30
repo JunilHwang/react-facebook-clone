@@ -1,8 +1,7 @@
 import React from 'react';
-import Comments from './Comments';
 import css from 'styled-jsx/css';
 
-const CommentForm = () => {
+const CommentForm = ({ user }) => {
   return (
     <>
       <form className="comment-form">
