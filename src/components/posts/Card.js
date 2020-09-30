@@ -3,11 +3,11 @@ import css from 'styled-jsx/css';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
 
-const Card = () => {
+const Card = ({ seq, writer, contents, createAt, likes, comments, likesOfMe, commentList }) => {
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">Harry</h5>
+        <h5 className="card-title">{writer.name}</h5>
         <h6 className="card-subtitle text-muted">10분전</h6>
         <p className="card-text">안녕하세요. 다같이 리엑트를 배워봅시다. 리덕스도 물런 배워야죠</p>
         <hr />
