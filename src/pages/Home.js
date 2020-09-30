@@ -3,11 +3,11 @@ import css from 'styled-jsx/css';
 import CardForm from '../components/posts/CardForm';
 import Card from '../components/posts/Card';
 
-const Home = () => {
+const Home = ({ posts, setPosts, user }) => {
   return (
     <div className="posts container">
-      <CardForm />
-      <Card />
+      <CardForm setPosts={setPosts} user={user} />
+      <Card posts={posts} />
       <style jsx>{HomeStyle}</style>
     </div>
   );
@@ -40,4 +40,4 @@ const HomeStyle = css`
   }
 `;
 
-export default Home;
+export default React.memo(Home);
