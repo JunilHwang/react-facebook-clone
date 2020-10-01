@@ -37,9 +37,11 @@ const App = () => {
   ]);
 
   const addPost = (contents) => {
+    console.log(contents);
     setPosts([
       ...posts,
       {
+        seq: posts.length + 1,
         contents,
         writer: user,
         createAt: Date.now(),

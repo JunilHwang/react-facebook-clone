@@ -2,15 +2,22 @@ import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
 
 const CardForm = ({ addPost, user }) => {
+  const contentsRef = useRef();
+
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
-    addPost(event.target.value);
+    addPost(contentsRef.current.value);
   }, []);
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <textarea className="form-control input-lg" placeholder="무슨 생각을 하고 계신가요?" spellCheck="false" />
+        <textarea
+          className="form-control input-lg"
+          placeholder="무슨 생각을 하고 계신가요?"
+          spellCheck="false"
+          ref={contentsRef}
+        />
         <button type="submit" className="btn btn-primary">
           공유하기
         </button>
