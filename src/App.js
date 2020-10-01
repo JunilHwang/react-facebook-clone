@@ -10,12 +10,13 @@ const App = () => {
     profileImageUrl:
       'https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/course9872/instructor_harry.png',
   });
+
   const [posts, setPosts] = useState([
     {
       seq: 1,
       writer: { ...user },
       contents: '안녕하세요. 다같이 리엑트를 배워봅시다. 리덕스도 물런 배워야죠',
-      createAt: new Date(Date.now() - 1000 * 60 * 10),
+      createAt: Date.now() - 1000 * 60 * 10,
       likes: 3,
       comments: 1,
       likesOfMe: false,
@@ -29,13 +30,28 @@ const App = () => {
               'https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/course9872/instructor_harry.png',
           },
           contents: '그래요 배워야죠 배워야 남는거죠...',
-          createAt: new Date(Date.now() - 1000 * 60 * 10),
+          createAt: Date.now() - 1000 * 60 * 10,
         },
       ],
     },
   ]);
 
-  const HomeComponent = () => <Home posts={posts} setPosts={setPosts} user={user} />;
+  const addPost = (contents) => {
+    setPosts([
+      ...posts,
+      {
+        contents,
+        writer: user,
+        createAt: Date.now(),
+        likes: 0,
+        comments: 0,
+        likesOfMe: false,
+        commentList: [],
+      },
+    ]);
+  };
+
+  const HomeComponent = () => <Home posts={posts} addPost={addPost} user={user} />;
 
   return (
     <BrowserRouter>

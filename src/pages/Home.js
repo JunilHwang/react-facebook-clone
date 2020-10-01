@@ -3,10 +3,10 @@ import css from 'styled-jsx/css';
 import CardForm from '../components/posts/CardForm';
 import Card from '../components/posts/Card';
 
-const Home = ({ posts, setPosts, user }) => {
+const Home = ({ posts, addPost, user }) => {
   return (
     <div className="posts container">
-      <CardForm setPosts={setPosts} user={user} />
+      <CardForm addPost={addPost} user={user} />
       {posts.map((post) => (
         <Card post={post} user={user} key={post.seq} />
       ))}
