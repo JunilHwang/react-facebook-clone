@@ -41,7 +41,7 @@ export default Object.freeze({
     this.saveAll(posts);
   },
 
-  addComment(post, contents) {
+  addComment(post, comment) {
     const allCommentList = this.findAll().flatMap(({ commentList }) => commentList);
     this.update({
       ...post,
@@ -49,7 +49,7 @@ export default Object.freeze({
       commentList: [
         ...post.commentList,
         {
-          contents,
+          ...comment,
           seq: allCommentList.reduce((seq, comment) => Math.max(seq, comment.seq), 0),
           createAt: Date.now(),
         },

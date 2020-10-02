@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
 
-const CommentForm = ({ user }) => {
+const CommentForm = ({ addCommentOfPost }) => {
+  const $content = useRef(null);
+
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+    addCommentOfPost($content.current.value);
+    event.target.reset();
+  }, []);
+
   return (
     <>
-      <form className="comment-form">
-        <textarea className="form-control input-lg" placeholder="댓글을 입력하세요..." spellCheck="false" />
+      <form className="comment-form" onSubmit={handleSubmit}>
+        <textarea
+          ref={$content}
+          className="form-control input-lg"
+          placeholder="댓글을 입력하세요..."
+          spellCheck="false"
+        />
         <button type="submit" className="btn btn-primary">
           댓글달기
         </button>

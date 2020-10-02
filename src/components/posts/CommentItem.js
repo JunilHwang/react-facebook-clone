@@ -32,4 +32,4 @@ const commentStyle = css`
   }
 `;
 
-export default CommentItem;
+export default React.memo(CommentItem);

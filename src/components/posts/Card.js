@@ -4,8 +4,10 @@ import Comments from './Comments';
 import CommentForm from './CommentForm';
 import { timeToString } from '../../utils';
 
-const Card = ({ post, user }) => {
+const Card = ({ post, user, addComment }) => {
   const { seq, writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
+
+  const addCommentOfPost = (contents) => addComment(post, contents);
 
   return (
     <div className="card">
@@ -24,7 +26,7 @@ const Card = ({ post, user }) => {
         </div>
       </div>
       <Comments commentList={commentList} />
-      <CommentForm user={user} />
+      <CommentForm addCommentOfPost={addCommentOfPost} />
       <style jsx>{cardStyle}</style>
     </div>
   );
