@@ -7,7 +7,7 @@ import { timeToString } from '../../utils';
 const Card = ({ post, user, addComment }) => {
   const { seq, writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
 
-  const addCommentOfPost = (contents) => addComment(post, contents);
+  const addCommentOfPost = (contents) => (console.log(post), addComment(post, contents));
 
   return (
     <div className="card">

@@ -24,7 +24,7 @@ export default Object.freeze({
     const posts = this.findAll();
     posts.push({
       ...post,
-      seq: posts.reduce((seq, post) => Math.max(seq, post.seq), 0),
+      seq: posts.reduce((seq, post) => Math.max(seq, post.seq), 0) + 1,
       createAt: Date.now(),
       likes: 0,
       comments: 0,
@@ -50,7 +50,7 @@ export default Object.freeze({
         ...post.commentList,
         {
           ...comment,
-          seq: allCommentList.reduce((seq, comment) => Math.max(seq, comment.seq), 0),
+          seq: allCommentList.reduce((seq, comment) => Math.max(seq, comment.seq), 0) + 1,
           createAt: Date.now(),
         },
       ],
