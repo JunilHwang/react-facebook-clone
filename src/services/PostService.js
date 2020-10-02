@@ -25,7 +25,7 @@ export default Object.freeze({
   },
 
   addComment(post, comment) {
-    const allCommentList = this.fetchPosts().flatMap(({ commentList }) => commentList);
+    const allCommentList = PostRepository.findAll().flatMap(({ commentList }) => commentList);
     this.updatePost({
       ...post,
       comments: post.comments + 1,

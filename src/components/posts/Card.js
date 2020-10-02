@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import css from 'styled-jsx/css';
 import Comments from './Comments';
 import CommentForm from './CommentForm';
 import { timeToString } from '../../utils';
 
-const Card = ({ post, user, addComment }) => {
+const Card = ({ post, user, addComment, addLike }) => {
   const { seq, writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
 
   const addCommentOfPost = (contents) => addComment(post, contents);
+
+  const handleLikeClick = useCallback((event) => {
+    event.preventDefault();
+    addLike(post);
+  }, []);
 
   return (
     <div className="card">
@@ -17,8 +22,8 @@ const Card = ({ post, user, addComment }) => {
         <p className="card-text">{contents}</p>
         <hr />
         <div className="card-info">
-          <button type="button" className="thumb-count">
-            <i className="far fa-thumbs-up">{likes} 개</i>
+          <button type="button" className="thumb-count" onClick={handleLikeClick}>
+            <i className={`far fa-thumbs-up ${likesOfMe ? 'on' : ''}`}>{likes} 개</i>
           </button>
           <span className="comment-count">
             <i className="far fa-comment-alt">{comments} 개</i>
