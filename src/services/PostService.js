@@ -28,4 +28,13 @@ export default Object.freeze({
       ],
     });
   },
+
+  addLike(post) {
+    const posts = this.fetchPosts();
+    const index = posts.findIndex((v) => v.seq === post.seq);
+    const likesOfMe = !post.likesOfMe;
+    const likes = post.likes + (likesOfMe ? 1 : -1);
+    posts[index] = { ...post, likesOfMe, likes };
+    this.savePost(posts);
+  },
 });
