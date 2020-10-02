@@ -40,4 +40,20 @@ export default Object.freeze({
     posts[index] = post;
     this.saveAll(posts);
   },
+
+  addComment(post, contents) {
+    const allCommentList = this.findAll().flatMap(({ commentList }) => commentList);
+    this.update({
+      ...post,
+      comments: post.comments + 1,
+      commentList: [
+        ...post.commentList,
+        {
+          contents,
+          seq: allCommentList.reduce((seq, comment) => Math.max(seq, comment.seq), 0),
+          createAt: Date.now(),
+        },
+      ],
+    });
+  },
 });

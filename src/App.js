@@ -19,7 +19,12 @@ const App = () => {
     setPosts(PostRepository.findAll());
   };
 
-  const HomeComponent = () => <Home posts={posts} addPost={addPost} user={user} />;
+  const addComment = (post, contents) => {
+    PostRepository.addComment(post, { contents, writer: user });
+    setPosts(PostRepository.findAll());
+  };
+
+  const HomeComponent = () => <Home posts={posts} addPost={addPost} addComment={addComment} user={user} />;
 
   return (
     <BrowserRouter>

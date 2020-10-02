@@ -6,6 +6,7 @@ import { timeToString } from '../../utils';
 
 const Card = ({ post, user }) => {
   const { seq, writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
+
   return (
     <div className="card">
       <div className="card-body">
