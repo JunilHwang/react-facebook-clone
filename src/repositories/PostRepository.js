@@ -36,7 +36,7 @@ export default Object.freeze({
 
   update(post) {
     const posts = this.findAll();
-    const index = posts.findIndex(({ sq }) => post.seq === seq);
+    const index = posts.findIndex(({ seq }) => post.seq === seq);
     posts[index] = post;
     this.saveAll(posts);
   },
