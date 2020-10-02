@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Home, SignIn, SignUp } from './pages';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { DefaultLayout, PublicLayout } from './layouts';
-import { PostRepository } from './repositories';
+import { PostService } from './services';
 
 const App = () => {
   const [user, setUser] = useState({
@@ -12,16 +12,16 @@ const App = () => {
       'https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/course9872/instructor_harry.png',
   });
 
-  const [posts, setPosts] = useState(PostRepository.findAll());
+  const [posts, setPosts] = useState(PostService.fetchPosts());
 
   const addPost = (contents) => {
-    PostRepository.add({ contents, writer: user });
-    setPosts(PostRepository.findAll());
+    PostService.savePost({ contents, writer: user });
+    setPosts(PostService.fetchPosts());
   };
 
   const addComment = (post, contents) => {
-    PostRepository.addComment(post, { contents, writer: user });
-    setPosts(PostRepository.findAll());
+    PostService.addComment(post, { contents, writer: user });
+    setPosts(PostService.fetchPosts());
   };
 
   const HomeComponent = () => <Home posts={posts} addPost={addPost} addComment={addComment} user={user} />;

@@ -16,7 +16,7 @@ export default Object.freeze({
   },
 
   save(post) {
-    if (post.seq) return this.add(post);
+    if (post.seq === undefined) return this.add(post);
     this.update(post);
   },
 
@@ -39,21 +39,5 @@ export default Object.freeze({
     const index = posts.findIndex(({ seq }) => post.seq === seq);
     posts[index] = post;
     this.saveAll(posts);
-  },
-
-  addComment(post, comment) {
-    const allCommentList = this.findAll().flatMap(({ commentList }) => commentList);
-    this.update({
-      ...post,
-      comments: post.comments + 1,
-      commentList: [
-        ...post.commentList,
-        {
-          ...comment,
-          seq: allCommentList.reduce((seq, comment) => Math.max(seq, comment.seq), 0) + 1,
-          createAt: Date.now(),
-        },
-      ],
-    });
   },
 });
