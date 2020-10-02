@@ -37,7 +37,6 @@ const App = () => {
   ]);
 
   const addPost = (contents) => {
-    console.log(contents);
     setPosts([
       ...posts,
       {
