@@ -9,13 +9,24 @@ export default Object.freeze({
     return PostRepository.findBySeq(seq);
   },
 
-  savePost(post) {
+  addPost(post) {
+    PostRepository.save({
+      ...post,
+      createAt: Date.now(),
+      likes: 0,
+      comments: 0,
+      likesOfMe: false,
+      commentList: [],
+    });
+  },
+
+  updatePost(post) {
     PostRepository.save(post);
   },
 
   addComment(post, comment) {
-    const allCommentList = this.fetchPost().flatMap(({ commentList }) => commentList);
-    this.savePost({
+    const allCommentList = this.fetchPosts().flatMap(({ commentList }) => commentList);
+    this.updatePost({
       ...post,
       comments: post.comments + 1,
       commentList: [
@@ -30,11 +41,8 @@ export default Object.freeze({
   },
 
   addLike(post) {
-    const posts = this.fetchPosts();
-    const index = posts.findIndex((v) => v.seq === post.seq);
     const likesOfMe = !post.likesOfMe;
     const likes = post.likes + (likesOfMe ? 1 : -1);
-    posts[index] = { ...post, likesOfMe, likes };
-    this.savePost(posts);
+    this.updatePost({ ...post, likesOfMe, likes });
   },
 });

@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
 
-const CardForm = ({ addPost, user }) => {
+const CardForm = ({ addPost }) => {
   const contentsRef = useRef();
 
   const handleSubmit = useCallback((event) => {

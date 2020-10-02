@@ -25,11 +25,6 @@ export default Object.freeze({
     posts.push({
       ...post,
       seq: posts.reduce((seq, post) => Math.max(seq, post.seq), 0) + 1,
-      createAt: Date.now(),
-      likes: 0,
-      comments: 0,
-      likesOfMe: false,
-      commentList: [],
     });
     this.saveAll(posts);
   },
