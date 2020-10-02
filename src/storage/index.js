@@ -1,6 +1,6 @@
 export default Object.freeze({
-  get(key) {
-    return JSON.stringify(localStorage.getItem(key)) || null;
+  get(key, defaultValue = null) {
+    return JSON.stringify(localStorage.getItem(key)) || defaultValue;
   },
 
   set(key, value) {
