@@ -6,7 +6,8 @@
   "author": "junilHwang <tjsdlf4261@naver.com>",
   "scripts": {
     "format": "prettier --write \"./**/*.{js,html,css}\"",
-    "dev": "parcel index.html"
+    "dev": "parcel  index.html",
+    "build": "parcel build index.html"
   },
   "license": "MIT",
   "devDependencies": {
