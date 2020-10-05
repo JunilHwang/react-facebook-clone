@@ -5,10 +5,11 @@ const KEY = 'auth';
 
 export default Object.freeze({
   signIn(userInfo) {
-    const { password, ...user } = UserRepository.findByEmailAndPassword(userInfo) || {};
-    if (!user) return false;
-    session.set(KEY, user);
-    return user;
+    const user = UserRepository.findByEmailAndPassword(userInfo);
+    if (user === undefined) return false;
+    const { password, ...auth } = user;
+    session.set(KEY, auth);
+    return auth;
   },
 
   signUp(userInfo) {
