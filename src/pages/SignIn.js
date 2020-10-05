@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '../layouts/PublicLayout';
 import css from 'styled-jsx/css';
 
-const SignIn = () => {
+const SignIn = ({ onSignIn }) => {
   return (
     <>
       <h1 className="text-center">로그인</h1>

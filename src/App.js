@@ -16,7 +16,7 @@ const App = () => {
 
   const SignInComponent = React.memo(() => <SignIn onSignIn={handleSignIn} />);
 
-  const SignUpComponent = React.memo(() => <SignUp onSignIn={handleSignUp} />);
+  const SignUpComponent = React.memo(() => <SignUp onSignUp={handleSignUp} />);
 
   const HomeComponent = React.memo(() => (
     <Home
