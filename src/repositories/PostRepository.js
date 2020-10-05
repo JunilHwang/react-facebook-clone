@@ -16,6 +16,7 @@ export default Object.freeze({
   },
 
   save(post) {
+    if (!post) return;
     if (post.seq === undefined) return this.add(post);
     this.update(post);
   },
@@ -32,6 +33,7 @@ export default Object.freeze({
   update(post) {
     const posts = this.findAll();
     const index = posts.findIndex(({ seq }) => post.seq === seq);
+    if (index === -1) throw new Error('수정이 불가능한 포스트입니다.');
     posts[index] = post;
     this.saveAll(posts);
   },

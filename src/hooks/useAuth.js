@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 export const useAuth = () => {
+  const [users] = useState();
   const [user] = useState({
     seq: 1,
     name: 'JunilHwang',
