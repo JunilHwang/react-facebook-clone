@@ -1,6 +1,6 @@
 import React from 'react';
 import css from 'styled-jsx/css';
-import NavItems from './NavItems';
+import { NavItems } from './nav';
 
 const Header = ({ user }) => {
   return (
