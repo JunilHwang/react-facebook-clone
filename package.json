@@ -7,7 +7,7 @@
   "scripts": {
     "format": "prettier --write \"./**/*.{js,html,css}\"",
     "dev": "parcel  index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --public-url ./"
   },
   "license": "MIT",
   "devDependencies": {
