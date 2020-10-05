@@ -14,8 +14,6 @@ const linkStyle = resolve`
   }
 `;
 
-console.log(linkStyle);
-
 const MyComponent = ({ children, ...props }) => {
   return (
     <>

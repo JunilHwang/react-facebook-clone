@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import UserService from '../services/UserService';
 
 export const useAuth = () => {
-  const [users] = useState();
-  const [user] = useState({
-    seq: 1,
-    name: 'JunilHwang',
-    profileImageUrl:
-      'https://avatars2.githubusercontent.com/u/18749057?s=460&u=014b7feee255469392f5e7cd40a7fcee6442ccf6&v=4',
-  });
+  const [user, setUser] = useState(UserService.getAuth());
 
-  return { user };
+  const reloadAuth = () => setUser(UserService.getAuth());
+
+  const signIn = (userInfo) => {
+    UserService.signIn(userInfo);
+    reloadAuth();
+  };
+
+  const signUp = (userInfo) => {
+    UserService.signUp(userInfo);
+  };
+
+  return { user, signIn, signUp };
 };

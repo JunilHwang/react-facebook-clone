@@ -5,12 +5,12 @@ import { DefaultLayout, PublicLayout } from './layouts';
 import { useAuth, usePosts } from './hooks';
 
 const App = () => {
-  const { user } = useAuth();
-  const { posts, addPost: handleAddPost, addComment: handleAddComment, toggleLike: handleToggleLike } = usePosts();
+  const { user, signIn, signUp } = useAuth();
+  const { posts, addPost: handleAddPost, addComment: handleAddComment, toggleLike: handleToggleLike } = usePosts(user);
 
-  const HomeComponent = () => (
+  const HomeComponent = React.memo(() => (
     <Home posts={posts} onAddPost={handleAddPost} onAddComment={handleAddComment} onToggleLike={handleToggleLike} />
-  );
+  ));
 
   return (
     <BrowserRouter>
