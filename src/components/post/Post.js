@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import css from 'styled-jsx/css';
-import Comments from './Comments';
-import CommentForm from './CommentForm';
+import Comments from '../comment/Comments';
+import CommentForm from '../comment/CommentForm';
 import { timeToString } from '../../utils';
 
-const Card = ({ post, user, addComment, addLike }) => {
+const Post = ({ post, user, addComment, addLike }) => {
   const { seq, writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
 
   const addCommentOfPost = (contents) => addComment(post, contents);
@@ -83,4 +83,4 @@ const cardStyle = css`
   }
 `;
 
-export default React.memo(Card);
+export default React.memo(Post);
