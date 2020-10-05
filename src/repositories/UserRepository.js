@@ -25,7 +25,7 @@ export default Object.freeze({
 
   save(user) {
     if (!user) return;
-    if (user.seq) return this.add(user);
+    if (user.seq === undefined) return this.add(user);
     this.update(user);
   },
 
@@ -33,7 +33,7 @@ export default Object.freeze({
     const users = this.findAll();
     users.push({
       ...user,
-      seq: users.reduce((seq, post) => Math.max(seq, post.seq), 0),
+      seq: users.map((v) => v.seq).reduce(Math.max, 0) + 1,
     });
     this.saveAll(users);
   },

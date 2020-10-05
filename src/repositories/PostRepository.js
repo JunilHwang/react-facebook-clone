@@ -25,7 +25,7 @@ export default Object.freeze({
     const posts = this.findAll();
     posts.push({
       ...post,
-      seq: posts.reduce((seq, post) => Math.max(seq, post.seq), 0) + 1,
+      seq: posts.map((v) => v.seq).reduce(Math.max, 0) + 1,
     });
     this.saveAll(posts);
   },
