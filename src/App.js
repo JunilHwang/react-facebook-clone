@@ -3,7 +3,6 @@ import { Home, SignIn, SignUp } from './pages';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { DefaultLayout, PublicLayout } from './layouts';
 import { PostService } from './services';
-import css from 'styled-jsx/css';
 
 const App = () => {
   const [user, setUser] = useState({
@@ -17,13 +16,13 @@ const App = () => {
 
   const loadPost = () => setPosts(PostService.fetchPosts());
 
-  const addPost = (contents) => {
-    PostService.addPost({ contents, writer: user });
+  const addPost = (contents, writer) => {
+    PostService.addPost({ contents, writer });
     loadPost();
   };
 
-  const addComment = (post, contents) => {
-    PostService.addComment(post, { contents, writer: user });
+  const addComment = (post, contents, writer) => {
+    PostService.addComment(post, { contents, writer });
     loadPost();
   };
 
