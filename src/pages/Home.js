@@ -1,14 +1,14 @@
 import React from 'react';
 import css from 'styled-jsx/css';
-import CardForm from '../components/posts/CardForm';
-import Card from '../components/posts/Card';
+import PostForm from '../components/post/PostForm';
+import Post from '../components/post/Post';
 
 const Home = ({ posts, addPost, addComment, user, addLike }) => {
   return (
     <div className="posts container">
-      <CardForm addPost={addPost} user={user} />
+      <PostForm addPost={addPost} user={user} />
       {posts.map((post) => (
-        <Card post={post} addComment={addComment} user={user} addLike={addLike} key={post.seq} />
+        <Post post={post} addComment={addComment} user={user} addLike={addLike} key={post.seq} />
       ))}
       <style jsx>{HomeStyle}</style>
     </div>
