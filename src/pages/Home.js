@@ -1,7 +1,6 @@
 import React from 'react';
 import css from 'styled-jsx/css';
-import PostForm from '../components/post/PostForm';
-import Post from '../components/post/Post';
+import { PostForm, Post } from '../components';
 
 const Home = ({ posts, onAddPost, onAddComment, onToggleLike }) => {
   return (

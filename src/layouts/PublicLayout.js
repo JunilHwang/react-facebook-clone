@@ -2,6 +2,19 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { resolve } from 'styled-jsx/css';
 
+const PublicLayout = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => (
+        <div className="container">
+          <Component {...props} />
+        </div>
+      )}
+    />
+  );
+};
+
 export const formStyle = resolve`
   max-width: 320px;
   padding: 8px;
@@ -25,18 +38,5 @@ export const linkStyle = resolve`
   color: #3a5999;
   margin-left: 4px;
 `;
-
-const PublicLayout = ({ component: Component, className, title, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={(props) => (
-        <div className="container">
-          <Component {...props} />
-        </div>
-      )}
-    />
-  );
-};
 
 export default PublicLayout;

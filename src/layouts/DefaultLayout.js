@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Header from '../components/header/Header';
+import { Header } from '../components';
 
 const DefaultLayout = ({ component: Component, user, ...rest }) => {
   return (
@@ -9,7 +9,7 @@ const DefaultLayout = ({ component: Component, user, ...rest }) => {
       render={(props) => (
         <>
           <Header user={user} />
-          <Component {...props} user={user} />
+          <Component {...props} />
         </>
       )}
     />
