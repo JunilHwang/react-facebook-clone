@@ -5,7 +5,8 @@ const KEY = 'auth';
 
 export default Object.freeze({
   signIn(userInfo) {
-    const { password, ...user } = UserRepository.findByEmailAndPassword(userInfo);
+    const { password, ...user } = UserRepository.findByEmailAndPassword(userInfo) || {};
+    if (!user) return false;
     session.set(KEY, user);
     return user;
   },
@@ -18,7 +19,7 @@ export default Object.freeze({
   },
 
   getAuth() {
-    return session.get(KEY);
+    return session.get(KEY) || null;
   },
 
   removeAuth() {

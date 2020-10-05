@@ -8,7 +8,7 @@ const PublicLayout = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) => (
         <div className="container">
-          <Component {...props} />
+          <Component {...props} {...rest} />
         </div>
       )}
     />

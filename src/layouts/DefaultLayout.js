@@ -9,7 +9,7 @@ const DefaultLayout = ({ component: Component, user, ...rest }) => {
       render={(props) => (
         <>
           <Header user={user} />
-          <Component {...props} />
+          <Component {...props} {...rest} />
         </>
       )}
     />
