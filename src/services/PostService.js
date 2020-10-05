@@ -40,7 +40,7 @@ export default Object.freeze({
     });
   },
 
-  addLike(post) {
+  toggleLike(post) {
     const likesOfMe = !post.likesOfMe;
     const likes = post.likes + (likesOfMe ? 1 : -1);
     this.updatePost({ ...post, likesOfMe, likes });
