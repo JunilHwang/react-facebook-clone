@@ -1,18 +1,26 @@
-import Storage from '../storage';
+import { repository } from '../storages';
 
 const KEY = 'users';
 
 export default Object.freeze({
   findAll() {
-    return Storage.get(KEY, []);
+    return repository.get(KEY, []);
   },
 
   findBySeq(seq) {
     return this.findAll().find((v) => v.seq === seq);
   },
 
+  findByEmail(email) {
+    return this.findAll().find((v) => v.email === email);
+  },
+
+  findByEmailAndPassword({ email, password }) {
+    return this.findAll().find((v) => v.email === email && v.password === password);
+  },
+
   saveAll(users) {
-    Storage.set(KEY, users);
+    repository.set(KEY, users);
   },
 
   save(user) {

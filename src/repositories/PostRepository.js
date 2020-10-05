@@ -1,10 +1,10 @@
-import Storage from '../storage';
+import { repository } from '../storages';
 
 const KEY = 'posts';
 
 export default Object.freeze({
   findAll() {
-    return Storage.get(KEY, []);
+    return repository.get(KEY, []);
   },
 
   findBySeq(seq) {
@@ -12,7 +12,7 @@ export default Object.freeze({
   },
 
   saveAll(posts) {
-    Storage.set(KEY, posts);
+    repository.set(KEY, posts);
   },
 
   save(post) {
