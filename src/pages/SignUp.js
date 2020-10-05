@@ -36,7 +36,11 @@ const SignUp = ({ onSignUp }) => {
   const handleProfileImageChange = useCallback(
     (event) => {
       const file = event.target.files[0];
-      if (!file.type.includes('image')) throw new Error('이미지 파일만 업로드해주세요');
+      if (!file.type.includes('image')) {
+        event.preventDefault();
+        event.target.value = '';
+        throw new Error('이미지 파일만 업로드해주세요');
+      }
       fileReader.onload = ({ target }) => {
         setProfileImageUrl(target.result);
       };
