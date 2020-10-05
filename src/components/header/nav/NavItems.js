@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import NavItem from './NavItem';
 import ProfileImage from './ProfileImage';
 
-const MyComponent = ({ user }) => {
-  const { seq, profileImageUrl } = user || {};
+const NavItems = ({ user, onRemoveAuth }) => {
+  const { seq, name, profileImageUrl } = user || {};
+
+  const handleLogoutClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      onRemoveAuth();
+      alert('로그아웃 되었습니다.');
+    },
+    [onRemoveAuth]
+  );
 
   return (
     <ul className="nav">
@@ -14,14 +23,17 @@ const MyComponent = ({ user }) => {
         </>
       ) : (
         <>
-          <NavItem to={`/@${seq}`}>
+          <NavItem to={`/user/${seq}`}>
             <ProfileImage src={profileImageUrl} />
+            {name}
           </NavItem>
-          <NavItem to="/logout">로그아웃</NavItem>
+          <NavItem to="/logout" onClick={handleLogoutClick}>
+            로그아웃
+          </NavItem>
         </>
       )}
     </ul>
   );
 };
 
-export default MyComponent;
+export default NavItems;

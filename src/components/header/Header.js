@@ -1,14 +1,12 @@
 import React from 'react';
 import css from 'styled-jsx/css';
-import { NavItems } from './nav';
+import { NavItems, Logo } from './nav';
 
-const Header = ({ user }) => {
+const Header = (props) => {
   return (
     <nav className="navbar fixed-top bg-blue">
-      <a href="/" className="navbar-brand">
-        <i className="fab fa-facebook-square" aria-hidden="true" />
-      </a>
-      <NavItems user={user} />
+      <Logo />
+      <NavItems {...props} />
       <style jsx>{HeaderStyle}</style>
     </nav>
   );
@@ -21,11 +19,6 @@ const HeaderStyle = css`
 
   nav.navbar.bg-blue {
     background-color: #3b5999;
-  }
-
-  .navbar-brand i.fa-facebook-square {
-    font-size: 27px;
-    color: white;
   }
 `;
 

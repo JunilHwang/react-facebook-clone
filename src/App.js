@@ -5,7 +5,7 @@ import { DefaultLayout, PublicLayout } from './layouts';
 import { useAuth, usePosts } from './hooks';
 
 const App = () => {
-  const { user, signIn: handleSignIn, signUp: handleSignUp } = useAuth();
+  const { user, signIn: handleSignIn, signUp: handleSignUp, removeAuth: handleRemoveAuth } = useAuth();
   const {
     posts,
     addPost: handleAddPost,
@@ -33,7 +33,7 @@ const App = () => {
       <Switch>
         <PublicLayout path="/login" component={SignInComponent} />
         <PublicLayout path="/signup" component={SignUpComponent} />
-        <DefaultLayout path="/" user={user} component={HomeComponent} />
+        <DefaultLayout path="/" component={HomeComponent} user={user} onRemoveAuth={handleRemoveAuth} />
         <Redirect path="*" to="/" />
       </Switch>
       <style jsx global>{`

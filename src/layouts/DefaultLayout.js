@@ -2,13 +2,13 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Header } from '../components';
 
-const DefaultLayout = ({ component: Component, user, ...rest }) => {
+const DefaultLayout = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) => (
         <>
-          <Header user={user} />
+          <Header {...rest} />
           <Component {...props} {...rest} />
         </>
       )}
