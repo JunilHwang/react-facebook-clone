@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import css from 'styled-jsx/css';
 import Comments from '../comment/Comments';
 import CommentForm from '../comment/CommentForm';
-import { timeToString } from '../../utils';
+import dayjs from 'dayjs';
 
 const Post = ({ post, onAddComment, onToggleLike, onFormSubmit }) => {
   const { writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
@@ -14,11 +14,13 @@ const Post = ({ post, onAddComment, onToggleLike, onFormSubmit }) => {
     onToggleLike(post);
   }, []);
 
+  const fromNow = dayjs(createAt).from(Date.now());
+
   return (
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">{writer.name}</h5>
-        <h6 className="card-subtitle text-muted">{timeToString(createAt)}</h6>
+        <h6 className="card-subtitle text-muted">{fromNow}</h6>
         <p className="card-text">{contents}</p>
         <hr />
         <div className="card-info">

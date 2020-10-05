@@ -1,4 +1,4 @@
-export const timeToString = (date) => {
+export const fromNow = (date) => {
   const sec = 1000;
   const min = sec * 60;
   const hour = min * 60;
