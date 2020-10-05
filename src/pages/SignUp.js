@@ -29,6 +29,8 @@ const SignUp = ({ onSignUp }) => {
 
       onSignUp({ email, name, password, profileImageUrl });
       alert('회원가입이 완료되었습니다.');
+
+      event.target.reset();
     },
     [onSignUp, profileImageUrl]
   );
