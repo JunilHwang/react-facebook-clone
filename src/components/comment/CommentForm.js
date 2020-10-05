@@ -1,13 +1,12 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
 
-const CommentForm = ({ onAddCommentOfPost }) => {
+const CommentForm = ({ onAddCommentOfPost, onFormSubmit }) => {
   const $content = useRef(null);
 
   const handleCommentSubmit = useCallback((event) => {
-    event.preventDefault();
-    onAddCommentOfPost($content.current.value);
-    event.target.reset();
+    const callback = () => onAddCommentOfPost($content.current.value);
+    onFormSubmit(event, callback);
   }, []);
 
   return (

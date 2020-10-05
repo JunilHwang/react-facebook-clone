@@ -5,18 +5,34 @@ import { DefaultLayout, PublicLayout } from './layouts';
 import { useAuth, usePosts } from './hooks';
 
 const App = () => {
-  const { user, signIn, signUp } = useAuth();
-  const { posts, addPost: handleAddPost, addComment: handleAddComment, toggleLike: handleToggleLike } = usePosts(user);
+  const { user, signIn: handleSignIn, signUp: handleSignUp } = useAuth();
+  const {
+    posts,
+    addPost: handleAddPost,
+    addComment: handleAddComment,
+    toggleLike: handleToggleLike,
+    handleFormSubmit,
+  } = usePosts(user);
+
+  const SignInComponent = React.memo(() => <SignIn onSignIn={handleSignIn} />);
+
+  const SignUpComponent = React.memo(() => <SignUp onSignIn={handleSignUp} />);
 
   const HomeComponent = React.memo(() => (
-    <Home posts={posts} onAddPost={handleAddPost} onAddComment={handleAddComment} onToggleLike={handleToggleLike} />
+    <Home
+      posts={posts}
+      onAddPost={handleAddPost}
+      onAddComment={handleAddComment}
+      onToggleLike={handleToggleLike}
+      onFormSubmit={handleFormSubmit}
+    />
   ));
 
   return (
     <BrowserRouter>
       <Switch>
-        <PublicLayout path="/login" component={SignIn} />
-        <PublicLayout path="/signup" component={SignUp} />
+        <PublicLayout path="/login" component={SignInComponent} />
+        <PublicLayout path="/signup" component={SignUpComponent} />
         <DefaultLayout path="/" user={user} component={HomeComponent} />
         <Redirect path="*" to="/" />
       </Switch>

@@ -1,13 +1,12 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
 
-const PostForm = ({ onAddPost }) => {
+const PostForm = ({ onAddPost, onFormSubmit }) => {
   const contentsRef = useRef();
 
   const handlePostSubmit = useCallback((event) => {
-    event.preventDefault();
-    onAddPost(contentsRef.current.value);
-    event.target.reset();
+    const callback = () => onAddPost(contentsRef.current.value);
+    onFormSubmit(event, callback);
   }, []);
 
   return (

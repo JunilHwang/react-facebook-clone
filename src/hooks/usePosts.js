@@ -29,11 +29,17 @@ export const usePosts = (writer) => {
     [writer]
   );
 
-  const toggleLike = (post) => {
+  const toggleLike = useCallback((post) => {
     validateAuth();
     PostService.toggleLike(post);
     loadPost();
-  };
+  }, []);
 
-  return { posts, addPost, addComment, toggleLike };
+  const handleFormSubmit = useCallback((event, callback) => {
+    event.preventDefault();
+    callback();
+    event.target.reset();
+  }, []);
+
+  return { posts, addPost, addComment, toggleLike, handleFormSubmit };
 };
