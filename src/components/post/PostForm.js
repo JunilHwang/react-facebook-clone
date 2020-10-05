@@ -1,17 +1,18 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
 
-const PostForm = ({ addPost }) => {
+const PostForm = ({ onAddPost }) => {
   const contentsRef = useRef();
 
-  const handleSubmit = useCallback((event) => {
+  const handlePostSubmit = useCallback((event) => {
     event.preventDefault();
-    addPost(contentsRef.current.value);
+    onAddPost(contentsRef.current.value);
+    event.target.reset();
   }, []);
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handlePostSubmit}>
         <textarea
           className="form-control input-lg"
           placeholder="무슨 생각을 하고 계신가요?"

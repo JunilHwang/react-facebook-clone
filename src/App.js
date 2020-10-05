@@ -1,38 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Home, SignIn, SignUp } from './pages';
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 import { DefaultLayout, PublicLayout } from './layouts';
-import { PostService } from './services';
+import { useAuth, usePosts } from './hooks';
 
 const App = () => {
-  const [user, setUser] = useState({
-    seq: 1,
-    name: 'harry',
-    profileImageUrl:
-      'https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/course9872/instructor_harry.png',
-  });
-
-  const [posts, setPosts] = useState(PostService.fetchPosts());
-
-  const loadPost = () => setPosts(PostService.fetchPosts());
-
-  const addPost = (contents, writer) => {
-    PostService.addPost({ contents, writer });
-    loadPost();
-  };
-
-  const addComment = (post, contents, writer) => {
-    PostService.addComment(post, { contents, writer });
-    loadPost();
-  };
-
-  const addLike = (post) => {
-    PostService.addLike(post);
-    loadPost();
-  };
+  const { user } = useAuth();
+  const { posts, addPost: handleAddPost, addComment: handleAddComment, toggleLike: handleToggleLike } = usePosts();
 
   const HomeComponent = () => (
-    <Home posts={posts} addPost={addPost} addComment={addComment} user={user} addLike={addLike} />
+    <Home posts={posts} onAddPost={handleAddPost} onAddComment={handleAddComment} onToggleLike={handleToggleLike} />
   );
 
   return (

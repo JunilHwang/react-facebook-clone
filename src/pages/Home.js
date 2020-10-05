@@ -3,12 +3,12 @@ import css from 'styled-jsx/css';
 import PostForm from '../components/post/PostForm';
 import Post from '../components/post/Post';
 
-const Home = ({ posts, addPost, addComment, user, addLike }) => {
+const Home = ({ posts, onAddPost, onAddComment, onToggleLike }) => {
   return (
     <div className="posts container">
-      <PostForm addPost={addPost} user={user} />
+      <PostForm onAddPost={onAddPost} />
       {posts.map((post) => (
-        <Post post={post} addComment={addComment} user={user} addLike={addLike} key={post.seq} />
+        <Post post={post} onAddComment={onAddComment} onToggleLike={onToggleLike} key={post.seq} />
       ))}
       <style jsx>{HomeStyle}</style>
     </div>

@@ -4,14 +4,14 @@ import Comments from '../comment/Comments';
 import CommentForm from '../comment/CommentForm';
 import { timeToString } from '../../utils';
 
-const Post = ({ post, user, addComment, addLike }) => {
-  const { seq, writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
+const Post = ({ post, onAddComment, onToggleLike }) => {
+  const { writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
 
-  const addCommentOfPost = (contents) => addComment(post, contents);
+  const handleAddCommentOfPost = useCallback((contents) => onAddComment(post, contents), [post]);
 
   const handleLikeClick = useCallback((event) => {
     event.preventDefault();
-    addLike(post);
+    onToggleLike(post);
   }, []);
 
   return (
@@ -31,7 +31,7 @@ const Post = ({ post, user, addComment, addLike }) => {
         </div>
       </div>
       <Comments commentList={commentList} />
-      <CommentForm addCommentOfPost={addCommentOfPost} />
+      <CommentForm onAddCommentOfPost={handleAddCommentOfPost} />
       <style jsx>{cardStyle}</style>
     </div>
   );

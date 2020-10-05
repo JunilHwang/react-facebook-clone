@@ -1,18 +1,18 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
 
-const CommentForm = ({ addCommentOfPost }) => {
+const CommentForm = ({ onAddCommentOfPost }) => {
   const $content = useRef(null);
 
-  const handleSubmit = useCallback((event) => {
+  const handleCommentSubmit = useCallback((event) => {
     event.preventDefault();
-    addCommentOfPost($content.current.value);
+    onAddCommentOfPost($content.current.value);
     event.target.reset();
   }, []);
 
   return (
     <>
-      <form className="comment-form" onSubmit={handleSubmit}>
+      <form className="comment-form" onSubmit={handleCommentSubmit}>
         <textarea
           ref={$content}
           className="form-control input-lg"
