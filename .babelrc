@@ -1,0 +1,15 @@
+{
+  "presets": ["@babel/preset-react", "@babel/preset-env"],
+  "plugins": [
+    ["styled-jsx/babel", { "optimizeForSpeed": true, "vendorPrefixes": true, "sourceMaps": false }],
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "@": "./src"
+        }
+      }
+    ]
+  ]
+}
