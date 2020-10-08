@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useCallback, useState} from 'react';
 import UserService from '../services/UserService';
 
 export const useAuth = () => {
@@ -6,20 +6,20 @@ export const useAuth = () => {
 
   const reloadAuth = (user) => setUser(user);
 
-  const signIn = (userInfo) => {
+  const signIn = useCallback((userInfo) => {
     const user = UserService.signIn(userInfo);
     if (user) reloadAuth(user);
     return user;
-  };
+  }, []);
 
-  const signUp = (userInfo) => {
+  const signUp = useCallback((userInfo) => {
     UserService.signUp(userInfo);
-  };
+  }, []);
 
-  const removeAuth = () => {
+  const removeAuth = useCallback(() => {
     UserService.removeAuth();
     reloadAuth(null);
-  };
+  }, []);
 
   return { user, signIn, signUp, removeAuth };
 };
