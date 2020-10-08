@@ -23,7 +23,7 @@ export default Object.freeze({
     repository.set(KEY, users);
   },
 
-  save(user) {
+  upsert(user) {
     if (!user) return;
     if (user.seq === undefined) return this.add(user);
     this.update(user);

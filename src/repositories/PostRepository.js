@@ -15,7 +15,7 @@ export default Object.freeze({
     repository.set(KEY, posts);
   },
 
-  save(post) {
+  upsert(post) {
     if (!post) return;
     if (post.seq === undefined) return this.add(post);
     this.update(post);

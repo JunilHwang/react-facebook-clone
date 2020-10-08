@@ -16,7 +16,7 @@ export default Object.freeze({
     const user = UserRepository.findByEmail(userInfo.email);
     if (user) throw new Error('이미 회원가입이 되어있는 사용자 정보입니다.');
 
-    UserRepository.save(userInfo);
+    UserRepository.upsert(userInfo);
   },
 
   getAuth() {

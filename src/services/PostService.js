@@ -10,7 +10,7 @@ export default Object.freeze({
   },
 
   addPost(post) {
-    PostRepository.save({
+    PostRepository.upsert({
       ...post,
       createAt: Date.now(),
       likes: 0,
@@ -21,7 +21,7 @@ export default Object.freeze({
   },
 
   updatePost(post) {
-    PostRepository.save(post);
+    PostRepository.upsert(post);
   },
 
   addComment(post, comment) {
