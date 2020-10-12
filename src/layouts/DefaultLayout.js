@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Header } from '../components';
+import Header from '../components/header';
 
 const DefaultLayout = ({ component: Component, ...rest }) => {
   return (
