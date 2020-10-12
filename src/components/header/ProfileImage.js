@@ -1,7 +1,7 @@
 import React from 'react';
 import css from 'styled-jsx/css';
 
-const MyComponent = ({ src }) => {
+const ProfileImage = ({ src }) => {
   return (
     <>
       <img alt="user image" src={src} />
@@ -20,4 +20,4 @@ const profileImageStyle = css`
   }
 `;
 
-export default MyComponent;
+export default ProfileImage;

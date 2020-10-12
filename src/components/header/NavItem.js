@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { resolve } from 'styled-jsx/css';
+import css from 'styled-jsx/css';
 
-const linkStyle = resolve`
+const linkStyle = css.resolve`
   color: white;
   font-weight: 800;
   font-size: 12px;
@@ -14,7 +14,7 @@ const linkStyle = resolve`
   }
 `;
 
-const MyComponent = ({ children, ...props }) => {
+const NavItem = ({ children, ...props }) => {
   return (
     <>
       <li className="nav-item">
@@ -27,4 +27,4 @@ const MyComponent = ({ children, ...props }) => {
   );
 };
 
-export default MyComponent;
+export default NavItem;

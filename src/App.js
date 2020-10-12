@@ -14,26 +14,22 @@ const App = () => {
     handleFormSubmit,
   } = usePosts(user);
 
-  const SignInComponent = React.memo(() => <SignIn onSignIn={handleSignIn} />);
-
-  const SignUpComponent = React.memo(() => <SignUp onSignUp={handleSignUp} />);
-
-  const HomeComponent = React.memo(() => (
-    <Home
-      posts={posts}
-      onAddPost={handleAddPost}
-      onAddComment={handleAddComment}
-      onToggleLike={handleToggleLike}
-      onFormSubmit={handleFormSubmit}
-    />
-  ));
-
   return (
     <BrowserRouter>
       <Switch>
-        <PublicLayout path="/login" component={SignInComponent} />
-        <PublicLayout path="/signup" component={SignUpComponent} />
-        <DefaultLayout path="/" component={HomeComponent} user={user} onRemoveAuth={handleRemoveAuth} />
+        <PublicLayout path="/login" onSignIn={handleSignIn} component={SignIn} />
+        <PublicLayout path="/signup" onSignUp={handleSignUp} component={SignUp} />
+        <DefaultLayout
+          path="/"
+          user={user}
+          onRemoveAuth={handleRemoveAuth}
+          posts={posts}
+          onAddPost={handleAddPost}
+          onAddComment={handleAddComment}
+          onToggleLike={handleToggleLike}
+          onFormSubmit={handleFormSubmit}
+          component={Home}
+        />
         <Redirect path="*" to="/" />
       </Switch>
       <style jsx global>{`

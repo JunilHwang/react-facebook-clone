@@ -6,10 +6,10 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => (
+      render={(matchProps) => (
         <>
           <Header {...rest} />
-          <Component {...props} {...rest} />
+          <Component {...matchProps} {...rest} />
         </>
       )}
     />

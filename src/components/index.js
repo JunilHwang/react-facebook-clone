@@ -1,3 +1,1 @@
-export * from './comment';
-export * from './post';
-export * from './header';
+export { default as Header } from './Header';

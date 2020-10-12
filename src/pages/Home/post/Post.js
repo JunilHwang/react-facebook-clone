@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import css from 'styled-jsx/css';
-import Comments from '../comment/Comments';
-import CommentForm from '../comment/CommentForm';
+import { CommentForm, Comments } from '../comment';
 import dayjs from 'dayjs';
 
 const Post = ({ post, onAddComment, onToggleLike, onFormSubmit }) => {

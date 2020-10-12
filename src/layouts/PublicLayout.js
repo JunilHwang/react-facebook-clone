@@ -6,9 +6,9 @@ const PublicLayout = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => (
+      render={(matchProps) => (
         <div className="container">
-          <Component {...props} {...rest} />
+          <Component {...matchProps} {...rest} />
         </div>
       )}
     />

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '../layouts/PublicLayout';
+import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '../../layouts/PublicLayout';
 import css from 'styled-jsx/css';
 
 const SignIn = ({ onSignIn }) => {
