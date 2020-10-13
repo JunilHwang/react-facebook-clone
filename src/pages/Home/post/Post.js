@@ -13,7 +13,7 @@ const Post = ({ post, onToggleLike }) => {
       event.preventDefault();
       onToggleLike(post);
     },
-    [post]
+    [onToggleLike, post]
   );
 
   const fromNow = dayjs(createAt).from(Date.now());

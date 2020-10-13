@@ -18,7 +18,7 @@ const PostForm = ({ onAddPost }) => {
       };
       handleFormSubmit(event, callback);
     },
-    [onAddPost]
+    [onAddPost, handleFormSubmit]
   );
 
   return (

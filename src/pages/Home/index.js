@@ -5,11 +5,6 @@ import { useAuth, usePosts } from '../../hooks';
 
 const Home = () => {
   const { posts, toggleLike: handleToggleLike, addPost: handleAddPost } = usePosts();
-  const { fetchAuth } = useAuth();
-
-  useEffect(() => {
-    fetchAuth();
-  }, []);
 
   return (
     <div className="posts container">

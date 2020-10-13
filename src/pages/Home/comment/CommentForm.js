@@ -2,22 +2,25 @@ import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
 import { useForm } from '../../../hooks';
 
-const CommentForm = ({ onAddCommentOfPost }) => {
+const CommentForm = ({ onAddComment }) => {
   const $content = useRef(null);
   const { handleFormSubmit } = useForm();
 
-  const handleCommentSubmit = useCallback((event) => {
-    const callback = () => {
-      try {
-        onAddCommentOfPost($content.current.value);
-        return true;
-      } catch (e) {
-        alert(e.message);
-        console.error(e);
-      }
-    };
-    handleFormSubmit(event, callback);
-  }, []);
+  const handleCommentSubmit = useCallback(
+    (event) => {
+      const callback = () => {
+        try {
+          onAddComment($content.current.value);
+          return true;
+        } catch (e) {
+          alert(e.message);
+          console.error(e);
+        }
+      };
+      handleFormSubmit(event, callback);
+    },
+    [onAddComment, handleFormSubmit]
+  );
 
   return (
     <>

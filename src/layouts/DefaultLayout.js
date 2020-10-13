@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router';
 import Header from '../components/header';
+import { useAuth } from '../hooks';
 
 const DefaultLayout = ({ component: Component, ...rest }) => {
+  const { fetchAuth } = useAuth();
+
+  useEffect(() => {
+    fetchAuth();
+  }, []);
+
   return (
     <Route
       {...rest}
@@ -16,4 +23,4 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
   );
 };
 
-export default DefaultLayout;
+export default React.memo(DefaultLayout);
