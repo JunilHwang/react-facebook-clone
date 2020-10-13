@@ -11,7 +11,11 @@ const Post = ({ post, onToggleLike }) => {
   const handleLikeClick = useCallback(
     (event) => {
       event.preventDefault();
-      onToggleLike(post);
+      try {
+        onToggleLike(post);
+      } catch (e) {
+        alert(e.message);
+      }
     },
     [onToggleLike, post]
   );

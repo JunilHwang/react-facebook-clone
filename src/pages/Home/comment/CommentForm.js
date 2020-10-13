@@ -14,7 +14,6 @@ const CommentForm = ({ onAddComment }) => {
           return true;
         } catch (e) {
           alert(e.message);
-          console.error(e);
         }
       };
       handleFormSubmit(event, callback);

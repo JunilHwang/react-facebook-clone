@@ -8,14 +8,14 @@ import { useAuth } from './useAuth';
 export const usePosts = () => {
   const posts = useSelector(selectAllPostsOrderByCreateAt);
   const dispatch = useDispatch();
-  const { auth, validateAuth } = useAuth();
+  const { auth: writer, validateAuth } = useAuth();
 
   const addPost = useCallback(
     (contents) => {
       validateAuth();
-      dispatch(postsActions.addPost({ contents, writer: { ...auth } }));
+      dispatch(postsActions.addPost({ contents, writer }));
     },
-    [auth, validateAuth]
+    [writer]
   );
 
   const toggleLike = useCallback(
@@ -23,7 +23,7 @@ export const usePosts = () => {
       validateAuth();
       dispatch(postsActions.togglePostLike(post));
     },
-    [auth, validateAuth]
+    [validateAuth]
   );
 
   return { posts, addPost, toggleLike };

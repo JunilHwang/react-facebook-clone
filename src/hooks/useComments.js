@@ -8,15 +8,14 @@ import { useAuth } from './useAuth';
 export const useComments = (postSeq) => {
   const commentsOfPost = useSelector(selectCommentsOfPost(postSeq));
   const dispatch = useDispatch();
-  const { auth, validateAuth } = useAuth();
+  const { auth: writer, validateAuth } = useAuth();
 
   const addComment = useCallback(
     (contents) => {
       validateAuth();
-      const writer = auth;
       dispatch(commentsActions.addComment({ postSeq, writer, contents }));
     },
-    [postSeq, auth, validateAuth]
+    [postSeq, writer]
   );
 
   return { commentsOfPost, addComment };
