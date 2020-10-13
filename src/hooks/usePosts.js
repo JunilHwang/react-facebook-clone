@@ -8,7 +8,7 @@ import { useAuth } from './useAuth';
 export const usePosts = () => {
   const posts = useSelector(selectAllPostsOrderByCreateAt);
   const dispatch = useDispatch();
-  const { user: writer, validateAuth } = useAuth();
+  const { auth: writer, validateAuth } = useAuth();
 
   const addPost = useCallback(
     (contents) => {
