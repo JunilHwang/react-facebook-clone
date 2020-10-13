@@ -1,12 +1,14 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
+import { useForm } from '../../../hooks';
 
-const CommentForm = ({ onAddCommentOfPost, onFormSubmit }) => {
+const CommentForm = ({ onAddCommentOfPost }) => {
   const $content = useRef(null);
+  const { handleFormSubmit } = useForm();
 
   const handleCommentSubmit = useCallback((event) => {
     const callback = () => onAddCommentOfPost($content.current.value);
-    onFormSubmit(event, callback);
+    handleFormSubmit(event, callback);
   }, []);
 
   return (

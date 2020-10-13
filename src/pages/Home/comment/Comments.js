@@ -2,11 +2,11 @@ import React from 'react';
 import css from 'styled-jsx/css';
 import CommentItem from './CommentItem';
 
-const Comments = ({ commentList }) => {
+const Comments = ({ comments }) => {
   return (
     <>
       <ul className="comment-list">
-        {commentList.map((comment) => (
+        {comments.map((comment) => (
           <CommentItem {...comment} key={comment.seq} />
         ))}
       </ul>
