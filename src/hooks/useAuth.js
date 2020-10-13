@@ -9,13 +9,15 @@ export const useAuth = () => {
   const dispatch = useDispatch();
 
   const signIn = useCallback((userInfo) => {
-    const user = userService.signIn(userInfo);
-    if (user) dispatch(usersActions.fetchAuth());
-    return !!user;
+    return !!userService.signIn(userInfo);
   }, []);
 
   const signUp = useCallback((userInfo) => {
     userService.signUp(userInfo);
+  }, []);
+
+  const fetchAuth = useCallback(() => {
+    dispatch(usersActions.fetchAuth());
   }, []);
 
   const removeAuth = useCallback(() => {
@@ -26,5 +28,5 @@ export const useAuth = () => {
     if (!auth) throw new Error('로그인 후 이용해주세요');
   }, [auth]);
 
-  return { auth, signIn, signUp, removeAuth, validateAuth };
+  return { auth, signIn, signUp, fetchAuth, removeAuth, validateAuth };
 };

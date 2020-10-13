@@ -17,9 +17,7 @@ const SignIn = () => {
       const email = $email.current.value;
       const password = $password.current.value;
 
-      const user = signIn({ email, password });
-
-      if (!user) {
+      if (!signIn({ email, password })) {
         alert('아이디 또는 비밀번호가 일치하지 않습니다.');
         $password.current.focus();
         return;
