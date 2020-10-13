@@ -1,19 +1,16 @@
 import React from 'react';
 import css from 'styled-jsx/css';
 import { PostForm, Post } from './post';
+import { usePosts } from '../../hooks';
 
-const Home = ({ posts, onAddPost, onAddComment, onToggleLike, onFormSubmit }) => {
+const Home = () => {
+  const { posts, toggleLike: handleToggleLike, addPost: handleAddPost } = usePosts();
+
   return (
     <div className="posts container">
-      <PostForm onAddPost={onAddPost} onFormSubmit={onFormSubmit} />
+      <PostForm onAddPost={handleAddPost} />
       {posts.map((post) => (
-        <Post
-          key={post.seq}
-          post={post}
-          onAddComment={onAddComment}
-          onToggleLike={onToggleLike}
-          onFormSubmit={onFormSubmit}
-        />
+        <Post key={post.seq} post={post} onToggleLike={handleToggleLike} />
       ))}
       <style jsx>{HomeStyle}</style>
     </div>

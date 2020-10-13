@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import css from 'styled-jsx/css';
 import { CommentForm, Comments } from '../comment';
 import dayjs from 'dayjs';
+import { useComments } from '../../../hooks';
 
-const Post = ({ post, onAddComment, onToggleLike, onFormSubmit }) => {
-  const { writer, contents, createAt, likes, comments, likesOfMe, commentList } = post;
-
-  const handleAddCommentOfPost = useCallback((contents) => onAddComment(post, contents), [post]);
+const Post = ({ post, onToggleLike }) => {
+  const { seq, writer, contents, createAt, likes, likesOfMe } = post;
+  const { commentsOfPost, addComment: handleAddComment } = useComments(seq);
 
   const handleLikeClick = useCallback(
     (event) => {
@@ -30,12 +30,12 @@ const Post = ({ post, onAddComment, onToggleLike, onFormSubmit }) => {
             <i className={`far fa-thumbs-up ${likesOfMe ? 'on' : ''}`}>{likes} 개</i>
           </button>
           <span className="comment-count">
-            <i className="far fa-comment-alt">{comments} 개</i>
+            <i className="far fa-comment-alt">{commentsOfPost.length} 개</i>
           </span>
         </div>
       </div>
-      <Comments commentList={commentList} />
-      <CommentForm onAddCommentOfPost={handleAddCommentOfPost} onFormSubmit={onFormSubmit} />
+      <Comments comments={commentsOfPost} />
+      <CommentForm onAddComment={handleAddComment} onFormSubmit={onFormSubmit} />
       <style jsx>{cardStyle}</style>
     </div>
   );
