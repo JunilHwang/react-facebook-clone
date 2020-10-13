@@ -7,7 +7,7 @@ const Comments = ({ comments }) => {
     <>
       <ul className="comment-list">
         {comments.map((comment) => (
-          <CommentItem {...comment} key={comment.seq} />
+          <CommentItem {...comment} key={`comment_${comment.seq}`} />
         ))}
       </ul>
       <style jsx>{commentStyle}</style>

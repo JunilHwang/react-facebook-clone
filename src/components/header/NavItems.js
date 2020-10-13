@@ -36,4 +36,4 @@ const NavItems = () => {
   );
 };
 
-export default NavItems;
+export default React.memo(NavItems);

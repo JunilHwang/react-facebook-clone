@@ -20,4 +20,4 @@ const logoStyle = css`
   }
 `;
 
-export default Logo;
+export default React.memo(Logo);

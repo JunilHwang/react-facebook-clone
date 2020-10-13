@@ -21,7 +21,7 @@ export default class Repository {
   add(data) {
     const allData = this.findAll();
     const seq = Math.max(0, ...allData.ids) + 1;
-    allData.entries[seq] = data;
+    allData.entries[seq] = { ...data, seq };
     allData.ids.push(seq);
     this.saveAll(allData);
   }

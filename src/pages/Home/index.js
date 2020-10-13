@@ -15,7 +15,7 @@ const Home = () => {
     <div className="posts container">
       <PostForm onAddPost={handleAddPost} />
       {posts.map((post) => (
-        <Post key={post.seq} post={post} onToggleLike={handleToggleLike} />
+        <Post key={`post_${post.seq}`} post={post} onToggleLike={handleToggleLike} />
       ))}
       <style jsx>{HomeStyle}</style>
     </div>

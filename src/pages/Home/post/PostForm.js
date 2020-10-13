@@ -70,4 +70,4 @@ const WriteFormStyle = css`
   }
 `;
 
-export default PostForm;
+export default React.memo(PostForm);

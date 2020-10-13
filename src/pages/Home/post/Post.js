@@ -35,7 +35,7 @@ const Post = ({ post, onToggleLike }) => {
         </div>
       </div>
       <Comments comments={commentsOfPost} />
-      <CommentForm onAddComment={handleAddComment} onFormSubmit={onFormSubmit} />
+      <CommentForm onAddComment={handleAddComment} />
       <style jsx>{cardStyle}</style>
     </div>
   );

@@ -8,20 +8,23 @@ import { useAuth } from './useAuth';
 export const usePosts = () => {
   const posts = useSelector(selectAllPostsOrderByCreateAt);
   const dispatch = useDispatch();
-  const { auth: writer, validateAuth } = useAuth();
+  const { auth, validateAuth } = useAuth();
 
   const addPost = useCallback(
     (contents) => {
       validateAuth();
-      dispatch(postsActions.addPost({ contents, writer }));
+      dispatch(postsActions.addPost({ contents, writer: { ...auth } }));
     },
-    [writer]
+    [auth]
   );
 
-  const toggleLike = useCallback((post) => {
-    validateAuth();
-    dispatch(postsActions.togglePostLike(post));
-  }, []);
+  const toggleLike = useCallback(
+    (post) => {
+      validateAuth();
+      dispatch(postsActions.togglePostLike(post));
+    },
+    [auth]
+  );
 
   return { posts, addPost, toggleLike };
 };

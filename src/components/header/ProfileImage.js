@@ -20,4 +20,4 @@ const profileImageStyle = css`
   }
 `;
 
-export default ProfileImage;
+export default React.memo(ProfileImage);

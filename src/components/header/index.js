@@ -22,4 +22,4 @@ const HeaderStyle = css`
   }
 `;
 
-export default Header;
+export default React.memo(Header);
