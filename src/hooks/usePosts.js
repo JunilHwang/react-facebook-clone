@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { PostService } from '../services';
+import {useSelector} from "react-redux";
 
 export const usePosts = (writer) => {
-  const [posts, setPosts] = useState(PostService.fetchPosts());
+  const posts = useSelector()
 
   const loadPost = useCallback(() => setPosts(PostService.fetchPosts()), [posts]);
 

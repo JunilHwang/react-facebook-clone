@@ -1,7 +1,1 @@
-import { createSelector } from 'reselect';
-
-export const getAuth = (state) =>
-  createSelector(
-    (state) => state.users,
-    (users) => users.auth
-  );
+export const getAuth = (state) => state.users.auth;

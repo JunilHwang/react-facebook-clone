@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { history } from '../../data/configureStore';
 import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '../../layouts/PublicLayout';
 import css from 'styled-jsx/css';
+import { useAuth } from '../../hooks';
 
 const SignIn = () => {
+  const { signIn } = useAuth();
   const $email = useRef();
   const $password = useRef();
 
@@ -15,7 +17,7 @@ const SignIn = () => {
       const email = $email.current.value;
       const password = $password.current.value;
 
-      const user = onSignIn({ email, password });
+      const user = signIn({ email, password });
 
       if (!user) {
         alert('아이디 또는 비밀번호가 일치하지 않습니다.');
@@ -28,7 +30,7 @@ const SignIn = () => {
 
       event.target.reset();
     },
-    [onSignIn, history]
+    [signIn, history]
   );
 
   return (

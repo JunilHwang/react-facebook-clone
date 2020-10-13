@@ -6,8 +6,6 @@ import { createRootReducer } from './rootReducer';
 
 export const history = createBrowserHistory();
 
-console.log(history);
-
 export const rootReducer = createRootReducer(history);
 
 export const configureStore = () => {
