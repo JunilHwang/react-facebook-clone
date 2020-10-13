@@ -18,12 +18,6 @@ export default class Repository {
     });
   }
 
-  upsert(data) {
-    if (!data) return;
-    const method = data.seq === undefined ? 'add' : 'update';
-    this[method](data);
-  }
-
   add(data) {
     const allData = this.findAll();
     const seq = Math.max(...allData.ids) + 1;

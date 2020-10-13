@@ -1,11 +1,11 @@
-import { UserRepository } from '../repositories';
+import { userRepository } from '../repositories';
 import { session } from '../storages';
 
 const KEY = 'auth';
 
 export default Object.freeze({
   signIn(userInfo) {
-    const user = UserRepository.findByEmailAndPassword(userInfo);
+    const user = userRepository.findByEmailAndPassword(userInfo);
     if (user === undefined) return false;
     const { password, ...auth } = user;
     session.set(KEY, auth);
@@ -13,10 +13,10 @@ export default Object.freeze({
   },
 
   signUp(userInfo) {
-    const user = UserRepository.findByEmail(userInfo.email);
+    const user = userRepository.findByEmail(userInfo.email);
     if (user) throw new Error('이미 회원가입이 되어있는 사용자 정보입니다.');
 
-    UserRepository.upsert(userInfo);
+    userRepository.upsert(userInfo);
   },
 
   getAuth() {
