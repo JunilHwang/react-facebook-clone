@@ -15,7 +15,7 @@ export const usePosts = () => {
       validateAuth();
       dispatch(postsActions.addPost({ contents, writer: { ...auth } }));
     },
-    [auth]
+    [auth, validateAuth]
   );
 
   const toggleLike = useCallback(
@@ -23,7 +23,7 @@ export const usePosts = () => {
       validateAuth();
       dispatch(postsActions.togglePostLike(post));
     },
-    [auth]
+    [auth, validateAuth]
   );
 
   return { posts, addPost, toggleLike };

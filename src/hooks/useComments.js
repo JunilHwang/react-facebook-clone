@@ -16,7 +16,7 @@ export const useComments = (postSeq) => {
       const writer = auth;
       dispatch(commentsActions.addComment({ postSeq, writer, contents }));
     },
-    [postSeq, auth]
+    [postSeq, auth, validateAuth]
   );
 
   return { commentsOfPost, addComment };

@@ -14,7 +14,7 @@ export default (state, { type }) => {
       };
     default:
       return {
-        auth: null,
+        auth: userService.getAuth(),
       };
   }
 };
