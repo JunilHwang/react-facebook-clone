@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import css from 'styled-jsx/css';
 import { PostForm, Post } from './post';
-import { usePosts } from '../../hooks';
+import { useAuth, usePosts } from '../../hooks';
 
 const Home = () => {
   const { posts, toggleLike: handleToggleLike, addPost: handleAddPost } = usePosts();
+  const { fetchAuth } = useAuth();
+
+  useEffect(() => {
+    fetchAuth();
+  }, []);
 
   return (
     <div className="posts container">
@@ -44,4 +49,4 @@ const HomeStyle = css`
   }
 `;
 
-export default Home;
+export default React.memo(Home);

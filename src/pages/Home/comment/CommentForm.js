@@ -7,7 +7,15 @@ const CommentForm = ({ onAddCommentOfPost }) => {
   const { handleFormSubmit } = useForm();
 
   const handleCommentSubmit = useCallback((event) => {
-    const callback = () => onAddCommentOfPost($content.current.value);
+    const callback = () => {
+      try {
+        onAddCommentOfPost($content.current.value);
+        return true;
+      } catch (e) {
+        alert(e.message);
+        console.error(e);
+      }
+    };
     handleFormSubmit(event, callback);
   }, []);
 

@@ -1,15 +1,25 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
-import { useForm } from '../../../hooks';
+import { useAuth, useForm } from '../../../hooks';
 
 const PostForm = ({ onAddPost }) => {
   const contentsRef = useRef();
   const { handleFormSubmit } = useForm();
 
-  const handlePostSubmit = useCallback((event) => {
-    const callback = () => onAddPost(contentsRef.current.value);
-    handleFormSubmit(event, callback);
-  }, []);
+  const handlePostSubmit = useCallback(
+    (event) => {
+      const callback = () => {
+        try {
+          onAddPost(contentsRef.current.value);
+          return true;
+        } catch (e) {
+          alert(e.message);
+        }
+      };
+      handleFormSubmit(event, callback);
+    },
+    [onAddPost]
+  );
 
   return (
     <>

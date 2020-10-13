@@ -6,7 +6,7 @@ const KEY = 'auth';
 export default Object.freeze({
   signIn(userInfo) {
     const user = userRepository.findByEmailAndPassword(userInfo);
-    if (user === undefined) return false;
+    if (user === null) return false;
     const { password, ...auth } = user;
     session.set(KEY, auth);
     return auth;
