@@ -1,13 +1,15 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { buttonStyle, formStyle, linkStyle, textHelpStyle } from '../../layouts/PublicLayout';
-import css, { resolve } from 'styled-jsx/css';
+import css from 'styled-jsx/css';
+import { useAuth } from '../../hooks';
 
 const defaultProfileImageUrl = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
 const fileReader = new FileReader();
 
-const SignUp = ({ onSignUp }) => {
+const SignUp = () => {
   const [profileImageUrl, setProfileImageUrl] = useState(defaultProfileImageUrl);
+  const { signUp } = useAuth();
 
   const $email = useRef();
   const $name = useRef();
@@ -27,12 +29,12 @@ const SignUp = ({ onSignUp }) => {
         return $repeatPassword.current.focus();
       }
 
-      onSignUp({ email, name, password, profileImageUrl });
+      signUp({ email, name, password, profileImageUrl });
       alert('회원가입이 완료되었습니다.');
 
       event.target.reset();
     },
-    [onSignUp, profileImageUrl]
+    [signUp, profileImageUrl]
   );
 
   const handleProfileImageChange = useCallback(
@@ -82,7 +84,7 @@ const SignUp = ({ onSignUp }) => {
           로그인 하기
         </Link>
       </p>
-      <style jsx>{inputStyle}</style>
+      <style jsx>{signUpStyle}</style>
       {formStyle.styles}
       {buttonStyle.styles}
       {textHelpStyle.styles}
@@ -91,20 +93,12 @@ const SignUp = ({ onSignUp }) => {
   );
 };
 
-export const inputStyle = css`
+export const signUpStyle = css`
   input.form-control {
     font-size: 16px;
     height: auto;
     padding: 10px;
     margin-bottom: 1rem;
-  }
-
-  button {
-    background-color: #3b5999;
-    color: #fffffe;
-    font-weight: 800;
-    border-color: unset;
-    margin-top: 10px;
   }
 `;
 
