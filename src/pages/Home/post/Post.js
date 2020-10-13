@@ -8,10 +8,13 @@ const Post = ({ post, onAddComment, onToggleLike, onFormSubmit }) => {
 
   const handleAddCommentOfPost = useCallback((contents) => onAddComment(post, contents), [post]);
 
-  const handleLikeClick = useCallback((event) => {
-    event.preventDefault();
-    onToggleLike(post);
-  }, []);
+  const handleLikeClick = useCallback(
+    (event) => {
+      event.preventDefault();
+      onToggleLike(post);
+    },
+    [post]
+  );
 
   const fromNow = dayjs(createAt).from(Date.now());
 
