@@ -1,15 +1,15 @@
 import { ADD_POST, TOGGLE_POST_LIKE } from './actionTypes';
-import { PostService } from '../../services';
+import { postService } from '../../services';
 
 export default (state, { type, payload }) => {
   switch (type) {
     case ADD_POST:
-      PostService.addPost(payload);
-      return PostService.fetchPosts();
+      postService.addPost(payload);
+      return postService.fetchPosts();
     case TOGGLE_POST_LIKE:
-      PostService.toggleLike(payload);
-      return PostService.fetchPosts();
+      postService.toggleLike(payload);
+      return postService.fetchPosts();
     default:
-      return PostService.fetchPosts();
+      return postService.fetchPosts();
   }
 };
