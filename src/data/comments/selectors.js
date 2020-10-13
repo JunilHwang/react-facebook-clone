@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
 
 export const selectAllComments = (state) => state.comments;
-export const selectCommentsOfPost = (post) =>
+export const selectCommentsOfPost = (postSeq) =>
   createSelector(selectAllComments, ({ entries, ids }) =>
     ids.reduce((comments, seq) => {
       const comment = entries[seq];
-      if (comment.postSeq === post.comments) comments.push(comment);
+      if (comment.postSeq === postSeq) comments.push(comment);
       return comments;
     }, [])
   );
