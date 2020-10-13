@@ -2,26 +2,28 @@ import React, { useCallback } from 'react';
 import NavItem from './NavItem';
 import ProfileImage from './ProfileImage';
 import Conditional from '../../hocs/Conditional';
+import { useAuth } from '../../hooks';
 
-const NavItems = ({ user, onRemoveAuth }) => {
-  const { seq, name, profileImageUrl } = user || {};
+const NavItems = () => {
+  const { auth, removeAuth } = useAuth();
+  const { seq, name, profileImageUrl } = auth || {};
 
   const handleLogoutClick = useCallback(
     (event) => {
       event.preventDefault();
-      onRemoveAuth();
+      removeAuth();
       alert('로그아웃 되었습니다.');
     },
-    [onRemoveAuth]
+    [removeAuth]
   );
 
   return (
     <ul className="nav">
-      <Conditional condition={!user}>
+      <Conditional condition={!auth}>
         <NavItem to="/login">로그인</NavItem>
         <NavItem to="/signup">회원가입</NavItem>
       </Conditional>
-      <Conditional condition={user}>
+      <Conditional condition={auth}>
         <NavItem to={`/user/${seq}`}>
           <ProfileImage src={profileImageUrl} />
           {name}
