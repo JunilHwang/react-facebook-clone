@@ -6,10 +6,8 @@ import { createRootReducer } from './rootReducer';
 
 export const history = createBrowserHistory();
 
-export const rootReducer = createRootReducer(history);
-
 export const configureStore = () => {
-  const store = createStore(rootReducer, compose(applyMiddleware(routerMiddleware(history))));
+  const store = createStore(createRootReducer(history), compose(applyMiddleware(routerMiddleware(history))));
 
   return { store, history };
 };

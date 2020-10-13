@@ -1,18 +1,23 @@
 import React from 'react';
 import { Home, SignIn, SignUp } from './pages';
-import { Redirect, Switch } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import { DefaultLayout, PublicLayout } from './layouts';
+import { history } from './data/configureStore';
 
-const App = ({ history }) => {
+const App = () => {
   return (
-    <ConnectedRouter history={history}>
-      <Switch>
-        <PublicLayout path="/login" component={SignIn} />
-        <PublicLayout path="/signup" component={SignUp} />
-        <DefaultLayout path="/" component={Home} />
-        <Redirect path="*" to="/" />
-      </Switch>
+    <>
+      <ConnectedRouter history={history}>
+        <>
+          <Switch>
+            <PublicLayout path="/login" component={SignIn} />
+            <PublicLayout path="/signup" component={SignUp} />
+            <DefaultLayout path="/" component={Home} />
+            <Redirect path="*" to="/" />
+          </Switch>
+        </>
+      </ConnectedRouter>
       <style jsx global>{`
         * {
           box-sizing: border-box;
@@ -31,7 +36,7 @@ const App = ({ history }) => {
           padding: 100px 0;
         }
       `}</style>
-    </ConnectedRouter>
+    </>
   );
 };
 

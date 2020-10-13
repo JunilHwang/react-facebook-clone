@@ -10,11 +10,11 @@ import { configureStore } from './data/configureStore';
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
 
-const { store, history } = configureStore();
+const { store } = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App history={history} />
+    <App />
   </Provider>,
   document.getElementById('root')
 );
