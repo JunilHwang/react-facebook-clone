@@ -4,7 +4,7 @@ import { Redirect, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { DefaultLayout, PublicLayout } from './layouts';
 
-const App = (history) => {
+const App = ({ history }) => {
   return (
     <ConnectedRouter history={history}>
       <Switch>
