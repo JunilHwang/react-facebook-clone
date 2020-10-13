@@ -10,7 +10,6 @@ export default Object.freeze({
       ...post,
       createAt: Date.now(),
       likes: 0,
-      comments: 0,
       likesOfMe: false,
     });
   },
