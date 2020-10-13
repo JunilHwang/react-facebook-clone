@@ -3,8 +3,8 @@ import { createBrowserHistory } from 'history';
 import { createRootReducer } from './rootReducer';
 import { routerMiddleware } from 'connected-react-router';
 
-const history = createBrowserHistory();
-const rootReducer = createRootReducer(history);
+export const history = createBrowserHistory();
+export const rootReducer = createRootReducer(history);
 
 export const configureStore = () => {
   const store = createStore(

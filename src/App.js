@@ -1,35 +1,16 @@
 import React from 'react';
 import { Home, SignIn, SignUp } from './pages';
-import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import { DefaultLayout, PublicLayout } from './layouts';
-import { useAuth, usePosts } from './hooks';
 
-const App = () => {
-  const { user, signIn: handleSignIn, signUp: handleSignUp, removeAuth: handleRemoveAuth } = useAuth();
-  const {
-    posts,
-    addPost: handleAddPost,
-    addComment: handleAddComment,
-    toggleLike: handleToggleLike,
-    handleFormSubmit,
-  } = usePosts(user);
-
+const App = (history) => {
   return (
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <Switch>
-        <PublicLayout path="/login" onSignIn={handleSignIn} component={SignIn} />
-        <PublicLayout path="/signup" onSignUp={handleSignUp} component={SignUp} />
-        <DefaultLayout
-          path="/"
-          user={user}
-          onRemoveAuth={handleRemoveAuth}
-          posts={posts}
-          onAddPost={handleAddPost}
-          onAddComment={handleAddComment}
-          onToggleLike={handleToggleLike}
-          onFormSubmit={handleFormSubmit}
-          component={Home}
-        />
+        <PublicLayout path="/login" component={SignIn} />
+        <PublicLayout path="/signup" component={SignUp} />
+        <DefaultLayout path="/" component={Home} />
         <Redirect path="*" to="/" />
       </Switch>
       <style jsx global>{`
@@ -50,7 +31,7 @@ const App = () => {
           padding: 100px 0;
         }
       `}</style>
-    </BrowserRouter>
+    </ConnectedRouter>
   );
 };
 
