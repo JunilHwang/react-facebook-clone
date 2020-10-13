@@ -13,14 +13,14 @@ export default class Repository {
 
   findAll() {
     return repository.get(this.#key, {
-      entries: [],
+      entries: {},
       ids: [],
     });
   }
 
   add(data) {
     const allData = this.findAll();
-    const seq = Math.max(...allData.ids) + 1;
+    const seq = Math.max(0, ...allData.ids) + 1;
     allData.entries[seq] = data;
     allData.ids.push(seq);
     this.saveAll(allData);
