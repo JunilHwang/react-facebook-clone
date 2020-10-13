@@ -29149,381 +29149,7 @@ function flush() {
 },{"react":"node_modules/react/index.js","./stylesheet-registry":"node_modules/styled-jsx/dist/stylesheet-registry.js"}],"node_modules/styled-jsx/style.js":[function(require,module,exports) {
 module.exports = require('./dist/style')
 
-},{"./dist/style":"node_modules/styled-jsx/dist/style.js"}],"src/pages/Home/comment/CommentForm.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _style = _interopRequireDefault(require("styled-jsx/style"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var CommentForm = function CommentForm(_ref) {
-  var onAddCommentOfPost = _ref.onAddCommentOfPost,
-      onFormSubmit = _ref.onFormSubmit;
-  var $content = (0, _react.useRef)(null);
-  var handleCommentSubmit = (0, _react.useCallback)(function (event) {
-    var callback = function callback() {
-      return onAddCommentOfPost($content.current.value);
-    };
-
-    onFormSubmit(event, callback);
-  }, []);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("form", {
-    onSubmit: handleCommentSubmit,
-    className: "jsx-".concat(cardFormStyle.__hash) + " " + "comment-form"
-  }, /*#__PURE__*/_react.default.createElement("textarea", {
-    ref: $content,
-    placeholder: "\uB313\uAE00\uC744 \uC785\uB825\uD558\uC138\uC694...",
-    spellCheck: "false",
-    className: "jsx-".concat(cardFormStyle.__hash) + " " + "form-control input-lg"
-  }), /*#__PURE__*/_react.default.createElement("button", {
-    type: "submit",
-    className: "jsx-".concat(cardFormStyle.__hash) + " " + "btn btn-primary"
-  }, "\uB313\uAE00\uB2EC\uAE30")), /*#__PURE__*/_react.default.createElement(_style.default, {
-    id: cardFormStyle.__hash
-  }, cardFormStyle));
-};
-
-var cardFormStyle = [".comment-form.jsx-2376221963{margin:20px;}", ".comment-form.jsx-2376221963>textarea.form-control.jsx-2376221963{min-height:20px;line-height:20px;border-radius:0.5rem;resize:none;}", ".comment-form.jsx-2376221963>button.btn.jsx-2376221963{float:right;margin-bottom:0;margin-top:16px;background-color:#3b5999;color:#fffffe;border-color:unset;font-weight:800;}"];
-cardFormStyle.__hash = "2376221963";
-var _default = CommentForm;
-exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js"}],"node_modules/dayjs/dayjs.min.js":[function(require,module,exports) {
-var define;
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):t.dayjs=e()}(this,function(){"use strict";var t="millisecond",e="second",n="minute",r="hour",i="day",s="week",u="month",a="quarter",o="year",f="date",h=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d+)?$/,c=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,d={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},$=function(t,e,n){var r=String(t);return!r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},l={s:$,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return(e<=0?"+":"-")+$(r,2,"0")+":"+$(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return-t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,u),s=n-i<0,a=e.clone().add(r+(s?-1:1),u);return+(-(r+(n-i)/(s?i-a:a-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return{M:u,y:o,w:s,d:i,D:f,h:r,m:n,s:e,ms:t,Q:a}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},y="en",M={};M[y]=d;var m=function(t){return t instanceof S},D=function(t,e,n){var r;if(!t)return y;if("string"==typeof t)M[t]&&(r=t),e&&(M[t]=e,r=t);else{var i=t.name;M[i]=t,r=i}return!n&&r&&(y=r),r||!n&&y},v=function(t,e){if(m(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new S(n)},g=l;g.l=D,g.i=m,g.w=function(t,e){return v(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var S=function(){function d(t){this.$L=this.$L||D(t.locale,null,!0),this.parse(t)}var $=d.prototype;return $.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(g.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match(h);if(r){var i=r[2]-1||0,s=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)}}return new Date(e)}(t),this.$x=t.x||{},this.init()},$.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},$.$utils=function(){return g},$.isValid=function(){return!("Invalid Date"===this.$d.toString())},$.isSame=function(t,e){var n=v(t);return this.startOf(e)<=n&&n<=this.endOf(e)},$.isAfter=function(t,e){return v(t)<this.startOf(e)},$.isBefore=function(t,e){return this.endOf(e)<v(t)},$.$g=function(t,e,n){return g.u(t)?this[e]:this.set(n,t)},$.unix=function(){return Math.floor(this.valueOf()/1e3)},$.valueOf=function(){return this.$d.getTime()},$.startOf=function(t,a){var h=this,c=!!g.u(a)||a,d=g.p(t),$=function(t,e){var n=g.w(h.$u?Date.UTC(h.$y,e,t):new Date(h.$y,e,t),h);return c?n:n.endOf(i)},l=function(t,e){return g.w(h.toDate()[t].apply(h.toDate("s"),(c?[0,0,0,0]:[23,59,59,999]).slice(e)),h)},y=this.$W,M=this.$M,m=this.$D,D="set"+(this.$u?"UTC":"");switch(d){case o:return c?$(1,0):$(31,11);case u:return c?$(1,M):$(0,M+1);case s:var v=this.$locale().weekStart||0,S=(y<v?y+7:y)-v;return $(c?m-S:m+(6-S),M);case i:case f:return l(D+"Hours",0);case r:return l(D+"Minutes",1);case n:return l(D+"Seconds",2);case e:return l(D+"Milliseconds",3);default:return this.clone()}},$.endOf=function(t){return this.startOf(t,!1)},$.$set=function(s,a){var h,c=g.p(s),d="set"+(this.$u?"UTC":""),$=(h={},h[i]=d+"Date",h[f]=d+"Date",h[u]=d+"Month",h[o]=d+"FullYear",h[r]=d+"Hours",h[n]=d+"Minutes",h[e]=d+"Seconds",h[t]=d+"Milliseconds",h)[c],l=c===i?this.$D+(a-this.$W):a;if(c===u||c===o){var y=this.clone().set(f,1);y.$d[$](l),y.init(),this.$d=y.set(f,Math.min(this.$D,y.daysInMonth())).$d}else $&&this.$d[$](l);return this.init(),this},$.set=function(t,e){return this.clone().$set(t,e)},$.get=function(t){return this[g.p(t)]()},$.add=function(t,a){var f,h=this;t=Number(t);var c=g.p(a),d=function(e){var n=v(h);return g.w(n.date(n.date()+Math.round(e*t)),h)};if(c===u)return this.set(u,this.$M+t);if(c===o)return this.set(o,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(f={},f[n]=6e4,f[r]=36e5,f[e]=1e3,f)[c]||1,l=this.$d.getTime()+t*$;return g.w(l,this)},$.subtract=function(t,e){return this.add(-1*t,e)},$.format=function(t){var e=this;if(!this.isValid())return"Invalid Date";var n=t||"YYYY-MM-DDTHH:mm:ssZ",r=g.z(this),i=this.$locale(),s=this.$H,u=this.$m,a=this.$M,o=i.weekdays,f=i.months,h=function(t,r,i,s){return t&&(t[r]||t(e,n))||i[r].substr(0,s)},d=function(t){return g.s(s%12||12,t,"0")},$=i.meridiem||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:g.s(a+1,2,"0"),MMM:h(i.monthsShort,a,f,3),MMMM:h(f,a),D:this.$D,DD:g.s(this.$D,2,"0"),d:String(this.$W),dd:h(i.weekdaysMin,this.$W,o,2),ddd:h(i.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:g.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:g.s(u,2,"0"),s:String(this.$s),ss:g.s(this.$s,2,"0"),SSS:g.s(this.$ms,3,"0"),Z:r};return n.replace(c,function(t,e){return e||l[t]||r.replace(":","")})},$.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},$.diff=function(t,f,h){var c,d=g.p(f),$=v(t),l=6e4*($.utcOffset()-this.utcOffset()),y=this-$,M=g.m(this,$);return M=(c={},c[o]=M/12,c[u]=M,c[a]=M/3,c[s]=(y-l)/6048e5,c[i]=(y-l)/864e5,c[r]=y/36e5,c[n]=y/6e4,c[e]=y/1e3,c)[d]||y,h?M:g.a(M)},$.daysInMonth=function(){return this.endOf(u).$D},$.$locale=function(){return M[this.$L]},$.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=D(t,e,!0);return r&&(n.$L=r),n},$.clone=function(){return g.w(this.$d,this)},$.toDate=function(){return new Date(this.valueOf())},$.toJSON=function(){return this.isValid()?this.toISOString():null},$.toISOString=function(){return this.$d.toISOString()},$.toString=function(){return this.$d.toUTCString()},d}(),p=S.prototype;return v.prototype=p,[["$ms",t],["$s",e],["$m",n],["$H",r],["$W",i],["$M",u],["$y",o],["$D",f]].forEach(function(t){p[t[1]]=function(e){return this.$g(e,t[0],t[1])}}),v.extend=function(t,e){return t(e,S,v),v},v.locale=D,v.isDayjs=m,v.unix=function(t){return v(1e3*t)},v.en=M[y],v.Ls=M,v});
-
-},{}],"src/pages/Home/comment/CommentItem.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _style = _interopRequireDefault(require("styled-jsx/style"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _dayjs = _interopRequireDefault(require("dayjs"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var CommentItem = function CommentItem(_ref) {
-  var writer = _ref.writer,
-      createAt = _ref.createAt,
-      contents = _ref.contents;
-  var fromNow = (0, _dayjs.default)(createAt).from(Date.now());
-  return /*#__PURE__*/_react.default.createElement("li", {
-    className: "jsx-".concat(commentStyle.__hash) + " " + "comment"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-info"
-  }, /*#__PURE__*/_react.default.createElement("h6", {
-    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-writer"
-  }, writer.name), /*#__PURE__*/_react.default.createElement("div", {
-    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-datetime"
-  }, fromNow)), /*#__PURE__*/_react.default.createElement("p", {
-    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-text"
-  }, contents), /*#__PURE__*/_react.default.createElement(_style.default, {
-    id: commentStyle.__hash
-  }, commentStyle));
-};
-
-var commentStyle = ["li.comment.jsx-1124286208{padding:20px 40px 24px;border-bottom:1px solid #e6ecf5;background-color:#fafbfd;position:relative;}", "li.comment.jsx-1124286208:first-child{border-top:1px solid #e6ecf5;}", "li.comment.jsx-1124286208 .comment-text.jsx-1124286208{padding-top:20px;}"];
-commentStyle.__hash = "1124286208";
-
-var _default = /*#__PURE__*/_react.default.memo(CommentItem);
-
-exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","dayjs":"node_modules/dayjs/dayjs.min.js"}],"src/pages/Home/comment/Comments.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _style = _interopRequireDefault(require("styled-jsx/style"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _CommentItem = _interopRequireDefault(require("./CommentItem"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-var Comments = function Comments(_ref) {
-  var commentList = _ref.commentList;
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
-    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-list"
-  }, commentList.map(function (comment) {
-    return /*#__PURE__*/_react.default.createElement(_CommentItem.default, _extends({}, comment, {
-      key: comment.seq
-    }));
-  })), /*#__PURE__*/_react.default.createElement(_style.default, {
-    id: commentStyle.__hash
-  }, commentStyle));
-};
-
-var commentStyle = ["ul.comment-list.jsx-332234574{padding:0;list-style:none;}"];
-commentStyle.__hash = "332234574";
-var _default = Comments;
-exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","./CommentItem":"src/pages/Home/comment/CommentItem.js"}],"src/pages/Home/comment/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "CommentForm", {
-  enumerable: true,
-  get: function () {
-    return _CommentForm.default;
-  }
-});
-Object.defineProperty(exports, "CommentItem", {
-  enumerable: true,
-  get: function () {
-    return _CommentItem.default;
-  }
-});
-Object.defineProperty(exports, "Comments", {
-  enumerable: true,
-  get: function () {
-    return _Comments.default;
-  }
-});
-
-var _CommentForm = _interopRequireDefault(require("./CommentForm"));
-
-var _CommentItem = _interopRequireDefault(require("./CommentItem"));
-
-var _Comments = _interopRequireDefault(require("./Comments"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./CommentForm":"src/pages/Home/comment/CommentForm.js","./CommentItem":"src/pages/Home/comment/CommentItem.js","./Comments":"src/pages/Home/comment/Comments.js"}],"src/pages/Home/post/Post.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _style = _interopRequireDefault(require("styled-jsx/style"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _comment = require("../comment");
-
-var _dayjs = _interopRequireDefault(require("dayjs"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Post = function Post(_ref) {
-  var post = _ref.post,
-      onAddComment = _ref.onAddComment,
-      onToggleLike = _ref.onToggleLike,
-      onFormSubmit = _ref.onFormSubmit;
-  var writer = post.writer,
-      contents = post.contents,
-      createAt = post.createAt,
-      likes = post.likes,
-      comments = post.comments,
-      likesOfMe = post.likesOfMe,
-      commentList = post.commentList;
-  var handleAddCommentOfPost = (0, _react.useCallback)(function (contents) {
-    return onAddComment(post, contents);
-  }, [post]);
-  var handleLikeClick = (0, _react.useCallback)(function (event) {
-    event.preventDefault();
-    onToggleLike(post);
-  }, []);
-  var fromNow = (0, _dayjs.default)(createAt).from(Date.now());
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "card"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "card-body"
-  }, /*#__PURE__*/_react.default.createElement("h5", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "card-title"
-  }, writer.name), /*#__PURE__*/_react.default.createElement("h6", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "card-subtitle text-muted"
-  }, fromNow), /*#__PURE__*/_react.default.createElement("p", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "card-text"
-  }, contents), /*#__PURE__*/_react.default.createElement("hr", {
-    className: "jsx-".concat(cardStyle.__hash)
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "card-info"
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "button",
-    onClick: handleLikeClick,
-    className: "jsx-".concat(cardStyle.__hash) + " " + "thumb-count"
-  }, /*#__PURE__*/_react.default.createElement("i", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "far fa-thumbs-up ".concat(likesOfMe ? 'on' : '')
-  }, likes, " \uAC1C")), /*#__PURE__*/_react.default.createElement("span", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "comment-count"
-  }, /*#__PURE__*/_react.default.createElement("i", {
-    className: "jsx-".concat(cardStyle.__hash) + " " + "far fa-comment-alt"
-  }, comments, " \uAC1C")))), /*#__PURE__*/_react.default.createElement(_comment.Comments, {
-    commentList: commentList
-  }), /*#__PURE__*/_react.default.createElement(_comment.CommentForm, {
-    onAddCommentOfPost: handleAddCommentOfPost,
-    onFormSubmit: onFormSubmit
-  }), /*#__PURE__*/_react.default.createElement(_style.default, {
-    id: cardStyle.__hash
-  }, cardStyle));
-};
-
-var cardStyle = [".card.jsx-3395098734{padding:0;margin-top:50px;border:none;border-radius:0.5rem;}", ".card.jsx-3395098734 .card-body.jsx-3395098734{padding:40px;}", ".card.jsx-3395098734 .card-text.jsx-3395098734{padding-top:20px;white-space:pre-wrap;}", ".card.jsx-3395098734 .card-info.jsx-3395098734{height:20px;}", ".card.jsx-3395098734 .card-info.jsx-3395098734 .thumb-count.jsx-3395098734,.card.jsx-3395098734 .card-info.jsx-3395098734 .comment-count.jsx-3395098734{display:inline-block;margin-right:24px;vertical-align:middle;font-size:12px;cursor:pointer;padding:0;border:none;background-color:transparent;-webkit-transition:color ease-in-out 0.3s;transition:color ease-in-out 0.3s;-webkit-transition:margin-top ease-in-out 0.2s;transition:margin-top ease-in-out 0.2s;}", ".card.jsx-3395098734 .card-info.jsx-3395098734 .thumb-count.jsx-3395098734:hover,.card.jsx-3395098734 .card-info.jsx-3395098734 .comment-count.jsx-3395098734:hover{color:#007bff;margin-top:-3px;}", ".card.jsx-3395098734 .card-info.jsx-3395098734 .thumb-count.jsx-3395098734 .on.jsx-3395098734{color:#007bff;}"];
-cardStyle.__hash = "3395098734";
-
-var _default = /*#__PURE__*/_react.default.memo(Post);
-
-exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","../comment":"src/pages/Home/comment/index.js","dayjs":"node_modules/dayjs/dayjs.min.js"}],"src/pages/Home/post/PostForm.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _style = _interopRequireDefault(require("styled-jsx/style"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var PostForm = function PostForm(_ref) {
-  var onAddPost = _ref.onAddPost,
-      onFormSubmit = _ref.onFormSubmit;
-  var contentsRef = (0, _react.useRef)();
-  var handlePostSubmit = (0, _react.useCallback)(function (event) {
-    var callback = function callback() {
-      return onAddPost(contentsRef.current.value);
-    };
-
-    onFormSubmit(event, callback);
-  }, []);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("form", {
-    onSubmit: handlePostSubmit,
-    className: "jsx-".concat(WriteFormStyle.__hash)
-  }, /*#__PURE__*/_react.default.createElement("textarea", {
-    placeholder: "\uBB34\uC2A8 \uC0DD\uAC01\uC744 \uD558\uACE0 \uACC4\uC2E0\uAC00\uC694?",
-    spellCheck: "false",
-    ref: contentsRef,
-    className: "jsx-".concat(WriteFormStyle.__hash) + " " + "form-control input-lg"
-  }), /*#__PURE__*/_react.default.createElement("button", {
-    type: "submit",
-    className: "jsx-".concat(WriteFormStyle.__hash) + " " + "btn btn-primary"
-  }, "\uACF5\uC720\uD558\uAE30")), /*#__PURE__*/_react.default.createElement(_style.default, {
-    id: WriteFormStyle.__hash
-  }, WriteFormStyle));
-};
-
-var WriteFormStyle = ["form.jsx-2603559694{margin-bottom:100px;}", "textarea.form-control.jsx-2603559694{min-height:100px;line-height:20px;padding:20px;font-size:18px;resize:none;border:none;border-radius:0.5rem;-webkit-transition:box-shadow ease-in-out 1s;transition:box-shadow ease-in-out 1s;}", "textarea.jsx-2603559694:focus{box-shadow:#999999 0 0 50px;}", "button.btn.jsx-2603559694{float:right;margin-bottom:0;margin-top:16px;background-color:#3b5999;color:#fffffe;border:none;font-weight:800;}"];
-WriteFormStyle.__hash = "2603559694";
-var _default = PostForm;
-exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js"}],"src/pages/Home/post/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Post", {
-  enumerable: true,
-  get: function () {
-    return _Post.default;
-  }
-});
-Object.defineProperty(exports, "PostForm", {
-  enumerable: true,
-  get: function () {
-    return _PostForm.default;
-  }
-});
-
-var _Post = _interopRequireDefault(require("./Post"));
-
-var _PostForm = _interopRequireDefault(require("./PostForm"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Post":"src/pages/Home/post/Post.js","./PostForm":"src/pages/Home/post/PostForm.js"}],"src/pages/Home/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _style = _interopRequireDefault(require("styled-jsx/style"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _post = require("./post");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Home = function Home(_ref) {
-  var posts = _ref.posts,
-      onAddPost = _ref.onAddPost,
-      onAddComment = _ref.onAddComment,
-      onToggleLike = _ref.onToggleLike,
-      onFormSubmit = _ref.onFormSubmit;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "jsx-".concat(HomeStyle.__hash) + " " + "posts container"
-  }, /*#__PURE__*/_react.default.createElement(_post.PostForm, {
-    onAddPost: onAddPost,
-    onFormSubmit: onFormSubmit
-  }), posts.map(function (post) {
-    return /*#__PURE__*/_react.default.createElement(_post.Post, {
-      key: post.seq,
-      post: post,
-      onAddComment: onAddComment,
-      onToggleLike: onToggleLike,
-      onFormSubmit: onFormSubmit
-    });
-  }), /*#__PURE__*/_react.default.createElement(_style.default, {
-    id: HomeStyle.__hash
-  }, HomeStyle));
-};
-
-var HomeStyle = [".container.jsx-655051938{max-width:600px;}", ".comment-form.jsx-655051938{margin:20px;}", ".comment-form.jsx-655051938>textarea.form-control.jsx-655051938{min-height:20px;line-height:20px;border-radius:0.5rem;resize:none;}", ".comment-form.jsx-655051938>button.btn.jsx-655051938{float:right;margin-bottom:0;margin-top:16px;background-color:#3b5999;color:#fffffe;border-color:unset;font-weight:800;}"];
-HomeStyle.__hash = "655051938";
-var _default = Home;
-exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","./post":"src/pages/Home/post/index.js"}],"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _inheritsLoose;
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-},{}],"node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
+},{"./dist/style":"node_modules/styled-jsx/dist/style.js"}],"node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
 /** @license React v16.13.1
  * react-is.development.js
  *
@@ -30384,7 +30010,257 @@ if ("development" !== 'production') {
   // http://fb.me/prop-types-in-prod
   module.exports = require('./factoryWithThrowingShims')();
 }
-},{"react-is":"node_modules/react-is/index.js","./factoryWithTypeCheckers":"node_modules/prop-types/factoryWithTypeCheckers.js"}],"node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","./factoryWithTypeCheckers":"node_modules/prop-types/factoryWithTypeCheckers.js"}],"node_modules/react-redux/es/components/Context.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.ReactReduxContext = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ReactReduxContext = /*#__PURE__*/_react.default.createContext(null);
+
+exports.ReactReduxContext = ReactReduxContext;
+
+if ("development" !== 'production') {
+  ReactReduxContext.displayName = 'ReactRedux';
+}
+
+var _default = ReactReduxContext;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"node_modules/react-redux/es/utils/batch.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getBatch = exports.setBatch = void 0;
+
+// Default to a dummy "batch" implementation that just runs the callback
+function defaultNoopBatch(callback) {
+  callback();
+}
+
+var batch = defaultNoopBatch; // Allow injecting another batching function later
+
+var setBatch = function setBatch(newBatch) {
+  return batch = newBatch;
+}; // Supply a getter just to skip dealing with ESM bindings
+
+
+exports.setBatch = setBatch;
+
+var getBatch = function getBatch() {
+  return batch;
+};
+
+exports.getBatch = getBatch;
+},{}],"node_modules/react-redux/es/utils/Subscription.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _batch = require("./batch");
+
+// encapsulates the subscription logic for connecting a component to the redux store, as
+// well as nesting subscriptions of descendant components, so that we can ensure the
+// ancestor components re-render before descendants
+var nullListeners = {
+  notify: function notify() {}
+};
+
+function createListenerCollection() {
+  var batch = (0, _batch.getBatch)();
+  var first = null;
+  var last = null;
+  return {
+    clear: function clear() {
+      first = null;
+      last = null;
+    },
+    notify: function notify() {
+      batch(function () {
+        var listener = first;
+
+        while (listener) {
+          listener.callback();
+          listener = listener.next;
+        }
+      });
+    },
+    get: function get() {
+      var listeners = [];
+      var listener = first;
+
+      while (listener) {
+        listeners.push(listener);
+        listener = listener.next;
+      }
+
+      return listeners;
+    },
+    subscribe: function subscribe(callback) {
+      var isSubscribed = true;
+      var listener = last = {
+        callback: callback,
+        next: null,
+        prev: last
+      };
+
+      if (listener.prev) {
+        listener.prev.next = listener;
+      } else {
+        first = listener;
+      }
+
+      return function unsubscribe() {
+        if (!isSubscribed || first === null) return;
+        isSubscribed = false;
+
+        if (listener.next) {
+          listener.next.prev = listener.prev;
+        } else {
+          last = listener.prev;
+        }
+
+        if (listener.prev) {
+          listener.prev.next = listener.next;
+        } else {
+          first = listener.next;
+        }
+      };
+    }
+  };
+}
+
+var Subscription = /*#__PURE__*/function () {
+  function Subscription(store, parentSub) {
+    this.store = store;
+    this.parentSub = parentSub;
+    this.unsubscribe = null;
+    this.listeners = nullListeners;
+    this.handleChangeWrapper = this.handleChangeWrapper.bind(this);
+  }
+
+  var _proto = Subscription.prototype;
+
+  _proto.addNestedSub = function addNestedSub(listener) {
+    this.trySubscribe();
+    return this.listeners.subscribe(listener);
+  };
+
+  _proto.notifyNestedSubs = function notifyNestedSubs() {
+    this.listeners.notify();
+  };
+
+  _proto.handleChangeWrapper = function handleChangeWrapper() {
+    if (this.onStateChange) {
+      this.onStateChange();
+    }
+  };
+
+  _proto.isSubscribed = function isSubscribed() {
+    return Boolean(this.unsubscribe);
+  };
+
+  _proto.trySubscribe = function trySubscribe() {
+    if (!this.unsubscribe) {
+      this.unsubscribe = this.parentSub ? this.parentSub.addNestedSub(this.handleChangeWrapper) : this.store.subscribe(this.handleChangeWrapper);
+      this.listeners = createListenerCollection();
+    }
+  };
+
+  _proto.tryUnsubscribe = function tryUnsubscribe() {
+    if (this.unsubscribe) {
+      this.unsubscribe();
+      this.unsubscribe = null;
+      this.listeners.clear();
+      this.listeners = nullListeners;
+    }
+  };
+
+  return Subscription;
+}();
+
+exports.default = Subscription;
+},{"./batch":"node_modules/react-redux/es/utils/batch.js"}],"node_modules/react-redux/es/components/Provider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _Context = require("./Context");
+
+var _Subscription = _interopRequireDefault(require("../utils/Subscription"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function Provider(_ref) {
+  var store = _ref.store,
+      context = _ref.context,
+      children = _ref.children;
+  var contextValue = (0, _react.useMemo)(function () {
+    var subscription = new _Subscription.default(store);
+    subscription.onStateChange = subscription.notifyNestedSubs;
+    return {
+      store: store,
+      subscription: subscription
+    };
+  }, [store]);
+  var previousState = (0, _react.useMemo)(function () {
+    return store.getState();
+  }, [store]);
+  (0, _react.useEffect)(function () {
+    var subscription = contextValue.subscription;
+    subscription.trySubscribe();
+
+    if (previousState !== store.getState()) {
+      subscription.notifyNestedSubs();
+    }
+
+    return function () {
+      subscription.tryUnsubscribe();
+      subscription.onStateChange = null;
+    };
+  }, [contextValue, previousState]);
+  var Context = context || _Context.ReactReduxContext;
+  return _react.default.createElement(Context.Provider, {
+    value: contextValue
+  }, children);
+}
+
+if ("development" !== 'production') {
+  Provider.propTypes = {
+    store: _propTypes.default.shape({
+      subscribe: _propTypes.default.func.isRequired,
+      dispatch: _propTypes.default.func.isRequired,
+      getState: _propTypes.default.func.isRequired
+    }),
+    context: _propTypes.default.object,
+    children: _propTypes.default.any
+  };
+}
+
+var _default = Provider;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","./Context":"node_modules/react-redux/es/components/Context.js","../utils/Subscription":"node_modules/react-redux/es/utils/Subscription.js"}],"node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30408,6 +30284,4693 @@ function _extends() {
   };
 
   return _extends.apply(this, arguments);
+}
+},{}],"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _objectWithoutPropertiesLoose;
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+},{}],"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js":[function(require,module,exports) {
+'use strict';
+
+var reactIs = require('react-is');
+
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */
+var REACT_STATICS = {
+  childContextTypes: true,
+  contextType: true,
+  contextTypes: true,
+  defaultProps: true,
+  displayName: true,
+  getDefaultProps: true,
+  getDerivedStateFromError: true,
+  getDerivedStateFromProps: true,
+  mixins: true,
+  propTypes: true,
+  type: true
+};
+var KNOWN_STATICS = {
+  name: true,
+  length: true,
+  prototype: true,
+  caller: true,
+  callee: true,
+  arguments: true,
+  arity: true
+};
+var FORWARD_REF_STATICS = {
+  '$$typeof': true,
+  render: true,
+  defaultProps: true,
+  displayName: true,
+  propTypes: true
+};
+var MEMO_STATICS = {
+  '$$typeof': true,
+  compare: true,
+  defaultProps: true,
+  displayName: true,
+  propTypes: true,
+  type: true
+};
+var TYPE_STATICS = {};
+TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
+
+function getStatics(component) {
+  // React v16.11 and below
+  if (reactIs.isMemo(component)) {
+    return MEMO_STATICS;
+  } // React v16.12 and above
+
+
+  return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
+}
+
+var defineProperty = Object.defineProperty;
+var getOwnPropertyNames = Object.getOwnPropertyNames;
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var getPrototypeOf = Object.getPrototypeOf;
+var objectPrototype = Object.prototype;
+function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+  if (typeof sourceComponent !== 'string') {
+    // don't hoist over string (html) components
+    if (objectPrototype) {
+      var inheritedComponent = getPrototypeOf(sourceComponent);
+
+      if (inheritedComponent && inheritedComponent !== objectPrototype) {
+        hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+      }
+    }
+
+    var keys = getOwnPropertyNames(sourceComponent);
+
+    if (getOwnPropertySymbols) {
+      keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+    }
+
+    var targetStatics = getStatics(targetComponent);
+    var sourceStatics = getStatics(sourceComponent);
+
+    for (var i = 0; i < keys.length; ++i) {
+      var key = keys[i];
+
+      if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+        var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+
+        try {
+          // Avoid failures from read-only properties
+          defineProperty(targetComponent, key, descriptor);
+        } catch (e) {}
+      }
+    }
+  }
+
+  return targetComponent;
+}
+
+module.exports = hoistNonReactStatics;
+
+},{"react-is":"node_modules/react-is/index.js"}],"node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useIsomorphicLayoutEffect = void 0;
+
+var _react = require("react");
+
+// React currently throws a warning when using useLayoutEffect on the server.
+// To get around it, we can conditionally useEffect on the server (no-op) and
+// useLayoutEffect in the browser. We need useLayoutEffect to ensure the store
+// subscription callback always has the selector from the latest render commit
+// available, otherwise a store update may happen between render and the effect,
+// which may cause missed updates; we also must ensure the store subscription
+// is created synchronously, otherwise a store update may occur before the
+// subscription is created and an inconsistent state may be observed
+var useIsomorphicLayoutEffect = typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined' ? _react.useLayoutEffect : _react.useEffect;
+exports.useIsomorphicLayoutEffect = useIsomorphicLayoutEffect;
+},{"react":"node_modules/react/index.js"}],"node_modules/react-redux/es/components/connectAdvanced.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = connectAdvanced;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
+
+var _hoistNonReactStatics = _interopRequireDefault(require("hoist-non-react-statics"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactIs = require("react-is");
+
+var _Subscription = _interopRequireDefault(require("../utils/Subscription"));
+
+var _useIsomorphicLayoutEffect = require("../utils/useIsomorphicLayoutEffect");
+
+var _Context = require("./Context");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Define some constant arrays just to avoid re-creating these
+var EMPTY_ARRAY = [];
+var NO_SUBSCRIPTION_ARRAY = [null, null];
+
+var stringifyComponent = function stringifyComponent(Comp) {
+  try {
+    return JSON.stringify(Comp);
+  } catch (err) {
+    return String(Comp);
+  }
+};
+
+function storeStateUpdatesReducer(state, action) {
+  var updateCount = state[1];
+  return [action.payload, updateCount + 1];
+}
+
+function useIsomorphicLayoutEffectWithArgs(effectFunc, effectArgs, dependencies) {
+  (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(function () {
+    return effectFunc.apply(void 0, effectArgs);
+  }, dependencies);
+}
+
+function captureWrapperProps(lastWrapperProps, lastChildProps, renderIsScheduled, wrapperProps, actualChildProps, childPropsFromStoreUpdate, notifyNestedSubs) {
+  // We want to capture the wrapper props and child props we used for later comparisons
+  lastWrapperProps.current = wrapperProps;
+  lastChildProps.current = actualChildProps;
+  renderIsScheduled.current = false; // If the render was from a store update, clear out that reference and cascade the subscriber update
+
+  if (childPropsFromStoreUpdate.current) {
+    childPropsFromStoreUpdate.current = null;
+    notifyNestedSubs();
+  }
+}
+
+function subscribeUpdates(shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, childPropsFromStoreUpdate, notifyNestedSubs, forceComponentUpdateDispatch) {
+  // If we're not subscribed to the store, nothing to do here
+  if (!shouldHandleStateChanges) return; // Capture values for checking if and when this component unmounts
+
+  var didUnsubscribe = false;
+  var lastThrownError = null; // We'll run this callback every time a store subscription update propagates to this component
+
+  var checkForUpdates = function checkForUpdates() {
+    if (didUnsubscribe) {
+      // Don't run stale listeners.
+      // Redux doesn't guarantee unsubscriptions happen until next dispatch.
+      return;
+    }
+
+    var latestStoreState = store.getState();
+    var newChildProps, error;
+
+    try {
+      // Actually run the selector with the most recent store state and wrapper props
+      // to determine what the child props should be
+      newChildProps = childPropsSelector(latestStoreState, lastWrapperProps.current);
+    } catch (e) {
+      error = e;
+      lastThrownError = e;
+    }
+
+    if (!error) {
+      lastThrownError = null;
+    } // If the child props haven't changed, nothing to do here - cascade the subscription update
+
+
+    if (newChildProps === lastChildProps.current) {
+      if (!renderIsScheduled.current) {
+        notifyNestedSubs();
+      }
+    } else {
+      // Save references to the new child props.  Note that we track the "child props from store update"
+      // as a ref instead of a useState/useReducer because we need a way to determine if that value has
+      // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
+      // forcing another re-render, which we don't want.
+      lastChildProps.current = newChildProps;
+      childPropsFromStoreUpdate.current = newChildProps;
+      renderIsScheduled.current = true; // If the child props _did_ change (or we caught an error), this wrapper component needs to re-render
+
+      forceComponentUpdateDispatch({
+        type: 'STORE_UPDATED',
+        payload: {
+          error: error
+        }
+      });
+    }
+  }; // Actually subscribe to the nearest connected ancestor (or store)
+
+
+  subscription.onStateChange = checkForUpdates;
+  subscription.trySubscribe(); // Pull data from the store after first render in case the store has
+  // changed since we began.
+
+  checkForUpdates();
+
+  var unsubscribeWrapper = function unsubscribeWrapper() {
+    didUnsubscribe = true;
+    subscription.tryUnsubscribe();
+    subscription.onStateChange = null;
+
+    if (lastThrownError) {
+      // It's possible that we caught an error due to a bad mapState function, but the
+      // parent re-rendered without this component and we're about to unmount.
+      // This shouldn't happen as long as we do top-down subscriptions correctly, but
+      // if we ever do those wrong, this throw will surface the error in our tests.
+      // In that case, throw the error from here so it doesn't get lost.
+      throw lastThrownError;
+    }
+  };
+
+  return unsubscribeWrapper;
+}
+
+var initStateUpdates = function initStateUpdates() {
+  return [null, 0];
+};
+
+function connectAdvanced(
+/*
+  selectorFactory is a func that is responsible for returning the selector function used to
+  compute new props from state, props, and dispatch. For example:
+      export default connectAdvanced((dispatch, options) => (state, props) => ({
+      thing: state.things[props.thingId],
+      saveThing: fields => dispatch(actionCreators.saveThing(props.thingId, fields)),
+    }))(YourComponent)
+    Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
+  outside of their selector as an optimization. Options passed to connectAdvanced are passed to
+  the selectorFactory, along with displayName and WrappedComponent, as the second argument.
+    Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
+  props. Do not use connectAdvanced directly without memoizing results between calls to your
+  selector, otherwise the Connect component will re-render on every state or props change.
+*/
+selectorFactory, // options object:
+_ref) {
+  if (_ref === void 0) {
+    _ref = {};
+  }
+
+  var _ref2 = _ref,
+      _ref2$getDisplayName = _ref2.getDisplayName,
+      getDisplayName = _ref2$getDisplayName === void 0 ? function (name) {
+    return "ConnectAdvanced(" + name + ")";
+  } : _ref2$getDisplayName,
+      _ref2$methodName = _ref2.methodName,
+      methodName = _ref2$methodName === void 0 ? 'connectAdvanced' : _ref2$methodName,
+      _ref2$renderCountProp = _ref2.renderCountProp,
+      renderCountProp = _ref2$renderCountProp === void 0 ? undefined : _ref2$renderCountProp,
+      _ref2$shouldHandleSta = _ref2.shouldHandleStateChanges,
+      shouldHandleStateChanges = _ref2$shouldHandleSta === void 0 ? true : _ref2$shouldHandleSta,
+      _ref2$storeKey = _ref2.storeKey,
+      storeKey = _ref2$storeKey === void 0 ? 'store' : _ref2$storeKey,
+      _ref2$withRef = _ref2.withRef,
+      withRef = _ref2$withRef === void 0 ? false : _ref2$withRef,
+      _ref2$forwardRef = _ref2.forwardRef,
+      forwardRef = _ref2$forwardRef === void 0 ? false : _ref2$forwardRef,
+      _ref2$context = _ref2.context,
+      context = _ref2$context === void 0 ? _Context.ReactReduxContext : _ref2$context,
+      connectOptions = (0, _objectWithoutPropertiesLoose2.default)(_ref2, ["getDisplayName", "methodName", "renderCountProp", "shouldHandleStateChanges", "storeKey", "withRef", "forwardRef", "context"]);
+
+  if ("development" !== 'production') {
+    if (renderCountProp !== undefined) {
+      throw new Error("renderCountProp is removed. render counting is built into the latest React Dev Tools profiling extension");
+    }
+
+    if (withRef) {
+      throw new Error('withRef is removed. To access the wrapped instance, use a ref on the connected component');
+    }
+
+    var customStoreWarningMessage = 'To use a custom Redux store for specific components, create a custom React context with ' + "React.createContext(), and pass the context object to React Redux's Provider and specific components" + ' like: <Provider context={MyContext}><ConnectedComponent context={MyContext} /></Provider>. ' + 'You may also pass a {context : MyContext} option to connect';
+
+    if (storeKey !== 'store') {
+      throw new Error('storeKey has been removed and does not do anything. ' + customStoreWarningMessage);
+    }
+  }
+
+  var Context = context;
+  return function wrapWithConnect(WrappedComponent) {
+    if ("development" !== 'production' && !(0, _reactIs.isValidElementType)(WrappedComponent)) {
+      throw new Error("You must pass a component to the function returned by " + (methodName + ". Instead received " + stringifyComponent(WrappedComponent)));
+    }
+
+    var wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    var displayName = getDisplayName(wrappedComponentName);
+    var selectorFactoryOptions = (0, _extends2.default)({}, connectOptions, {
+      getDisplayName: getDisplayName,
+      methodName: methodName,
+      renderCountProp: renderCountProp,
+      shouldHandleStateChanges: shouldHandleStateChanges,
+      storeKey: storeKey,
+      displayName: displayName,
+      wrappedComponentName: wrappedComponentName,
+      WrappedComponent: WrappedComponent
+    });
+    var pure = connectOptions.pure;
+
+    function createChildSelector(store) {
+      return selectorFactory(store.dispatch, selectorFactoryOptions);
+    } // If we aren't running in "pure" mode, we don't want to memoize values.
+    // To avoid conditionally calling hooks, we fall back to a tiny wrapper
+    // that just executes the given callback immediately.
+
+
+    var usePureOnlyMemo = pure ? _react.useMemo : function (callback) {
+      return callback();
+    };
+
+    function ConnectFunction(props) {
+      var _useMemo = (0, _react.useMemo)(function () {
+        // Distinguish between actual "data" props that were passed to the wrapper component,
+        // and values needed to control behavior (forwarded refs, alternate context instances).
+        // To maintain the wrapperProps object reference, memoize this destructuring.
+        var reactReduxForwardedRef = props.reactReduxForwardedRef,
+            wrapperProps = (0, _objectWithoutPropertiesLoose2.default)(props, ["reactReduxForwardedRef"]);
+        return [props.context, reactReduxForwardedRef, wrapperProps];
+      }, [props]),
+          propsContext = _useMemo[0],
+          reactReduxForwardedRef = _useMemo[1],
+          wrapperProps = _useMemo[2];
+
+      var ContextToUse = (0, _react.useMemo)(function () {
+        // Users may optionally pass in a custom context instance to use instead of our ReactReduxContext.
+        // Memoize the check that determines which context instance we should use.
+        return propsContext && propsContext.Consumer && (0, _reactIs.isContextConsumer)(_react.default.createElement(propsContext.Consumer, null)) ? propsContext : Context;
+      }, [propsContext, Context]); // Retrieve the store and ancestor subscription via context, if available
+
+      var contextValue = (0, _react.useContext)(ContextToUse); // The store _must_ exist as either a prop or in context.
+      // We'll check to see if it _looks_ like a Redux store first.
+      // This allows us to pass through a `store` prop that is just a plain value.
+
+      var didStoreComeFromProps = Boolean(props.store) && Boolean(props.store.getState) && Boolean(props.store.dispatch);
+      var didStoreComeFromContext = Boolean(contextValue) && Boolean(contextValue.store);
+
+      if ("development" !== 'production' && !didStoreComeFromProps && !didStoreComeFromContext) {
+        throw new Error("Could not find \"store\" in the context of " + ("\"" + displayName + "\". Either wrap the root component in a <Provider>, ") + "or pass a custom React context provider to <Provider> and the corresponding " + ("React context consumer to " + displayName + " in connect options."));
+      } // Based on the previous check, one of these must be true
+
+
+      var store = didStoreComeFromProps ? props.store : contextValue.store;
+      var childPropsSelector = (0, _react.useMemo)(function () {
+        // The child props selector needs the store reference as an input.
+        // Re-create this selector whenever the store changes.
+        return createChildSelector(store);
+      }, [store]);
+
+      var _useMemo2 = (0, _react.useMemo)(function () {
+        if (!shouldHandleStateChanges) return NO_SUBSCRIPTION_ARRAY; // This Subscription's source should match where store came from: props vs. context. A component
+        // connected to the store via props shouldn't use subscription from context, or vice versa.
+
+        var subscription = new _Subscription.default(store, didStoreComeFromProps ? null : contextValue.subscription); // `notifyNestedSubs` is duplicated to handle the case where the component is unmounted in
+        // the middle of the notification loop, where `subscription` will then be null. This can
+        // probably be avoided if Subscription's listeners logic is changed to not call listeners
+        // that have been unsubscribed in the  middle of the notification loop.
+
+        var notifyNestedSubs = subscription.notifyNestedSubs.bind(subscription);
+        return [subscription, notifyNestedSubs];
+      }, [store, didStoreComeFromProps, contextValue]),
+          subscription = _useMemo2[0],
+          notifyNestedSubs = _useMemo2[1]; // Determine what {store, subscription} value should be put into nested context, if necessary,
+      // and memoize that value to avoid unnecessary context updates.
+
+
+      var overriddenContextValue = (0, _react.useMemo)(function () {
+        if (didStoreComeFromProps) {
+          // This component is directly subscribed to a store from props.
+          // We don't want descendants reading from this store - pass down whatever
+          // the existing context value is from the nearest connected ancestor.
+          return contextValue;
+        } // Otherwise, put this component's subscription instance into context, so that
+        // connected descendants won't update until after this component is done
+
+
+        return (0, _extends2.default)({}, contextValue, {
+          subscription: subscription
+        });
+      }, [didStoreComeFromProps, contextValue, subscription]); // We need to force this wrapper component to re-render whenever a Redux store update
+      // causes a change to the calculated child component props (or we caught an error in mapState)
+
+      var _useReducer = (0, _react.useReducer)(storeStateUpdatesReducer, EMPTY_ARRAY, initStateUpdates),
+          _useReducer$ = _useReducer[0],
+          previousStateUpdateResult = _useReducer$[0],
+          forceComponentUpdateDispatch = _useReducer[1]; // Propagate any mapState/mapDispatch errors upwards
+
+
+      if (previousStateUpdateResult && previousStateUpdateResult.error) {
+        throw previousStateUpdateResult.error;
+      } // Set up refs to coordinate values between the subscription effect and the render logic
+
+
+      var lastChildProps = (0, _react.useRef)();
+      var lastWrapperProps = (0, _react.useRef)(wrapperProps);
+      var childPropsFromStoreUpdate = (0, _react.useRef)();
+      var renderIsScheduled = (0, _react.useRef)(false);
+      var actualChildProps = usePureOnlyMemo(function () {
+        // Tricky logic here:
+        // - This render may have been triggered by a Redux store update that produced new child props
+        // - However, we may have gotten new wrapper props after that
+        // If we have new child props, and the same wrapper props, we know we should use the new child props as-is.
+        // But, if we have new wrapper props, those might change the child props, so we have to recalculate things.
+        // So, we'll use the child props from store update only if the wrapper props are the same as last time.
+        if (childPropsFromStoreUpdate.current && wrapperProps === lastWrapperProps.current) {
+          return childPropsFromStoreUpdate.current;
+        } // TODO We're reading the store directly in render() here. Bad idea?
+        // This will likely cause Bad Things (TM) to happen in Concurrent Mode.
+        // Note that we do this because on renders _not_ caused by store updates, we need the latest store state
+        // to determine what the child props should be.
+
+
+        return childPropsSelector(store.getState(), wrapperProps);
+      }, [store, previousStateUpdateResult, wrapperProps]); // We need this to execute synchronously every time we re-render. However, React warns
+      // about useLayoutEffect in SSR, so we try to detect environment and fall back to
+      // just useEffect instead to avoid the warning, since neither will run anyway.
+
+      useIsomorphicLayoutEffectWithArgs(captureWrapperProps, [lastWrapperProps, lastChildProps, renderIsScheduled, wrapperProps, actualChildProps, childPropsFromStoreUpdate, notifyNestedSubs]); // Our re-subscribe logic only runs when the store/subscription setup changes
+
+      useIsomorphicLayoutEffectWithArgs(subscribeUpdates, [shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, childPropsFromStoreUpdate, notifyNestedSubs, forceComponentUpdateDispatch], [store, subscription, childPropsSelector]); // Now that all that's done, we can finally try to actually render the child component.
+      // We memoize the elements for the rendered child component as an optimization.
+
+      var renderedWrappedComponent = (0, _react.useMemo)(function () {
+        return _react.default.createElement(WrappedComponent, (0, _extends2.default)({}, actualChildProps, {
+          ref: reactReduxForwardedRef
+        }));
+      }, [reactReduxForwardedRef, WrappedComponent, actualChildProps]); // If React sees the exact same element reference as last time, it bails out of re-rendering
+      // that child, same as if it was wrapped in React.memo() or returned false from shouldComponentUpdate.
+
+      var renderedChild = (0, _react.useMemo)(function () {
+        if (shouldHandleStateChanges) {
+          // If this component is subscribed to store updates, we need to pass its own
+          // subscription instance down to our descendants. That means rendering the same
+          // Context instance, and putting a different value into the context.
+          return _react.default.createElement(ContextToUse.Provider, {
+            value: overriddenContextValue
+          }, renderedWrappedComponent);
+        }
+
+        return renderedWrappedComponent;
+      }, [ContextToUse, renderedWrappedComponent, overriddenContextValue]);
+      return renderedChild;
+    } // If we're in "pure" mode, ensure our wrapper component only re-renders when incoming props have changed.
+
+
+    var Connect = pure ? _react.default.memo(ConnectFunction) : ConnectFunction;
+    Connect.WrappedComponent = WrappedComponent;
+    Connect.displayName = displayName;
+
+    if (forwardRef) {
+      var forwarded = _react.default.forwardRef(function forwardConnectRef(props, ref) {
+        return _react.default.createElement(Connect, (0, _extends2.default)({}, props, {
+          reactReduxForwardedRef: ref
+        }));
+      });
+
+      forwarded.displayName = displayName;
+      forwarded.WrappedComponent = WrappedComponent;
+      return (0, _hoistNonReactStatics.default)(forwarded, WrappedComponent);
+    }
+
+    return (0, _hoistNonReactStatics.default)(Connect, WrappedComponent);
+  };
+}
+},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","react":"node_modules/react/index.js","react-is":"node_modules/react-is/index.js","../utils/Subscription":"node_modules/react-redux/es/utils/Subscription.js","../utils/useIsomorphicLayoutEffect":"node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js","./Context":"node_modules/react-redux/es/components/Context.js"}],"node_modules/react-redux/es/utils/shallowEqual.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = shallowEqual;
+
+function is(x, y) {
+  if (x === y) {
+    return x !== 0 || y !== 0 || 1 / x === 1 / y;
+  } else {
+    return x !== x && y !== y;
+  }
+}
+
+function shallowEqual(objA, objB) {
+  if (is(objA, objB)) return true;
+
+  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
+    return false;
+  }
+
+  var keysA = Object.keys(objA);
+  var keysB = Object.keys(objB);
+  if (keysA.length !== keysB.length) return false;
+
+  for (var i = 0; i < keysA.length; i++) {
+    if (!Object.prototype.hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+},{}],"node_modules/symbol-observable/es/ponyfill.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = symbolObservablePonyfill;
+
+function symbolObservablePonyfill(root) {
+  var result;
+  var Symbol = root.Symbol;
+
+  if (typeof Symbol === 'function') {
+    if (Symbol.observable) {
+      result = Symbol.observable;
+    } else {
+      result = Symbol('observable');
+      Symbol.observable = result;
+    }
+  } else {
+    result = '@@observable';
+  }
+
+  return result;
+}
+
+;
+},{}],"node_modules/symbol-observable/es/index.js":[function(require,module,exports) {
+var global = arguments[3];
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _ponyfill = _interopRequireDefault(require("./ponyfill.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* global window */
+var root;
+
+if (typeof self !== 'undefined') {
+  root = self;
+} else if (typeof window !== 'undefined') {
+  root = window;
+} else if (typeof global !== 'undefined') {
+  root = global;
+} else if (typeof module !== 'undefined') {
+  root = module;
+} else {
+  root = Function('return this')();
+}
+
+var result = (0, _ponyfill.default)(root);
+var _default = result;
+exports.default = _default;
+},{"./ponyfill.js":"node_modules/symbol-observable/es/ponyfill.js"}],"node_modules/redux/es/redux.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.applyMiddleware = applyMiddleware;
+exports.bindActionCreators = bindActionCreators;
+exports.combineReducers = combineReducers;
+exports.compose = compose;
+exports.createStore = createStore;
+exports.__DO_NOT_USE__ActionTypes = void 0;
+
+var _symbolObservable = _interopRequireDefault(require("symbol-observable"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * These are private action types reserved by Redux.
+ * For any unknown actions, you must return the current state.
+ * If the current state is undefined, you must return the initial state.
+ * Do not reference these action types directly in your code.
+ */
+var randomString = function randomString() {
+  return Math.random().toString(36).substring(7).split('').join('.');
+};
+
+var ActionTypes = {
+  INIT: "@@redux/INIT" + randomString(),
+  REPLACE: "@@redux/REPLACE" + randomString(),
+  PROBE_UNKNOWN_ACTION: function PROBE_UNKNOWN_ACTION() {
+    return "@@redux/PROBE_UNKNOWN_ACTION" + randomString();
+  }
+};
+/**
+ * @param {any} obj The object to inspect.
+ * @returns {boolean} True if the argument appears to be a plain object.
+ */
+
+exports.__DO_NOT_USE__ActionTypes = ActionTypes;
+
+function isPlainObject(obj) {
+  if (typeof obj !== 'object' || obj === null) return false;
+  var proto = obj;
+
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto);
+  }
+
+  return Object.getPrototypeOf(obj) === proto;
+}
+/**
+ * Creates a Redux store that holds the state tree.
+ * The only way to change the data in the store is to call `dispatch()` on it.
+ *
+ * There should only be a single store in your app. To specify how different
+ * parts of the state tree respond to actions, you may combine several reducers
+ * into a single reducer function by using `combineReducers`.
+ *
+ * @param {Function} reducer A function that returns the next state tree, given
+ * the current state tree and the action to handle.
+ *
+ * @param {any} [preloadedState] The initial state. You may optionally specify it
+ * to hydrate the state from the server in universal apps, or to restore a
+ * previously serialized user session.
+ * If you use `combineReducers` to produce the root reducer function, this must be
+ * an object with the same shape as `combineReducers` keys.
+ *
+ * @param {Function} [enhancer] The store enhancer. You may optionally specify it
+ * to enhance the store with third-party capabilities such as middleware,
+ * time travel, persistence, etc. The only store enhancer that ships with Redux
+ * is `applyMiddleware()`.
+ *
+ * @returns {Store} A Redux store that lets you read the state, dispatch actions
+ * and subscribe to changes.
+ */
+
+
+function createStore(reducer, preloadedState, enhancer) {
+  var _ref2;
+
+  if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') {
+    throw new Error('It looks like you are passing several store enhancers to ' + 'createStore(). This is not supported. Instead, compose them ' + 'together to a single function.');
+  }
+
+  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+    enhancer = preloadedState;
+    preloadedState = undefined;
+  }
+
+  if (typeof enhancer !== 'undefined') {
+    if (typeof enhancer !== 'function') {
+      throw new Error('Expected the enhancer to be a function.');
+    }
+
+    return enhancer(createStore)(reducer, preloadedState);
+  }
+
+  if (typeof reducer !== 'function') {
+    throw new Error('Expected the reducer to be a function.');
+  }
+
+  var currentReducer = reducer;
+  var currentState = preloadedState;
+  var currentListeners = [];
+  var nextListeners = currentListeners;
+  var isDispatching = false;
+  /**
+   * This makes a shallow copy of currentListeners so we can use
+   * nextListeners as a temporary list while dispatching.
+   *
+   * This prevents any bugs around consumers calling
+   * subscribe/unsubscribe in the middle of a dispatch.
+   */
+
+  function ensureCanMutateNextListeners() {
+    if (nextListeners === currentListeners) {
+      nextListeners = currentListeners.slice();
+    }
+  }
+  /**
+   * Reads the state tree managed by the store.
+   *
+   * @returns {any} The current state tree of your application.
+   */
+
+
+  function getState() {
+    if (isDispatching) {
+      throw new Error('You may not call store.getState() while the reducer is executing. ' + 'The reducer has already received the state as an argument. ' + 'Pass it down from the top reducer instead of reading it from the store.');
+    }
+
+    return currentState;
+  }
+  /**
+   * Adds a change listener. It will be called any time an action is dispatched,
+   * and some part of the state tree may potentially have changed. You may then
+   * call `getState()` to read the current state tree inside the callback.
+   *
+   * You may call `dispatch()` from a change listener, with the following
+   * caveats:
+   *
+   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+   * If you subscribe or unsubscribe while the listeners are being invoked, this
+   * will not have any effect on the `dispatch()` that is currently in progress.
+   * However, the next `dispatch()` call, whether nested or not, will use a more
+   * recent snapshot of the subscription list.
+   *
+   * 2. The listener should not expect to see all state changes, as the state
+   * might have been updated multiple times during a nested `dispatch()` before
+   * the listener is called. It is, however, guaranteed that all subscribers
+   * registered before the `dispatch()` started will be called with the latest
+   * state by the time it exits.
+   *
+   * @param {Function} listener A callback to be invoked on every dispatch.
+   * @returns {Function} A function to remove this change listener.
+   */
+
+
+  function subscribe(listener) {
+    if (typeof listener !== 'function') {
+      throw new Error('Expected the listener to be a function.');
+    }
+
+    if (isDispatching) {
+      throw new Error('You may not call store.subscribe() while the reducer is executing. ' + 'If you would like to be notified after the store has been updated, subscribe from a ' + 'component and invoke store.getState() in the callback to access the latest state. ' + 'See https://redux.js.org/api-reference/store#subscribelistener for more details.');
+    }
+
+    var isSubscribed = true;
+    ensureCanMutateNextListeners();
+    nextListeners.push(listener);
+    return function unsubscribe() {
+      if (!isSubscribed) {
+        return;
+      }
+
+      if (isDispatching) {
+        throw new Error('You may not unsubscribe from a store listener while the reducer is executing. ' + 'See https://redux.js.org/api-reference/store#subscribelistener for more details.');
+      }
+
+      isSubscribed = false;
+      ensureCanMutateNextListeners();
+      var index = nextListeners.indexOf(listener);
+      nextListeners.splice(index, 1);
+      currentListeners = null;
+    };
+  }
+  /**
+   * Dispatches an action. It is the only way to trigger a state change.
+   *
+   * The `reducer` function, used to create the store, will be called with the
+   * current state tree and the given `action`. Its return value will
+   * be considered the **next** state of the tree, and the change listeners
+   * will be notified.
+   *
+   * The base implementation only supports plain object actions. If you want to
+   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+   * wrap your store creating function into the corresponding middleware. For
+   * example, see the documentation for the `redux-thunk` package. Even the
+   * middleware will eventually dispatch plain object actions using this method.
+   *
+   * @param {Object} action A plain object representing “what changed”. It is
+   * a good idea to keep actions serializable so you can record and replay user
+   * sessions, or use the time travelling `redux-devtools`. An action must have
+   * a `type` property which may not be `undefined`. It is a good idea to use
+   * string constants for action types.
+   *
+   * @returns {Object} For convenience, the same action object you dispatched.
+   *
+   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+   * return something else (for example, a Promise you can await).
+   */
+
+
+  function dispatch(action) {
+    if (!isPlainObject(action)) {
+      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
+    }
+
+    if (typeof action.type === 'undefined') {
+      throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant?');
+    }
+
+    if (isDispatching) {
+      throw new Error('Reducers may not dispatch actions.');
+    }
+
+    try {
+      isDispatching = true;
+      currentState = currentReducer(currentState, action);
+    } finally {
+      isDispatching = false;
+    }
+
+    var listeners = currentListeners = nextListeners;
+
+    for (var i = 0; i < listeners.length; i++) {
+      var listener = listeners[i];
+      listener();
+    }
+
+    return action;
+  }
+  /**
+   * Replaces the reducer currently used by the store to calculate the state.
+   *
+   * You might need this if your app implements code splitting and you want to
+   * load some of the reducers dynamically. You might also need this if you
+   * implement a hot reloading mechanism for Redux.
+   *
+   * @param {Function} nextReducer The reducer for the store to use instead.
+   * @returns {void}
+   */
+
+
+  function replaceReducer(nextReducer) {
+    if (typeof nextReducer !== 'function') {
+      throw new Error('Expected the nextReducer to be a function.');
+    }
+
+    currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
+    // Any reducers that existed in both the new and old rootReducer
+    // will receive the previous state. This effectively populates
+    // the new state tree with any relevant data from the old one.
+
+    dispatch({
+      type: ActionTypes.REPLACE
+    });
+  }
+  /**
+   * Interoperability point for observable/reactive libraries.
+   * @returns {observable} A minimal observable of state changes.
+   * For more information, see the observable proposal:
+   * https://github.com/tc39/proposal-observable
+   */
+
+
+  function observable() {
+    var _ref;
+
+    var outerSubscribe = subscribe;
+    return _ref = {
+      /**
+       * The minimal observable subscription method.
+       * @param {Object} observer Any object that can be used as an observer.
+       * The observer object should have a `next` method.
+       * @returns {subscription} An object with an `unsubscribe` method that can
+       * be used to unsubscribe the observable from the store, and prevent further
+       * emission of values from the observable.
+       */
+      subscribe: function subscribe(observer) {
+        if (typeof observer !== 'object' || observer === null) {
+          throw new TypeError('Expected the observer to be an object.');
+        }
+
+        function observeState() {
+          if (observer.next) {
+            observer.next(getState());
+          }
+        }
+
+        observeState();
+        var unsubscribe = outerSubscribe(observeState);
+        return {
+          unsubscribe: unsubscribe
+        };
+      }
+    }, _ref[_symbolObservable.default] = function () {
+      return this;
+    }, _ref;
+  } // When a store is created, an "INIT" action is dispatched so that every
+  // reducer returns their initial state. This effectively populates
+  // the initial state tree.
+
+
+  dispatch({
+    type: ActionTypes.INIT
+  });
+  return _ref2 = {
+    dispatch: dispatch,
+    subscribe: subscribe,
+    getState: getState,
+    replaceReducer: replaceReducer
+  }, _ref2[_symbolObservable.default] = observable, _ref2;
+}
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */
+
+
+function warning(message) {
+  /* eslint-disable no-console */
+  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+    console.error(message);
+  }
+  /* eslint-enable no-console */
+
+
+  try {
+    // This error was thrown as a convenience so that if you enable
+    // "break on all exceptions" in your console,
+    // it would pause the execution at this line.
+    throw new Error(message);
+  } catch (e) {} // eslint-disable-line no-empty
+
+}
+
+function getUndefinedStateErrorMessage(key, action) {
+  var actionType = action && action.type;
+  var actionDescription = actionType && "action \"" + String(actionType) + "\"" || 'an action';
+  return "Given " + actionDescription + ", reducer \"" + key + "\" returned undefined. " + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.";
+}
+
+function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
+  var reducerKeys = Object.keys(reducers);
+  var argumentName = action && action.type === ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
+
+  if (reducerKeys.length === 0) {
+    return 'Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.';
+  }
+
+  if (!isPlainObject(inputState)) {
+    return "The " + argumentName + " has unexpected type of \"" + {}.toString.call(inputState).match(/\s([a-z|A-Z]+)/)[1] + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
+  }
+
+  var unexpectedKeys = Object.keys(inputState).filter(function (key) {
+    return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
+  });
+  unexpectedKeys.forEach(function (key) {
+    unexpectedKeyCache[key] = true;
+  });
+  if (action && action.type === ActionTypes.REPLACE) return;
+
+  if (unexpectedKeys.length > 0) {
+    return "Unexpected " + (unexpectedKeys.length > 1 ? 'keys' : 'key') + " " + ("\"" + unexpectedKeys.join('", "') + "\" found in " + argumentName + ". ") + "Expected to find one of the known reducer keys instead: " + ("\"" + reducerKeys.join('", "') + "\". Unexpected keys will be ignored.");
+  }
+}
+
+function assertReducerShape(reducers) {
+  Object.keys(reducers).forEach(function (key) {
+    var reducer = reducers[key];
+    var initialState = reducer(undefined, {
+      type: ActionTypes.INIT
+    });
+
+    if (typeof initialState === 'undefined') {
+      throw new Error("Reducer \"" + key + "\" returned undefined during initialization. " + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
+    }
+
+    if (typeof reducer(undefined, {
+      type: ActionTypes.PROBE_UNKNOWN_ACTION()
+    }) === 'undefined') {
+      throw new Error("Reducer \"" + key + "\" returned undefined when probed with a random type. " + ("Don't try to handle " + ActionTypes.INIT + " or other actions in \"redux/*\" ") + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
+    }
+  });
+}
+/**
+ * Turns an object whose values are different reducer functions, into a single
+ * reducer function. It will call every child reducer, and gather their results
+ * into a single state object, whose keys correspond to the keys of the passed
+ * reducer functions.
+ *
+ * @param {Object} reducers An object whose values correspond to different
+ * reducer functions that need to be combined into one. One handy way to obtain
+ * it is to use ES6 `import * as reducers` syntax. The reducers may never return
+ * undefined for any action. Instead, they should return their initial state
+ * if the state passed to them was undefined, and the current state for any
+ * unrecognized action.
+ *
+ * @returns {Function} A reducer function that invokes every reducer inside the
+ * passed object, and builds a state object with the same shape.
+ */
+
+
+function combineReducers(reducers) {
+  var reducerKeys = Object.keys(reducers);
+  var finalReducers = {};
+
+  for (var i = 0; i < reducerKeys.length; i++) {
+    var key = reducerKeys[i];
+
+    if ("development" !== 'production') {
+      if (typeof reducers[key] === 'undefined') {
+        warning("No reducer provided for key \"" + key + "\"");
+      }
+    }
+
+    if (typeof reducers[key] === 'function') {
+      finalReducers[key] = reducers[key];
+    }
+  }
+
+  var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
+  // keys multiple times.
+
+  var unexpectedKeyCache;
+
+  if ("development" !== 'production') {
+    unexpectedKeyCache = {};
+  }
+
+  var shapeAssertionError;
+
+  try {
+    assertReducerShape(finalReducers);
+  } catch (e) {
+    shapeAssertionError = e;
+  }
+
+  return function combination(state, action) {
+    if (state === void 0) {
+      state = {};
+    }
+
+    if (shapeAssertionError) {
+      throw shapeAssertionError;
+    }
+
+    if ("development" !== 'production') {
+      var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
+
+      if (warningMessage) {
+        warning(warningMessage);
+      }
+    }
+
+    var hasChanged = false;
+    var nextState = {};
+
+    for (var _i = 0; _i < finalReducerKeys.length; _i++) {
+      var _key = finalReducerKeys[_i];
+      var reducer = finalReducers[_key];
+      var previousStateForKey = state[_key];
+      var nextStateForKey = reducer(previousStateForKey, action);
+
+      if (typeof nextStateForKey === 'undefined') {
+        var errorMessage = getUndefinedStateErrorMessage(_key, action);
+        throw new Error(errorMessage);
+      }
+
+      nextState[_key] = nextStateForKey;
+      hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+    }
+
+    hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
+    return hasChanged ? nextState : state;
+  };
+}
+
+function bindActionCreator(actionCreator, dispatch) {
+  return function () {
+    return dispatch(actionCreator.apply(this, arguments));
+  };
+}
+/**
+ * Turns an object whose values are action creators, into an object with the
+ * same keys, but with every function wrapped into a `dispatch` call so they
+ * may be invoked directly. This is just a convenience method, as you can call
+ * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
+ *
+ * For convenience, you can also pass an action creator as the first argument,
+ * and get a dispatch wrapped function in return.
+ *
+ * @param {Function|Object} actionCreators An object whose values are action
+ * creator functions. One handy way to obtain it is to use ES6 `import * as`
+ * syntax. You may also pass a single function.
+ *
+ * @param {Function} dispatch The `dispatch` function available on your Redux
+ * store.
+ *
+ * @returns {Function|Object} The object mimicking the original object, but with
+ * every action creator wrapped into the `dispatch` call. If you passed a
+ * function as `actionCreators`, the return value will also be a single
+ * function.
+ */
+
+
+function bindActionCreators(actionCreators, dispatch) {
+  if (typeof actionCreators === 'function') {
+    return bindActionCreator(actionCreators, dispatch);
+  }
+
+  if (typeof actionCreators !== 'object' || actionCreators === null) {
+    throw new Error("bindActionCreators expected an object or a function, instead received " + (actionCreators === null ? 'null' : typeof actionCreators) + ". " + "Did you write \"import ActionCreators from\" instead of \"import * as ActionCreators from\"?");
+  }
+
+  var boundActionCreators = {};
+
+  for (var key in actionCreators) {
+    var actionCreator = actionCreators[key];
+
+    if (typeof actionCreator === 'function') {
+      boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
+    }
+  }
+
+  return boundActionCreators;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    keys.push.apply(keys, Object.getOwnPropertySymbols(object));
+  }
+
+  if (enumerableOnly) keys = keys.filter(function (sym) {
+    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+  });
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(source, true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+/**
+ * Composes single-argument functions from right to left. The rightmost
+ * function can take multiple arguments as it provides the signature for
+ * the resulting composite function.
+ *
+ * @param {...Function} funcs The functions to compose.
+ * @returns {Function} A function obtained by composing the argument functions
+ * from right to left. For example, compose(f, g, h) is identical to doing
+ * (...args) => f(g(h(...args))).
+ */
+
+
+function compose() {
+  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  if (funcs.length === 0) {
+    return function (arg) {
+      return arg;
+    };
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+
+  return funcs.reduce(function (a, b) {
+    return function () {
+      return a(b.apply(void 0, arguments));
+    };
+  });
+}
+/**
+ * Creates a store enhancer that applies middleware to the dispatch method
+ * of the Redux store. This is handy for a variety of tasks, such as expressing
+ * asynchronous actions in a concise manner, or logging every action payload.
+ *
+ * See `redux-thunk` package as an example of the Redux middleware.
+ *
+ * Because middleware is potentially asynchronous, this should be the first
+ * store enhancer in the composition chain.
+ *
+ * Note that each middleware will be given the `dispatch` and `getState` functions
+ * as named arguments.
+ *
+ * @param {...Function} middlewares The middleware chain to be applied.
+ * @returns {Function} A store enhancer applying the middleware.
+ */
+
+
+function applyMiddleware() {
+  for (var _len = arguments.length, middlewares = new Array(_len), _key = 0; _key < _len; _key++) {
+    middlewares[_key] = arguments[_key];
+  }
+
+  return function (createStore) {
+    return function () {
+      var store = createStore.apply(void 0, arguments);
+
+      var _dispatch = function dispatch() {
+        throw new Error('Dispatching while constructing your middleware is not allowed. ' + 'Other middleware would not be applied to this dispatch.');
+      };
+
+      var middlewareAPI = {
+        getState: store.getState,
+        dispatch: function dispatch() {
+          return _dispatch.apply(void 0, arguments);
+        }
+      };
+      var chain = middlewares.map(function (middleware) {
+        return middleware(middlewareAPI);
+      });
+      _dispatch = compose.apply(void 0, chain)(store.dispatch);
+      return _objectSpread2({}, store, {
+        dispatch: _dispatch
+      });
+    };
+  };
+}
+/*
+ * This is a dummy function to check if the function name has been altered by minification.
+ * If the function has been minified and NODE_ENV !== 'production', warn the user.
+ */
+
+
+function isCrushed() {}
+
+if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+  warning('You are currently using minified code outside of NODE_ENV === "production". ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) ' + 'to ensure you have the correct code for your production build.');
+}
+},{"symbol-observable":"node_modules/symbol-observable/es/index.js"}],"node_modules/react-redux/es/utils/isPlainObject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = isPlainObject;
+
+/**
+ * @param {any} obj The object to inspect.
+ * @returns {boolean} True if the argument appears to be a plain object.
+ */
+function isPlainObject(obj) {
+  if (typeof obj !== 'object' || obj === null) return false;
+  var proto = Object.getPrototypeOf(obj);
+  if (proto === null) return true;
+  var baseProto = proto;
+
+  while (Object.getPrototypeOf(baseProto) !== null) {
+    baseProto = Object.getPrototypeOf(baseProto);
+  }
+
+  return proto === baseProto;
+}
+},{}],"node_modules/react-redux/es/utils/warning.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = warning;
+
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */
+function warning(message) {
+  /* eslint-disable no-console */
+  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+    console.error(message);
+  }
+  /* eslint-enable no-console */
+
+
+  try {
+    // This error was thrown as a convenience so that if you enable
+    // "break on all exceptions" in your console,
+    // it would pause the execution at this line.
+    throw new Error(message);
+    /* eslint-disable no-empty */
+  } catch (e) {}
+  /* eslint-enable no-empty */
+
+}
+},{}],"node_modules/react-redux/es/utils/verifyPlainObject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = verifyPlainObject;
+
+var _isPlainObject = _interopRequireDefault(require("./isPlainObject"));
+
+var _warning = _interopRequireDefault(require("./warning"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function verifyPlainObject(value, displayName, methodName) {
+  if (!(0, _isPlainObject.default)(value)) {
+    (0, _warning.default)(methodName + "() in " + displayName + " must return a plain object. Instead received " + value + ".");
+  }
+}
+},{"./isPlainObject":"node_modules/react-redux/es/utils/isPlainObject.js","./warning":"node_modules/react-redux/es/utils/warning.js"}],"node_modules/react-redux/es/connect/wrapMapToProps.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.wrapMapToPropsConstant = wrapMapToPropsConstant;
+exports.getDependsOnOwnProps = getDependsOnOwnProps;
+exports.wrapMapToPropsFunc = wrapMapToPropsFunc;
+
+var _verifyPlainObject = _interopRequireDefault(require("../utils/verifyPlainObject"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function wrapMapToPropsConstant(getConstant) {
+  return function initConstantSelector(dispatch, options) {
+    var constant = getConstant(dispatch, options);
+
+    function constantSelector() {
+      return constant;
+    }
+
+    constantSelector.dependsOnOwnProps = false;
+    return constantSelector;
+  };
+} // dependsOnOwnProps is used by createMapToPropsProxy to determine whether to pass props as args
+// to the mapToProps function being wrapped. It is also used by makePurePropsSelector to determine
+// whether mapToProps needs to be invoked when props have changed.
+//
+// A length of one signals that mapToProps does not depend on props from the parent component.
+// A length of zero is assumed to mean mapToProps is getting args via arguments or ...args and
+// therefore not reporting its length accurately..
+
+
+function getDependsOnOwnProps(mapToProps) {
+  return mapToProps.dependsOnOwnProps !== null && mapToProps.dependsOnOwnProps !== undefined ? Boolean(mapToProps.dependsOnOwnProps) : mapToProps.length !== 1;
+} // Used by whenMapStateToPropsIsFunction and whenMapDispatchToPropsIsFunction,
+// this function wraps mapToProps in a proxy function which does several things:
+//
+//  * Detects whether the mapToProps function being called depends on props, which
+//    is used by selectorFactory to decide if it should reinvoke on props changes.
+//
+//  * On first call, handles mapToProps if returns another function, and treats that
+//    new function as the true mapToProps for subsequent calls.
+//
+//  * On first call, verifies the first result is a plain object, in order to warn
+//    the developer that their mapToProps function is not returning a valid result.
+//
+
+
+function wrapMapToPropsFunc(mapToProps, methodName) {
+  return function initProxySelector(dispatch, _ref) {
+    var displayName = _ref.displayName;
+
+    var proxy = function mapToPropsProxy(stateOrDispatch, ownProps) {
+      return proxy.dependsOnOwnProps ? proxy.mapToProps(stateOrDispatch, ownProps) : proxy.mapToProps(stateOrDispatch);
+    }; // allow detectFactoryAndVerify to get ownProps
+
+
+    proxy.dependsOnOwnProps = true;
+
+    proxy.mapToProps = function detectFactoryAndVerify(stateOrDispatch, ownProps) {
+      proxy.mapToProps = mapToProps;
+      proxy.dependsOnOwnProps = getDependsOnOwnProps(mapToProps);
+      var props = proxy(stateOrDispatch, ownProps);
+
+      if (typeof props === 'function') {
+        proxy.mapToProps = props;
+        proxy.dependsOnOwnProps = getDependsOnOwnProps(props);
+        props = proxy(stateOrDispatch, ownProps);
+      }
+
+      if ("development" !== 'production') (0, _verifyPlainObject.default)(props, displayName, methodName);
+      return props;
+    };
+
+    return proxy;
+  };
+}
+},{"../utils/verifyPlainObject":"node_modules/react-redux/es/utils/verifyPlainObject.js"}],"node_modules/react-redux/es/connect/mapDispatchToProps.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.whenMapDispatchToPropsIsFunction = whenMapDispatchToPropsIsFunction;
+exports.whenMapDispatchToPropsIsMissing = whenMapDispatchToPropsIsMissing;
+exports.whenMapDispatchToPropsIsObject = whenMapDispatchToPropsIsObject;
+exports.default = void 0;
+
+var _redux = require("redux");
+
+var _wrapMapToProps = require("./wrapMapToProps");
+
+function whenMapDispatchToPropsIsFunction(mapDispatchToProps) {
+  return typeof mapDispatchToProps === 'function' ? (0, _wrapMapToProps.wrapMapToPropsFunc)(mapDispatchToProps, 'mapDispatchToProps') : undefined;
+}
+
+function whenMapDispatchToPropsIsMissing(mapDispatchToProps) {
+  return !mapDispatchToProps ? (0, _wrapMapToProps.wrapMapToPropsConstant)(function (dispatch) {
+    return {
+      dispatch: dispatch
+    };
+  }) : undefined;
+}
+
+function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
+  return mapDispatchToProps && typeof mapDispatchToProps === 'object' ? (0, _wrapMapToProps.wrapMapToPropsConstant)(function (dispatch) {
+    return (0, _redux.bindActionCreators)(mapDispatchToProps, dispatch);
+  }) : undefined;
+}
+
+var _default = [whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject];
+exports.default = _default;
+},{"redux":"node_modules/redux/es/redux.js","./wrapMapToProps":"node_modules/react-redux/es/connect/wrapMapToProps.js"}],"node_modules/react-redux/es/connect/mapStateToProps.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.whenMapStateToPropsIsFunction = whenMapStateToPropsIsFunction;
+exports.whenMapStateToPropsIsMissing = whenMapStateToPropsIsMissing;
+exports.default = void 0;
+
+var _wrapMapToProps = require("./wrapMapToProps");
+
+function whenMapStateToPropsIsFunction(mapStateToProps) {
+  return typeof mapStateToProps === 'function' ? (0, _wrapMapToProps.wrapMapToPropsFunc)(mapStateToProps, 'mapStateToProps') : undefined;
+}
+
+function whenMapStateToPropsIsMissing(mapStateToProps) {
+  return !mapStateToProps ? (0, _wrapMapToProps.wrapMapToPropsConstant)(function () {
+    return {};
+  }) : undefined;
+}
+
+var _default = [whenMapStateToPropsIsFunction, whenMapStateToPropsIsMissing];
+exports.default = _default;
+},{"./wrapMapToProps":"node_modules/react-redux/es/connect/wrapMapToProps.js"}],"node_modules/react-redux/es/connect/mergeProps.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.defaultMergeProps = defaultMergeProps;
+exports.wrapMergePropsFunc = wrapMergePropsFunc;
+exports.whenMergePropsIsFunction = whenMergePropsIsFunction;
+exports.whenMergePropsIsOmitted = whenMergePropsIsOmitted;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _verifyPlainObject = _interopRequireDefault(require("../utils/verifyPlainObject"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function defaultMergeProps(stateProps, dispatchProps, ownProps) {
+  return (0, _extends2.default)({}, ownProps, {}, stateProps, {}, dispatchProps);
+}
+
+function wrapMergePropsFunc(mergeProps) {
+  return function initMergePropsProxy(dispatch, _ref) {
+    var displayName = _ref.displayName,
+        pure = _ref.pure,
+        areMergedPropsEqual = _ref.areMergedPropsEqual;
+    var hasRunOnce = false;
+    var mergedProps;
+    return function mergePropsProxy(stateProps, dispatchProps, ownProps) {
+      var nextMergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+
+      if (hasRunOnce) {
+        if (!pure || !areMergedPropsEqual(nextMergedProps, mergedProps)) mergedProps = nextMergedProps;
+      } else {
+        hasRunOnce = true;
+        mergedProps = nextMergedProps;
+        if ("development" !== 'production') (0, _verifyPlainObject.default)(mergedProps, displayName, 'mergeProps');
+      }
+
+      return mergedProps;
+    };
+  };
+}
+
+function whenMergePropsIsFunction(mergeProps) {
+  return typeof mergeProps === 'function' ? wrapMergePropsFunc(mergeProps) : undefined;
+}
+
+function whenMergePropsIsOmitted(mergeProps) {
+  return !mergeProps ? function () {
+    return defaultMergeProps;
+  } : undefined;
+}
+
+var _default = [whenMergePropsIsFunction, whenMergePropsIsOmitted];
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","../utils/verifyPlainObject":"node_modules/react-redux/es/utils/verifyPlainObject.js"}],"node_modules/react-redux/es/connect/verifySubselectors.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = verifySubselectors;
+
+var _warning = _interopRequireDefault(require("../utils/warning"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function verify(selector, methodName, displayName) {
+  if (!selector) {
+    throw new Error("Unexpected value for " + methodName + " in " + displayName + ".");
+  } else if (methodName === 'mapStateToProps' || methodName === 'mapDispatchToProps') {
+    if (!Object.prototype.hasOwnProperty.call(selector, 'dependsOnOwnProps')) {
+      (0, _warning.default)("The selector for " + methodName + " of " + displayName + " did not specify a value for dependsOnOwnProps.");
+    }
+  }
+}
+
+function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, displayName) {
+  verify(mapStateToProps, 'mapStateToProps', displayName);
+  verify(mapDispatchToProps, 'mapDispatchToProps', displayName);
+  verify(mergeProps, 'mergeProps', displayName);
+}
+},{"../utils/warning":"node_modules/react-redux/es/utils/warning.js"}],"node_modules/react-redux/es/connect/selectorFactory.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.impureFinalPropsSelectorFactory = impureFinalPropsSelectorFactory;
+exports.pureFinalPropsSelectorFactory = pureFinalPropsSelectorFactory;
+exports.default = finalPropsSelectorFactory;
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
+
+var _verifySubselectors = _interopRequireDefault(require("./verifySubselectors"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function impureFinalPropsSelectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch) {
+  return function impureFinalPropsSelector(state, ownProps) {
+    return mergeProps(mapStateToProps(state, ownProps), mapDispatchToProps(dispatch, ownProps), ownProps);
+  };
+}
+
+function pureFinalPropsSelectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, _ref) {
+  var areStatesEqual = _ref.areStatesEqual,
+      areOwnPropsEqual = _ref.areOwnPropsEqual,
+      areStatePropsEqual = _ref.areStatePropsEqual;
+  var hasRunAtLeastOnce = false;
+  var state;
+  var ownProps;
+  var stateProps;
+  var dispatchProps;
+  var mergedProps;
+
+  function handleFirstCall(firstState, firstOwnProps) {
+    state = firstState;
+    ownProps = firstOwnProps;
+    stateProps = mapStateToProps(state, ownProps);
+    dispatchProps = mapDispatchToProps(dispatch, ownProps);
+    mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+    hasRunAtLeastOnce = true;
+    return mergedProps;
+  }
+
+  function handleNewPropsAndNewState() {
+    stateProps = mapStateToProps(state, ownProps);
+    if (mapDispatchToProps.dependsOnOwnProps) dispatchProps = mapDispatchToProps(dispatch, ownProps);
+    mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+    return mergedProps;
+  }
+
+  function handleNewProps() {
+    if (mapStateToProps.dependsOnOwnProps) stateProps = mapStateToProps(state, ownProps);
+    if (mapDispatchToProps.dependsOnOwnProps) dispatchProps = mapDispatchToProps(dispatch, ownProps);
+    mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+    return mergedProps;
+  }
+
+  function handleNewState() {
+    var nextStateProps = mapStateToProps(state, ownProps);
+    var statePropsChanged = !areStatePropsEqual(nextStateProps, stateProps);
+    stateProps = nextStateProps;
+    if (statePropsChanged) mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
+    return mergedProps;
+  }
+
+  function handleSubsequentCalls(nextState, nextOwnProps) {
+    var propsChanged = !areOwnPropsEqual(nextOwnProps, ownProps);
+    var stateChanged = !areStatesEqual(nextState, state);
+    state = nextState;
+    ownProps = nextOwnProps;
+    if (propsChanged && stateChanged) return handleNewPropsAndNewState();
+    if (propsChanged) return handleNewProps();
+    if (stateChanged) return handleNewState();
+    return mergedProps;
+  }
+
+  return function pureFinalPropsSelector(nextState, nextOwnProps) {
+    return hasRunAtLeastOnce ? handleSubsequentCalls(nextState, nextOwnProps) : handleFirstCall(nextState, nextOwnProps);
+  };
+} // TODO: Add more comments
+// If pure is true, the selector returned by selectorFactory will memoize its results,
+// allowing connectAdvanced's shouldComponentUpdate to return false if final
+// props have not changed. If false, the selector will always return a new
+// object and shouldComponentUpdate will always return true.
+
+
+function finalPropsSelectorFactory(dispatch, _ref2) {
+  var initMapStateToProps = _ref2.initMapStateToProps,
+      initMapDispatchToProps = _ref2.initMapDispatchToProps,
+      initMergeProps = _ref2.initMergeProps,
+      options = (0, _objectWithoutPropertiesLoose2.default)(_ref2, ["initMapStateToProps", "initMapDispatchToProps", "initMergeProps"]);
+  var mapStateToProps = initMapStateToProps(dispatch, options);
+  var mapDispatchToProps = initMapDispatchToProps(dispatch, options);
+  var mergeProps = initMergeProps(dispatch, options);
+
+  if ("development" !== 'production') {
+    (0, _verifySubselectors.default)(mapStateToProps, mapDispatchToProps, mergeProps, options.displayName);
+  }
+
+  var selectorFactory = options.pure ? pureFinalPropsSelectorFactory : impureFinalPropsSelectorFactory;
+  return selectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, options);
+}
+},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","./verifySubselectors":"node_modules/react-redux/es/connect/verifySubselectors.js"}],"node_modules/react-redux/es/connect/connect.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createConnect = createConnect;
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
+
+var _connectAdvanced = _interopRequireDefault(require("../components/connectAdvanced"));
+
+var _shallowEqual = _interopRequireDefault(require("../utils/shallowEqual"));
+
+var _mapDispatchToProps = _interopRequireDefault(require("./mapDispatchToProps"));
+
+var _mapStateToProps = _interopRequireDefault(require("./mapStateToProps"));
+
+var _mergeProps = _interopRequireDefault(require("./mergeProps"));
+
+var _selectorFactory = _interopRequireDefault(require("./selectorFactory"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+  connect is a facade over connectAdvanced. It turns its args into a compatible
+  selectorFactory, which has the signature:
+
+    (dispatch, options) => (nextState, nextOwnProps) => nextFinalProps
+  
+  connect passes its args to connectAdvanced as options, which will in turn pass them to
+  selectorFactory each time a Connect component instance is instantiated or hot reloaded.
+
+  selectorFactory returns a final props selector from its mapStateToProps,
+  mapStateToPropsFactories, mapDispatchToProps, mapDispatchToPropsFactories, mergeProps,
+  mergePropsFactories, and pure args.
+
+  The resulting final props selector is called by the Connect component instance whenever
+  it receives new props or store state.
+ */
+function match(arg, factories, name) {
+  for (var i = factories.length - 1; i >= 0; i--) {
+    var result = factories[i](arg);
+    if (result) return result;
+  }
+
+  return function (dispatch, options) {
+    throw new Error("Invalid value of type " + typeof arg + " for " + name + " argument when connecting component " + options.wrappedComponentName + ".");
+  };
+}
+
+function strictEqual(a, b) {
+  return a === b;
+} // createConnect with default args builds the 'official' connect behavior. Calling it with
+// different options opens up some testing and extensibility scenarios
+
+
+function createConnect(_temp) {
+  var _ref = _temp === void 0 ? {} : _temp,
+      _ref$connectHOC = _ref.connectHOC,
+      connectHOC = _ref$connectHOC === void 0 ? _connectAdvanced.default : _ref$connectHOC,
+      _ref$mapStateToPropsF = _ref.mapStateToPropsFactories,
+      mapStateToPropsFactories = _ref$mapStateToPropsF === void 0 ? _mapStateToProps.default : _ref$mapStateToPropsF,
+      _ref$mapDispatchToPro = _ref.mapDispatchToPropsFactories,
+      mapDispatchToPropsFactories = _ref$mapDispatchToPro === void 0 ? _mapDispatchToProps.default : _ref$mapDispatchToPro,
+      _ref$mergePropsFactor = _ref.mergePropsFactories,
+      mergePropsFactories = _ref$mergePropsFactor === void 0 ? _mergeProps.default : _ref$mergePropsFactor,
+      _ref$selectorFactory = _ref.selectorFactory,
+      selectorFactory = _ref$selectorFactory === void 0 ? _selectorFactory.default : _ref$selectorFactory;
+
+  return function connect(mapStateToProps, mapDispatchToProps, mergeProps, _ref2) {
+    if (_ref2 === void 0) {
+      _ref2 = {};
+    }
+
+    var _ref3 = _ref2,
+        _ref3$pure = _ref3.pure,
+        pure = _ref3$pure === void 0 ? true : _ref3$pure,
+        _ref3$areStatesEqual = _ref3.areStatesEqual,
+        areStatesEqual = _ref3$areStatesEqual === void 0 ? strictEqual : _ref3$areStatesEqual,
+        _ref3$areOwnPropsEqua = _ref3.areOwnPropsEqual,
+        areOwnPropsEqual = _ref3$areOwnPropsEqua === void 0 ? _shallowEqual.default : _ref3$areOwnPropsEqua,
+        _ref3$areStatePropsEq = _ref3.areStatePropsEqual,
+        areStatePropsEqual = _ref3$areStatePropsEq === void 0 ? _shallowEqual.default : _ref3$areStatePropsEq,
+        _ref3$areMergedPropsE = _ref3.areMergedPropsEqual,
+        areMergedPropsEqual = _ref3$areMergedPropsE === void 0 ? _shallowEqual.default : _ref3$areMergedPropsE,
+        extraOptions = (0, _objectWithoutPropertiesLoose2.default)(_ref3, ["pure", "areStatesEqual", "areOwnPropsEqual", "areStatePropsEqual", "areMergedPropsEqual"]);
+    var initMapStateToProps = match(mapStateToProps, mapStateToPropsFactories, 'mapStateToProps');
+    var initMapDispatchToProps = match(mapDispatchToProps, mapDispatchToPropsFactories, 'mapDispatchToProps');
+    var initMergeProps = match(mergeProps, mergePropsFactories, 'mergeProps');
+    return connectHOC(selectorFactory, (0, _extends2.default)({
+      // used in error messages
+      methodName: 'connect',
+      // used to compute Connect's displayName from the wrapped component's displayName.
+      getDisplayName: function getDisplayName(name) {
+        return "Connect(" + name + ")";
+      },
+      // if mapStateToProps is falsy, the Connect component doesn't subscribe to store state changes
+      shouldHandleStateChanges: Boolean(mapStateToProps),
+      // passed through to selectorFactory
+      initMapStateToProps: initMapStateToProps,
+      initMapDispatchToProps: initMapDispatchToProps,
+      initMergeProps: initMergeProps,
+      pure: pure,
+      areStatesEqual: areStatesEqual,
+      areOwnPropsEqual: areOwnPropsEqual,
+      areStatePropsEqual: areStatePropsEqual,
+      areMergedPropsEqual: areMergedPropsEqual
+    }, extraOptions));
+  };
+}
+
+var _default = /*#__PURE__*/createConnect();
+
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","../components/connectAdvanced":"node_modules/react-redux/es/components/connectAdvanced.js","../utils/shallowEqual":"node_modules/react-redux/es/utils/shallowEqual.js","./mapDispatchToProps":"node_modules/react-redux/es/connect/mapDispatchToProps.js","./mapStateToProps":"node_modules/react-redux/es/connect/mapStateToProps.js","./mergeProps":"node_modules/react-redux/es/connect/mergeProps.js","./selectorFactory":"node_modules/react-redux/es/connect/selectorFactory.js"}],"node_modules/react-redux/es/hooks/useReduxContext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useReduxContext = useReduxContext;
+
+var _react = require("react");
+
+var _Context = require("../components/Context");
+
+/**
+ * A hook to access the value of the `ReactReduxContext`. This is a low-level
+ * hook that you should usually not need to call directly.
+ *
+ * @returns {any} the value of the `ReactReduxContext`
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useReduxContext } from 'react-redux'
+ *
+ * export const CounterComponent = ({ value }) => {
+ *   const { store } = useReduxContext()
+ *   return <div>{store.getState()}</div>
+ * }
+ */
+function useReduxContext() {
+  var contextValue = (0, _react.useContext)(_Context.ReactReduxContext);
+
+  if ("development" !== 'production' && !contextValue) {
+    throw new Error('could not find react-redux context value; please ensure the component is wrapped in a <Provider>');
+  }
+
+  return contextValue;
+}
+},{"react":"node_modules/react/index.js","../components/Context":"node_modules/react-redux/es/components/Context.js"}],"node_modules/react-redux/es/hooks/useStore.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createStoreHook = createStoreHook;
+exports.useStore = void 0;
+
+var _react = require("react");
+
+var _Context = require("../components/Context");
+
+var _useReduxContext2 = require("./useReduxContext");
+
+/**
+ * Hook factory, which creates a `useStore` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useStore` hook bound to the specified context.
+ */
+function createStoreHook(context) {
+  if (context === void 0) {
+    context = _Context.ReactReduxContext;
+  }
+
+  var useReduxContext = context === _Context.ReactReduxContext ? _useReduxContext2.useReduxContext : function () {
+    return (0, _react.useContext)(context);
+  };
+  return function useStore() {
+    var _useReduxContext = useReduxContext(),
+        store = _useReduxContext.store;
+
+    return store;
+  };
+}
+/**
+ * A hook to access the redux store.
+ *
+ * @returns {any} the redux store
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useStore } from 'react-redux'
+ *
+ * export const ExampleComponent = () => {
+ *   const store = useStore()
+ *   return <div>{store.getState()}</div>
+ * }
+ */
+
+
+var useStore = /*#__PURE__*/createStoreHook();
+exports.useStore = useStore;
+},{"react":"node_modules/react/index.js","../components/Context":"node_modules/react-redux/es/components/Context.js","./useReduxContext":"node_modules/react-redux/es/hooks/useReduxContext.js"}],"node_modules/react-redux/es/hooks/useDispatch.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createDispatchHook = createDispatchHook;
+exports.useDispatch = void 0;
+
+var _Context = require("../components/Context");
+
+var _useStore = require("./useStore");
+
+/**
+ * Hook factory, which creates a `useDispatch` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useDispatch` hook bound to the specified context.
+ */
+function createDispatchHook(context) {
+  if (context === void 0) {
+    context = _Context.ReactReduxContext;
+  }
+
+  var useStore = context === _Context.ReactReduxContext ? _useStore.useStore : (0, _useStore.createStoreHook)(context);
+  return function useDispatch() {
+    var store = useStore();
+    return store.dispatch;
+  };
+}
+/**
+ * A hook to access the redux `dispatch` function.
+ *
+ * @returns {any|function} redux store's `dispatch` function
+ *
+ * @example
+ *
+ * import React, { useCallback } from 'react'
+ * import { useDispatch } from 'react-redux'
+ *
+ * export const CounterComponent = ({ value }) => {
+ *   const dispatch = useDispatch()
+ *   const increaseCounter = useCallback(() => dispatch({ type: 'increase-counter' }), [])
+ *   return (
+ *     <div>
+ *       <span>{value}</span>
+ *       <button onClick={increaseCounter}>Increase counter</button>
+ *     </div>
+ *   )
+ * }
+ */
+
+
+var useDispatch = /*#__PURE__*/createDispatchHook();
+exports.useDispatch = useDispatch;
+},{"../components/Context":"node_modules/react-redux/es/components/Context.js","./useStore":"node_modules/react-redux/es/hooks/useStore.js"}],"node_modules/react-redux/es/hooks/useSelector.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createSelectorHook = createSelectorHook;
+exports.useSelector = void 0;
+
+var _react = require("react");
+
+var _useReduxContext2 = require("./useReduxContext");
+
+var _Subscription = _interopRequireDefault(require("../utils/Subscription"));
+
+var _useIsomorphicLayoutEffect = require("../utils/useIsomorphicLayoutEffect");
+
+var _Context = require("../components/Context");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var refEquality = function refEquality(a, b) {
+  return a === b;
+};
+
+function useSelectorWithStoreAndSubscription(selector, equalityFn, store, contextSub) {
+  var _useReducer = (0, _react.useReducer)(function (s) {
+    return s + 1;
+  }, 0),
+      forceRender = _useReducer[1];
+
+  var subscription = (0, _react.useMemo)(function () {
+    return new _Subscription.default(store, contextSub);
+  }, [store, contextSub]);
+  var latestSubscriptionCallbackError = (0, _react.useRef)();
+  var latestSelector = (0, _react.useRef)();
+  var latestStoreState = (0, _react.useRef)();
+  var latestSelectedState = (0, _react.useRef)();
+  var storeState = store.getState();
+  var selectedState;
+
+  try {
+    if (selector !== latestSelector.current || storeState !== latestStoreState.current || latestSubscriptionCallbackError.current) {
+      selectedState = selector(storeState);
+    } else {
+      selectedState = latestSelectedState.current;
+    }
+  } catch (err) {
+    if (latestSubscriptionCallbackError.current) {
+      err.message += "\nThe error may be correlated with this previous error:\n" + latestSubscriptionCallbackError.current.stack + "\n\n";
+    }
+
+    throw err;
+  }
+
+  (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(function () {
+    latestSelector.current = selector;
+    latestStoreState.current = storeState;
+    latestSelectedState.current = selectedState;
+    latestSubscriptionCallbackError.current = undefined;
+  });
+  (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(function () {
+    function checkForUpdates() {
+      try {
+        var newSelectedState = latestSelector.current(store.getState());
+
+        if (equalityFn(newSelectedState, latestSelectedState.current)) {
+          return;
+        }
+
+        latestSelectedState.current = newSelectedState;
+      } catch (err) {
+        // we ignore all errors here, since when the component
+        // is re-rendered, the selectors are called again, and
+        // will throw again, if neither props nor store state
+        // changed
+        latestSubscriptionCallbackError.current = err;
+      }
+
+      forceRender();
+    }
+
+    subscription.onStateChange = checkForUpdates;
+    subscription.trySubscribe();
+    checkForUpdates();
+    return function () {
+      return subscription.tryUnsubscribe();
+    };
+  }, [store, subscription]);
+  return selectedState;
+}
+/**
+ * Hook factory, which creates a `useSelector` hook bound to a given context.
+ *
+ * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
+ * @returns {Function} A `useSelector` hook bound to the specified context.
+ */
+
+
+function createSelectorHook(context) {
+  if (context === void 0) {
+    context = _Context.ReactReduxContext;
+  }
+
+  var useReduxContext = context === _Context.ReactReduxContext ? _useReduxContext2.useReduxContext : function () {
+    return (0, _react.useContext)(context);
+  };
+  return function useSelector(selector, equalityFn) {
+    if (equalityFn === void 0) {
+      equalityFn = refEquality;
+    }
+
+    if ("development" !== 'production' && !selector) {
+      throw new Error("You must pass a selector to useSelector");
+    }
+
+    var _useReduxContext = useReduxContext(),
+        store = _useReduxContext.store,
+        contextSub = _useReduxContext.subscription;
+
+    var selectedState = useSelectorWithStoreAndSubscription(selector, equalityFn, store, contextSub);
+    (0, _react.useDebugValue)(selectedState);
+    return selectedState;
+  };
+}
+/**
+ * A hook to access the redux store's state. This hook takes a selector function
+ * as an argument. The selector is called with the store state.
+ *
+ * This hook takes an optional equality comparison function as the second parameter
+ * that allows you to customize the way the selected state is compared to determine
+ * whether the component needs to be re-rendered.
+ *
+ * @param {Function} selector the selector function
+ * @param {Function=} equalityFn the function that will be used to determine equality
+ *
+ * @returns {any} the selected state
+ *
+ * @example
+ *
+ * import React from 'react'
+ * import { useSelector } from 'react-redux'
+ *
+ * export const CounterComponent = () => {
+ *   const counter = useSelector(state => state.counter)
+ *   return <div>{counter}</div>
+ * }
+ */
+
+
+var useSelector = /*#__PURE__*/createSelectorHook();
+exports.useSelector = useSelector;
+},{"react":"node_modules/react/index.js","./useReduxContext":"node_modules/react-redux/es/hooks/useReduxContext.js","../utils/Subscription":"node_modules/react-redux/es/utils/Subscription.js","../utils/useIsomorphicLayoutEffect":"node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js","../components/Context":"node_modules/react-redux/es/components/Context.js"}],"node_modules/react-redux/es/utils/reactBatchedUpdates.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "unstable_batchedUpdates", {
+  enumerable: true,
+  get: function () {
+    return _reactDom.unstable_batchedUpdates;
+  }
+});
+
+var _reactDom = require("react-dom");
+},{"react-dom":"node_modules/react-dom/index.js"}],"node_modules/react-redux/es/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Provider", {
+  enumerable: true,
+  get: function () {
+    return _Provider.default;
+  }
+});
+Object.defineProperty(exports, "connectAdvanced", {
+  enumerable: true,
+  get: function () {
+    return _connectAdvanced.default;
+  }
+});
+Object.defineProperty(exports, "ReactReduxContext", {
+  enumerable: true,
+  get: function () {
+    return _Context.ReactReduxContext;
+  }
+});
+Object.defineProperty(exports, "connect", {
+  enumerable: true,
+  get: function () {
+    return _connect.default;
+  }
+});
+Object.defineProperty(exports, "useDispatch", {
+  enumerable: true,
+  get: function () {
+    return _useDispatch.useDispatch;
+  }
+});
+Object.defineProperty(exports, "createDispatchHook", {
+  enumerable: true,
+  get: function () {
+    return _useDispatch.createDispatchHook;
+  }
+});
+Object.defineProperty(exports, "useSelector", {
+  enumerable: true,
+  get: function () {
+    return _useSelector.useSelector;
+  }
+});
+Object.defineProperty(exports, "createSelectorHook", {
+  enumerable: true,
+  get: function () {
+    return _useSelector.createSelectorHook;
+  }
+});
+Object.defineProperty(exports, "useStore", {
+  enumerable: true,
+  get: function () {
+    return _useStore.useStore;
+  }
+});
+Object.defineProperty(exports, "createStoreHook", {
+  enumerable: true,
+  get: function () {
+    return _useStore.createStoreHook;
+  }
+});
+Object.defineProperty(exports, "batch", {
+  enumerable: true,
+  get: function () {
+    return _reactBatchedUpdates.unstable_batchedUpdates;
+  }
+});
+Object.defineProperty(exports, "shallowEqual", {
+  enumerable: true,
+  get: function () {
+    return _shallowEqual.default;
+  }
+});
+
+var _Provider = _interopRequireDefault(require("./components/Provider"));
+
+var _connectAdvanced = _interopRequireDefault(require("./components/connectAdvanced"));
+
+var _Context = require("./components/Context");
+
+var _connect = _interopRequireDefault(require("./connect/connect"));
+
+var _useDispatch = require("./hooks/useDispatch");
+
+var _useSelector = require("./hooks/useSelector");
+
+var _useStore = require("./hooks/useStore");
+
+var _batch = require("./utils/batch");
+
+var _reactBatchedUpdates = require("./utils/reactBatchedUpdates");
+
+var _shallowEqual = _interopRequireDefault(require("./utils/shallowEqual"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _batch.setBatch)(_reactBatchedUpdates.unstable_batchedUpdates);
+},{"./components/Provider":"node_modules/react-redux/es/components/Provider.js","./components/connectAdvanced":"node_modules/react-redux/es/components/connectAdvanced.js","./components/Context":"node_modules/react-redux/es/components/Context.js","./connect/connect":"node_modules/react-redux/es/connect/connect.js","./hooks/useDispatch":"node_modules/react-redux/es/hooks/useDispatch.js","./hooks/useSelector":"node_modules/react-redux/es/hooks/useSelector.js","./hooks/useStore":"node_modules/react-redux/es/hooks/useStore.js","./utils/batch":"node_modules/react-redux/es/utils/batch.js","./utils/reactBatchedUpdates":"node_modules/react-redux/es/utils/reactBatchedUpdates.js","./utils/shallowEqual":"node_modules/react-redux/es/utils/shallowEqual.js"}],"node_modules/reselect/es/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.defaultMemoize = defaultMemoize;
+exports.createSelectorCreator = createSelectorCreator;
+exports.createStructuredSelector = createStructuredSelector;
+exports.createSelector = void 0;
+
+function defaultEqualityCheck(a, b) {
+  return a === b;
+}
+
+function areArgumentsShallowlyEqual(equalityCheck, prev, next) {
+  if (prev === null || next === null || prev.length !== next.length) {
+    return false;
+  } // Do this in a for loop (and not a `forEach` or an `every`) so we can determine equality as fast as possible.
+
+
+  var length = prev.length;
+
+  for (var i = 0; i < length; i++) {
+    if (!equalityCheck(prev[i], next[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function defaultMemoize(func) {
+  var equalityCheck = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultEqualityCheck;
+  var lastArgs = null;
+  var lastResult = null; // we reference arguments instead of spreading them for performance reasons
+
+  return function () {
+    if (!areArgumentsShallowlyEqual(equalityCheck, lastArgs, arguments)) {
+      // apply arguments instead of spreading for performance.
+      lastResult = func.apply(null, arguments);
+    }
+
+    lastArgs = arguments;
+    return lastResult;
+  };
+}
+
+function getDependencies(funcs) {
+  var dependencies = Array.isArray(funcs[0]) ? funcs[0] : funcs;
+
+  if (!dependencies.every(function (dep) {
+    return typeof dep === 'function';
+  })) {
+    var dependencyTypes = dependencies.map(function (dep) {
+      return typeof dep;
+    }).join(', ');
+    throw new Error('Selector creators expect all input-selectors to be functions, ' + ('instead received the following types: [' + dependencyTypes + ']'));
+  }
+
+  return dependencies;
+}
+
+function createSelectorCreator(memoize) {
+  for (var _len = arguments.length, memoizeOptions = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    memoizeOptions[_key - 1] = arguments[_key];
+  }
+
+  return function () {
+    for (var _len2 = arguments.length, funcs = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      funcs[_key2] = arguments[_key2];
+    }
+
+    var recomputations = 0;
+    var resultFunc = funcs.pop();
+    var dependencies = getDependencies(funcs);
+    var memoizedResultFunc = memoize.apply(undefined, [function () {
+      recomputations++; // apply arguments instead of spreading for performance.
+
+      return resultFunc.apply(null, arguments);
+    }].concat(memoizeOptions)); // If a selector is called with the exact same arguments we don't need to traverse our dependencies again.
+
+    var selector = memoize(function () {
+      var params = [];
+      var length = dependencies.length;
+
+      for (var i = 0; i < length; i++) {
+        // apply arguments instead of spreading and mutate a local list of params for performance.
+        params.push(dependencies[i].apply(null, arguments));
+      } // apply arguments instead of spreading for performance.
+
+
+      return memoizedResultFunc.apply(null, params);
+    });
+    selector.resultFunc = resultFunc;
+    selector.dependencies = dependencies;
+
+    selector.recomputations = function () {
+      return recomputations;
+    };
+
+    selector.resetRecomputations = function () {
+      return recomputations = 0;
+    };
+
+    return selector;
+  };
+}
+
+var createSelector = createSelectorCreator(defaultMemoize);
+exports.createSelector = createSelector;
+
+function createStructuredSelector(selectors) {
+  var selectorCreator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : createSelector;
+
+  if (typeof selectors !== 'object') {
+    throw new Error('createStructuredSelector expects first argument to be an object ' + ('where each property is a selector, instead received a ' + typeof selectors));
+  }
+
+  var objectKeys = Object.keys(selectors);
+  return selectorCreator(objectKeys.map(function (key) {
+    return selectors[key];
+  }), function () {
+    for (var _len3 = arguments.length, values = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      values[_key3] = arguments[_key3];
+    }
+
+    return values.reduce(function (composition, value, index) {
+      composition[objectKeys[index]] = value;
+      return composition;
+    }, {});
+  });
+}
+},{}],"src/data/posts/selectors.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.selectAllPostsOrderByCreateAt = exports.selectAllPosts = void 0;
+
+var _reselect = require("reselect");
+
+var selectAllPosts = function selectAllPosts(state) {
+  return state.posts;
+};
+
+exports.selectAllPosts = selectAllPosts;
+var selectAllPostsOrderByCreateAt = (0, _reselect.createSelector)(selectAllPosts, function (_ref) {
+  var entries = _ref.entries,
+      ids = _ref.ids;
+  return ids.map(function (seq) {
+    return entries[seq];
+  }).sort(function (a, b) {
+    return b.createAt - a.createAt;
+  });
+});
+exports.selectAllPostsOrderByCreateAt = selectAllPostsOrderByCreateAt;
+},{"reselect":"node_modules/reselect/es/index.js"}],"node_modules/invariant/browser.js":[function(require,module,exports) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+'use strict';
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function (condition, format, a, b, c, d, e, f) {
+  if ("development" !== 'production') {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+
+    throw error;
+  }
+};
+
+module.exports = invariant;
+},{}],"node_modules/redux-actions/es/utils/isFunction.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'function';
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/isSymbol.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'symbol' || typeof value === 'object' && Object.prototype.toString.call(value) === '[object Symbol]';
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/isEmpty.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value.length === 0;
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/toString.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value.toString();
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/isString.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof value === 'string';
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/constants.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ACTION_TYPE_DELIMITER = exports.DEFAULT_NAMESPACE = void 0;
+var DEFAULT_NAMESPACE = '/';
+exports.DEFAULT_NAMESPACE = DEFAULT_NAMESPACE;
+var ACTION_TYPE_DELIMITER = '||';
+exports.ACTION_TYPE_DELIMITER = ACTION_TYPE_DELIMITER;
+},{}],"node_modules/redux-actions/es/combineActions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = combineActions;
+
+var _invariant = _interopRequireDefault(require("invariant"));
+
+var _isFunction = _interopRequireDefault(require("./utils/isFunction"));
+
+var _isSymbol = _interopRequireDefault(require("./utils/isSymbol"));
+
+var _isEmpty = _interopRequireDefault(require("./utils/isEmpty"));
+
+var _toString = _interopRequireDefault(require("./utils/toString"));
+
+var _isString = _interopRequireDefault(require("./utils/isString"));
+
+var _constants = require("./constants");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function isValidActionType(type) {
+  return (0, _isString.default)(type) || (0, _isFunction.default)(type) || (0, _isSymbol.default)(type);
+}
+
+function isValidActionTypes(types) {
+  if ((0, _isEmpty.default)(types)) {
+    return false;
+  }
+
+  return types.every(isValidActionType);
+}
+
+function combineActions() {
+  for (var _len = arguments.length, actionsTypes = new Array(_len), _key = 0; _key < _len; _key++) {
+    actionsTypes[_key] = arguments[_key];
+  }
+
+  (0, _invariant.default)(isValidActionTypes(actionsTypes), 'Expected action types to be strings, symbols, or action creators');
+  var combinedActionType = actionsTypes.map(_toString.default).join(_constants.ACTION_TYPE_DELIMITER);
+  return {
+    toString: function toString() {
+      return combinedActionType;
+    }
+  };
+}
+},{"invariant":"node_modules/invariant/browser.js","./utils/isFunction":"node_modules/redux-actions/es/utils/isFunction.js","./utils/isSymbol":"node_modules/redux-actions/es/utils/isSymbol.js","./utils/isEmpty":"node_modules/redux-actions/es/utils/isEmpty.js","./utils/toString":"node_modules/redux-actions/es/utils/toString.js","./utils/isString":"node_modules/redux-actions/es/utils/isString.js","./constants":"node_modules/redux-actions/es/constants.js"}],"node_modules/redux-actions/es/utils/identity.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value;
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/isNull.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === null;
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/createAction.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createAction;
+
+var _invariant = _interopRequireDefault(require("invariant"));
+
+var _isFunction = _interopRequireDefault(require("./utils/isFunction"));
+
+var _identity = _interopRequireDefault(require("./utils/identity"));
+
+var _isNull = _interopRequireDefault(require("./utils/isNull"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function createAction(type, payloadCreator, metaCreator) {
+  if (payloadCreator === void 0) {
+    payloadCreator = _identity.default;
+  }
+
+  (0, _invariant.default)((0, _isFunction.default)(payloadCreator) || (0, _isNull.default)(payloadCreator), 'Expected payloadCreator to be a function, undefined or null');
+  var finalPayloadCreator = (0, _isNull.default)(payloadCreator) || payloadCreator === _identity.default ? _identity.default : function (head) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    return head instanceof Error ? head : payloadCreator.apply(void 0, [head].concat(args));
+  };
+  var hasMeta = (0, _isFunction.default)(metaCreator);
+  var typeString = type.toString();
+
+  var actionCreator = function actionCreator() {
+    var payload = finalPayloadCreator.apply(void 0, arguments);
+    var action = {
+      type: type
+    };
+
+    if (payload instanceof Error) {
+      action.error = true;
+    }
+
+    if (payload !== undefined) {
+      action.payload = payload;
+    }
+
+    if (hasMeta) {
+      action.meta = metaCreator.apply(void 0, arguments);
+    }
+
+    return action;
+  };
+
+  actionCreator.toString = function () {
+    return typeString;
+  };
+
+  return actionCreator;
+}
+},{"invariant":"node_modules/invariant/browser.js","./utils/isFunction":"node_modules/redux-actions/es/utils/isFunction.js","./utils/identity":"node_modules/redux-actions/es/utils/identity.js","./utils/isNull":"node_modules/redux-actions/es/utils/isNull.js"}],"node_modules/redux-actions/es/utils/isPlainObject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  if (typeof value !== 'object' || value === null) return false;
+  var proto = value;
+
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto);
+  }
+
+  return Object.getPrototypeOf(value) === proto;
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/isArray.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return Array.isArray(value);
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/isNil.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === null || value === undefined;
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/getLastElement.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(array) {
+  return array[array.length - 1];
+};
+
+exports.default = _default;
+},{}],"node_modules/to-no-case/index.js":[function(require,module,exports) {
+
+/**
+ * Export.
+ */
+
+module.exports = toNoCase
+
+/**
+ * Test whether a string is camel-case.
+ */
+
+var hasSpace = /\s/
+var hasSeparator = /(_|-|\.|:)/
+var hasCamel = /([a-z][A-Z]|[A-Z][a-z])/
+
+/**
+ * Remove any starting case from a `string`, like camel or snake, but keep
+ * spaces and punctuation that may be important otherwise.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+function toNoCase(string) {
+  if (hasSpace.test(string)) return string.toLowerCase()
+  if (hasSeparator.test(string)) return (unseparate(string) || string).toLowerCase()
+  if (hasCamel.test(string)) return uncamelize(string).toLowerCase()
+  return string.toLowerCase()
+}
+
+/**
+ * Separator splitter.
+ */
+
+var separatorSplitter = /[\W_]+(.|$)/g
+
+/**
+ * Un-separate a `string`.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+function unseparate(string) {
+  return string.replace(separatorSplitter, function (m, next) {
+    return next ? ' ' + next : ''
+  })
+}
+
+/**
+ * Camelcase splitter.
+ */
+
+var camelSplitter = /(.)([A-Z]+)/g
+
+/**
+ * Un-camelcase a `string`.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+function uncamelize(string) {
+  return string.replace(camelSplitter, function (m, previous, uppers) {
+    return previous + ' ' + uppers.toLowerCase().split('').join(' ')
+  })
+}
+
+},{}],"node_modules/to-space-case/index.js":[function(require,module,exports) {
+
+var clean = require('to-no-case')
+
+/**
+ * Export.
+ */
+
+module.exports = toSpaceCase
+
+/**
+ * Convert a `string` to space case.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+function toSpaceCase(string) {
+  return clean(string).replace(/[\W_]+(.|$)/g, function (matches, match) {
+    return match ? ' ' + match : ''
+  }).trim()
+}
+
+},{"to-no-case":"node_modules/to-no-case/index.js"}],"node_modules/to-camel-case/index.js":[function(require,module,exports) {
+
+var space = require('to-space-case')
+
+/**
+ * Export.
+ */
+
+module.exports = toCamelCase
+
+/**
+ * Convert a `string` to camel case.
+ *
+ * @param {String} string
+ * @return {String}
+ */
+
+function toCamelCase(string) {
+  return space(string).replace(/\s(\w)/g, function (matches, letter) {
+    return letter.toUpperCase()
+  })
+}
+
+},{"to-space-case":"node_modules/to-space-case/index.js"}],"node_modules/redux-actions/es/utils/camelCase.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _toCamelCase = _interopRequireDefault(require("to-camel-case"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var namespacer = '/';
+
+var _default = function _default(type) {
+  return type.indexOf(namespacer) === -1 ? (0, _toCamelCase.default)(type) : type.split(namespacer).map(_toCamelCase.default).join(namespacer);
+};
+
+exports.default = _default;
+},{"to-camel-case":"node_modules/to-camel-case/index.js"}],"node_modules/redux-actions/es/utils/arrayToObject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(array, callback) {
+  return array.reduce(function (partialObject, element) {
+    return callback(partialObject, element);
+  }, {});
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/isMap.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return typeof Map !== 'undefined' && value instanceof Map;
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/ownKeys.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ownKeys;
+
+var _isMap = _interopRequireDefault(require("./isMap"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ownKeys(object) {
+  if ((0, _isMap.default)(object)) {
+    // We are using loose transforms in babel. Here we are trying to convert an
+    // interable to an array. Loose mode expects everything to already be an
+    // array. The problem is that our eslint rules encourage us to prefer
+    // spread over Array.from.
+    //
+    // Instead of disabling loose mode we simply disable the warning.
+    // eslint-disable-next-line unicorn/prefer-spread
+    return Array.from(object.keys());
+  }
+
+  if (typeof Reflect !== 'undefined' && typeof Reflect.ownKeys === 'function') {
+    return Reflect.ownKeys(object);
+  }
+
+  var keys = Object.getOwnPropertyNames(object);
+
+  if (typeof Object.getOwnPropertySymbols === 'function') {
+    keys = keys.concat(Object.getOwnPropertySymbols(object));
+  }
+
+  return keys;
+}
+},{"./isMap":"node_modules/redux-actions/es/utils/isMap.js"}],"node_modules/redux-actions/es/utils/get.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = get;
+
+var _isMap = _interopRequireDefault(require("./isMap"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function get(key, x) {
+  return (0, _isMap.default)(x) ? x.get(key) : x[key];
+}
+},{"./isMap":"node_modules/redux-actions/es/utils/isMap.js"}],"node_modules/redux-actions/es/utils/flattenWhenNode.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _constants = require("../constants");
+
+var _ownKeys = _interopRequireDefault(require("./ownKeys"));
+
+var _get = _interopRequireDefault(require("./get"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(predicate) {
+  return function flatten(map, _temp, partialFlatMap, partialFlatActionType) {
+    var _ref = _temp === void 0 ? {} : _temp,
+        _ref$namespace = _ref.namespace,
+        namespace = _ref$namespace === void 0 ? _constants.DEFAULT_NAMESPACE : _ref$namespace,
+        prefix = _ref.prefix;
+
+    if (partialFlatMap === void 0) {
+      partialFlatMap = {};
+    }
+
+    if (partialFlatActionType === void 0) {
+      partialFlatActionType = '';
+    }
+
+    function connectNamespace(type) {
+      var _ref2;
+
+      if (!partialFlatActionType) return type;
+      var types = type.toString().split(_constants.ACTION_TYPE_DELIMITER);
+      var partials = partialFlatActionType.split(_constants.ACTION_TYPE_DELIMITER);
+      return (_ref2 = []).concat.apply(_ref2, partials.map(function (p) {
+        return types.map(function (t) {
+          return "" + p + namespace + t;
+        });
+      })).join(_constants.ACTION_TYPE_DELIMITER);
+    }
+
+    function connectPrefix(type) {
+      if (partialFlatActionType || !prefix || prefix && new RegExp("^" + prefix + namespace).test(type)) {
+        return type;
+      }
+
+      return "" + prefix + namespace + type;
+    }
+
+    (0, _ownKeys.default)(map).forEach(function (type) {
+      var nextNamespace = connectPrefix(connectNamespace(type));
+      var mapValue = (0, _get.default)(type, map);
+
+      if (predicate(mapValue)) {
+        flatten(mapValue, {
+          namespace: namespace,
+          prefix: prefix
+        }, partialFlatMap, nextNamespace);
+      } else {
+        partialFlatMap[nextNamespace] = mapValue;
+      }
+    });
+    return partialFlatMap;
+  };
+};
+
+exports.default = _default;
+},{"../constants":"node_modules/redux-actions/es/constants.js","./ownKeys":"node_modules/redux-actions/es/utils/ownKeys.js","./get":"node_modules/redux-actions/es/utils/get.js"}],"node_modules/redux-actions/es/utils/flattenActionMap.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _isPlainObject = _interopRequireDefault(require("./isPlainObject"));
+
+var _flattenWhenNode = _interopRequireDefault(require("./flattenWhenNode"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = (0, _flattenWhenNode.default)(_isPlainObject.default);
+
+exports.default = _default;
+},{"./isPlainObject":"node_modules/redux-actions/es/utils/isPlainObject.js","./flattenWhenNode":"node_modules/redux-actions/es/utils/flattenWhenNode.js"}],"node_modules/redux-actions/es/utils/unflattenActionCreators.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = unflattenActionCreators;
+
+var _constants = require("../constants");
+
+var _isEmpty = _interopRequireDefault(require("./isEmpty"));
+
+var _camelCase = _interopRequireDefault(require("./camelCase"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function unflattenActionCreators(flatActionCreators, _temp) {
+  var _ref = _temp === void 0 ? {} : _temp,
+      _ref$namespace = _ref.namespace,
+      namespace = _ref$namespace === void 0 ? _constants.DEFAULT_NAMESPACE : _ref$namespace,
+      prefix = _ref.prefix;
+
+  function unflatten(flatActionType, partialNestedActionCreators, partialFlatActionTypePath) {
+    var nextNamespace = (0, _camelCase.default)(partialFlatActionTypePath.shift());
+
+    if ((0, _isEmpty.default)(partialFlatActionTypePath)) {
+      partialNestedActionCreators[nextNamespace] = flatActionCreators[flatActionType];
+    } else {
+      if (!partialNestedActionCreators[nextNamespace]) {
+        partialNestedActionCreators[nextNamespace] = {};
+      }
+
+      unflatten(flatActionType, partialNestedActionCreators[nextNamespace], partialFlatActionTypePath);
+    }
+  }
+
+  var nestedActionCreators = {};
+  Object.getOwnPropertyNames(flatActionCreators).forEach(function (type) {
+    var unprefixedType = prefix ? type.replace("" + prefix + namespace, '') : type;
+    return unflatten(type, nestedActionCreators, unprefixedType.split(namespace));
+  });
+  return nestedActionCreators;
+}
+},{"../constants":"node_modules/redux-actions/es/constants.js","./isEmpty":"node_modules/redux-actions/es/utils/isEmpty.js","./camelCase":"node_modules/redux-actions/es/utils/camelCase.js"}],"node_modules/redux-actions/es/createActions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createActions;
+
+var _invariant = _interopRequireDefault(require("invariant"));
+
+var _isPlainObject = _interopRequireDefault(require("./utils/isPlainObject"));
+
+var _isFunction = _interopRequireDefault(require("./utils/isFunction"));
+
+var _identity = _interopRequireDefault(require("./utils/identity"));
+
+var _isArray = _interopRequireDefault(require("./utils/isArray"));
+
+var _isString = _interopRequireDefault(require("./utils/isString"));
+
+var _isNil = _interopRequireDefault(require("./utils/isNil"));
+
+var _getLastElement = _interopRequireDefault(require("./utils/getLastElement"));
+
+var _camelCase = _interopRequireDefault(require("./utils/camelCase"));
+
+var _arrayToObject = _interopRequireDefault(require("./utils/arrayToObject"));
+
+var _flattenActionMap = _interopRequireDefault(require("./utils/flattenActionMap"));
+
+var _unflattenActionCreators = _interopRequireDefault(require("./utils/unflattenActionCreators"));
+
+var _createAction = _interopRequireDefault(require("./createAction"));
+
+var _constants = require("./constants");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function createActions(actionMap) {
+  for (var _len = arguments.length, identityActions = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    identityActions[_key - 1] = arguments[_key];
+  }
+
+  var options = (0, _isPlainObject.default)((0, _getLastElement.default)(identityActions)) ? identityActions.pop() : {};
+  (0, _invariant.default)(identityActions.every(_isString.default) && ((0, _isString.default)(actionMap) || (0, _isPlainObject.default)(actionMap)), 'Expected optional object followed by string action types');
+
+  if ((0, _isString.default)(actionMap)) {
+    return actionCreatorsFromIdentityActions([actionMap].concat(identityActions), options);
+  }
+
+  return _objectSpread({}, actionCreatorsFromActionMap(actionMap, options), actionCreatorsFromIdentityActions(identityActions, options));
+}
+
+function actionCreatorsFromActionMap(actionMap, options) {
+  var flatActionMap = (0, _flattenActionMap.default)(actionMap, options);
+  var flatActionCreators = actionMapToActionCreators(flatActionMap);
+  return (0, _unflattenActionCreators.default)(flatActionCreators, options);
+}
+
+function actionMapToActionCreators(actionMap, _temp) {
+  var _ref = _temp === void 0 ? {} : _temp,
+      prefix = _ref.prefix,
+      _ref$namespace = _ref.namespace,
+      namespace = _ref$namespace === void 0 ? _constants.DEFAULT_NAMESPACE : _ref$namespace;
+
+  function isValidActionMapValue(actionMapValue) {
+    if ((0, _isFunction.default)(actionMapValue) || (0, _isNil.default)(actionMapValue)) {
+      return true;
+    }
+
+    if ((0, _isArray.default)(actionMapValue)) {
+      var _actionMapValue$ = actionMapValue[0],
+          payload = _actionMapValue$ === void 0 ? _identity.default : _actionMapValue$,
+          meta = actionMapValue[1];
+      return (0, _isFunction.default)(payload) && (0, _isFunction.default)(meta);
+    }
+
+    return false;
+  }
+
+  return (0, _arrayToObject.default)(Object.keys(actionMap), function (partialActionCreators, type) {
+    var _objectSpread2;
+
+    var actionMapValue = actionMap[type];
+    (0, _invariant.default)(isValidActionMapValue(actionMapValue), 'Expected function, undefined, null, or array with payload and meta ' + ("functions for " + type));
+    var prefixedType = prefix ? "" + prefix + namespace + type : type;
+    var actionCreator = (0, _isArray.default)(actionMapValue) ? _createAction.default.apply(void 0, [prefixedType].concat(actionMapValue)) : (0, _createAction.default)(prefixedType, actionMapValue);
+    return _objectSpread({}, partialActionCreators, (_objectSpread2 = {}, _objectSpread2[type] = actionCreator, _objectSpread2));
+  });
+}
+
+function actionCreatorsFromIdentityActions(identityActions, options) {
+  var actionMap = (0, _arrayToObject.default)(identityActions, function (partialActionMap, type) {
+    var _objectSpread3;
+
+    return _objectSpread({}, partialActionMap, (_objectSpread3 = {}, _objectSpread3[type] = _identity.default, _objectSpread3));
+  });
+  var actionCreators = actionMapToActionCreators(actionMap, options);
+  return (0, _arrayToObject.default)(Object.keys(actionCreators), function (partialActionCreators, type) {
+    var _objectSpread4;
+
+    return _objectSpread({}, partialActionCreators, (_objectSpread4 = {}, _objectSpread4[(0, _camelCase.default)(type)] = actionCreators[type], _objectSpread4));
+  });
+}
+},{"invariant":"node_modules/invariant/browser.js","./utils/isPlainObject":"node_modules/redux-actions/es/utils/isPlainObject.js","./utils/isFunction":"node_modules/redux-actions/es/utils/isFunction.js","./utils/identity":"node_modules/redux-actions/es/utils/identity.js","./utils/isArray":"node_modules/redux-actions/es/utils/isArray.js","./utils/isString":"node_modules/redux-actions/es/utils/isString.js","./utils/isNil":"node_modules/redux-actions/es/utils/isNil.js","./utils/getLastElement":"node_modules/redux-actions/es/utils/getLastElement.js","./utils/camelCase":"node_modules/redux-actions/es/utils/camelCase.js","./utils/arrayToObject":"node_modules/redux-actions/es/utils/arrayToObject.js","./utils/flattenActionMap":"node_modules/redux-actions/es/utils/flattenActionMap.js","./utils/unflattenActionCreators":"node_modules/redux-actions/es/utils/unflattenActionCreators.js","./createAction":"node_modules/redux-actions/es/createAction.js","./constants":"node_modules/redux-actions/es/constants.js"}],"node_modules/just-curry-it/index.js":[function(require,module,exports) {
+module.exports = curry;
+
+/*
+  function add(a, b, c) {
+    return a + b + c;
+  }
+  curry(add)(1)(2)(3); // 6
+  curry(add)(1)(2)(2); // 5
+  curry(add)(2)(4, 3); // 9
+
+  function add(...args) {
+    return args.reduce((sum, n) => sum + n, 0)
+  }
+  var curryAdd4 = curry(add, 4)
+  curryAdd4(1)(2, 3)(4); // 10
+
+  function converter(ratio, input) {
+    return (input*ratio).toFixed(1);
+  }
+  const curriedConverter = curry(converter)
+  const milesToKm = curriedConverter(1.62);
+  milesToKm(35); // 56.7
+  milesToKm(10); // 16.2
+*/
+
+function curry(fn, arity) {
+  return function curried() {
+    if (arity == null) {
+      arity = fn.length;
+    }
+    var args = [].slice.call(arguments);
+    if (args.length >= arity) {
+      return fn.apply(this, args);
+    } else {
+      return function() {
+        return curried.apply(this, args.concat([].slice.call(arguments)));
+      };
+    }
+  };
+}
+
+},{}],"node_modules/redux-actions/es/createCurriedAction.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _justCurryIt = _interopRequireDefault(require("just-curry-it"));
+
+var _createAction = _interopRequireDefault(require("./createAction"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function _default(type, payloadCreator) {
+  return (0, _justCurryIt.default)((0, _createAction.default)(type, payloadCreator), payloadCreator.length);
+};
+
+exports.default = _default;
+},{"just-curry-it":"node_modules/just-curry-it/index.js","./createAction":"node_modules/redux-actions/es/createAction.js"}],"node_modules/redux-actions/es/utils/isUndefined.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(value) {
+  return value === undefined;
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/handleAction.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = handleAction;
+
+var _invariant = _interopRequireDefault(require("invariant"));
+
+var _isFunction = _interopRequireDefault(require("./utils/isFunction"));
+
+var _isPlainObject = _interopRequireDefault(require("./utils/isPlainObject"));
+
+var _identity = _interopRequireDefault(require("./utils/identity"));
+
+var _isNil = _interopRequireDefault(require("./utils/isNil"));
+
+var _isUndefined = _interopRequireDefault(require("./utils/isUndefined"));
+
+var _toString = _interopRequireDefault(require("./utils/toString"));
+
+var _constants = require("./constants");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function handleAction(type, reducer, defaultState) {
+  if (reducer === void 0) {
+    reducer = _identity.default;
+  }
+
+  var types = (0, _toString.default)(type).split(_constants.ACTION_TYPE_DELIMITER);
+  (0, _invariant.default)(!(0, _isUndefined.default)(defaultState), "defaultState for reducer handling " + types.join(', ') + " should be defined");
+  (0, _invariant.default)((0, _isFunction.default)(reducer) || (0, _isPlainObject.default)(reducer), 'Expected reducer to be a function or object with next and throw reducers');
+
+  var _ref = (0, _isFunction.default)(reducer) ? [reducer, reducer] : [reducer.next, reducer.throw].map(function (aReducer) {
+    return (0, _isNil.default)(aReducer) ? _identity.default : aReducer;
+  }),
+      nextReducer = _ref[0],
+      throwReducer = _ref[1];
+
+  return function (state, action) {
+    if (state === void 0) {
+      state = defaultState;
+    }
+
+    var actionType = action.type;
+
+    if (!actionType || types.indexOf((0, _toString.default)(actionType)) === -1) {
+      return state;
+    }
+
+    return (action.error === true ? throwReducer : nextReducer)(state, action);
+  };
+}
+},{"invariant":"node_modules/invariant/browser.js","./utils/isFunction":"node_modules/redux-actions/es/utils/isFunction.js","./utils/isPlainObject":"node_modules/redux-actions/es/utils/isPlainObject.js","./utils/identity":"node_modules/redux-actions/es/utils/identity.js","./utils/isNil":"node_modules/redux-actions/es/utils/isNil.js","./utils/isUndefined":"node_modules/redux-actions/es/utils/isUndefined.js","./utils/toString":"node_modules/redux-actions/es/utils/toString.js","./constants":"node_modules/redux-actions/es/constants.js"}],"node_modules/reduce-reducers/es/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default() {
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  var initialState = typeof args[args.length - 1] !== 'function' && args.pop();
+  var reducers = args;
+
+  if (typeof initialState === 'undefined') {
+    throw new TypeError('The initial state may not be undefined. If you do not want to set a value for this reducer, you can use null instead of undefined.');
+  }
+
+  return function (prevState, value) {
+    for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+      args[_key2 - 2] = arguments[_key2];
+    }
+
+    var prevStateIsUndefined = typeof prevState === 'undefined';
+    var valueIsUndefined = typeof value === 'undefined';
+
+    if (prevStateIsUndefined && valueIsUndefined && initialState) {
+      return initialState;
+    }
+
+    return reducers.reduce(function (newState, reducer) {
+      return reducer.apply(undefined, [newState, value].concat(args));
+    }, prevStateIsUndefined && !valueIsUndefined && initialState ? initialState : prevState);
+  };
+};
+
+exports.default = _default;
+},{}],"node_modules/redux-actions/es/utils/hasGeneratorInterface.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = hasGeneratorInterface;
+
+var _ownKeys = _interopRequireDefault(require("./ownKeys"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function hasGeneratorInterface(handler) {
+  var keys = (0, _ownKeys.default)(handler);
+  var hasOnlyInterfaceNames = keys.every(function (ownKey) {
+    return ownKey === 'next' || ownKey === 'throw';
+  });
+  return keys.length && keys.length <= 2 && hasOnlyInterfaceNames;
+}
+},{"./ownKeys":"node_modules/redux-actions/es/utils/ownKeys.js"}],"node_modules/redux-actions/es/utils/flattenReducerMap.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _isPlainObject = _interopRequireDefault(require("./isPlainObject"));
+
+var _isMap = _interopRequireDefault(require("./isMap"));
+
+var _hasGeneratorInterface = _interopRequireDefault(require("./hasGeneratorInterface"));
+
+var _flattenWhenNode = _interopRequireDefault(require("./flattenWhenNode"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = (0, _flattenWhenNode.default)(function (node) {
+  return ((0, _isPlainObject.default)(node) || (0, _isMap.default)(node)) && !(0, _hasGeneratorInterface.default)(node);
+});
+
+exports.default = _default;
+},{"./isPlainObject":"node_modules/redux-actions/es/utils/isPlainObject.js","./isMap":"node_modules/redux-actions/es/utils/isMap.js","./hasGeneratorInterface":"node_modules/redux-actions/es/utils/hasGeneratorInterface.js","./flattenWhenNode":"node_modules/redux-actions/es/utils/flattenWhenNode.js"}],"node_modules/redux-actions/es/handleActions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = handleActions;
+
+var _reduceReducers = _interopRequireDefault(require("reduce-reducers"));
+
+var _invariant = _interopRequireDefault(require("invariant"));
+
+var _isPlainObject = _interopRequireDefault(require("./utils/isPlainObject"));
+
+var _isMap = _interopRequireDefault(require("./utils/isMap"));
+
+var _ownKeys = _interopRequireDefault(require("./utils/ownKeys"));
+
+var _flattenReducerMap = _interopRequireDefault(require("./utils/flattenReducerMap"));
+
+var _handleAction = _interopRequireDefault(require("./handleAction"));
+
+var _get = _interopRequireDefault(require("./utils/get"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function handleActions(handlers, defaultState, options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  (0, _invariant.default)((0, _isPlainObject.default)(handlers) || (0, _isMap.default)(handlers), 'Expected handlers to be a plain object.');
+  var flattenedReducerMap = (0, _flattenReducerMap.default)(handlers, options);
+  var reducers = (0, _ownKeys.default)(flattenedReducerMap).map(function (type) {
+    return (0, _handleAction.default)(type, (0, _get.default)(type, flattenedReducerMap), defaultState);
+  });
+
+  var reducer = _reduceReducers.default.apply(void 0, reducers.concat([defaultState]));
+
+  return function (state, action) {
+    if (state === void 0) {
+      state = defaultState;
+    }
+
+    return reducer(state, action);
+  };
+}
+},{"reduce-reducers":"node_modules/reduce-reducers/es/index.js","invariant":"node_modules/invariant/browser.js","./utils/isPlainObject":"node_modules/redux-actions/es/utils/isPlainObject.js","./utils/isMap":"node_modules/redux-actions/es/utils/isMap.js","./utils/ownKeys":"node_modules/redux-actions/es/utils/ownKeys.js","./utils/flattenReducerMap":"node_modules/redux-actions/es/utils/flattenReducerMap.js","./handleAction":"node_modules/redux-actions/es/handleAction.js","./utils/get":"node_modules/redux-actions/es/utils/get.js"}],"node_modules/redux-actions/es/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "combineActions", {
+  enumerable: true,
+  get: function () {
+    return _combineActions.default;
+  }
+});
+Object.defineProperty(exports, "createAction", {
+  enumerable: true,
+  get: function () {
+    return _createAction.default;
+  }
+});
+Object.defineProperty(exports, "createActions", {
+  enumerable: true,
+  get: function () {
+    return _createActions.default;
+  }
+});
+Object.defineProperty(exports, "createCurriedAction", {
+  enumerable: true,
+  get: function () {
+    return _createCurriedAction.default;
+  }
+});
+Object.defineProperty(exports, "handleAction", {
+  enumerable: true,
+  get: function () {
+    return _handleAction.default;
+  }
+});
+Object.defineProperty(exports, "handleActions", {
+  enumerable: true,
+  get: function () {
+    return _handleActions.default;
+  }
+});
+
+var _combineActions = _interopRequireDefault(require("./combineActions"));
+
+var _createAction = _interopRequireDefault(require("./createAction"));
+
+var _createActions = _interopRequireDefault(require("./createActions"));
+
+var _createCurriedAction = _interopRequireDefault(require("./createCurriedAction"));
+
+var _handleAction = _interopRequireDefault(require("./handleAction"));
+
+var _handleActions = _interopRequireDefault(require("./handleActions"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./combineActions":"node_modules/redux-actions/es/combineActions.js","./createAction":"node_modules/redux-actions/es/createAction.js","./createActions":"node_modules/redux-actions/es/createActions.js","./createCurriedAction":"node_modules/redux-actions/es/createCurriedAction.js","./handleAction":"node_modules/redux-actions/es/handleAction.js","./handleActions":"node_modules/redux-actions/es/handleActions.js"}],"src/data/posts/actionTypes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TOGGLE_POST_LIKE = exports.ADD_POST = void 0;
+var ADD_POST = 'ADD_POST';
+exports.ADD_POST = ADD_POST;
+var TOGGLE_POST_LIKE = 'TOGGLE_POST_LIKE';
+exports.TOGGLE_POST_LIKE = TOGGLE_POST_LIKE;
+},{}],"src/data/posts/actions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.togglePostLike = exports.addPost = void 0;
+
+var _reduxActions = require("redux-actions");
+
+var _actionTypes = require("./actionTypes");
+
+var _createActions = (0, _reduxActions.createActions)(_actionTypes.ADD_POST, _actionTypes.TOGGLE_POST_LIKE),
+    addPost = _createActions.addPost,
+    togglePostLike = _createActions.togglePostLike;
+
+exports.togglePostLike = togglePostLike;
+exports.addPost = addPost;
+},{"redux-actions":"node_modules/redux-actions/es/index.js","./actionTypes":"src/data/posts/actionTypes.js"}],"src/data/comments/actionTypes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ADD_COMMENT = void 0;
+var ADD_COMMENT = 'ADD_COMMENT';
+exports.ADD_COMMENT = ADD_COMMENT;
+},{}],"src/data/comments/actions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addComment = void 0;
+
+var _reduxActions = require("redux-actions");
+
+var _actionTypes = require("./actionTypes");
+
+var _createActions = (0, _reduxActions.createActions)(_actionTypes.ADD_COMMENT),
+    addComment = _createActions.addComment;
+
+exports.addComment = addComment;
+},{"redux-actions":"node_modules/redux-actions/es/index.js","./actionTypes":"src/data/comments/actionTypes.js"}],"src/data/users/actionTypes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.REMOVE_AUTH = exports.FETCH_AUTH = void 0;
+var FETCH_AUTH = 'FETCH_AUTH';
+exports.FETCH_AUTH = FETCH_AUTH;
+var REMOVE_AUTH = 'REMOVE_AUTH';
+exports.REMOVE_AUTH = REMOVE_AUTH;
+},{}],"src/data/users/actions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.removeAuth = exports.fetchAuth = void 0;
+
+var _reduxActions = require("redux-actions");
+
+var _actionTypes = require("./actionTypes");
+
+var _createActions = (0, _reduxActions.createActions)(_actionTypes.FETCH_AUTH, _actionTypes.REMOVE_AUTH),
+    fetchAuth = _createActions.fetchAuth,
+    removeAuth = _createActions.removeAuth;
+
+exports.removeAuth = removeAuth;
+exports.fetchAuth = fetchAuth;
+},{"redux-actions":"node_modules/redux-actions/es/index.js","./actionTypes":"src/data/users/actionTypes.js"}],"src/data/rootActions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usersActions = exports.commentsActions = exports.postsActions = void 0;
+
+var _postsActions = _interopRequireWildcard(require("./posts/actions"));
+
+exports.postsActions = _postsActions;
+
+var _commentsActions = _interopRequireWildcard(require("./comments/actions"));
+
+exports.commentsActions = _commentsActions;
+
+var _usersActions = _interopRequireWildcard(require("./users/actions"));
+
+exports.usersActions = _usersActions;
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+},{"./posts/actions":"src/data/posts/actions.js","./comments/actions":"src/data/comments/actions.js","./users/actions":"src/data/users/actions.js"}],"src/storages/Storage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Storage = /*#__PURE__*/function () {
+  function Storage(storage) {
+    _classCallCheck(this, Storage);
+
+    _defineProperty(this, "storage", void 0);
+
+    this.storage = storage;
+  }
+
+  _createClass(Storage, [{
+    key: "get",
+    value: function get(key) {
+      var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      return JSON.parse(this.storage.getItem(key)) || defaultValue;
+    }
+  }, {
+    key: "set",
+    value: function set(key, value) {
+      this.storage.setItem(key, JSON.stringify(value));
+    }
+  }, {
+    key: "remove",
+    value: function remove(key) {
+      this.storage.removeItem(key);
+    }
+  }]);
+
+  return Storage;
+}();
+
+exports.default = Storage;
+},{}],"src/storages/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.session = exports.repository = void 0;
+
+var _Storage = _interopRequireDefault(require("./Storage"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var repository = new _Storage.default(localStorage);
+exports.repository = repository;
+var session = new _Storage.default(sessionStorage);
+exports.session = session;
+},{"./Storage":"src/storages/Storage.js"}],"src/repositories/Repository.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _storages = require("../storages");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to get private field on non-instance"); } if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = privateMap.get(receiver); if (!descriptor) { throw new TypeError("attempted to set private field on non-instance"); } if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } return value; }
+
+var _key = new WeakMap();
+
+var Repository = /*#__PURE__*/function () {
+  function Repository(key) {
+    _classCallCheck(this, Repository);
+
+    _key.set(this, {
+      writable: true,
+      value: void 0
+    });
+
+    _classPrivateFieldSet(this, _key, key);
+  }
+
+  _createClass(Repository, [{
+    key: "saveAll",
+    value: function saveAll(allData) {
+      _storages.repository.set(_classPrivateFieldGet(this, _key), allData);
+    }
+  }, {
+    key: "findAll",
+    value: function findAll() {
+      return _storages.repository.get(_classPrivateFieldGet(this, _key), {
+        entries: {},
+        ids: []
+      });
+    }
+  }, {
+    key: "add",
+    value: function add(data) {
+      var allData = this.findAll();
+      var seq = Math.max.apply(Math, [0].concat(_toConsumableArray(allData.ids))) + 1;
+      allData.entries[seq] = _objectSpread(_objectSpread({}, data), {}, {
+        seq: seq
+      });
+      allData.ids.push(seq);
+      this.saveAll(allData);
+    }
+  }, {
+    key: "update",
+    value: function update(data) {
+      var allData = this.findAll();
+      allData.entries[data.seq] = data;
+      this.saveAll(allData);
+    }
+  }]);
+
+  return Repository;
+}();
+
+exports.default = Repository;
+},{"../storages":"src/storages/index.js"}],"src/repositories/UserRepository.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Repository2 = _interopRequireDefault(require("./Repository"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var UserRepository = /*#__PURE__*/function (_Repository) {
+  _inherits(UserRepository, _Repository);
+
+  var _super = _createSuper(UserRepository);
+
+  function UserRepository() {
+    _classCallCheck(this, UserRepository);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(UserRepository, [{
+    key: "findByEmail",
+    value: function findByEmail(email) {
+      var _this$findAll = this.findAll(),
+          entries = _this$findAll.entries,
+          ids = _this$findAll.ids;
+
+      var userSeq = ids.find(function (seq) {
+        return entries[seq].email === email;
+      });
+      return userSeq !== undefined ? entries[userSeq] : null;
+    }
+  }, {
+    key: "findByEmailAndPassword",
+    value: function findByEmailAndPassword(_ref) {
+      var email = _ref.email,
+          password = _ref.password;
+
+      var _this$findAll2 = this.findAll(),
+          entries = _this$findAll2.entries,
+          ids = _this$findAll2.ids;
+
+      var userSeq = ids.find(function (seq) {
+        return entries[seq].email === email && entries[seq].password === password;
+      });
+      return userSeq !== undefined ? entries[userSeq] : null;
+    }
+  }]);
+
+  return UserRepository;
+}(_Repository2.default);
+
+exports.default = UserRepository;
+},{"./Repository":"src/repositories/Repository.js"}],"src/repositories/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.userRepository = exports.commentRepository = exports.postRepository = void 0;
+
+var _Repository = _interopRequireDefault(require("./Repository"));
+
+var _UserRepository = _interopRequireDefault(require("./UserRepository"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var postRepository = new _Repository.default('posts');
+exports.postRepository = postRepository;
+var commentRepository = new _Repository.default('comments');
+exports.commentRepository = commentRepository;
+var userRepository = new _UserRepository.default('users');
+exports.userRepository = userRepository;
+},{"./Repository":"src/repositories/Repository.js","./UserRepository":"src/repositories/UserRepository.js"}],"src/services/postService.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _repositories = require("../repositories");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _default = Object.freeze({
+  fetchPosts: function fetchPosts() {
+    return _repositories.postRepository.findAll();
+  },
+  addPost: function addPost(post) {
+    _repositories.postRepository.add(_objectSpread(_objectSpread({}, post), {}, {
+      createAt: Date.now(),
+      likes: 0,
+      likesOfMe: false
+    }));
+  },
+  updatePost: function updatePost(post) {
+    _repositories.postRepository.update(post);
+  },
+  toggleLike: function toggleLike(post) {
+    var likesOfMe = !post.likesOfMe;
+    var likes = post.likes + (likesOfMe ? 1 : -1);
+
+    _repositories.postRepository.update(_objectSpread(_objectSpread({}, post), {}, {
+      likesOfMe: likesOfMe,
+      likes: likes
+    }));
+  }
+});
+
+exports.default = _default;
+},{"../repositories":"src/repositories/index.js"}],"src/services/commentService.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _repositories = require("../repositories");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _default = Object.freeze({
+  fetchComments: function fetchComments() {
+    return _repositories.commentRepository.findAll();
+  },
+  addComment: function addComment(comment) {
+    _repositories.commentRepository.add(_objectSpread(_objectSpread({}, comment), {}, {
+      createAt: Date.now()
+    }));
+  }
+});
+
+exports.default = _default;
+},{"../repositories":"src/repositories/index.js"}],"src/services/userService.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _repositories = require("../repositories");
+
+var _storages = require("../storages");
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+var KEY = 'auth';
+
+var _default = Object.freeze({
+  signIn: function signIn(userInfo) {
+    var user = _repositories.userRepository.findByEmailAndPassword(userInfo);
+
+    if (user === null) return false;
+
+    var password = user.password,
+        auth = _objectWithoutProperties(user, ["password"]);
+
+    _storages.session.set(KEY, auth);
+
+    return auth;
+  },
+  signUp: function signUp(userInfo) {
+    var user = _repositories.userRepository.findByEmail(userInfo.email);
+
+    if (user) throw new Error('이미 회원가입이 되어있는 사용자 정보입니다.');
+
+    _repositories.userRepository.add(userInfo);
+  },
+  getAuth: function getAuth() {
+    return _storages.session.get(KEY) || null;
+  },
+  removeAuth: function removeAuth() {
+    _storages.session.remove(KEY);
+  }
+});
+
+exports.default = _default;
+},{"../repositories":"src/repositories/index.js","../storages":"src/storages/index.js"}],"src/services/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "postService", {
+  enumerable: true,
+  get: function () {
+    return _postService.default;
+  }
+});
+Object.defineProperty(exports, "commentService", {
+  enumerable: true,
+  get: function () {
+    return _commentService.default;
+  }
+});
+Object.defineProperty(exports, "userService", {
+  enumerable: true,
+  get: function () {
+    return _userService.default;
+  }
+});
+
+var _postService = _interopRequireDefault(require("./postService"));
+
+var _commentService = _interopRequireDefault(require("./commentService"));
+
+var _userService = _interopRequireDefault(require("./userService"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./postService":"src/services/postService.js","./commentService":"src/services/commentService.js","./userService":"src/services/userService.js"}],"src/data/users/selectors.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getAuth = void 0;
+
+var getAuth = function getAuth(state) {
+  return state.users.auth;
+};
+
+exports.getAuth = getAuth;
+},{}],"src/hooks/useAuth.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useAuth = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _services = require("../services");
+
+var _reactRedux = require("react-redux");
+
+var _selectors = require("../data/users/selectors");
+
+var _rootActions = require("../data/rootActions");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var useAuth = function useAuth() {
+  var auth = (0, _reactRedux.useSelector)(_selectors.getAuth);
+  var dispatch = (0, _reactRedux.useDispatch)();
+  var signIn = (0, _react.useCallback)(function (userInfo) {
+    return !!_services.userService.signIn(userInfo);
+  }, []);
+  var signUp = (0, _react.useCallback)(function (userInfo) {
+    _services.userService.signUp(userInfo);
+  }, []);
+  var fetchAuth = (0, _react.useCallback)(function () {
+    dispatch(_rootActions.usersActions.fetchAuth());
+  }, []);
+  var removeAuth = (0, _react.useCallback)(function () {
+    dispatch(_rootActions.usersActions.removeAuth());
+  }, []);
+  var validateAuth = (0, _react.useCallback)(function () {
+    if (!auth) throw new Error('로그인 후 이용해주세요');
+  }, [auth]);
+  return {
+    auth: auth,
+    signIn: signIn,
+    signUp: signUp,
+    fetchAuth: fetchAuth,
+    removeAuth: removeAuth,
+    validateAuth: validateAuth
+  };
+};
+
+exports.useAuth = useAuth;
+},{"react":"node_modules/react/index.js","../services":"src/services/index.js","react-redux":"node_modules/react-redux/es/index.js","../data/users/selectors":"src/data/users/selectors.js","../data/rootActions":"src/data/rootActions.js"}],"src/hooks/usePosts.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usePosts = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _selectors = require("../data/posts/selectors");
+
+var _rootActions = require("../data/rootActions");
+
+var _useAuth2 = require("./useAuth");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var usePosts = function usePosts() {
+  var posts = (0, _reactRedux.useSelector)(_selectors.selectAllPostsOrderByCreateAt);
+  var dispatch = (0, _reactRedux.useDispatch)();
+
+  var _useAuth = (0, _useAuth2.useAuth)(),
+      writer = _useAuth.auth,
+      validateAuth = _useAuth.validateAuth;
+
+  var addPost = (0, _react.useCallback)(function (contents) {
+    validateAuth();
+    dispatch(_rootActions.postsActions.addPost({
+      contents: contents,
+      writer: writer
+    }));
+  }, [writer]);
+  var toggleLike = (0, _react.useCallback)(function (post) {
+    validateAuth();
+    dispatch(_rootActions.postsActions.togglePostLike(post));
+  }, [validateAuth]);
+  return {
+    posts: posts,
+    addPost: addPost,
+    toggleLike: toggleLike
+  };
+};
+
+exports.usePosts = usePosts;
+},{"react":"node_modules/react/index.js","react-redux":"node_modules/react-redux/es/index.js","../data/posts/selectors":"src/data/posts/selectors.js","../data/rootActions":"src/data/rootActions.js","./useAuth":"src/hooks/useAuth.js"}],"src/data/comments/selectors.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.selectCommentsOfPost = exports.selectAllComments = void 0;
+
+var _reselect = require("reselect");
+
+var selectAllComments = function selectAllComments(state) {
+  return state.comments;
+};
+
+exports.selectAllComments = selectAllComments;
+
+var selectCommentsOfPost = function selectCommentsOfPost(postSeq) {
+  return (0, _reselect.createSelector)(selectAllComments, function (_ref) {
+    var entries = _ref.entries,
+        ids = _ref.ids;
+    return ids.reduce(function (comments, seq) {
+      var comment = entries[seq];
+      if (comment.postSeq === postSeq) comments.push(comment);
+      return comments;
+    }, []);
+  });
+};
+
+exports.selectCommentsOfPost = selectCommentsOfPost;
+},{"reselect":"node_modules/reselect/es/index.js"}],"src/hooks/useComments.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useComments = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRedux = require("react-redux");
+
+var _selectors = require("../data/comments/selectors");
+
+var _rootActions = require("../data/rootActions");
+
+var _useAuth2 = require("./useAuth");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var useComments = function useComments(postSeq) {
+  var commentsOfPost = (0, _reactRedux.useSelector)((0, _selectors.selectCommentsOfPost)(postSeq));
+  var dispatch = (0, _reactRedux.useDispatch)();
+
+  var _useAuth = (0, _useAuth2.useAuth)(),
+      writer = _useAuth.auth,
+      validateAuth = _useAuth.validateAuth;
+
+  var addComment = (0, _react.useCallback)(function (contents) {
+    validateAuth();
+    dispatch(_rootActions.commentsActions.addComment({
+      postSeq: postSeq,
+      writer: writer,
+      contents: contents
+    }));
+  }, [postSeq, writer]);
+  return {
+    commentsOfPost: commentsOfPost,
+    addComment: addComment
+  };
+};
+
+exports.useComments = useComments;
+},{"react":"node_modules/react/index.js","react-redux":"node_modules/react-redux/es/index.js","../data/comments/selectors":"src/data/comments/selectors.js","../data/rootActions":"src/data/rootActions.js","./useAuth":"src/hooks/useAuth.js"}],"src/hooks/useForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useForm = void 0;
+
+var _react = require("react");
+
+var useForm = function useForm() {
+  var handleFormSubmit = (0, _react.useCallback)(function (event, callback) {
+    event.preventDefault();
+
+    if (callback()) {
+      event.target.reset();
+    }
+  }, []);
+  return {
+    handleFormSubmit: handleFormSubmit
+  };
+};
+
+exports.useForm = useForm;
+},{"react":"node_modules/react/index.js"}],"src/hooks/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _usePosts = require("./usePosts");
+
+Object.keys(_usePosts).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _usePosts[key];
+    }
+  });
+});
+
+var _useAuth = require("./useAuth");
+
+Object.keys(_useAuth).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _useAuth[key];
+    }
+  });
+});
+
+var _useComments = require("./useComments");
+
+Object.keys(_useComments).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _useComments[key];
+    }
+  });
+});
+
+var _useForm = require("./useForm");
+
+Object.keys(_useForm).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _useForm[key];
+    }
+  });
+});
+},{"./usePosts":"src/hooks/usePosts.js","./useAuth":"src/hooks/useAuth.js","./useComments":"src/hooks/useComments.js","./useForm":"src/hooks/useForm.js"}],"src/pages/Home/comment/CommentForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _style = _interopRequireDefault(require("styled-jsx/style"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _hooks = require("../../../hooks");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CommentForm = function CommentForm(_ref) {
+  var onAddComment = _ref.onAddComment;
+  var $content = (0, _react.useRef)(null);
+
+  var _useForm = (0, _hooks.useForm)(),
+      handleFormSubmit = _useForm.handleFormSubmit;
+
+  var handleCommentSubmit = (0, _react.useCallback)(function (event) {
+    var callback = function callback() {
+      try {
+        onAddComment($content.current.value);
+        return true;
+      } catch (e) {
+        alert(e.message);
+      }
+    };
+
+    handleFormSubmit(event, callback);
+  }, [onAddComment, handleFormSubmit]);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleCommentSubmit,
+    className: "jsx-".concat(cardFormStyle.__hash) + " " + "comment-form"
+  }, /*#__PURE__*/_react.default.createElement("textarea", {
+    ref: $content,
+    placeholder: "\uB313\uAE00\uC744 \uC785\uB825\uD558\uC138\uC694...",
+    spellCheck: "false",
+    className: "jsx-".concat(cardFormStyle.__hash) + " " + "form-control input-lg"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "submit",
+    className: "jsx-".concat(cardFormStyle.__hash) + " " + "btn btn-primary"
+  }, "\uB313\uAE00\uB2EC\uAE30")), /*#__PURE__*/_react.default.createElement(_style.default, {
+    id: cardFormStyle.__hash
+  }, cardFormStyle));
+};
+
+var cardFormStyle = [".comment-form.jsx-2376221963{margin:20px;}", ".comment-form.jsx-2376221963>textarea.form-control.jsx-2376221963{min-height:20px;line-height:20px;border-radius:0.5rem;resize:none;}", ".comment-form.jsx-2376221963>button.btn.jsx-2376221963{float:right;margin-bottom:0;margin-top:16px;background-color:#3b5999;color:#fffffe;border-color:unset;font-weight:800;}"];
+cardFormStyle.__hash = "2376221963";
+var _default = CommentForm;
+exports.default = _default;
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","../../../hooks":"src/hooks/index.js"}],"node_modules/dayjs/dayjs.min.js":[function(require,module,exports) {
+var define;
+!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):t.dayjs=e()}(this,function(){"use strict";var t="millisecond",e="second",n="minute",r="hour",i="day",s="week",u="month",a="quarter",o="year",f="date",h=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d+)?$/,c=/\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,d={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},$=function(t,e,n){var r=String(t);return!r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},l={s:$,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return(e<=0?"+":"-")+$(r,2,"0")+":"+$(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return-t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,u),s=n-i<0,a=e.clone().add(r+(s?-1:1),u);return+(-(r+(n-i)/(s?i-a:a-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return{M:u,y:o,w:s,d:i,D:f,h:r,m:n,s:e,ms:t,Q:a}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},y="en",M={};M[y]=d;var m=function(t){return t instanceof S},D=function(t,e,n){var r;if(!t)return y;if("string"==typeof t)M[t]&&(r=t),e&&(M[t]=e,r=t);else{var i=t.name;M[i]=t,r=i}return!n&&r&&(y=r),r||!n&&y},v=function(t,e){if(m(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new S(n)},g=l;g.l=D,g.i=m,g.w=function(t,e){return v(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var S=function(){function d(t){this.$L=this.$L||D(t.locale,null,!0),this.parse(t)}var $=d.prototype;return $.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(g.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match(h);if(r){var i=r[2]-1||0,s=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)}}return new Date(e)}(t),this.$x=t.x||{},this.init()},$.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},$.$utils=function(){return g},$.isValid=function(){return!("Invalid Date"===this.$d.toString())},$.isSame=function(t,e){var n=v(t);return this.startOf(e)<=n&&n<=this.endOf(e)},$.isAfter=function(t,e){return v(t)<this.startOf(e)},$.isBefore=function(t,e){return this.endOf(e)<v(t)},$.$g=function(t,e,n){return g.u(t)?this[e]:this.set(n,t)},$.unix=function(){return Math.floor(this.valueOf()/1e3)},$.valueOf=function(){return this.$d.getTime()},$.startOf=function(t,a){var h=this,c=!!g.u(a)||a,d=g.p(t),$=function(t,e){var n=g.w(h.$u?Date.UTC(h.$y,e,t):new Date(h.$y,e,t),h);return c?n:n.endOf(i)},l=function(t,e){return g.w(h.toDate()[t].apply(h.toDate("s"),(c?[0,0,0,0]:[23,59,59,999]).slice(e)),h)},y=this.$W,M=this.$M,m=this.$D,D="set"+(this.$u?"UTC":"");switch(d){case o:return c?$(1,0):$(31,11);case u:return c?$(1,M):$(0,M+1);case s:var v=this.$locale().weekStart||0,S=(y<v?y+7:y)-v;return $(c?m-S:m+(6-S),M);case i:case f:return l(D+"Hours",0);case r:return l(D+"Minutes",1);case n:return l(D+"Seconds",2);case e:return l(D+"Milliseconds",3);default:return this.clone()}},$.endOf=function(t){return this.startOf(t,!1)},$.$set=function(s,a){var h,c=g.p(s),d="set"+(this.$u?"UTC":""),$=(h={},h[i]=d+"Date",h[f]=d+"Date",h[u]=d+"Month",h[o]=d+"FullYear",h[r]=d+"Hours",h[n]=d+"Minutes",h[e]=d+"Seconds",h[t]=d+"Milliseconds",h)[c],l=c===i?this.$D+(a-this.$W):a;if(c===u||c===o){var y=this.clone().set(f,1);y.$d[$](l),y.init(),this.$d=y.set(f,Math.min(this.$D,y.daysInMonth())).$d}else $&&this.$d[$](l);return this.init(),this},$.set=function(t,e){return this.clone().$set(t,e)},$.get=function(t){return this[g.p(t)]()},$.add=function(t,a){var f,h=this;t=Number(t);var c=g.p(a),d=function(e){var n=v(h);return g.w(n.date(n.date()+Math.round(e*t)),h)};if(c===u)return this.set(u,this.$M+t);if(c===o)return this.set(o,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(f={},f[n]=6e4,f[r]=36e5,f[e]=1e3,f)[c]||1,l=this.$d.getTime()+t*$;return g.w(l,this)},$.subtract=function(t,e){return this.add(-1*t,e)},$.format=function(t){var e=this;if(!this.isValid())return"Invalid Date";var n=t||"YYYY-MM-DDTHH:mm:ssZ",r=g.z(this),i=this.$locale(),s=this.$H,u=this.$m,a=this.$M,o=i.weekdays,f=i.months,h=function(t,r,i,s){return t&&(t[r]||t(e,n))||i[r].substr(0,s)},d=function(t){return g.s(s%12||12,t,"0")},$=i.meridiem||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:g.s(a+1,2,"0"),MMM:h(i.monthsShort,a,f,3),MMMM:h(f,a),D:this.$D,DD:g.s(this.$D,2,"0"),d:String(this.$W),dd:h(i.weekdaysMin,this.$W,o,2),ddd:h(i.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:g.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:g.s(u,2,"0"),s:String(this.$s),ss:g.s(this.$s,2,"0"),SSS:g.s(this.$ms,3,"0"),Z:r};return n.replace(c,function(t,e){return e||l[t]||r.replace(":","")})},$.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},$.diff=function(t,f,h){var c,d=g.p(f),$=v(t),l=6e4*($.utcOffset()-this.utcOffset()),y=this-$,M=g.m(this,$);return M=(c={},c[o]=M/12,c[u]=M,c[a]=M/3,c[s]=(y-l)/6048e5,c[i]=(y-l)/864e5,c[r]=y/36e5,c[n]=y/6e4,c[e]=y/1e3,c)[d]||y,h?M:g.a(M)},$.daysInMonth=function(){return this.endOf(u).$D},$.$locale=function(){return M[this.$L]},$.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=D(t,e,!0);return r&&(n.$L=r),n},$.clone=function(){return g.w(this.$d,this)},$.toDate=function(){return new Date(this.valueOf())},$.toJSON=function(){return this.isValid()?this.toISOString():null},$.toISOString=function(){return this.$d.toISOString()},$.toString=function(){return this.$d.toUTCString()},d}(),p=S.prototype;return v.prototype=p,[["$ms",t],["$s",e],["$m",n],["$H",r],["$W",i],["$M",u],["$y",o],["$D",f]].forEach(function(t){p[t[1]]=function(e){return this.$g(e,t[0],t[1])}}),v.extend=function(t,e){return t(e,S,v),v},v.locale=D,v.isDayjs=m,v.unix=function(t){return v(1e3*t)},v.en=M[y],v.Ls=M,v});
+
+},{}],"src/pages/Home/comment/CommentItem.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _style = _interopRequireDefault(require("styled-jsx/style"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _dayjs = _interopRequireDefault(require("dayjs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CommentItem = function CommentItem(_ref) {
+  var writer = _ref.writer,
+      createAt = _ref.createAt,
+      contents = _ref.contents;
+  var fromNow = (0, _dayjs.default)(createAt).from(Date.now());
+  return /*#__PURE__*/_react.default.createElement("li", {
+    className: "jsx-".concat(commentStyle.__hash) + " " + "comment"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-info"
+  }, /*#__PURE__*/_react.default.createElement("h6", {
+    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-writer"
+  }, writer.name), /*#__PURE__*/_react.default.createElement("div", {
+    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-datetime"
+  }, fromNow)), /*#__PURE__*/_react.default.createElement("p", {
+    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-text"
+  }, contents), /*#__PURE__*/_react.default.createElement(_style.default, {
+    id: commentStyle.__hash
+  }, commentStyle));
+};
+
+var commentStyle = ["li.comment.jsx-1124286208{padding:20px 40px 24px;border-bottom:1px solid #e6ecf5;background-color:#fafbfd;position:relative;}", "li.comment.jsx-1124286208:first-child{border-top:1px solid #e6ecf5;}", "li.comment.jsx-1124286208 .comment-text.jsx-1124286208{padding-top:20px;}"];
+commentStyle.__hash = "1124286208";
+
+var _default = /*#__PURE__*/_react.default.memo(CommentItem);
+
+exports.default = _default;
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","dayjs":"node_modules/dayjs/dayjs.min.js"}],"src/pages/Home/comment/Comments.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _style = _interopRequireDefault(require("styled-jsx/style"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _CommentItem = _interopRequireDefault(require("./CommentItem"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+var Comments = function Comments(_ref) {
+  var comments = _ref.comments;
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("ul", {
+    className: "jsx-".concat(commentStyle.__hash) + " " + "comment-list"
+  }, comments.map(function (comment) {
+    return /*#__PURE__*/_react.default.createElement(_CommentItem.default, _extends({}, comment, {
+      key: "comment_".concat(comment.seq)
+    }));
+  })), /*#__PURE__*/_react.default.createElement(_style.default, {
+    id: commentStyle.__hash
+  }, commentStyle));
+};
+
+var commentStyle = ["ul.comment-list.jsx-332234574{padding:0;list-style:none;}"];
+commentStyle.__hash = "332234574";
+var _default = Comments;
+exports.default = _default;
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","./CommentItem":"src/pages/Home/comment/CommentItem.js"}],"src/pages/Home/comment/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "CommentForm", {
+  enumerable: true,
+  get: function () {
+    return _CommentForm.default;
+  }
+});
+Object.defineProperty(exports, "CommentItem", {
+  enumerable: true,
+  get: function () {
+    return _CommentItem.default;
+  }
+});
+Object.defineProperty(exports, "Comments", {
+  enumerable: true,
+  get: function () {
+    return _Comments.default;
+  }
+});
+
+var _CommentForm = _interopRequireDefault(require("./CommentForm"));
+
+var _CommentItem = _interopRequireDefault(require("./CommentItem"));
+
+var _Comments = _interopRequireDefault(require("./Comments"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./CommentForm":"src/pages/Home/comment/CommentForm.js","./CommentItem":"src/pages/Home/comment/CommentItem.js","./Comments":"src/pages/Home/comment/Comments.js"}],"src/pages/Home/post/Post.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _style = _interopRequireDefault(require("styled-jsx/style"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _comment = require("../comment");
+
+var _dayjs = _interopRequireDefault(require("dayjs"));
+
+var _hooks = require("../../../hooks");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Post = function Post(_ref) {
+  var post = _ref.post,
+      onToggleLike = _ref.onToggleLike;
+  var seq = post.seq,
+      writer = post.writer,
+      contents = post.contents,
+      createAt = post.createAt,
+      likes = post.likes,
+      likesOfMe = post.likesOfMe;
+
+  var _useComments = (0, _hooks.useComments)(seq),
+      commentsOfPost = _useComments.commentsOfPost,
+      handleAddComment = _useComments.addComment;
+
+  var handleLikeClick = (0, _react.useCallback)(function (event) {
+    event.preventDefault();
+
+    try {
+      onToggleLike(post);
+    } catch (e) {
+      alert(e.message);
+    }
+  }, [onToggleLike, post]);
+  var fromNow = (0, _dayjs.default)(createAt).from(Date.now());
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "card"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "card-body"
+  }, /*#__PURE__*/_react.default.createElement("h5", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "card-title"
+  }, writer.name), /*#__PURE__*/_react.default.createElement("h6", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "card-subtitle text-muted"
+  }, fromNow), /*#__PURE__*/_react.default.createElement("p", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "card-text"
+  }, contents), /*#__PURE__*/_react.default.createElement("hr", {
+    className: "jsx-".concat(cardStyle.__hash)
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "card-info"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
+    onClick: handleLikeClick,
+    className: "jsx-".concat(cardStyle.__hash) + " " + "thumb-count"
+  }, /*#__PURE__*/_react.default.createElement("i", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "far fa-thumbs-up ".concat(likesOfMe ? 'on' : '')
+  }, likes, " \uAC1C")), /*#__PURE__*/_react.default.createElement("span", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "comment-count"
+  }, /*#__PURE__*/_react.default.createElement("i", {
+    className: "jsx-".concat(cardStyle.__hash) + " " + "far fa-comment-alt"
+  }, commentsOfPost.length, " \uAC1C")))), /*#__PURE__*/_react.default.createElement(_comment.Comments, {
+    comments: commentsOfPost
+  }), /*#__PURE__*/_react.default.createElement(_comment.CommentForm, {
+    onAddComment: handleAddComment
+  }), /*#__PURE__*/_react.default.createElement(_style.default, {
+    id: cardStyle.__hash
+  }, cardStyle));
+};
+
+var cardStyle = [".card.jsx-3395098734{padding:0;margin-top:50px;border:none;border-radius:0.5rem;}", ".card.jsx-3395098734 .card-body.jsx-3395098734{padding:40px;}", ".card.jsx-3395098734 .card-text.jsx-3395098734{padding-top:20px;white-space:pre-wrap;}", ".card.jsx-3395098734 .card-info.jsx-3395098734{height:20px;}", ".card.jsx-3395098734 .card-info.jsx-3395098734 .thumb-count.jsx-3395098734,.card.jsx-3395098734 .card-info.jsx-3395098734 .comment-count.jsx-3395098734{display:inline-block;margin-right:24px;vertical-align:middle;font-size:12px;cursor:pointer;padding:0;border:none;background-color:transparent;-webkit-transition:color ease-in-out 0.3s;transition:color ease-in-out 0.3s;-webkit-transition:margin-top ease-in-out 0.2s;transition:margin-top ease-in-out 0.2s;}", ".card.jsx-3395098734 .card-info.jsx-3395098734 .thumb-count.jsx-3395098734:hover,.card.jsx-3395098734 .card-info.jsx-3395098734 .comment-count.jsx-3395098734:hover{color:#007bff;margin-top:-3px;}", ".card.jsx-3395098734 .card-info.jsx-3395098734 .thumb-count.jsx-3395098734 .on.jsx-3395098734{color:#007bff;}"];
+cardStyle.__hash = "3395098734";
+
+var _default = /*#__PURE__*/_react.default.memo(Post);
+
+exports.default = _default;
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","../comment":"src/pages/Home/comment/index.js","dayjs":"node_modules/dayjs/dayjs.min.js","../../../hooks":"src/hooks/index.js"}],"src/pages/Home/post/PostForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _style = _interopRequireDefault(require("styled-jsx/style"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _hooks = require("../../../hooks");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PostForm = function PostForm(_ref) {
+  var onAddPost = _ref.onAddPost;
+  var contentsRef = (0, _react.useRef)();
+
+  var _useForm = (0, _hooks.useForm)(),
+      handleFormSubmit = _useForm.handleFormSubmit;
+
+  var handlePostSubmit = (0, _react.useCallback)(function (event) {
+    var callback = function callback() {
+      try {
+        onAddPost(contentsRef.current.value);
+        return true;
+      } catch (e) {
+        alert(e.message);
+      }
+    };
+
+    handleFormSubmit(event, callback);
+  }, [onAddPost, handleFormSubmit]);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handlePostSubmit,
+    className: "jsx-".concat(WriteFormStyle.__hash)
+  }, /*#__PURE__*/_react.default.createElement("textarea", {
+    placeholder: "\uBB34\uC2A8 \uC0DD\uAC01\uC744 \uD558\uACE0 \uACC4\uC2E0\uAC00\uC694?",
+    spellCheck: "false",
+    ref: contentsRef,
+    className: "jsx-".concat(WriteFormStyle.__hash) + " " + "form-control input-lg"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    type: "submit",
+    className: "jsx-".concat(WriteFormStyle.__hash) + " " + "btn btn-primary"
+  }, "\uACF5\uC720\uD558\uAE30")), /*#__PURE__*/_react.default.createElement(_style.default, {
+    id: WriteFormStyle.__hash
+  }, WriteFormStyle));
+};
+
+var WriteFormStyle = ["form.jsx-2603559694{margin-bottom:100px;}", "textarea.form-control.jsx-2603559694{min-height:100px;line-height:20px;padding:20px;font-size:18px;resize:none;border:none;border-radius:0.5rem;-webkit-transition:box-shadow ease-in-out 1s;transition:box-shadow ease-in-out 1s;}", "textarea.jsx-2603559694:focus{box-shadow:#999999 0 0 50px;}", "button.btn.jsx-2603559694{float:right;margin-bottom:0;margin-top:16px;background-color:#3b5999;color:#fffffe;border:none;font-weight:800;}"];
+WriteFormStyle.__hash = "2603559694";
+
+var _default = /*#__PURE__*/_react.default.memo(PostForm);
+
+exports.default = _default;
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","../../../hooks":"src/hooks/index.js"}],"src/pages/Home/post/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Post", {
+  enumerable: true,
+  get: function () {
+    return _Post.default;
+  }
+});
+Object.defineProperty(exports, "PostForm", {
+  enumerable: true,
+  get: function () {
+    return _PostForm.default;
+  }
+});
+
+var _Post = _interopRequireDefault(require("./Post"));
+
+var _PostForm = _interopRequireDefault(require("./PostForm"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./Post":"src/pages/Home/post/Post.js","./PostForm":"src/pages/Home/post/PostForm.js"}],"src/pages/Home/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _style = _interopRequireDefault(require("styled-jsx/style"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _post = require("./post");
+
+var _hooks = require("../../hooks");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Home = function Home() {
+  var _usePosts = (0, _hooks.usePosts)(),
+      posts = _usePosts.posts,
+      handleToggleLike = _usePosts.toggleLike,
+      handleAddPost = _usePosts.addPost;
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "jsx-".concat(HomeStyle.__hash) + " " + "posts container"
+  }, /*#__PURE__*/_react.default.createElement(_post.PostForm, {
+    onAddPost: handleAddPost
+  }), posts.map(function (post) {
+    return /*#__PURE__*/_react.default.createElement(_post.Post, {
+      key: "post_".concat(post.seq),
+      post: post,
+      onToggleLike: handleToggleLike
+    });
+  }), /*#__PURE__*/_react.default.createElement(_style.default, {
+    id: HomeStyle.__hash
+  }, HomeStyle));
+};
+
+var HomeStyle = [".container.jsx-655051938{max-width:600px;}", ".comment-form.jsx-655051938{margin:20px;}", ".comment-form.jsx-655051938>textarea.form-control.jsx-655051938{min-height:20px;line-height:20px;border-radius:0.5rem;resize:none;}", ".comment-form.jsx-655051938>button.btn.jsx-655051938{float:right;margin-bottom:0;margin-top:16px;background-color:#3b5999;color:#fffffe;border-color:unset;font-weight:800;}"];
+HomeStyle.__hash = "655051938";
+
+var _default = /*#__PURE__*/_react.default.memo(Home);
+
+exports.default = _default;
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","./post":"src/pages/Home/post/index.js","../../hooks":"src/hooks/index.js"}],"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _inheritsLoose;
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
 }
 },{}],"node_modules/resolve-pathname/esm/resolve-pathname.js":[function(require,module,exports) {
 "use strict";
@@ -32147,134 +36710,7 @@ function pathToRegexp (path, keys, options) {
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
 
-},{"isarray":"node_modules/path-to-regexp/node_modules/isarray/index.js"}],"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _objectWithoutPropertiesLoose;
-
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-},{}],"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js":[function(require,module,exports) {
-'use strict';
-
-var reactIs = require('react-is');
-
-/**
- * Copyright 2015, Yahoo! Inc.
- * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
- */
-var REACT_STATICS = {
-  childContextTypes: true,
-  contextType: true,
-  contextTypes: true,
-  defaultProps: true,
-  displayName: true,
-  getDefaultProps: true,
-  getDerivedStateFromError: true,
-  getDerivedStateFromProps: true,
-  mixins: true,
-  propTypes: true,
-  type: true
-};
-var KNOWN_STATICS = {
-  name: true,
-  length: true,
-  prototype: true,
-  caller: true,
-  callee: true,
-  arguments: true,
-  arity: true
-};
-var FORWARD_REF_STATICS = {
-  '$$typeof': true,
-  render: true,
-  defaultProps: true,
-  displayName: true,
-  propTypes: true
-};
-var MEMO_STATICS = {
-  '$$typeof': true,
-  compare: true,
-  defaultProps: true,
-  displayName: true,
-  propTypes: true,
-  type: true
-};
-var TYPE_STATICS = {};
-TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
-TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
-
-function getStatics(component) {
-  // React v16.11 and below
-  if (reactIs.isMemo(component)) {
-    return MEMO_STATICS;
-  } // React v16.12 and above
-
-
-  return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
-}
-
-var defineProperty = Object.defineProperty;
-var getOwnPropertyNames = Object.getOwnPropertyNames;
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-var getPrototypeOf = Object.getPrototypeOf;
-var objectPrototype = Object.prototype;
-function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-  if (typeof sourceComponent !== 'string') {
-    // don't hoist over string (html) components
-    if (objectPrototype) {
-      var inheritedComponent = getPrototypeOf(sourceComponent);
-
-      if (inheritedComponent && inheritedComponent !== objectPrototype) {
-        hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
-      }
-    }
-
-    var keys = getOwnPropertyNames(sourceComponent);
-
-    if (getOwnPropertySymbols) {
-      keys = keys.concat(getOwnPropertySymbols(sourceComponent));
-    }
-
-    var targetStatics = getStatics(targetComponent);
-    var sourceStatics = getStatics(sourceComponent);
-
-    for (var i = 0; i < keys.length; ++i) {
-      var key = keys[i];
-
-      if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
-        var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
-
-        try {
-          // Avoid failures from read-only properties
-          defineProperty(targetComponent, key, descriptor);
-        } catch (e) {}
-      }
-    }
-  }
-
-  return targetComponent;
-}
-
-module.exports = hoistNonReactStatics;
-
-},{"react-is":"node_modules/react-is/index.js"}],"node_modules/react-router/esm/react-router.js":[function(require,module,exports) {
+},{"isarray":"node_modules/path-to-regexp/node_modules/isarray/index.js"}],"node_modules/react-router/esm/react-router.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -33481,7 +37917,1052 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"src/layouts/PublicLayout.js":[function(require,module,exports) {
+},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"node_modules/connected-react-router/esm/actions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.onLocationChanged = exports.LOCATION_CHANGE = void 0;
+
+/**
+ * This action type will be dispatched when your history
+ * receives a location change.
+ */
+var LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
+exports.LOCATION_CHANGE = LOCATION_CHANGE;
+
+var onLocationChanged = function onLocationChanged(location, action) {
+  var isFirstRendering = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  return {
+    type: LOCATION_CHANGE,
+    payload: {
+      location: location,
+      action: action,
+      isFirstRendering: isFirstRendering
+    }
+  };
+};
+/**
+ * This action type will be dispatched by the history actions below.
+ * If you're writing a middleware to watch for navigation events, be sure to
+ * look for actions of this type.
+ */
+
+
+exports.onLocationChanged = onLocationChanged;
+var CALL_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
+exports.CALL_HISTORY_METHOD = CALL_HISTORY_METHOD;
+
+var updateLocation = function updateLocation(method) {
+  return function () {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return {
+      type: CALL_HISTORY_METHOD,
+      payload: {
+        method: method,
+        args: args
+      }
+    };
+  };
+};
+/**
+ * These actions correspond to the history API.
+ * The associated routerMiddleware will capture these events before they get to
+ * your reducer and reissue them as the matching function on your history.
+ */
+
+
+var push = updateLocation('push');
+exports.push = push;
+var replace = updateLocation('replace');
+exports.replace = replace;
+var go = updateLocation('go');
+exports.go = go;
+var goBack = updateLocation('goBack');
+exports.goBack = goBack;
+var goForward = updateLocation('goForward');
+exports.goForward = goForward;
+var routerActions = {
+  push: push,
+  replace: replace,
+  go: go,
+  goBack: goBack,
+  goForward: goForward
+};
+exports.routerActions = routerActions;
+},{}],"node_modules/connected-react-router/esm/selectors.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _reactRouter = require("react-router");
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+var createSelectors = function createSelectors(structure) {
+  var getIn = structure.getIn,
+      toJS = structure.toJS;
+
+  var isRouter = function isRouter(value) {
+    return value != null && _typeof(value) === 'object' && getIn(value, ['location']) && getIn(value, ['action']);
+  };
+
+  var getRouter = function getRouter(state) {
+    var router = toJS(getIn(state, ['router']));
+
+    if (!isRouter(router)) {
+      throw 'Could not find router reducer in state tree, it must be mounted under "router"';
+    }
+
+    return router;
+  };
+
+  var getLocation = function getLocation(state) {
+    return toJS(getIn(getRouter(state), ['location']));
+  };
+
+  var getAction = function getAction(state) {
+    return toJS(getIn(getRouter(state), ['action']));
+  };
+
+  var getSearch = function getSearch(state) {
+    return toJS(getIn(getRouter(state), ['location', 'search']));
+  };
+
+  var getHash = function getHash(state) {
+    return toJS(getIn(getRouter(state), ['location', 'hash']));
+  }; // It only makes sense to recalculate the `matchPath` whenever the pathname
+  // of the location changes. That's why `createMatchSelector` memoizes
+  // the latest result based on the location's pathname.
+
+
+  var createMatchSelector = function createMatchSelector(path) {
+    var lastPathname = null;
+    var lastMatch = null;
+    return function (state) {
+      var _ref = getLocation(state) || {},
+          pathname = _ref.pathname;
+
+      if (pathname === lastPathname) {
+        return lastMatch;
+      }
+
+      lastPathname = pathname;
+      var match = (0, _reactRouter.matchPath)(pathname, path);
+
+      if (!match || !lastMatch || match.url !== lastMatch.url // When URL matched for nested routes, URL is the same but isExact is not.
+      || match.isExact !== lastMatch.isExact) {
+        lastMatch = match;
+      }
+
+      return lastMatch;
+    };
+  };
+
+  return {
+    getLocation: getLocation,
+    getAction: getAction,
+    getRouter: getRouter,
+    getSearch: getSearch,
+    getHash: getHash,
+    createMatchSelector: createMatchSelector
+  };
+};
+
+var _default = createSelectors;
+exports.default = _default;
+},{"react-router":"node_modules/react-router/esm/react-router.js"}],"node_modules/connected-react-router/esm/ConnectedRouter.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _reactRedux = require("react-redux");
+
+var _reactRouter = require("react-router");
+
+var _actions = require("./actions");
+
+var _selectors = _interopRequireDefault(require("./selectors"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+var createConnectedRouter = function createConnectedRouter(structure) {
+  var _createSelectors = (0, _selectors.default)(structure),
+      getLocation = _createSelectors.getLocation;
+  /*
+   * ConnectedRouter listens to a history object passed from props.
+   * When history is changed, it dispatches action to redux store.
+   * Then, store will pass props to component to render.
+   * This creates uni-directional flow from history->store->router->components.
+   */
+
+
+  var ConnectedRouter = /*#__PURE__*/function (_PureComponent) {
+    _inherits(ConnectedRouter, _PureComponent);
+
+    function ConnectedRouter(props) {
+      var _this;
+
+      _classCallCheck(this, ConnectedRouter);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(ConnectedRouter).call(this, props));
+      var store = props.store,
+          history = props.history,
+          onLocationChanged = props.onLocationChanged;
+      _this.inTimeTravelling = false; // Subscribe to store changes to check if we are in time travelling
+
+      _this.unsubscribe = store.subscribe(function () {
+        // Extract store's location
+        var _getLocation = getLocation(store.getState()),
+            pathnameInStore = _getLocation.pathname,
+            searchInStore = _getLocation.search,
+            hashInStore = _getLocation.hash,
+            stateInStore = _getLocation.state; // Extract history's location
+
+
+        var _history$location = history.location,
+            pathnameInHistory = _history$location.pathname,
+            searchInHistory = _history$location.search,
+            hashInHistory = _history$location.hash,
+            stateInHistory = _history$location.state; // If we do time travelling, the location in store is changed but location in history is not changed
+
+        if (props.history.action === 'PUSH' && (pathnameInHistory !== pathnameInStore || searchInHistory !== searchInStore || hashInHistory !== hashInStore || stateInStore !== stateInHistory)) {
+          _this.inTimeTravelling = true; // Update history's location to match store's location
+
+          history.push({
+            pathname: pathnameInStore,
+            search: searchInStore,
+            hash: hashInStore,
+            state: stateInStore
+          });
+        }
+      });
+
+      var handleLocationChange = function handleLocationChange(location, action) {
+        var isFirstRendering = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false; // Dispatch onLocationChanged except when we're in time travelling
+
+        if (!_this.inTimeTravelling) {
+          onLocationChanged(location, action, isFirstRendering);
+        } else {
+          _this.inTimeTravelling = false;
+        }
+      }; // Listen to history changes
+
+
+      _this.unlisten = history.listen(handleLocationChange);
+
+      if (!props.noInitialPop) {
+        // Dispatch a location change action for the initial location.
+        // This makes it backward-compatible with react-router-redux.
+        // But, we add `isFirstRendering` to `true` to prevent double-rendering.
+        handleLocationChange(history.location, history.action, true);
+      }
+
+      return _this;
+    }
+
+    _createClass(ConnectedRouter, [{
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        this.unlisten();
+        this.unsubscribe();
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
+            history = _this$props.history,
+            children = _this$props.children;
+        return _react.default.createElement(_reactRouter.Router, {
+          history: history
+        }, children);
+      }
+    }]);
+
+    return ConnectedRouter;
+  }(_react.PureComponent);
+
+  ConnectedRouter.propTypes = {
+    store: _propTypes.default.shape({
+      getState: _propTypes.default.func.isRequired,
+      subscribe: _propTypes.default.func.isRequired
+    }).isRequired,
+    history: _propTypes.default.shape({
+      action: _propTypes.default.string.isRequired,
+      listen: _propTypes.default.func.isRequired,
+      location: _propTypes.default.object.isRequired,
+      push: _propTypes.default.func.isRequired
+    }).isRequired,
+    basename: _propTypes.default.string,
+    children: _propTypes.default.oneOfType([_propTypes.default.func, _propTypes.default.node]),
+    onLocationChanged: _propTypes.default.func.isRequired,
+    noInitialPop: _propTypes.default.bool
+  };
+
+  var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+      onLocationChanged: function onLocationChanged(location, action, isFirstRendering) {
+        return dispatch((0, _actions.onLocationChanged)(location, action, isFirstRendering));
+      }
+    };
+  };
+
+  var ConnectedRouterWithContext = function ConnectedRouterWithContext(props) {
+    var Context = props.context || _reactRedux.ReactReduxContext;
+
+    if (Context == null) {
+      throw 'Please upgrade to react-redux v6';
+    }
+
+    return _react.default.createElement(Context.Consumer, null, function (_ref) {
+      var store = _ref.store;
+      return _react.default.createElement(ConnectedRouter, _extends({
+        store: store
+      }, props));
+    });
+  };
+
+  ConnectedRouterWithContext.propTypes = {
+    context: _propTypes.default.object
+  };
+  return (0, _reactRedux.connect)(null, mapDispatchToProps)(ConnectedRouterWithContext);
+};
+
+var _default = createConnectedRouter;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","react-redux":"node_modules/react-redux/es/index.js","react-router":"node_modules/react-router/esm/react-router.js","./actions":"node_modules/connected-react-router/esm/actions.js","./selectors":"node_modules/connected-react-router/esm/selectors.js"}],"node_modules/connected-react-router/esm/reducer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _actions = require("./actions");
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+/**
+ * Adds query to location.
+ * Utilises the search prop of location to construct query.
+ */
+var injectQuery = function injectQuery(location) {
+  if (location && location.query) {
+    // Don't inject query if it already exists in history
+    return location;
+  }
+
+  var searchQuery = location && location.search;
+
+  if (typeof searchQuery !== 'string' || searchQuery.length === 0) {
+    return _objectSpread({}, location, {
+      query: {}
+    });
+  } // Ignore the `?` part of the search string e.g. ?username=codejockie
+
+
+  var search = searchQuery.substring(1); // Split the query string on `&` e.g. ?username=codejockie&name=Kennedy
+
+  var queries = search.split('&'); // Contruct query
+
+  var query = queries.reduce(function (acc, currentQuery) {
+    // Split on `=`, to get key and value
+    var _currentQuery$split = currentQuery.split('='),
+        _currentQuery$split2 = _slicedToArray(_currentQuery$split, 2),
+        queryKey = _currentQuery$split2[0],
+        queryValue = _currentQuery$split2[1];
+
+    return _objectSpread({}, acc, _defineProperty({}, queryKey, queryValue));
+  }, {});
+  return _objectSpread({}, location, {
+    query: query
+  });
+};
+
+var createConnectRouter = function createConnectRouter(structure) {
+  var fromJS = structure.fromJS,
+      merge = structure.merge;
+
+  var createRouterReducer = function createRouterReducer(history) {
+    var initialRouterState = fromJS({
+      location: injectQuery(history.location),
+      action: history.action
+    });
+    /*
+    * This reducer will update the state with the most recent location history
+    * has transitioned to.
+    */
+
+    return function () {
+      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialRouterState;
+
+      var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+          type = _ref.type,
+          payload = _ref.payload;
+
+      if (type === _actions.LOCATION_CHANGE) {
+        var location = payload.location,
+            action = payload.action,
+            isFirstRendering = payload.isFirstRendering; // Don't update the state ref for the first rendering
+        // to prevent the double-rendering issue on initilization
+
+        return isFirstRendering ? state : merge(state, {
+          location: fromJS(injectQuery(location)),
+          action: action
+        });
+      }
+
+      return state;
+    };
+  };
+
+  return createRouterReducer;
+};
+
+var _default = createConnectRouter;
+exports.default = _default;
+},{"./actions":"node_modules/connected-react-router/esm/actions.js"}],"node_modules/connected-react-router/esm/structure/plain/getIn.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+/* Code from github.com/erikras/redux-form by Erik Rasmussen */
+var getIn = function getIn(state, path) {
+  if (!state) {
+    return state;
+  }
+
+  var length = path.length;
+
+  if (!length) {
+    return undefined;
+  }
+
+  var result = state;
+
+  for (var i = 0; i < length && !!result; ++i) {
+    result = result[path[i]];
+  }
+
+  return result;
+};
+
+var _default = getIn;
+exports.default = _default;
+},{}],"node_modules/connected-react-router/esm/structure/plain/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _getIn = _interopRequireDefault(require("./getIn"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var structure = {
+  fromJS: function fromJS(value) {
+    return value;
+  },
+  getIn: _getIn.default,
+  merge: function merge(state, payload) {
+    return _objectSpread({}, state, {}, payload);
+  },
+  toJS: function toJS(value) {
+    return value;
+  }
+};
+var _default = structure;
+exports.default = _default;
+},{"./getIn":"node_modules/connected-react-router/esm/structure/plain/getIn.js"}],"node_modules/connected-react-router/esm/middleware.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _actions = require("./actions");
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+/**
+ * This middleware captures CALL_HISTORY_METHOD actions to redirect to the
+ * provided history object. This will prevent these actions from reaching your
+ * reducer or any middleware that comes after this one.
+ */
+var routerMiddleware = function routerMiddleware(history) {
+  return function (store) {
+    return function (next) {
+      return function (action) {
+        // eslint-disable-line no-unused-vars
+        if (action.type !== _actions.CALL_HISTORY_METHOD) {
+          return next(action);
+        }
+
+        var _action$payload = action.payload,
+            method = _action$payload.method,
+            args = _action$payload.args;
+        history[method].apply(history, _toConsumableArray(args));
+      };
+    };
+  };
+};
+
+var _default = routerMiddleware;
+exports.default = _default;
+},{"./actions":"node_modules/connected-react-router/esm/actions.js"}],"node_modules/connected-react-router/esm/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "LOCATION_CHANGE", {
+  enumerable: true,
+  get: function () {
+    return _actions.LOCATION_CHANGE;
+  }
+});
+Object.defineProperty(exports, "CALL_HISTORY_METHOD", {
+  enumerable: true,
+  get: function () {
+    return _actions.CALL_HISTORY_METHOD;
+  }
+});
+Object.defineProperty(exports, "onLocationChanged", {
+  enumerable: true,
+  get: function () {
+    return _actions.onLocationChanged;
+  }
+});
+Object.defineProperty(exports, "push", {
+  enumerable: true,
+  get: function () {
+    return _actions.push;
+  }
+});
+Object.defineProperty(exports, "replace", {
+  enumerable: true,
+  get: function () {
+    return _actions.replace;
+  }
+});
+Object.defineProperty(exports, "go", {
+  enumerable: true,
+  get: function () {
+    return _actions.go;
+  }
+});
+Object.defineProperty(exports, "goBack", {
+  enumerable: true,
+  get: function () {
+    return _actions.goBack;
+  }
+});
+Object.defineProperty(exports, "goForward", {
+  enumerable: true,
+  get: function () {
+    return _actions.goForward;
+  }
+});
+Object.defineProperty(exports, "routerActions", {
+  enumerable: true,
+  get: function () {
+    return _actions.routerActions;
+  }
+});
+Object.defineProperty(exports, "routerMiddleware", {
+  enumerable: true,
+  get: function () {
+    return _middleware.default;
+  }
+});
+exports.createMatchSelector = exports.getSearch = exports.getHash = exports.getAction = exports.getLocation = exports.connectRouter = exports.ConnectedRouter = void 0;
+
+var _ConnectedRouter = _interopRequireDefault(require("./ConnectedRouter"));
+
+var _reducer = _interopRequireDefault(require("./reducer"));
+
+var _selectors = _interopRequireDefault(require("./selectors"));
+
+var _plain = _interopRequireDefault(require("./structure/plain"));
+
+var _actions = require("./actions");
+
+var _middleware = _interopRequireDefault(require("./middleware"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ConnectedRouter = /*#__PURE__*/(0, _ConnectedRouter.default)(_plain.default);
+exports.ConnectedRouter = ConnectedRouter;
+var connectRouter = /*#__PURE__*/(0, _reducer.default)(_plain.default);
+exports.connectRouter = connectRouter;
+
+var _createSelectors = /*#__PURE__*/(0, _selectors.default)(_plain.default),
+    getLocation = _createSelectors.getLocation,
+    getAction = _createSelectors.getAction,
+    getHash = _createSelectors.getHash,
+    getSearch = _createSelectors.getSearch,
+    createMatchSelector = _createSelectors.createMatchSelector;
+
+exports.createMatchSelector = createMatchSelector;
+exports.getSearch = getSearch;
+exports.getHash = getHash;
+exports.getAction = getAction;
+exports.getLocation = getLocation;
+},{"./ConnectedRouter":"node_modules/connected-react-router/esm/ConnectedRouter.js","./reducer":"node_modules/connected-react-router/esm/reducer.js","./selectors":"node_modules/connected-react-router/esm/selectors.js","./structure/plain":"node_modules/connected-react-router/esm/structure/plain/index.js","./actions":"node_modules/connected-react-router/esm/actions.js","./middleware":"node_modules/connected-react-router/esm/middleware.js"}],"src/data/posts/reducers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _actionTypes = require("./actionTypes");
+
+var _services = require("../../services");
+
+var _default = function _default(state, _ref) {
+  var type = _ref.type,
+      payload = _ref.payload;
+
+  switch (type) {
+    case _actionTypes.ADD_POST:
+      _services.postService.addPost(payload);
+
+      return _services.postService.fetchPosts();
+
+    case _actionTypes.TOGGLE_POST_LIKE:
+      _services.postService.toggleLike(payload);
+
+      return _services.postService.fetchPosts();
+
+    default:
+      return _services.postService.fetchPosts();
+  }
+};
+
+exports.default = _default;
+},{"./actionTypes":"src/data/posts/actionTypes.js","../../services":"src/services/index.js"}],"src/data/comments/reducers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _actionTypes = require("./actionTypes");
+
+var _services = require("../../services");
+
+var _default = function _default(state, _ref) {
+  var type = _ref.type,
+      payload = _ref.payload;
+
+  switch (type) {
+    case _actionTypes.ADD_COMMENT:
+      _services.commentService.addComment(payload);
+
+      return _services.commentService.fetchComments();
+
+    default:
+      return _services.commentService.fetchComments();
+  }
+};
+
+exports.default = _default;
+},{"./actionTypes":"src/data/comments/actionTypes.js","../../services":"src/services/index.js"}],"src/data/users/reducers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _actionTypes = require("./actionTypes");
+
+var _services = require("../../services");
+
+var _default = function _default(state, _ref) {
+  var type = _ref.type;
+
+  switch (type) {
+    case _actionTypes.FETCH_AUTH:
+      return {
+        auth: _services.userService.getAuth()
+      };
+
+    case _actionTypes.REMOVE_AUTH:
+      _services.userService.removeAuth();
+
+      return {
+        auth: null
+      };
+
+    default:
+      return {
+        auth: _services.userService.getAuth()
+      };
+  }
+};
+
+exports.default = _default;
+},{"./actionTypes":"src/data/users/actionTypes.js","../../services":"src/services/index.js"}],"src/data/rootReducer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createRootReducer = void 0;
+
+var _redux = require("redux");
+
+var _connectedReactRouter = require("connected-react-router");
+
+var _reducers = _interopRequireDefault(require("./posts/reducers"));
+
+var _reducers2 = _interopRequireDefault(require("./comments/reducers"));
+
+var _reducers3 = _interopRequireDefault(require("./users/reducers"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var createRootReducer = function createRootReducer(history) {
+  return (0, _redux.combineReducers)({
+    router: (0, _connectedReactRouter.connectRouter)(history),
+    posts: _reducers.default,
+    comments: _reducers2.default,
+    users: _reducers3.default
+  });
+};
+
+exports.createRootReducer = createRootReducer;
+},{"redux":"node_modules/redux/es/redux.js","connected-react-router":"node_modules/connected-react-router/esm/index.js","./posts/reducers":"src/data/posts/reducers.js","./comments/reducers":"src/data/comments/reducers.js","./users/reducers":"src/data/users/reducers.js"}],"src/data/configureStore.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.configureStore = exports.history = void 0;
+
+var _connectedReactRouter = require("connected-react-router");
+
+var _redux = require("redux");
+
+var _history = require("history");
+
+var _rootReducer = require("./rootReducer");
+
+var history = (0, _history.createBrowserHistory)();
+exports.history = history;
+
+var configureStore = function configureStore() {
+  var store = (0, _redux.createStore)((0, _rootReducer.createRootReducer)(history), (0, _redux.compose)((0, _redux.applyMiddleware)((0, _connectedReactRouter.routerMiddleware)(history))));
+  return {
+    store: store,
+    history: history
+  };
+};
+
+exports.configureStore = configureStore;
+},{"connected-react-router":"node_modules/connected-react-router/esm/index.js","redux":"node_modules/redux/es/redux.js","history":"node_modules/history/esm/history.js","./rootReducer":"src/data/rootReducer.js"}],"src/layouts/PublicLayout.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33493,7 +38974,7 @@ var _style = _interopRequireDefault(require("styled-jsx/style"));
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
+var _reactRouter = require("react-router");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33507,7 +38988,7 @@ var PublicLayout = function PublicLayout(_ref) {
   var Component = _ref.component,
       rest = _objectWithoutProperties(_ref, ["component"]);
 
-  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, _extends({}, rest, {
+  return /*#__PURE__*/_react.default.createElement(_reactRouter.Route, _extends({}, rest, {
     render: function render(matchProps) {
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "container"
@@ -33546,7 +39027,7 @@ var linkStyle = {
 exports.linkStyle = linkStyle;
 var _default = PublicLayout;
 exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/pages/SignIn/index.js":[function(require,module,exports) {
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router":"node_modules/react-router/esm/react-router.js"}],"src/pages/SignIn/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33560,7 +39041,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _configureStore = require("../../data/configureStore");
+
 var _PublicLayout = require("../../layouts/PublicLayout");
+
+var _hooks = require("../../hooks");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -33568,30 +39053,32 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SignIn = function SignIn(_ref) {
-  var onSignIn = _ref.onSignIn;
-  var history = (0, _reactRouterDom.useHistory)();
+var SignIn = function SignIn() {
+  var _useAuth = (0, _hooks.useAuth)(),
+      signIn = _useAuth.signIn;
+
   var $email = (0, _react.useRef)();
   var $password = (0, _react.useRef)();
   var handleSignIn = (0, _react.useCallback)(function (event) {
     event.preventDefault();
     var email = $email.current.value;
     var password = $password.current.value;
-    var user = onSignIn({
+
+    if (!signIn({
       email: email,
       password: password
-    });
-
-    if (!user) {
+    })) {
       alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       $password.current.focus();
       return;
     }
 
     alert('로그인 되었습니다.');
-    history.push('/');
+
+    _configureStore.history.push('/');
+
     event.target.reset();
-  }, [onSignIn, history]);
+  }, [signIn, _configureStore.history]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", {
     className: "jsx-".concat(inputStyle.__hash) + " " + "text-center"
   }, "\uB85C\uADF8\uC778"), /*#__PURE__*/_react.default.createElement("form", {
@@ -33627,13 +39114,13 @@ exports.inputStyle = inputStyle;
 inputStyle.__hash = "1182887600";
 var _default = SignIn;
 exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../../layouts/PublicLayout":"src/layouts/PublicLayout.js"}],"src/pages/SignUp/index.js":[function(require,module,exports) {
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../../data/configureStore":"src/data/configureStore.js","../../layouts/PublicLayout":"src/layouts/PublicLayout.js","../../hooks":"src/hooks/index.js"}],"src/pages/SignUp/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.inputStyle = void 0;
+exports.default = exports.signUpStyle = void 0;
 
 var _style = _interopRequireDefault(require("styled-jsx/style"));
 
@@ -33642,6 +39129,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _reactRouterDom = require("react-router-dom");
 
 var _PublicLayout = require("../../layouts/PublicLayout");
+
+var _hooks = require("../../hooks");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -33664,13 +39153,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var defaultProfileImageUrl = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
 var fileReader = new FileReader();
 
-var SignUp = function SignUp(_ref) {
-  var onSignUp = _ref.onSignUp;
-
+var SignUp = function SignUp() {
   var _useState = (0, _react.useState)(defaultProfileImageUrl),
       _useState2 = _slicedToArray(_useState, 2),
       profileImageUrl = _useState2[0],
       setProfileImageUrl = _useState2[1];
+
+  var _useAuth = (0, _hooks.useAuth)(),
+      signUp = _useAuth.signUp;
 
   var $email = (0, _react.useRef)();
   var $name = (0, _react.useRef)();
@@ -33687,7 +39177,7 @@ var SignUp = function SignUp(_ref) {
       return $repeatPassword.current.focus();
     }
 
-    onSignUp({
+    signUp({
       email: email,
       name: name,
       password: password,
@@ -33695,7 +39185,7 @@ var SignUp = function SignUp(_ref) {
     });
     alert('회원가입이 완료되었습니다.');
     event.target.reset();
-  }, [onSignUp, profileImageUrl]);
+  }, [signUp, profileImageUrl]);
   var handleProfileImageChange = (0, _react.useCallback)(function (event) {
     var file = event.target.files[0];
 
@@ -33705,68 +39195,68 @@ var SignUp = function SignUp(_ref) {
       throw new Error('이미지 파일만 업로드해주세요');
     }
 
-    fileReader.onload = function (_ref2) {
-      var target = _ref2.target;
+    fileReader.onload = function (_ref) {
+      var target = _ref.target;
       setProfileImageUrl(target.result);
     };
 
     fileReader.readAsDataURL(file);
   }, [fileReader, setProfileImageUrl, profileImageUrl]);
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "jsx-".concat(inputStyle.__hash) + " " + "text-center"
+    className: "jsx-".concat(signUpStyle.__hash) + " " + "text-center"
   }, "\uACC4\uC815 \uB9CC\uB4E4\uAE30"), /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: handleSignUp,
-    className: "jsx-".concat(inputStyle.__hash) + " " + (_PublicLayout.formStyle.className || "")
+    className: "jsx-".concat(signUpStyle.__hash) + " " + (_PublicLayout.formStyle.className || "")
   }, /*#__PURE__*/_react.default.createElement("input", {
     ref: $email,
     type: "email",
     placeholder: "Email",
     required: true,
-    className: "jsx-".concat(inputStyle.__hash) + " " + "form-control"
+    className: "jsx-".concat(signUpStyle.__hash) + " " + "form-control"
   }), /*#__PURE__*/_react.default.createElement("input", {
     ref: $name,
     type: "text",
     placeholder: "Your Name",
     required: true,
-    className: "jsx-".concat(inputStyle.__hash) + " " + "form-control"
+    className: "jsx-".concat(signUpStyle.__hash) + " " + "form-control"
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "file",
     placeholder: "Profile",
     accept: "image/*",
     onChange: handleProfileImageChange,
-    className: "jsx-".concat(inputStyle.__hash) + " " + "form-control"
+    className: "jsx-".concat(signUpStyle.__hash) + " " + "form-control"
   }), /*#__PURE__*/_react.default.createElement("input", {
     ref: $password,
     type: "password",
     placeholder: "Password",
     minLength: "5",
     required: true,
-    className: "jsx-".concat(inputStyle.__hash) + " " + "form-control"
+    className: "jsx-".concat(signUpStyle.__hash) + " " + "form-control"
   }), /*#__PURE__*/_react.default.createElement("input", {
     ref: $repeatPassword,
     type: "password",
     placeholder: "Repeat your password",
     required: true,
-    className: "jsx-".concat(inputStyle.__hash) + " " + "form-control"
+    className: "jsx-".concat(signUpStyle.__hash) + " " + "form-control"
   }), /*#__PURE__*/_react.default.createElement("button", {
     type: "submit",
-    className: "jsx-".concat(inputStyle.__hash) + " " + "btn btn-lg btn-primary btn-block ".concat(_PublicLayout.buttonStyle.className)
+    className: "jsx-".concat(signUpStyle.__hash) + " " + "btn btn-lg btn-primary btn-block ".concat(_PublicLayout.buttonStyle.className)
   }, "\uAC00\uC785\uD558\uAE30")), /*#__PURE__*/_react.default.createElement("p", {
-    className: "jsx-".concat(inputStyle.__hash) + " " + "text-center ".concat(_PublicLayout.textHelpStyle.className)
+    className: "jsx-".concat(signUpStyle.__hash) + " " + "text-center ".concat(_PublicLayout.textHelpStyle.className)
   }, "\uC774\uBBF8 \uACC4\uC815\uC774 \uC788\uC73C\uC2E0\uAC00\uC694?", /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "text-center ".concat(_PublicLayout.linkStyle.className),
     to: "/login"
   }, "\uB85C\uADF8\uC778 \uD558\uAE30")), /*#__PURE__*/_react.default.createElement(_style.default, {
-    id: inputStyle.__hash
-  }, inputStyle), _PublicLayout.formStyle.styles, _PublicLayout.buttonStyle.styles, _PublicLayout.textHelpStyle.styles, _PublicLayout.linkStyle.styles);
+    id: signUpStyle.__hash
+  }, signUpStyle), _PublicLayout.formStyle.styles, _PublicLayout.buttonStyle.styles, _PublicLayout.textHelpStyle.styles, _PublicLayout.linkStyle.styles);
 };
 
-var inputStyle = ["input.form-control.jsx-2798474118{font-size:16px;height:auto;padding:10px;margin-bottom:1rem;}", "button.jsx-2798474118{background-color:#3b5999;color:#fffffe;font-weight:800;border-color:unset;margin-top:10px;}"];
-exports.inputStyle = inputStyle;
-inputStyle.__hash = "2798474118";
+var signUpStyle = ["input.form-control.jsx-120228352{font-size:16px;height:auto;padding:10px;margin-bottom:1rem;}"];
+exports.signUpStyle = signUpStyle;
+signUpStyle.__hash = "120228352";
 var _default = SignUp;
 exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../../layouts/PublicLayout":"src/layouts/PublicLayout.js"}],"src/pages/index.js":[function(require,module,exports) {
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../../layouts/PublicLayout":"src/layouts/PublicLayout.js","../../hooks":"src/hooks/index.js"}],"src/pages/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33798,7 +39288,7 @@ var _SignIn = _interopRequireDefault(require("./SignIn"));
 var _SignUp = _interopRequireDefault(require("./SignUp"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Home":"src/pages/Home/index.js","./SignIn":"src/pages/SignIn/index.js","./SignUp":"src/pages/SignUp/index.js"}],"src/components/Header/Logo.js":[function(require,module,exports) {
+},{"./Home":"src/pages/Home/index.js","./SignIn":"src/pages/SignIn/index.js","./SignUp":"src/pages/SignUp/index.js"}],"src/components/header/Logo.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33827,9 +39317,11 @@ var Logo = function Logo() {
 
 var logoStyle = ["i.fa-facebook-square.jsx-1801327584{font-size:27px;color:white;}"];
 logoStyle.__hash = "1801327584";
-var _default = Logo;
+
+var _default = /*#__PURE__*/_react.default.memo(Logo);
+
 exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/components/Header/NavItem.js":[function(require,module,exports) {
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/components/header/NavItem.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33869,9 +39361,10 @@ var NavItem = function NavItem(_ref) {
   }, props), children)), linkStyle.styles);
 };
 
-var _default = NavItem;
+var _default = /*#__PURE__*/_react.default.memo(NavItem);
+
 exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/components/Header/ProfileImage.js":[function(require,module,exports) {
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/components/header/ProfileImage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33898,7 +39391,9 @@ var ProfileImage = function ProfileImage(_ref) {
 
 var profileImageStyle = ["img.jsx-2640039814{width:25px;height:25px;border-radius:100%;overflow:hidden;margin-right:5px;}"];
 profileImageStyle.__hash = "2640039814";
-var _default = ProfileImage;
+
+var _default = /*#__PURE__*/_react.default.memo(ProfileImage);
+
 exports.default = _default;
 },{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js"}],"src/hocs/Conditional.js":[function(require,module,exports) {
 "use strict";
@@ -33920,7 +39415,7 @@ var Conditional = function Conditional(_ref) {
 
 var _default = Conditional;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/components/Header/NavItems.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"src/components/header/NavItems.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33936,36 +39431,39 @@ var _ProfileImage = _interopRequireDefault(require("./ProfileImage"));
 
 var _Conditional = _interopRequireDefault(require("../../hocs/Conditional"));
 
+var _hooks = require("../../hooks");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var NavItems = function NavItems(_ref) {
-  var user = _ref.user,
-      onRemoveAuth = _ref.onRemoveAuth;
+var NavItems = function NavItems() {
+  var _useAuth = (0, _hooks.useAuth)(),
+      auth = _useAuth.auth,
+      removeAuth = _useAuth.removeAuth;
 
-  var _ref2 = user || {},
-      seq = _ref2.seq,
-      name = _ref2.name,
-      profileImageUrl = _ref2.profileImageUrl;
+  var _ref = auth || {},
+      seq = _ref.seq,
+      name = _ref.name,
+      profileImageUrl = _ref.profileImageUrl;
 
   var handleLogoutClick = (0, _react.useCallback)(function (event) {
     event.preventDefault();
-    onRemoveAuth();
+    removeAuth();
     alert('로그아웃 되었습니다.');
-  }, [onRemoveAuth]);
+  }, [removeAuth]);
   return /*#__PURE__*/_react.default.createElement("ul", {
     className: "nav"
   }, /*#__PURE__*/_react.default.createElement(_Conditional.default, {
-    condition: !user
+    condition: !auth
   }, /*#__PURE__*/_react.default.createElement(_NavItem.default, {
     to: "/login"
   }, "\uB85C\uADF8\uC778"), /*#__PURE__*/_react.default.createElement(_NavItem.default, {
     to: "/signup"
   }, "\uD68C\uC6D0\uAC00\uC785")), /*#__PURE__*/_react.default.createElement(_Conditional.default, {
-    condition: user
+    condition: auth
   }, /*#__PURE__*/_react.default.createElement(_NavItem.default, {
     to: "/user/".concat(seq)
   }, /*#__PURE__*/_react.default.createElement(_ProfileImage.default, {
@@ -33976,9 +39474,10 @@ var NavItems = function NavItems(_ref) {
   }, "\uB85C\uADF8\uC544\uC6C3")));
 };
 
-var _default = NavItems;
+var _default = /*#__PURE__*/_react.default.memo(NavItems);
+
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./NavItem":"src/components/Header/NavItem.js","./ProfileImage":"src/components/Header/ProfileImage.js","../../hocs/Conditional":"src/hocs/Conditional.js"}],"src/components/Header/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./NavItem":"src/components/header/NavItem.js","./ProfileImage":"src/components/header/ProfileImage.js","../../hocs/Conditional":"src/hocs/Conditional.js","../../hooks":"src/hooks/index.js"}],"src/components/header/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34006,25 +39505,11 @@ var Header = function Header(props) {
 
 var HeaderStyle = ["nav.fixed-top.jsx-2783246436{height:50px;}", "nav.navbar.bg-blue.jsx-2783246436{background-color:#3b5999;}"];
 HeaderStyle.__hash = "2783246436";
-var _default = Header;
+
+var _default = /*#__PURE__*/_react.default.memo(Header);
+
 exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","./Logo":"src/components/Header/Logo.js","./NavItems":"src/components/Header/NavItems.js"}],"src/components/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Header", {
-  enumerable: true,
-  get: function () {
-    return _Header.default;
-  }
-});
-
-var _Header = _interopRequireDefault(require("./Header"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./Header":"src/components/Header/index.js"}],"src/layouts/DefaultLayout.js":[function(require,module,exports) {
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","./Logo":"src/components/header/Logo.js","./NavItems":"src/components/header/NavItems.js"}],"src/layouts/DefaultLayout.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34032,13 +39517,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
+var _reactRouter = require("react-router");
 
-var _components = require("../components");
+var _header = _interopRequireDefault(require("../components/header"));
+
+var _hooks = require("../hooks");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -34050,16 +39541,23 @@ var DefaultLayout = function DefaultLayout(_ref) {
   var Component = _ref.component,
       rest = _objectWithoutProperties(_ref, ["component"]);
 
-  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, _extends({}, rest, {
+  var _useAuth = (0, _hooks.useAuth)(),
+      fetchAuth = _useAuth.fetchAuth;
+
+  (0, _react.useEffect)(function () {
+    fetchAuth();
+  }, []);
+  return /*#__PURE__*/_react.default.createElement(_reactRouter.Route, _extends({}, rest, {
     render: function render(matchProps) {
-      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_components.Header, rest), /*#__PURE__*/_react.default.createElement(Component, _extends({}, matchProps, rest)));
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_header.default, rest), /*#__PURE__*/_react.default.createElement(Component, _extends({}, matchProps, rest)));
     }
   }));
 };
 
-var _default = DefaultLayout;
+var _default = /*#__PURE__*/_react.default.memo(DefaultLayout);
+
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../components":"src/components/index.js"}],"src/layouts/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router":"node_modules/react-router/esm/react-router.js","../components/header":"src/components/header/index.js","../hooks":"src/hooks/index.js"}],"src/layouts/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34083,537 +39581,7 @@ var _DefaultLayout = _interopRequireDefault(require("./DefaultLayout"));
 var _PublicLayout = _interopRequireDefault(require("./PublicLayout"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./DefaultLayout":"src/layouts/DefaultLayout.js","./PublicLayout":"src/layouts/PublicLayout.js"}],"src/storages/Storage.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var Storage = /*#__PURE__*/function () {
-  function Storage(storage) {
-    _classCallCheck(this, Storage);
-
-    _defineProperty(this, "storage", void 0);
-
-    this.storage = storage;
-  }
-
-  _createClass(Storage, [{
-    key: "get",
-    value: function get(key) {
-      var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      return JSON.parse(this.storage.getItem(key)) || defaultValue;
-    }
-  }, {
-    key: "set",
-    value: function set(key, value) {
-      this.storage.setItem(key, JSON.stringify(value));
-    }
-  }, {
-    key: "remove",
-    value: function remove(key) {
-      this.storage.removeItem(key);
-    }
-  }]);
-
-  return Storage;
-}();
-
-exports.default = Storage;
-},{}],"src/storages/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.session = exports.repository = void 0;
-
-var _Storage = _interopRequireDefault(require("./Storage"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var repository = new _Storage.default(localStorage);
-exports.repository = repository;
-var session = new _Storage.default(sessionStorage);
-exports.session = session;
-},{"./Storage":"src/storages/Storage.js"}],"src/repositories/PostRepository.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _storages = require("../storages");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var KEY = 'posts';
-
-var _default = Object.freeze({
-  findAll: function findAll() {
-    return _storages.repository.get(KEY, []);
-  },
-  findBySeq: function findBySeq(seq) {
-    return this.findAll().find(function (v) {
-      return v.seq === seq;
-    });
-  },
-  saveAll: function saveAll(posts) {
-    _storages.repository.set(KEY, posts);
-  },
-  upsert: function upsert(post) {
-    if (!post) return;
-    if (post.seq === undefined) return this.add(post);
-    this.update(post);
-  },
-  add: function add(post) {
-    var posts = this.findAll();
-    posts.push(_objectSpread(_objectSpread({}, post), {}, {
-      seq: posts.map(function (v) {
-        return v.seq;
-      }).reduce(Math.max, 0) + 1
-    }));
-    this.saveAll(posts);
-  },
-  update: function update(post) {
-    var posts = this.findAll();
-    var index = posts.findIndex(function (_ref) {
-      var seq = _ref.seq;
-      return post.seq === seq;
-    });
-    if (index === -1) throw new Error('수정이 불가능한 포스트입니다.');
-    posts[index] = post;
-    this.saveAll(posts);
-  }
-});
-
-exports.default = _default;
-},{"../storages":"src/storages/index.js"}],"src/repositories/UserRepository.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _storages = require("../storages");
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var KEY = 'users';
-
-var _default = Object.freeze({
-  findAll: function findAll() {
-    return _storages.repository.get(KEY, []);
-  },
-  findBySeq: function findBySeq(seq) {
-    return this.findAll().find(function (v) {
-      return v.seq === seq;
-    });
-  },
-  findByEmail: function findByEmail(email) {
-    return this.findAll().find(function (v) {
-      return v.email === email;
-    });
-  },
-  findByEmailAndPassword: function findByEmailAndPassword(_ref) {
-    var email = _ref.email,
-        password = _ref.password;
-    return this.findAll().find(function (v) {
-      return v.email === email && v.password === password;
-    });
-  },
-  saveAll: function saveAll(users) {
-    _storages.repository.set(KEY, users);
-  },
-  upsert: function upsert(user) {
-    if (!user) return;
-    if (user.seq === undefined) return this.add(user);
-    this.update(user);
-  },
-  add: function add(user) {
-    var users = this.findAll();
-    users.push(_objectSpread(_objectSpread({}, user), {}, {
-      seq: users.map(function (v) {
-        return v.seq;
-      }).reduce(Math.max, 0) + 1
-    }));
-    this.saveAll(users);
-  },
-  update: function update(user) {
-    var users = this.findAll();
-    var index = users.findIndex(function (_ref2) {
-      var seq = _ref2.seq;
-      return user.seq === seq;
-    });
-    if (index === -1) throw new Error('수정이 불가능한 유저 정보입니다.');
-    users[index] = user;
-    this.saveAll(users);
-  }
-});
-
-exports.default = _default;
-},{"../storages":"src/storages/index.js"}],"src/repositories/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "PostRepository", {
-  enumerable: true,
-  get: function () {
-    return _PostRepository.default;
-  }
-});
-Object.defineProperty(exports, "UserRepository", {
-  enumerable: true,
-  get: function () {
-    return _UserRepository.default;
-  }
-});
-
-var _PostRepository = _interopRequireDefault(require("./PostRepository"));
-
-var _UserRepository = _interopRequireDefault(require("./UserRepository"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./PostRepository":"src/repositories/PostRepository.js","./UserRepository":"src/repositories/UserRepository.js"}],"src/services/PostService.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _repositories = require("../repositories");
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var _default = Object.freeze({
-  fetchPosts: function fetchPosts() {
-    return _repositories.PostRepository.findAll().sort(function (a, b) {
-      return b.createAt - a.createAt;
-    });
-  },
-  fetchPost: function fetchPost(seq) {
-    return _repositories.PostRepository.findBySeq(seq);
-  },
-  addPost: function addPost(post) {
-    _repositories.PostRepository.upsert(_objectSpread(_objectSpread({}, post), {}, {
-      createAt: Date.now(),
-      likes: 0,
-      comments: 0,
-      likesOfMe: false,
-      commentList: []
-    }));
-  },
-  updatePost: function updatePost(post) {
-    _repositories.PostRepository.upsert(post);
-  },
-  addComment: function addComment(post, comment) {
-    var allCommentList = _repositories.PostRepository.findAll().flatMap(function (_ref) {
-      var commentList = _ref.commentList;
-      return commentList;
-    });
-
-    this.updatePost(_objectSpread(_objectSpread({}, post), {}, {
-      comments: post.comments + 1,
-      commentList: [].concat(_toConsumableArray(post.commentList), [_objectSpread(_objectSpread({}, comment), {}, {
-        seq: allCommentList.reduce(function (seq, comment) {
-          return Math.max(seq, comment.seq);
-        }, 0) + 1,
-        createAt: Date.now()
-      })])
-    }));
-  },
-  toggleLike: function toggleLike(post) {
-    var likesOfMe = !post.likesOfMe;
-    var likes = post.likes + (likesOfMe ? 1 : -1);
-    this.updatePost(_objectSpread(_objectSpread({}, post), {}, {
-      likesOfMe: likesOfMe,
-      likes: likes
-    }));
-  }
-});
-
-exports.default = _default;
-},{"../repositories":"src/repositories/index.js"}],"src/services/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "PostService", {
-  enumerable: true,
-  get: function () {
-    return _PostService.default;
-  }
-});
-
-var _PostService = _interopRequireDefault(require("./PostService"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./PostService":"src/services/PostService.js"}],"src/services/UserService.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _repositories = require("../repositories");
-
-var _storages = require("../storages");
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-var KEY = 'auth';
-
-var _default = Object.freeze({
-  signIn: function signIn(userInfo) {
-    var user = _repositories.UserRepository.findByEmailAndPassword(userInfo);
-
-    if (user === undefined) return false;
-
-    var password = user.password,
-        auth = _objectWithoutProperties(user, ["password"]);
-
-    _storages.session.set(KEY, auth);
-
-    return auth;
-  },
-  signUp: function signUp(userInfo) {
-    var user = _repositories.UserRepository.findByEmail(userInfo.email);
-
-    if (user) throw new Error('이미 회원가입이 되어있는 사용자 정보입니다.');
-
-    _repositories.UserRepository.upsert(userInfo);
-  },
-  getAuth: function getAuth() {
-    return _storages.session.get(KEY) || null;
-  },
-  removeAuth: function removeAuth() {
-    _storages.session.remove(KEY);
-  }
-});
-
-exports.default = _default;
-},{"../repositories":"src/repositories/index.js","../storages":"src/storages/index.js"}],"src/hooks/useAuth.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.useAuth = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _UserService = _interopRequireDefault(require("../services/UserService"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var useAuth = function useAuth() {
-  var _useState = (0, _react.useState)(_UserService.default.getAuth()),
-      _useState2 = _slicedToArray(_useState, 2),
-      user = _useState2[0],
-      setUser = _useState2[1];
-
-  var reloadAuth = function reloadAuth(user) {
-    return setUser(user);
-  };
-
-  var signIn = (0, _react.useCallback)(function (userInfo) {
-    var user = _UserService.default.signIn(userInfo);
-
-    if (user) reloadAuth(user);
-    return user;
-  }, []);
-  var signUp = (0, _react.useCallback)(function (userInfo) {
-    _UserService.default.signUp(userInfo);
-  }, []);
-  var removeAuth = (0, _react.useCallback)(function () {
-    _UserService.default.removeAuth();
-
-    reloadAuth(null);
-  }, []);
-  return {
-    user: user,
-    signIn: signIn,
-    signUp: signUp,
-    removeAuth: removeAuth
-  };
-};
-
-exports.useAuth = useAuth;
-},{"react":"node_modules/react/index.js","../services/UserService":"src/services/UserService.js"}],"src/hooks/usePosts.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.usePosts = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _services = require("../services");
-
-var _useAuth = require("./useAuth");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var usePosts = function usePosts(writer) {
-  var _useState = (0, _react.useState)(_services.PostService.fetchPosts()),
-      _useState2 = _slicedToArray(_useState, 2),
-      posts = _useState2[0],
-      setPosts = _useState2[1];
-
-  var loadPost = function loadPost() {
-    return setPosts(_services.PostService.fetchPosts());
-  };
-
-  var validateAuth = (0, _react.useCallback)(function () {
-    if (!writer) throw new Error('로그인 후 이용해주세요');
-  }, [writer]);
-  var addPost = (0, _react.useCallback)(function (contents) {
-    validateAuth();
-
-    _services.PostService.addPost({
-      contents: contents,
-      writer: writer
-    });
-
-    loadPost();
-  }, [writer]);
-  var addComment = (0, _react.useCallback)(function (post, contents) {
-    validateAuth();
-
-    _services.PostService.addComment(post, {
-      contents: contents,
-      writer: writer
-    });
-
-    loadPost();
-  }, [writer]);
-  var toggleLike = (0, _react.useCallback)(function (post) {
-    validateAuth();
-
-    _services.PostService.toggleLike(post);
-
-    loadPost();
-  }, []);
-  var handleFormSubmit = (0, _react.useCallback)(function (event, callback) {
-    event.preventDefault();
-    callback();
-    event.target.reset();
-  }, []);
-  return {
-    posts: posts,
-    addPost: addPost,
-    addComment: addComment,
-    toggleLike: toggleLike,
-    handleFormSubmit: handleFormSubmit
-  };
-};
-
-exports.usePosts = usePosts;
-},{"react":"node_modules/react/index.js","../services":"src/services/index.js","./useAuth":"src/hooks/useAuth.js"}],"src/hooks/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _usePosts = require("./usePosts");
-
-Object.keys(_usePosts).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _usePosts[key];
-    }
-  });
-});
-
-var _useAuth = require("./useAuth");
-
-Object.keys(_useAuth).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _useAuth[key];
-    }
-  });
-});
-},{"./usePosts":"src/hooks/usePosts.js","./useAuth":"src/hooks/useAuth.js"}],"src/App.js":[function(require,module,exports) {
+},{"./DefaultLayout":"src/layouts/DefaultLayout.js","./PublicLayout":"src/layouts/PublicLayout.js"}],"src/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34627,57 +39595,39 @@ var _react = _interopRequireDefault(require("react"));
 
 var _pages = require("./pages");
 
-var _reactRouterDom = require("react-router-dom");
+var _reactRouter = require("react-router");
+
+var _connectedReactRouter = require("connected-react-router");
 
 var _layouts = require("./layouts");
 
-var _hooks = require("./hooks");
+var _configureStore = require("./data/configureStore");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  var _useAuth = (0, _hooks.useAuth)(),
-      user = _useAuth.user,
-      handleSignIn = _useAuth.signIn,
-      handleSignUp = _useAuth.signUp,
-      handleRemoveAuth = _useAuth.removeAuth;
-
-  var _usePosts = (0, _hooks.usePosts)(user),
-      posts = _usePosts.posts,
-      handleAddPost = _usePosts.addPost,
-      handleAddComment = _usePosts.addComment,
-      handleToggleLike = _usePosts.toggleLike,
-      handleFormSubmit = _usePosts.handleFormSubmit;
-
-  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_layouts.PublicLayout, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_connectedReactRouter.ConnectedRouter, {
+    history: _configureStore.history
+  }, /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouter.Switch, null, /*#__PURE__*/_react.default.createElement(_layouts.PublicLayout, {
     path: "/login",
-    onSignIn: handleSignIn,
     component: _pages.SignIn
   }), /*#__PURE__*/_react.default.createElement(_layouts.PublicLayout, {
     path: "/signup",
-    onSignUp: handleSignUp,
     component: _pages.SignUp
   }), /*#__PURE__*/_react.default.createElement(_layouts.DefaultLayout, {
     path: "/",
-    user: user,
-    onRemoveAuth: handleRemoveAuth,
-    posts: posts,
-    onAddPost: handleAddPost,
-    onAddComment: handleAddComment,
-    onToggleLike: handleToggleLike,
-    onFormSubmit: handleFormSubmit,
     component: _pages.Home
-  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Redirect, {
+  }), /*#__PURE__*/_react.default.createElement(_reactRouter.Redirect, {
     path: "*",
     to: "/"
-  })), /*#__PURE__*/_react.default.createElement(_style.default, {
+  })))), /*#__PURE__*/_react.default.createElement(_style.default, {
     id: "2426259578"
   }, ["*{box-sizing:border-box;}", "html,body{font-family:Dotum,'\uB9D1\uC740 \uACE0\uB515','roboto','Helvetica Neue',Helvetica,Arial,'\uB9D1\uC740 \uACE0\uB515',malgun gothic, '\uB3CB\uC6C0',Dotum,sans-serif;color:#202b3d;background-color:#e9eaed;font-size:12px;font-weight:400;line-height:1.5;}", "body{padding:100px 0;}"]));
 };
 
 var _default = App;
 exports.default = _default;
-},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","./pages":"src/pages/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./layouts":"src/layouts/index.js","./hooks":"src/hooks/index.js"}],"node_modules/dayjs/plugin/relativeTime.js":[function(require,module,exports) {
+},{"styled-jsx/style":"node_modules/styled-jsx/style.js","react":"node_modules/react/index.js","./pages":"src/pages/index.js","react-router":"node_modules/react-router/esm/react-router.js","connected-react-router":"node_modules/connected-react-router/esm/index.js","./layouts":"src/layouts/index.js","./data/configureStore":"src/data/configureStore.js"}],"node_modules/dayjs/plugin/relativeTime.js":[function(require,module,exports) {
 var define;
 !function(r,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):r.dayjs_plugin_relativeTime=t()}(this,function(){"use strict";return function(r,t,e){r=r||{};var n=t.prototype,o={future:"in %s",past:"%s ago",s:"a few seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"};e.en.relativeTime=o;var d=function(t,n,d,i){for(var u,a,s,f=d.$locale().relativeTime||o,l=r.thresholds||[{l:"s",r:44,d:"second"},{l:"m",r:89},{l:"mm",r:44,d:"minute"},{l:"h",r:89},{l:"hh",r:21,d:"hour"},{l:"d",r:35},{l:"dd",r:25,d:"day"},{l:"M",r:45},{l:"MM",r:10,d:"month"},{l:"y",r:17},{l:"yy",d:"year"}],h=l.length,m=0;m<h;m+=1){var c=l[m];c.d&&(u=i?e(t).diff(d,c.d,!0):d.diff(t,c.d,!0));var y=(r.rounding||Math.round)(Math.abs(u));if(s=u>0,y<=c.r||!c.r){y<=1&&m>0&&(c=l[m-1]);var p=f[c.l];a="string"==typeof p?p.replace("%d",y):p(y,n,c.l,s);break}}return n?a:(s?f.future:f.past).replace("%s",a)};n.to=function(r,t){return d(r,t,this,!0)},n.from=function(r,t){return d(r,t,this)};var i=function(r){return r.$u?e.utc():e()};n.toNow=function(r){return this.to(i(this),r)},n.fromNow=function(r){return this.from(i(this),r)}}});
 
@@ -34700,14 +39650,23 @@ var _relativeTime = _interopRequireDefault(require("dayjs/plugin/relativeTime"))
 
 require("dayjs/locale/ko");
 
+var _reactRedux = require("react-redux");
+
+var _configureStore2 = require("./data/configureStore");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _dayjs.default.locale('ko');
 
 _dayjs.default.extend(_relativeTime.default);
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_App.default, null), document.getElementById('root'));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"src/App.js","dayjs":"node_modules/dayjs/dayjs.min.js","dayjs/plugin/relativeTime":"node_modules/dayjs/plugin/relativeTime.js","dayjs/locale/ko":"node_modules/dayjs/locale/ko.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var _configureStore = (0, _configureStore2.configureStore)(),
+    store = _configureStore.store;
+
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_reactRedux.Provider, {
+  store: store
+}, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById('root'));
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./App":"src/App.js","dayjs":"node_modules/dayjs/dayjs.min.js","dayjs/plugin/relativeTime":"node_modules/dayjs/plugin/relativeTime.js","dayjs/locale/ko":"node_modules/dayjs/locale/ko.js","react-redux":"node_modules/react-redux/es/index.js","./data/configureStore":"src/data/configureStore.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -34735,7 +39694,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52473" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61711" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
