@@ -33,6 +33,7 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
+    "reselect": "^4.0.0",
     "styled-jsx": "^3.3.0"
   }
 }
