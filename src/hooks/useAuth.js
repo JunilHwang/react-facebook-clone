@@ -1,15 +1,17 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { userService } from '../services';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuth } from '../data/users/selectors';
+import { usersActions } from '../data/rootActions';
 
 export const useAuth = () => {
-  const [user, setUser] = useState(userService.getAuth());
-
-  const reloadAuth = (user) => setUser(user);
+  const auth = useSelector(getAuth);
+  const dispatch = useDispatch();
 
   const signIn = useCallback((userInfo) => {
     const user = userService.signIn(userInfo);
-    if (user) reloadAuth(user);
-    return user;
+    if (user) dispatch(usersActions.fetchAuth());
+    return !!user;
   }, []);
 
   const signUp = useCallback((userInfo) => {
@@ -17,9 +19,8 @@ export const useAuth = () => {
   }, []);
 
   const removeAuth = useCallback(() => {
-    userService.removeAuth();
-    reloadAuth(null);
+    dispatch(usersActions.removeAuth());
   }, []);
 
-  return { user, signIn, signUp, removeAuth };
+  return { auth, signIn, signUp, removeAuth };
 };

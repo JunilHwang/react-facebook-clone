@@ -1,11 +1,10 @@
 import React, { useCallback, useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { history } from '../../data/configureStore';
 import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '../../layouts/PublicLayout';
 import css from 'styled-jsx/css';
 
-const SignIn = ({ onSignIn }) => {
-  const history = useHistory();
-
+const SignIn = () => {
   const $email = useRef();
   const $password = useRef();
 

@@ -1,4 +1,4 @@
 import { createActions } from 'redux-actions';
-import { FETCH_AUTH } from './actionTypes';
+import {FETCH_AUTH, REMOVE_AUTH} from './actionTypes';
 
-export const { fetchAuth } = createActions(FETCH_AUTH);
+export const { fetchAuth, removeAuth } = createActions(FETCH_AUTH, REMOVE_AUTH);
