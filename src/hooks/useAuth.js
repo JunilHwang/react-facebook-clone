@@ -22,5 +22,9 @@ export const useAuth = () => {
     dispatch(usersActions.removeAuth());
   }, []);
 
-  return { auth, signIn, signUp, removeAuth };
+  const validateAuth = useCallback(() => {
+    if (!auth) throw new Error('로그인 후 이용해주세요');
+  }, [auth]);
+
+  return { auth, signIn, signUp, removeAuth, validateAuth };
 };
