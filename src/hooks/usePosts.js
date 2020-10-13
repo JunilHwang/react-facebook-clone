@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from 'react';
-import {useSelector} from "react-redux";
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAllPostsOrderByCreateAt } from '../data/posts/selectors';
+import { postsActions } from '../data/rootActions';
 
 export const usePosts = (writer) => {
-  const posts = useSelector()
-
-  const loadPost = useCallback(() => setPosts(PostService.fetchPosts()), [posts]);
+  const posts = useSelector(selectAllPostsOrderByCreateAt);
+  const dispatch = useDispatch();
 
   const validateAuth = useCallback(() => {
     if (!writer) throw new Error('로그인 후 이용해주세요');
@@ -13,17 +14,7 @@ export const usePosts = (writer) => {
   const addPost = useCallback(
     (contents) => {
       validateAuth();
-      PostService.addPost({ contents, writer });
-      loadPost();
-    },
-    [writer]
-  );
-
-  const addComment = useCallback(
-    (post, contents) => {
-      validateAuth();
-      PostService.addComment(post, { contents, writer });
-      loadPost();
+      dispatch(postsActions.addPost({ contents }));
     },
     [writer]
   );
@@ -31,8 +22,7 @@ export const usePosts = (writer) => {
   const toggleLike = useCallback(
     (post) => {
       validateAuth();
-      PostService.toggleLike(post);
-      loadPost();
+      dispatch(postsActions.togglePostLike(post));
     },
     [writer]
   );
@@ -43,5 +33,5 @@ export const usePosts = (writer) => {
     event.target.reset();
   }, []);
 
-  return { posts, addPost, addComment, toggleLike, handleFormSubmit };
+  return { posts, addPost, toggleLike, handleFormSubmit };
 };

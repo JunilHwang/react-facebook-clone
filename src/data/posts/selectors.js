@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const allPosts = createSelector(
-  (state) => state.posts,
-  ({ entries, ids }) => ids.map((seq) => entries[seq]).sort((a, b) => b.createAt - a.createAt)
+export const selectAllPosts = (state) => state.posts;
+export const selectAllPostsOrderByCreateAt = createSelector(selectAllPosts, ({ entries, ids }) =>
+  ids.map((seq) => entries[seq]).sort((a, b) => b.createAt - a.createAt)
 );
