@@ -4,8 +4,7 @@ import { useAuth, useForm } from '../../../hooks';
 
 const PostForm = ({ onAddPost }) => {
   const contentsRef = useRef();
-  const { handleFormSubmit } = useForm();
-  const [formHeight, setFormHeight] = useState(100);
+  const { handleFormSubmit } = useForm(contentsRef);
 
   const handlePostSubmit = useCallback(
     (event) => {
@@ -22,19 +21,6 @@ const PostForm = ({ onAddPost }) => {
     [onAddPost, handleFormSubmit]
   );
 
-  useLayoutEffect(() => {
-    const handleContentInput = () => {
-      const scrollHeight = contentsRef.current.scrollHeight;
-      if (scrollHeight !== formHeight) {
-        setFormHeight(scrollHeight);
-      }
-    };
-    contentsRef.current.addEventListener('input', handleContentInput);
-    return () => {
-      contentsRef.current.removeEventListener('input', handleContentInput);
-    };
-  }, [contentsRef]);
-
   return (
     <>
       <form onSubmit={handlePostSubmit}>
@@ -42,7 +28,6 @@ const PostForm = ({ onAddPost }) => {
           className="form-control input-lg"
           placeholder="무슨 생각을 하고 계신가요?"
           spellCheck="false"
-          style={{ height: formHeight + 'px' }}
           ref={contentsRef}
         />
         <button type="submit" className="btn btn-primary">
