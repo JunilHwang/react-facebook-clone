@@ -24,7 +24,7 @@ const NavItems = () => {
         <NavItem to="/signup">회원가입</NavItem>
       </Conditional>
       <Conditional condition={auth}>
-        <NavItem to={`/user/${seq}`}>
+        <NavItem to={`/?writer=${seq}`}>
           <ProfileImage src={profileImageUrl} />
           {name}
         </NavItem>
