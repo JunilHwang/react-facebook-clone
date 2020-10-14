@@ -3,6 +3,7 @@ import css from 'styled-jsx/css';
 import { CommentForm, Comments } from '../comment';
 import dayjs from 'dayjs';
 import { useComments } from '../../../hooks';
+import { Link } from 'react-router-dom';
 
 const Post = ({ post, onToggleLike }) => {
   const { seq, writer, contents, createAt, likes, likesOfMe } = post;
@@ -25,7 +26,9 @@ const Post = ({ post, onToggleLike }) => {
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{writer.name}</h5>
+        <h5 className="card-title">
+          <Link to={`./?writer=${writer.seq}`}>{writer.name}</Link>
+        </h5>
         <h6 className="card-subtitle text-muted">{fromNow}</h6>
         <p className="card-text">{contents}</p>
         <hr />

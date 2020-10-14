@@ -1,13 +1,16 @@
 import React from 'react';
 import css from 'styled-jsx/css';
 import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 
 const CommentItem = ({ writer, createAt, contents }) => {
   const fromNow = dayjs(createAt).from(Date.now());
   return (
     <li className="comment">
       <div className="comment-info">
-        <h6 className="comment-writer">{writer.name}</h6>
+        <h6 className="comment-writer">
+          <Link to={`./?writer=${writer.seq}`}>{writer.name}</Link>
+        </h6>
         <div className="comment-datetime">{fromNow}</div>
       </div>
       <p className="comment-text">{contents}</p>
