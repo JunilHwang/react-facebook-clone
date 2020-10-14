@@ -4,7 +4,7 @@ import { useForm } from '../../../hooks';
 
 const CommentForm = ({ onAddComment }) => {
   const $content = useRef(null);
-  const { handleFormSubmit } = useForm();
+  const { handleFormSubmit } = useForm($content);
 
   const handleCommentSubmit = useCallback(
     (event) => {
