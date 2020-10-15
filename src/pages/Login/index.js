@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+function Login() {
   return (
     <div className="login container">
       <h1 className="text-center">로그인</h1>
@@ -46,6 +46,6 @@ const Login = () => {
       `}</style>
     </div>
   );
-};
+}
 
 export default Login;

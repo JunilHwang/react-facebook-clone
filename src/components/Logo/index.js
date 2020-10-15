@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomeLink = () => {
   return (
-    <a className="navbar-brand" href="/">
+    <Link className="navbar-brand" to="/">
       <i className="fab fa-facebook-square" />
 
       <style jsx>{`
-        .navbar-brand i.fa-facebook-square {
+        :global(.navbar-brand) i.fa-facebook-square {
           font-size: 27px;
           color: white;
         }
       `}</style>
-    </a>
+    </Link>
   );
 };
 

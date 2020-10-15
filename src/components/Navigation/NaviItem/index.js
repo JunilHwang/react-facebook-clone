@@ -1,6 +1,6 @@
 import React from 'react';
-// import toggle from '../../../hocs/toggle';
-import toggle from '@/hocs/toggle';
+import toggle from '/hocs/toggle';
+import { Link } from 'react-router-dom';
 
 const NaviItem = ({ to, text, action }) => {
   const onClickAnchor = (e) => {
@@ -13,9 +13,9 @@ const NaviItem = ({ to, text, action }) => {
 
   return (
     <li className="nav-item">
-      <a href={to} onClick={onClickAnchor} className="nav-link">
+      <Link to={to} onClick={onClickAnchor} className="nav-link">
         {text}
-      </a>
+      </Link>
     </li>
   );
 };

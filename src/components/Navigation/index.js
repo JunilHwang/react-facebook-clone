@@ -1,7 +1,7 @@
-import React from 'react';
-import Logo from '../../components/Logo';
-import Profile from '../../components/Profile';
-import NaviItem from './NaviItem';
+import React from "react";
+import Logo from "/components/Logo";
+import Profile from "/components/Profile";
+import NaviItem from "./NaviItem";
 
 const Navigation = ({ user, onLogout }) => {
   return (

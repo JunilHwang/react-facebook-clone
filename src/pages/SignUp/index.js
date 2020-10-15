@@ -1,26 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import EmailPasswordForm from '@/pages/SignUp/EmailPasswordForm';
+import ProfileForm from '@/pages/SignUp/ProfileForm';
+import { STEPS } from '@/pages/SignUp/helpers';
 
-const SignUp = () => {
+const renderForm = (step, setStep) => {
+  switch (step) {
+    case STEPS.EMAIL_PASSWORD:
+      return <EmailPasswordForm setStep={setStep} />;
+    case STEPS.PROFILE:
+      return <ProfileForm setStep={setStep} />;
+  }
+};
+
+function SignUp() {
+  const [step, setStep] = useState(STEPS.EMAIL_PASSWORD);
+
   return (
     <div className="signup container">
       <h1 className="text-center">계정 만들기</h1>
-      <form>
-        <input type="email" className="form-control" placeholder="Email" required />
-        <input type="text" className="form-control" placeholder="Your Name" required />
-        <input type="file" className="form-control" placeholder="Profile" />
-        <input type="password" className="form-control" placeholder="Password" minLength="5" required />
-        <input type="password" className="form-control" placeholder="Repeat your password" required />
-        <button className="btn btn-lg btn-primary btn-block" type="submit">
-          가입하기
-        </button>
-      </form>
-      <p className="text-help text-center">
-        이미 계정이 있으신가요?{' '}
-        <Link className="text-center login-here" to="/login">
-          로그인 하기
-        </Link>
-      </p>
+      {renderForm(step, setStep)}
       <style jsx global>{`
         .signup form {
           max-width: 320px;
@@ -40,6 +38,9 @@ const SignUp = () => {
           border-color: unset;
           margin-top: 10px;
         }
+        .signup button.btn-secondary {
+          background-color: #566888;
+        }
         .signup .text-help {
           margin-top: 10px;
         }
@@ -50,6 +51,6 @@ const SignUp = () => {
       `}</style>
     </div>
   );
-};
+}
 
 export default SignUp;

@@ -1,13 +1,14 @@
 import React from 'react';
-import toggle from '../../hocs/toggle';
+import toggle from '/hocs/toggle';
+import { Link } from 'react-router-dom';
 
 const Profile = (props) => {
   const { profileImageUrl, name } = props.user;
   return (
     <li className="nav-item">
-      <a href={'/u/' + props.user.seq} className="nav-link">
+      <Link to={'/u/' + props.user.name} className="nav-link">
         {profileImageUrl ? <img src={profileImageUrl} alt="" /> : false} {name}
-      </a>
+      </Link>
       <style jsx>{`
         .nav-item img {
           width: 25px;

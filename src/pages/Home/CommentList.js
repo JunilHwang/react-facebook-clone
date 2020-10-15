@@ -1,13 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Comment from './Comment';
+import * as selectors from '@/data/rootSelectors';
 
-const CommentList = (props) => {
-  const { commentList = [] } = props;
+const CommentList = ({ postSeq }) => {
+  const comments = useSelector(selectors.comments.getCommentsByPost(postSeq));
 
   return (
     <ul className="comment-list">
-      {commentList.map((comment) => (
+      {comments.map((comment) => (
         <Comment key={comment.seq} comment={comment} />
       ))}
       <style jsx global>{`
@@ -18,10 +19,6 @@ const CommentList = (props) => {
       `}</style>
     </ul>
   );
-};
-
-CommentList.propTypes = {
-  commentList: PropTypes.arrayOf(PropTypes.shape(Comment.propTypes)),
 };
 
 export default CommentList;

@@ -1,10 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import PropTypes from 'prop-types';
 
 const Comment = ({ comment }) => {
-  const { createdAt, writer, contents } = comment;
-  const datetime = moment(createdAt).fromNow();
+  const { createAt, writer, contents } = comment;
+  const datetime = moment(createAt).fromNow();
 
   return (
     <li className="comment">
@@ -29,15 +28,6 @@ const Comment = ({ comment }) => {
       `}</style>
     </li>
   );
-};
-
-Comment.propTypes = {
-  createdAt: PropTypes.object,
-  writer: PropTypes.shape({
-    name: PropTypes.string,
-    profileImageUrl: PropTypes.string,
-  }),
-  contents: PropTypes.string,
 };
 
 export default Comment;

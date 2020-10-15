@@ -3,8 +3,8 @@
 }
 html,
 body {
-  font-family: Dotum, '맑은 고딕', 'roboto', 'Helvetica Neue', Helvetica, Arial, '맑은 고딕',
-      malgun gothic, '돋움', Dotum, sans-serif;
+  font-family: Dotum, '맑은 고딕', 'roboto', 'Helvetica Neue', Helvetica, Arial, '맑은 고딕', malgun gothic, '돋움',
+    Dotum, sans-serif;
   color: #202b3d;
   background-color: #e9eaed;
   font-size: 12px;

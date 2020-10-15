@@ -1,50 +1,71 @@
 import React from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import moment from 'moment';
-import PropTypes from 'prop-types';
+import * as actions from '@/data/rootActions';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
+import { useDispatch, useSelector } from 'react-redux';
+import * as selectors from '@/data/rootSelectors';
 
-const Post = ({ post, onLikeClicked, onCommentSubmit }) => {
+const Post = ({ post }) => {
+  const dispatch = useDispatch();
   const {
     seq,
-    createdAt,
-    writer: { name },
+    createAt,
+    writer: { name, profileImageUrl },
     contents,
     likes,
     likesOfMe,
-    commentList,
   } = post;
-  const datetime = moment(createdAt).fromNow();
-  const handleClickLikeButton = (e) => {
+  const commentsCount = useSelector(selectors.comments.getCommentsCount(seq));
+  const datetime = moment(createAt).fromNow();
+  const likeHandler = (e) => {
     e.preventDefault();
-    onLikeClicked(post.seq);
+    dispatch(actions.posts.likePost(seq));
   };
+
+  const handleClickUser = () => dispatch(actions.router.push(`/u/${name}`));
 
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{name}</h5>
+        <h5 className="card-title">
+          {/*<Link to={`/u/${name}`}>*/}
+          {/*  <img src={profileImageUrl} alt="" />*/}
+          {/*  {name}*/}
+          {/*</Link>*/}
+          <span className="user-profile" onClick={handleClickUser}>
+            <img src={profileImageUrl} alt="" />
+            {name}
+          </span>
+        </h5>
         <h6 className="card-subtitle text-muted">{datetime}</h6>
         <p className="card-text">{contents}</p>
         <hr />
         <div className="card-info">
-          <button type="button" className="thumb-count" onClick={handleClickLikeButton}>
+          <button type="button" className="thumb-count" onClick={likeHandler}>
             <i
-              className={classnames('far fa-thumbs-up', {
+              className={classNames('far fa-thumbs-up', {
                 on: likesOfMe,
               })}
             />{' '}
             {likes} 개
           </button>
           <span className="comment-count">
-            <i className="far fa-comment-alt" /> {commentList.length} 개
+            <i className="far fa-comment-alt" /> {commentsCount} 개
           </span>
         </div>
       </div>
-      <CommentList commentList={commentList} />
-      <CommentForm postSeq={seq} onCommentSubmit={onCommentSubmit} />
+      <CommentList postSeq={seq} />
+      <CommentForm postSeq={seq} />
       <style jsx global>{`
+        .user-profile {
+          color: rgb(59, 89, 153);
+        }
+        .user-profile:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
         .card {
           padding: 0;
           margin-top: 50px;
@@ -82,24 +103,16 @@ const Post = ({ post, onLikeClicked, onCommentSubmit }) => {
         .card .card-info .thumb-count .on {
           color: #007bff;
         }
+        img {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 100%;
+          overflow: hidden;
+          margin-right: 5px;
+        }
       `}</style>
     </div>
   );
-};
-
-Post.propTypes = {
-  onLikeClicked: PropTypes.func,
-  onCommentSubmit: PropTypes.func,
-  post: PropTypes.shape({
-    commentList: CommentList.propTypes.commentList,
-    comments: PropTypes.number,
-    likes: PropTypes.number,
-    likesOfMe: PropTypes.bool,
-    seq: PropTypes.number,
-    writer: PropTypes.shape({
-      name: PropTypes.string,
-    }),
-  }),
 };
 
 export default Post;
