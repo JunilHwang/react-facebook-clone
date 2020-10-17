@@ -1,3 +1,5 @@
-export * from './users/actionTypes';
-export * from './posts/actionTypes';
-export * from './comments/actionTypes';
+import * as postsActionTypes  from "./posts/actionTypes";
+import * as commentsActionTypes  from "./comments/actionTypes";
+import * as usersActionTypes  from "./users/actionTypes";
+
+export { postsActionTypes, commentsActionTypes, usersActionTypes };
