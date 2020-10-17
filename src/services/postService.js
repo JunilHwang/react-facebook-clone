@@ -1,26 +1,15 @@
-import { postRepository } from '@/repositories';
+import { socialAdapter } from '@/adatpers';
 
 export default Object.freeze({
-  fetchPosts() {
-    return postRepository.findAll();
+  fetchPostsOfUser(userId) {
+    return socialAdapter.get(`/user/${userId}/post/list`);
   },
 
-  addPost(post) {
-    postRepository.add({
-      ...post,
-      createAt: Date.now(),
-      likes: 0,
-      likesOfMe: false,
-    });
+  addPost(userId, contents) {
+    return socialAdapter.post(`/post`, { contents });
   },
 
-  updatePost(post) {
-    postRepository.update(post);
-  },
-
-  toggleLike(post) {
-    const likesOfMe = !post.likesOfMe;
-    const likes = post.likes + (likesOfMe ? 1 : -1);
-    postRepository.update({ ...post, likesOfMe, likes });
+  toggleLike(userId, postId) {
+    return socialAdapter.patch(`/user/${userId}/post/${postId}/like`);
   },
 });
