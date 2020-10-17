@@ -1,16 +1,11 @@
-import { FETCH_AUTH, REMOVE_AUTH } from './actionTypes';
-import { userService } from '../../services';
+import {SET_AUTH} from "@/data/users/actionTypes";
 
-export default (state, { type }) => {
+export default (state, { type, payload }) => {
   switch (type) {
-    case FETCH_AUTH:
+    case SET_AUTH:
       return {
-        auth: userService.getAuth(),
-      };
-    case REMOVE_AUTH:
-      userService.removeAuth();
-      return {
-        auth: null,
+        ...state,
+        auth: payload
       };
     default:
       return state;
