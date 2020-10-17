@@ -1,36 +1,53 @@
-import React, { useEffect, useMemo } from 'react';
-import Post from './Post';
-import PostForm from './PostForm';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '@/data/rootActions';
-import * as selectors from '@/data/rootSelectors';
+import React from 'react';
+import css from 'styled-jsx/css';
+import { PostForm, Post } from './post';
+import { usePosts } from '../../hooks';
+import Conditional from '../../hocs/Conditional';
+import { useSelector } from 'react-redux';
+import { selectWriterOfQuery } from '../../data/rootSelectors';
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const postsState = useSelector(selectors.posts.getPosts);
-
-  const posts = useMemo(() => postsState.ids.map((id) => postsState.entities[id]), [
-    postsState.entities,
-    postsState.ids,
-  ]);
-
-  const postList = useMemo(() => posts.map((post) => <Post key={post.seq} post={post} />), [posts]);
-
-  useEffect(() => {
-    dispatch(actions.posts.getPosts());
-  }, []);
+  const selectedWriter = useSelector(selectWriterOfQuery);
+  const { posts, toggleLike: handleToggleLike, addPost: handleAddPost } = usePosts();
 
   return (
     <div className="posts container">
-      <PostForm />
-      {postList}
-      <style jsx>{`
-        .container {
-          max-width: 600px;
-        }
-      `}</style>
+      <Conditional condition={!selectedWriter}>
+        <PostForm onAddPost={handleAddPost} />
+      </Conditional>
+      {posts.map((post) => (
+        <Post key={`post_${post.seq}`} post={post} onToggleLike={handleToggleLike} />
+      ))}
+      <style jsx>{HomeStyle}</style>
     </div>
   );
 };
 
-export default Home;
+const HomeStyle = css`
+  .container {
+    max-width: 600px;
+  }
+
+  .comment-form {
+    margin: 20px;
+  }
+
+  .comment-form > textarea.form-control {
+    min-height: 20px;
+    line-height: 20px;
+    border-radius: 0.5rem;
+    resize: none;
+  }
+
+  .comment-form > button.btn {
+    float: right;
+    margin-bottom: 0;
+    margin-top: 16px;
+    background-color: #3b5999;
+    color: #fffffe;
+    border-color: unset;
+    font-weight: 800;
+  }
+`;
+
+export default React.memo(Home);

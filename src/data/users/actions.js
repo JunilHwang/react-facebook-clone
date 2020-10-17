@@ -1,7 +1,4 @@
-import * as ActionTypes from '@/data/rootActionTypes';
+import { createActions } from 'redux-actions';
+import {FETCH_AUTH, REMOVE_AUTH} from './actionTypes';
 
-export function logout() {
-  return {
-    type: ActionTypes.RESET_AUTH,
-  };
-}
+export const { fetchAuth, removeAuth } = createActions(FETCH_AUTH, REMOVE_AUTH);

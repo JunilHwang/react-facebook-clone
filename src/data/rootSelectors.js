@@ -1,5 +1,11 @@
-import * as posts from './posts/selectors';
-import * as comments from './comments/selectors';
-import * as users from './users/selectors';
+import { createSelector } from 'reselect';
 
-export { comments, posts, users };
+export * from './posts/selectors';
+export * from './comments/selectors';
+export * from './users/selectors';
+
+export const selectRouter = (state) => state.router;
+export const selectWriterOfQuery = createSelector(
+  selectRouter,
+  ({ location: { query } }) => query.writer !== undefined
+);

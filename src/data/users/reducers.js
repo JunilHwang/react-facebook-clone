@@ -1,20 +1,20 @@
-import * as ActionTypes from '@/data/rootActionTypes';
+import { FETCH_AUTH, REMOVE_AUTH } from './actionTypes';
+import { userService } from '../../services';
 
-const initialState = {
-  name: 'harry',
-  profileImageUrl:
-    'https://s3.ap-northeast-2.amazonaws.com/grepp-cloudfront/programmers_imgs/learn/course9872/instructor_harry.png',
-};
-
-export default function user(state = initialState, action = {}) {
-  switch (action.type) {
-    case ActionTypes.SET_AUTH:
-      return action.user;
-
-    case ActionTypes.RESET_AUTH:
-      return null;
-
+export default (state, { type }) => {
+  switch (type) {
+    case FETCH_AUTH:
+      return {
+        auth: userService.getAuth(),
+      };
+    case REMOVE_AUTH:
+      userService.removeAuth();
+      return {
+        auth: null,
+      };
     default:
-      return state;
+      return {
+        auth: userService.getAuth(),
+      };
   }
-}
+};

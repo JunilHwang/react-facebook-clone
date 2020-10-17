@@ -1,15 +1,14 @@
-import { connectRouter } from 'connected-react-router';
 import { combineReducers } from 'redux';
-import user from './users/reducers';
-import posts from './posts/reducers';
-import comments from './comments/reducers';
+import { connectRouter } from 'connected-react-router';
 
-const createRootReducer = (history) =>
+import postsReducer from './posts/reducers';
+import commentsReducer from './comments/reducers';
+import usersReducer from './users/reducers';
+
+export const createRootReducer = (history) =>
   combineReducers({
-    comments,
-    posts,
     router: connectRouter(history),
-    user,
+    posts: postsReducer,
+    comments: commentsReducer,
+    users: usersReducer,
   });
-
-export { createRootReducer };

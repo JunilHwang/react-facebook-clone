@@ -1,8 +1,11 @@
-export const getComments = (state) => state.comments;
+import { createSelector } from 'reselect';
 
-export const getCommentsByPost = (postSeq) => (state) => state.comments[postSeq] || [];
-
-export const getCommentsCount = (postId) => (state) => {
-  const comments = state.comments[postId];
-  return comments ? comments.length : 0;
-};
+export const selectAllComments = (state) => state.comments;
+export const selectCommentsOfPost = (postSeq) =>
+  createSelector(selectAllComments, ({ entries, ids }) =>
+    ids.reduce((comments, seq) => {
+      const comment = entries[seq];
+      if (comment.postSeq === postSeq) comments.push(comment);
+      return comments;
+    }, [])
+  );

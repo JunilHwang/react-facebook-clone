@@ -1,28 +1,43 @@
-import React, { Component } from 'react';
-import Home from '/pages/Home';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import DefaultLayout from '/layouts/DefaultLayout';
-import PublicLayout from '/layouts/PublicLayout';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import User from './pages/User';
+import React from 'react';
+import { Home, SignIn, SignUp } from './pages';
+import { Redirect, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
+import { DefaultLayout, PublicLayout } from './layouts';
+import { history } from './data/configureStore';
 
-class App extends Component {
-  render() {
-    const { history } = this.props;
-
-    return (
+const App = () => {
+  return (
+    <>
       <ConnectedRouter history={history}>
-        <Switch>
-          <PublicLayout path="/login" component={Login} />
-          <PublicLayout path="/signup" component={SignUp} />
-          <DefaultLayout path="/u/:name" component={User} />
-          <DefaultLayout path="/" component={Home} />
-        </Switch>
+        <>
+          <Switch>
+            <PublicLayout path="/login" component={SignIn} />
+            <PublicLayout path="/signup" component={SignUp} />
+            <DefaultLayout path="/" component={Home} />
+            <Redirect path="*" to="/" />
+          </Switch>
+        </>
       </ConnectedRouter>
-    );
-  }
-}
+      <style jsx global>{`
+        * {
+          box-sizing: border-box;
+        }
+        html,
+        body {
+          font-family: Dotum, '맑은 고딕', 'roboto', 'Helvetica Neue', Helvetica, Arial, '맑은 고딕', malgun gothic,
+            '돋움', Dotum, sans-serif;
+          color: #202b3d;
+          background-color: #e9eaed;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 1.5;
+        }
+        body {
+          padding: 100px 0;
+        }
+      `}</style>
+    </>
+  );
+};
 
 export default App;
