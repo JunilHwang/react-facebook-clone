@@ -1,8 +1,8 @@
 import RestClient from './RestClient';
 
-export const adapter = new RestClient(
+export const socialAdapter = new RestClient(
   {
-    baseURL: 'http://15.164.170.69:8080/',
+    baseURL: 'http://15.164.170.69:8080/api',
   },
   ({ data: { error, response, success } }) => {
     if (!success) {
