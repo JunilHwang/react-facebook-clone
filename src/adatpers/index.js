@@ -1,5 +1,13 @@
-import axios from 'axios';
+import RestClient from './RestClient';
 
-const adapter = axios.create({
-  baseURL: 'http://15.164.170.69:8080/',
-});
+export const adapter = new RestClient(
+  {
+    baseURL: 'http://15.164.170.69:8080/',
+  },
+  ({ data: { error, response, success } }) => {
+    if (!success) {
+      throw new Error(error);
+    }
+    return response;
+  }
+);
