@@ -1,10 +1,10 @@
 import React from 'react';
 import css from 'styled-jsx/css';
 import { PostForm, Post } from './post';
-import { usePosts } from '../../hooks';
-import Conditional from '../../hocs/Conditional';
+import { usePosts } from '@/hooks';
+import Conditional from '@/hocs/Conditional';
 import { useSelector } from 'react-redux';
-import { selectWriterOfQuery } from '../../data/rootSelectors';
+import { selectWriterOfQuery } from '@/data/rootSelectors';
 
 const Home = () => {
   const selectedWriter = useSelector(selectWriterOfQuery);

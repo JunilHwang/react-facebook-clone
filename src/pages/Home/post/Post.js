@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import css from 'styled-jsx/css';
 import { CommentForm, Comments } from '../comment';
 import dayjs from 'dayjs';
-import { useComments } from '../../../hooks';
+import { useComments } from '@/hooks';
 import { Link } from 'react-router-dom';
 
 const Post = ({ post, onToggleLike }) => {

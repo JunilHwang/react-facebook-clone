@@ -1,4 +1,4 @@
-import { commentRepository } from '../repositories';
+import { commentRepository } from '@/repositories';
 
 export default Object.freeze({
   fetchComments() {

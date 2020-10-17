@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { buttonStyle, formStyle, linkStyle, textHelpStyle } from '../../layouts/PublicLayout';
 import css from 'styled-jsx/css';
-import { useAuth } from '../../hooks';
+import { useAuth } from '@/hooks';
 
 const defaultProfileImageUrl = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
 const fileReader = new FileReader();

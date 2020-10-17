@@ -1,4 +1,4 @@
-import { postRepository } from '../repositories';
+import { postRepository } from '@/repositories';
 
 export default Object.freeze({
   fetchPosts() {

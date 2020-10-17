@@ -1,5 +1,5 @@
 import { ADD_COMMENT } from './actionTypes';
-import { commentService } from '../../services';
+import { commentService } from '@/services';
 
 export default (state, { type, payload }) => {
   switch (type) {

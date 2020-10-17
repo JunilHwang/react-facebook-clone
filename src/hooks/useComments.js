@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectCommentsOfPost } from '../data/comments/selectors';
-import { commentsActions } from '../data/rootActions';
+import { selectCommentsOfPost } from '@/data/comments/selectors';
+import { commentsActions } from '@/data/rootActions';
 import { useAuth } from './useAuth';
 
 export const useComments = (postSeq) => {

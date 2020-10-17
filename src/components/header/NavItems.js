@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import NavItem from './NavItem';
 import ProfileImage from './ProfileImage';
-import Conditional from '../../hocs/Conditional';
-import { useAuth } from '../../hooks';
+import Conditional from '@/hocs/Conditional';
+import { useAuth } from '@/hooks';
 
 const NavItems = () => {
   const { auth, removeAuth } = useAuth();

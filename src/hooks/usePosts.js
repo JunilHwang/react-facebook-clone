@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectAllPostsOrderByCreateAt } from '../data/posts/selectors';
-import { postsActions } from '../data/rootActions';
+import { selectAllPostsOrderByCreateAt } from '@/data/posts/selectors';
+import { postsActions } from '@/data/rootActions';
 import { useAuth } from './useAuth';
 
 export const usePosts = () => {

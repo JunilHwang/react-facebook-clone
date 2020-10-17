@@ -1,6 +1,6 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
-import { useAuth, useForm } from '../../../hooks';
+import { useForm } from '@/hooks';
 
 const PostForm = ({ onAddPost }) => {
   const contentsRef = useRef();

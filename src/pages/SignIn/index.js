@@ -1,9 +1,10 @@
 import React, { useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { history } from '../../data/configureStore';
-import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '../../layouts/PublicLayout';
 import css from 'styled-jsx/css';
-import { useAuth } from '../../hooks';
+
+import { history } from '@/data/configureStore';
+import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '@/layouts/PublicLayout';
+import { useAuth } from '@/hooks';
 
 const SignIn = () => {
   const { signIn } = useAuth();

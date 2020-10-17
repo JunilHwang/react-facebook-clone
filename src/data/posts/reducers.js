@@ -1,5 +1,5 @@
 import { ADD_POST, TOGGLE_POST_LIKE } from './actionTypes';
-import { postService } from '../../services';
+import { postService } from '@/services';
 
 export default (state, { type, payload }) => {
   switch (type) {

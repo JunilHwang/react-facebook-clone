@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
-import { useForm } from '../../../hooks';
+import { useForm } from '@/hooks';
 
 const CommentForm = ({ onAddComment }) => {
   const $content = useRef(null);

@@ -1,5 +1,5 @@
-import { userRepository } from '../repositories';
-import { session } from '../storages';
+import { userRepository } from '@/repositories';
+import { session } from '@/storages';
 
 const KEY = 'auth';
 

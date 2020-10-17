@@ -1,4 +1,4 @@
-import { repository } from '../storages';
+import { repository } from '@/storages';
 
 export default class Repository {
   #key;
