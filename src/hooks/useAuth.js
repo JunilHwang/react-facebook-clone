@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-import { userService } from '../services';
+import { userService } from '@/services';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAuth } from '../data/users/selectors';
-import { usersActions } from '../data/rootActions';
+import { getAuth } from '@/data/users/selectors';
+import { usersActions } from '@/data/rootActions';
 
 export const useAuth = () => {
   const auth = useSelector(getAuth);
