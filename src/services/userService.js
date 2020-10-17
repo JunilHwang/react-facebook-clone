@@ -1,21 +1,29 @@
-import { userRepository } from '@/repositories';
 import { session } from '@/storages';
+import { socialAdapter } from '@/adatpers';
 
 const KEY = 'auth';
 
 export default Object.freeze({
-  signIn(userInfo) {
-    const user = userRepository.findByEmailAndPassword(userInfo);
-    if (user === null) return false;
-    const { password, ...auth } = user;
-    session.set(KEY, auth);
-    return auth;
+
+  // 로그인에 대한 API가 현재 없는 상태라서 로그인을 시도했을 때 /api/user/me를 받아오도록 임시로 처리
+  async signIn(userInfo) {
+    const user = await socialAdapter.get('/user/me');
+    session.set(KEY, user);
+    return user;
+  },
+
+  async validateExists(address) {
+    if (await socialAdapter.post('/user/', { address })) {
+      throw new Error('이미 가입된 회원의 이메일 주소입니다.');
+    }
+  },
+
+  fetchFreidns() {
+    return socialAdapter.get('/user/connections');
   },
 
   signUp(userInfo) {
-    const user = userRepository.findByEmail(userInfo.email);
-    if (user) throw new Error('이미 회원가입이 되어있는 사용자 정보입니다.');
-    userRepository.add(userInfo);
+    return socialAdapter.post('/user/join', userInfo);
   },
 
   getAuth() {
@@ -25,4 +33,5 @@ export default Object.freeze({
   removeAuth() {
     session.remove(KEY);
   },
+
 });
