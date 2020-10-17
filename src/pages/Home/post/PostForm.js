@@ -1,29 +1,23 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
-import { useForm } from '@/hooks';
+import { useAutoHeight } from '@/hooks';
+import {useFormHandler} from "@/hooks/useFormHandler";
 
 const PostForm = ({ onAddPost }) => {
-  const contentsRef = useRef();
-  const { handleFormSubmit } = useForm(contentsRef);
-
-  const handlePostSubmit = useCallback(
-    (event) => {
-      const callback = () => {
-        try {
-          onAddPost(contentsRef.current.value);
-          return true;
-        } catch (e) {
-          alert(e.message);
-        }
-      };
-      handleFormSubmit(event, callback);
-    },
-    [onAddPost, handleFormSubmit]
-  );
+  const contentsRef = useAutoHeight();
+  const addPost = useCallback(() => {
+    try {
+      onAddPost(contentsRef.current.value);
+      return true;
+    } catch (e) {
+      alert(e.message);
+    }
+  }, [onAddPost]);
+  const { handleFormSubmit } = useFormHandler(addPost);
 
   return (
     <>
-      <form onSubmit={handlePostSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <textarea
           className="form-control input-lg"
           placeholder="무슨 생각을 하고 계신가요?"

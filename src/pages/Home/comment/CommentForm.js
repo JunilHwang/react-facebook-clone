@@ -1,29 +1,25 @@
 import React, { useCallback, useRef } from 'react';
 import css from 'styled-jsx/css';
-import { useForm } from '@/hooks';
+import { useAutoHeight } from '@/hooks';
+import {useFormHandler} from "@/hooks/useFormHandler";
 
 const CommentForm = ({ onAddComment }) => {
-  const $content = useRef(null);
-  const { handleFormSubmit } = useForm($content);
-
-  const handleCommentSubmit = useCallback(
-    (event) => {
-      const callback = () => {
-        try {
-          onAddComment($content.current.value);
-          return true;
-        } catch (e) {
-          alert(e.message);
-        }
-      };
-      handleFormSubmit(event, callback);
+  const $content = useAutoHeight();
+  const addComment = useCallback(() => {
+      try {
+        onAddComment($content.current.value);
+        return true;
+      } catch (e) {
+        alert(e.message);
+      }
     },
-    [onAddComment, handleFormSubmit]
+    [onAddComment]
   );
+  const { handleFormSubmit } = useFormHandler(addComment);
 
   return (
     <>
-      <form className="comment-form" onSubmit={handleCommentSubmit}>
+      <form className="comment-form" onSubmit={handleFormSubmit}>
         <textarea
           ref={$content}
           className="form-control input-lg"
