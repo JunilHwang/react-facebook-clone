@@ -1,14 +1,11 @@
-import { commentRepository } from '@/repositories';
+import { socialAdapter } from '@/adatpers';
 
 export default Object.freeze({
-  fetchComments() {
-    return commentRepository.findAll();
+  fetchComments(userId, postId) {
+    return socialAdapter.get(`/user/${userId}/post/${postId}/comment/list`);
   },
 
-  addComment(comment) {
-    commentRepository.add({
-      ...comment,
-      createAt: Date.now(),
-    });
+  addComment(userId, postId, contents) {
+    return socialAdapter.post(`/user/${userId}/post/${postId}/comment`);
   },
 });
