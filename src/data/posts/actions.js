@@ -1,4 +1,4 @@
 import { createActions } from 'redux-actions';
-import { ADD_POST, TOGGLE_LIKE_POST } from './actionTypes';
+import { SET_POST, SET_POSTS } from './actionTypes';
 
-export const { addPost, togglePostLike } = createActions(ADD_POST, TOGGLE_LIKE_POST);
+export const { setPost, setPosts } = createActions(SET_POST, SET_POSTS);
