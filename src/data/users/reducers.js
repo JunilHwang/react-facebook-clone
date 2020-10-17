@@ -13,8 +13,6 @@ export default (state, { type }) => {
         auth: null,
       };
     default:
-      return {
-        auth: userService.getAuth(),
-      };
+      return state;
   }
 };

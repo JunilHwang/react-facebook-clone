@@ -10,6 +10,6 @@ export default (state, { type, payload }) => {
       postService.toggleLike(payload);
       return postService.fetchPosts();
     default:
-      return postService.fetchPosts();
+      return state;
   }
 };

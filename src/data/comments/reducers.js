@@ -7,6 +7,6 @@ export default (state, { type, payload }) => {
       commentService.addComment(payload);
       return commentService.fetchComments();
     default:
-      return commentService.fetchComments();
+      return state;
   }
 };
