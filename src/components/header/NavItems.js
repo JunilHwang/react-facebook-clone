@@ -3,6 +3,7 @@ import NavItem from './NavItem';
 import ProfileImage from './ProfileImage';
 import Conditional from '@/hocs/Conditional';
 import { useAuth } from '@/hooks';
+import { AuthMessage } from '@/constants';
 
 const defaultProfileImageURL = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
 
@@ -14,7 +15,7 @@ const NavItems = () => {
     (event) => {
       event.preventDefault();
       removeAuth();
-      alert('로그아웃 되었습니다.');
+      alert(AuthMessage.SIGN_OUT);
     },
     [removeAuth]
   );

@@ -7,6 +7,7 @@ import { history } from '@/data/configureStore';
 import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '@/layouts/PublicLayout';
 import { useAuth } from '@/hooks';
 import FormErrorMessage from '@/constants/FormErrorMessage';
+import {AuthMessage} from "@/constants";
 
 const initialValues = { email: '', password: '' };
 
@@ -22,7 +23,7 @@ const SignIn = () => {
     ({ email, password }) => {
       signIn({ email, password })
         .then(() => {
-          alert('로그인 되었습니다.');
+          alert(AuthMessage.SIGN_IN);
           history.push('/');
         })
         .catch((e) => {

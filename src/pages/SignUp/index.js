@@ -6,6 +6,7 @@ import ProfileForm from './ProfileForm';
 import { useAuth } from '@/hooks';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { AuthMessage } from '@/constants';
 
 const initUserInfo = {
   principal: '',
@@ -50,7 +51,7 @@ const SignUp = () => {
     formData.append('name', name);
     signUp(formData)
       .then(() => {
-        alert('회원가입이 완료되었습니다.');
+        alert(AuthMessage.SIGN_UP);
         setUserInfo(initUserInfo);
         history.push('/login');
       })

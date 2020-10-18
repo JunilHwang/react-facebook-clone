@@ -3,6 +3,7 @@ import { userService } from '@/services';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from '@/data/users/selectors';
 import { usersThunks } from '@/data/rootThunks';
+import { AuthErrorMessage } from '@/constants';
 
 export const useAuth = () => {
   const auth = useSelector(getAuth);
@@ -21,7 +22,7 @@ export const useAuth = () => {
   }, []);
 
   const validateAuth = useCallback(() => {
-    if (!auth) throw new Error('로그인 후 이용해주세요');
+    if (!auth) throw new Error(AuthErrorMessage.NONE_AUTH);
   }, [auth]);
 
   const ErrorWrapper = useCallback((msg) => <div style={{ color: '#d00', fontSize: '13px' }}>{msg}</div>, []);
