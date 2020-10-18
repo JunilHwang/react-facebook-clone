@@ -1,11 +1,11 @@
-import {SET_AUTH} from "@/data/users/actionTypes";
+import { SET_AUTH } from '@/data/users/actionTypes';
 
-export default (state, { type, payload }) => {
+export default (state = { auth: null }, { type, payload }) => {
   switch (type) {
     case SET_AUTH:
       return {
         ...state,
-        auth: payload
+        auth: payload,
       };
     default:
       return state;

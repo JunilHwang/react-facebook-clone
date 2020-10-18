@@ -1,6 +1,6 @@
 import { SET_COMMENT, SET_COMMENTS, SET_COMMENTS_OF_POST } from '@/data/comments/actionTypes';
 
-export default (state, { type, payload }) => {
+export default (state = {}, { type, payload }) => {
   switch (type) {
     case SET_COMMENT: {
       const { postId, comment } = payload;

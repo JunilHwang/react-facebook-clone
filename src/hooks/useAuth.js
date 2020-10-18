@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { userService } from '@/services';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from '@/data/users/selectors';
-import { usersActions } from '@/data/rootActions';
 import { usersThunks } from '@/data/rootThunks';
 
 export const useAuth = () => {
