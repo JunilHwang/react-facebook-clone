@@ -2,24 +2,30 @@ import React, { useCallback } from 'react';
 import { STEPS } from '@/pages/SignUp/helpers';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { userService } from '@/services';
-import { EMAIL_BLANK, PASSWORD_BLANK, REPEAT_PASSWORD_BLANK, NONE_MATCH_PASSWORD, EMAIL_EXISTS } from './errorMesages';
+import SignUpErrorMessage from '../SignUpErrorMessage';
+import { useAuth } from '@/hooks';
 
 const blanks = {
-  principal: EMAIL_BLANK,
-  credentials: PASSWORD_BLANK,
-  repeatCredentials: REPEAT_PASSWORD_BLANK,
+  principal: SignUpErrorMessage.EMAIL_BLANK,
+  credentials: SignUpErrorMessage.PASSWORD_BLANK,
+  repeatCredentials: SignUpErrorMessage.REPEAT_PASSWORD_BLANK,
 };
 
-const EmailPasswordForm = ({ setStep, extendFormData, initialValues }) => {
-  const handleSubmit = useCallback(async (values, { setErrors }) => {
-    const { principal } = values;
-    const isExists = await userService.validateExists(principal);
-    if (isExists) {
-      return setErrors({ principal: EMAIL_EXISTS });
-    }
-    extendFormData({ ...values });
-    setStep(STEPS.PROFILE);
-  }, []);
+const EmailPasswordForm = ({ setStep, extendUserInfo, initialValues }) => {
+  const { ErrorWrapper } = useAuth();
+
+  const handleSubmit = useCallback(
+    async (values, { setErrors }) => {
+      const { principal } = values;
+      const isExists = await userService.validateExists(principal);
+      if (isExists) {
+        return setErrors({ principal: SignUpErrorMessage.EMAIL_EXISTS });
+      }
+      extendUserInfo({ ...values });
+      setStep(STEPS.PROFILE);
+    },
+    [extendUserInfo]
+  );
 
   const handleValidate = useCallback(
     (values) => {
@@ -32,15 +38,13 @@ const EmailPasswordForm = ({ setStep, extendFormData, initialValues }) => {
       }, {});
 
       if (credentials !== repeatCredentials) {
-        errors.repeatCredentials = NONE_MATCH_PASSWORD;
+        errors.repeatCredentials = SignUpErrorMessage.NONE_MATCH_PASSWORD;
       }
 
       return errors;
     },
     [blanks]
   );
-
-  const ErrorWrapper = useCallback((msg) => <div className="error">{msg}</div>, []);
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={handleValidate}>
