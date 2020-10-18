@@ -7,5 +7,7 @@ export * from './users/selectors';
 
 export const matchUser = createMatchSelector({ path: '/u/:userId' });
 export const selectWriterOfURIParam = createSelector(matchUser, (matched) => {
-  return matched.params.userId;
+  console.log('matched', matched, matched?.params?.userId);
+  if (matched) return 2;
+  return 1;
 });

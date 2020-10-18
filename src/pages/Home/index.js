@@ -2,19 +2,13 @@ import React from 'react';
 import css from 'styled-jsx/css';
 import { PostForm, Post } from './post';
 import { usePosts } from '@/hooks';
-import Conditional from '@/hocs/Conditional';
-import { useSelector } from 'react-redux';
-import { selectWriterOfQuery } from '@/data/rootSelectors';
 
 const Home = () => {
-  const selectedWriter = useSelector(selectWriterOfQuery);
   const { posts, toggleLike: handleToggleLike, addPost: handleAddPost } = usePosts();
 
   return (
     <div className="posts container">
-      <Conditional condition={!selectedWriter}>
-        <PostForm onAddPost={handleAddPost} />
-      </Conditional>
+      <PostForm onAddPost={handleAddPost} />
       {posts.map((post) => (
         <Post key={`post_${post.seq}`} post={post} onToggleLike={handleToggleLike} />
       ))}

@@ -4,17 +4,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAllPostsOrderByCreateAt } from '@/data/posts/selectors';
 import { useAuth } from './useAuth';
 import { postsThunks } from '@/data/rootThunks';
+import { selectWriterOfURIParam } from '@/data/rootSelectors';
 
 export const usePosts = () => {
   const posts = useSelector(selectAllPostsOrderByCreateAt);
   const dispatch = useDispatch();
   const { auth: writer, validateAuth } = useAuth();
+  const userId = useSelector(selectWriterOfURIParam);
 
   useEffect(() => {
-    if (posts.length === 0) {
-      dispatch(postsThunks.fetchPostsOfUser(1));
+    if (posts.length === 0 && userId === null) {
+      fetchPostsOfUser(1);
     }
-  }, [posts, writer]);
+    if (userId !== null) {
+      fetchPostsOfUser(userId);
+    }
+  }, [posts, writer, userId]);
+
+  const fetchPostsOfUser = useCallback((userId) => dispatch(postsThunks.fetchPostsOfUser(userId)), []);
 
   const addPost = useCallback(
     (contents) => {
