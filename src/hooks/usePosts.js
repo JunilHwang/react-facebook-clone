@@ -12,7 +12,7 @@ export const usePosts = () => {
 
   useEffect(() => {
     if (posts.length === 0) {
-      dispatch(postsThunks.fetchPostsOfUser(writer?.seq || 1));
+      dispatch(postsThunks.fetchPostsOfUser(1));
     }
   }, [posts, writer]);
 
