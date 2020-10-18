@@ -1,74 +1,44 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { buttonStyle, formStyle, linkStyle, textHelpStyle } from '../../layouts/PublicLayout';
 import css from 'styled-jsx/css';
 import { useAuth } from '@/hooks';
 
-const defaultProfileImageUrl = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
-const fileReader = new FileReader();
-
 const SignUp = () => {
-  const [profileImageUrl, setProfileImageUrl] = useState(defaultProfileImageUrl);
   const { signUp } = useAuth();
-
-  const $email = useRef();
-  const $name = useRef();
-  const $password = useRef();
-  const $repeatPassword = useRef();
 
   const handleSignUp = useCallback(
     (event) => {
       event.preventDefault();
+      const $form = event.target;
 
-      const email = $email.current.value;
-      const name = $name.current.value;
-      const password = $password.current.value;
-
-      if (password !== $repeatPassword.current.value) {
-        alert('옳바른 비밀번호를 입력해주세요');
-        return $repeatPassword.current.focus();
-      }
-
-      signUp({ email, name, password, profileImageUrl });
-      alert('회원가입이 완료되었습니다.');
-
-      event.target.reset();
+      signUp(new FormData($form))
+        .then(() => {
+          alert('회원가입이 완료되었습니다.');
+          $form.reset();
+        })
+        .catch((e) => alert(e.message));
     },
-    [signUp, profileImageUrl]
-  );
-
-  const handleProfileImageChange = useCallback(
-    (event) => {
-      const file = event.target.files[0];
-      if (!file.type.includes('image')) {
-        event.preventDefault();
-        event.target.value = '';
-        throw new Error('이미지 파일만 업로드해주세요');
-      }
-      fileReader.onload = ({ target }) => {
-        setProfileImageUrl(target.result);
-      };
-      fileReader.readAsDataURL(file);
-    },
-    [fileReader, setProfileImageUrl, profileImageUrl]
+    [signUp]
   );
 
   return (
     <>
       <h1 className="text-center">계정 만들기</h1>
       <form className={formStyle.className} onSubmit={handleSignUp}>
-        <input ref={$email} type="email" className="form-control" placeholder="Email" required />
-        <input ref={$name} type="text" className="form-control" placeholder="Your Name" required />
+        <input name="principal" type="email" className="form-control" placeholder="Email" required />
+        <input name="name" type="text" className="form-control" placeholder="Your Name" required />
+        <input name="file" type="file" className="form-control" placeholder="Profile" accept="image/*" />
         <input
-          type="file"
+          name="credentials"
+          type="password"
           className="form-control"
-          placeholder="Profile"
-          accept="image/*"
-          onChange={handleProfileImageChange}
+          placeholder="Password"
+          minLength="5"
+          required
         />
-        <input ref={$password} type="password" className="form-control" placeholder="Password" minLength="5" required />
         <input
-          ref={$repeatPassword}
+          name="repeatCredentials"
           type="password"
           className="form-control"
           placeholder="Repeat your password"
