@@ -9,7 +9,7 @@ const CommentItem = ({ writer, createAt, contents }) => {
     <li className="comment">
       <div className="comment-info">
         <h6 className="comment-writer">
-          <Link to={`./?writer=${writer.seq}`}>{writer.name}</Link>
+          <Link to={`/u/${writer.email.address}`}>{writer.name}</Link>
         </h6>
         <div className="comment-datetime">{fromNow}</div>
       </div>

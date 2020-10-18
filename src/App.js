@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, SignIn, SignUp } from './pages';
+import { Home, SignIn, SignUp, User } from './pages';
 import { Redirect, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import { DefaultLayout, PublicLayout } from './layouts';
@@ -13,6 +13,7 @@ const App = () => {
           <Switch>
             <PublicLayout path="/login" component={SignIn} />
             <PublicLayout path="/signup" component={SignUp} />
+            <DefaultLayout path="/u/:userId" component={User} />
             <DefaultLayout path="/" component={Home} />
             <Redirect path="*" to="/" />
           </Switch>
