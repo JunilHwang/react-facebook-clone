@@ -4,24 +4,21 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { userService } from '@/services';
 import { EMAIL_BLANK, PASSWORD_BLANK, REPEAT_PASSWORD_BLANK, NONE_MATCH_PASSWORD, EMAIL_EXISTS } from './errorMesages';
 
-const keys = ['principal', 'credentials', 'repeatCredentials'];
-
-const initValues = keys.reduce((obj, k) => ({ ...obj, [k]: '' }), {});
-
 const blanks = {
   principal: EMAIL_BLANK,
   credentials: PASSWORD_BLANK,
   repeatCredentials: REPEAT_PASSWORD_BLANK,
 };
 
-const EmailPasswordForm = ({ setStep }) => {
-  const handleSubmit = useCallback(async (values, { resetForm, setErrors }) => {
+const EmailPasswordForm = ({ setStep, extendFormData, initialValues }) => {
+  const handleSubmit = useCallback(async (values, { setErrors }) => {
     const { principal } = values;
     const isExists = await userService.validateExists(principal);
     if (isExists) {
       return setErrors({ principal: EMAIL_EXISTS });
     }
-    resetForm();
+    extendFormData({ ...values });
+    setStep(STEPS.PROFILE);
   }, []);
 
   const handleValidate = useCallback(
@@ -46,7 +43,7 @@ const EmailPasswordForm = ({ setStep }) => {
   const ErrorWrapper = useCallback((msg) => <div className="error">{msg}</div>, []);
 
   return (
-    <Formik initialValues={initValues} onSubmit={handleSubmit} validate={handleValidate}>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={handleValidate}>
       <Form>
         <Field type="principal" name="principal" className="form-control" placeholder="이메일" />
         <ErrorMessage name="principal" render={ErrorWrapper} />

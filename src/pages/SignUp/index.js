@@ -1,25 +1,43 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { STEPS } from './helpers';
 import EmailPasswordForm from './EmailPasswordForm';
 import ProfileForm from './ProfileForm';
 
-const renderForm = (step, setStep) => {
+const renderForm = ({ step, setStep, formData, extendFormData }) => {
+  const props = { setStep, extendFormData };
+  const { name, file, principal, credentials, repeatCredentials } = formData;
   switch (step) {
     case STEPS.EMAIL_PASSWORD:
-      return <EmailPasswordForm setStep={setStep} />;
+      return <EmailPasswordForm {...props} initialValues={{ principal, credentials, repeatCredentials }} />;
     case STEPS.PROFILE:
-      return <ProfileForm setStep={setStep} />;
+      return <ProfileForm {...props} initialValues={{ name, file }} />;
   }
 };
 
 const SignUp = () => {
   const [step, setStep] = useState(STEPS.EMAIL_PASSWORD);
+  const [formData, setFormData] = useState({
+    principal: '',
+    credentials: '',
+    repeatCredentials: '',
+    name: '',
+    file: '',
+  });
+  const extendFormData = useCallback(
+    (newFormData) => {
+      setFormData({
+        ...formData,
+        ...newFormData,
+      });
+    },
+    [formData]
+  );
 
   return (
     <div className="signup">
       <h1 className="text-center">계정 만들기</h1>
-      {renderForm(step, setStep)}
+      {renderForm({ step, setStep, formData, extendFormData })}
       <style jsx global>{`
         .signup form {
           max-width: 320px;
