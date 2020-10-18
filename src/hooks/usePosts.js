@@ -13,6 +13,7 @@ export const usePosts = () => {
   const addPost = useCallback(
     (contents) => {
       validateAuth();
+
       dispatch(postsActions.addPost({ contents, writer }));
     },
     [writer]

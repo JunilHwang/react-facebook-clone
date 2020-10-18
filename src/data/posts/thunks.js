@@ -1,5 +1,5 @@
 import { postService } from '@/services';
-import { setPost, setPosts } from '@/data/posts/actions';
+import { setPost, setPosts } from './actions';
 
 export const fetchPostsOfUser = (userId) => async (dispatch) => {
   const posts = await postService.fetchPostsOfUser(userId);
