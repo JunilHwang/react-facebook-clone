@@ -26,12 +26,14 @@ const SignUp = () => {
           padding: 8px;
           margin: 0 auto;
         }
+
         .signup input.form-control {
           font-size: 16px;
           height: auto;
           padding: 10px;
           margin-bottom: 1rem;
         }
+
         .signup button.btn {
           background-color: #3b5999;
           color: #fffffe;
@@ -39,15 +41,24 @@ const SignUp = () => {
           border-color: unset;
           margin-top: 10px;
         }
+
         .signup button.btn-secondary {
           background-color: #566888;
         }
+
         .signup .text-help {
           margin-top: 10px;
         }
+
         .signup .login-here {
           font-weight: 900;
           color: #3a5999;
+        }
+
+        .signup .error {
+          margin: -10px 0 10px;
+          color: #d00;
+          font-size: 13px;
         }
       `}</style>
     </div>
