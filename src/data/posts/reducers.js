@@ -21,7 +21,8 @@ const byId = (state = {}, { type, payload }) => {
 const ids = (state = [], { type, payload }) => {
   switch (type) {
     case SET_POST:
-      return [...state, payload.seq];
+      const set = new Set([...state, payload.seq]);
+      return [...set];
     case SET_POSTS:
       return payload.map(({ seq }) => seq);
     default:
