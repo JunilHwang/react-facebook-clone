@@ -3,25 +3,24 @@ import { userService } from '@/services';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from '@/data/users/selectors';
 import { usersActions } from '@/data/rootActions';
+import { usersThunks } from '@/data/rootThunks';
 
 export const useAuth = () => {
   const auth = useSelector(getAuth);
   const dispatch = useDispatch();
 
-  const signIn = useCallback((userInfo) => {
-    return !!userService.signIn(userInfo);
-  }, []);
+  const signIn = useCallback((userInfo) => {}, []);
 
   const signUp = useCallback((userInfo) => {
-    userService.signUp(userInfo);
+    return userService.signUp(userInfo);
   }, []);
 
   const fetchAuth = useCallback(() => {
-    dispatch(usersActions.fetchAuth());
+    dispatch(usersThunks.fetchAuth());
   }, []);
 
   const removeAuth = useCallback(() => {
-    dispatch(usersActions.removeAuth());
+    dispatch(usersThunks.removeAuth());
   }, []);
 
   const validateAuth = useCallback(() => {

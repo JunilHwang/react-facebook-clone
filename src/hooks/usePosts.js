@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectAllPostsOrderByCreateAt } from '@/data/posts/selectors';
-import { postsActions } from '@/data/rootActions';
 import { useAuth } from './useAuth';
+import { postsThunks } from '@/data/rootThunks';
 
 export const usePosts = () => {
   const posts = useSelector(selectAllPostsOrderByCreateAt);
@@ -13,16 +13,15 @@ export const usePosts = () => {
   const addPost = useCallback(
     (contents) => {
       validateAuth();
-
-      dispatch(postsActions.addPost({ contents, writer }));
+      dispatch(postsThunks.addPost(writer.seq, contents));
     },
     [writer]
   );
 
   const toggleLike = useCallback(
-    (post) => {
+    ({ seq }) => {
       validateAuth();
-      dispatch(postsActions.togglePostLike(post));
+      dispatch(postsThunks.toggleLikePost(writer.seq, seq));
     },
     [validateAuth]
   );

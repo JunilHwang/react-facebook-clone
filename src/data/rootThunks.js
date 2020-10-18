@@ -1,5 +1,5 @@
-import * as commentThunks from './comments/thunks';
-import * as postThunks from './posts/thunks';
-import * as userThunks from './users/thunks';
+import * as commentsThunks from './comments/thunks';
+import * as postsThunks from './posts/thunks';
+import * as usersThunks from './users/thunks';
 
-export { commentThunks, postThunks, userThunks };
+export { commentsThunks, postsThunks, usersThunks };

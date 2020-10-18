@@ -26,10 +26,11 @@ export default Object.freeze({
   },
 
   getAuth() {
-    return session.get(KEY) || null;
+    return Promise.resolve(session.get(KEY) || null);
   },
 
   removeAuth() {
     session.remove(KEY);
+    return Promise.resolve();
   },
 });

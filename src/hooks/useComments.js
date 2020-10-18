@@ -2,21 +2,25 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectCommentsOfPost } from '@/data/comments/selectors';
-import { commentsActions } from '@/data/rootActions';
 import { useAuth } from './useAuth';
+import { commentsThunks } from '@/data/rootThunks';
 
-export const useComments = (postSeq) => {
-  const commentsOfPost = useSelector(selectCommentsOfPost(postSeq));
+export const useComments = (postId) => {
+  const commentsOfPost = useSelector(selectCommentsOfPost(postId));
   const dispatch = useDispatch();
   const { auth: writer, validateAuth } = useAuth();
+
+  const fetchComments = useCallback(() => {
+    dispatch(commentsThunks.fetchComments(writer.seq, postId));
+  }, [writer]);
 
   const addComment = useCallback(
     (contents) => {
       validateAuth();
-      dispatch(commentsActions.addComment({ postSeq, writer, contents }));
+      dispatch(commentsThunks.addComment(writer.seq, postId, contents));
     },
-    [postSeq, writer]
+    [postId, writer]
   );
 
-  return { commentsOfPost, addComment };
+  return { commentsOfPost, addComment, fetchComments };
 };
