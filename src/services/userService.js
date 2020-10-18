@@ -4,10 +4,8 @@ import { socialAdapter } from '@/adatpers';
 const KEY = 'auth';
 
 export default Object.freeze({
-  async validateExists(address) {
-    if (await socialAdapter.post('/user/exists', { address })) {
-      throw new Error('이미 가입된 회원의 이메일 주소입니다.');
-    }
+  validateExists(address) {
+    return socialAdapter.post('/user/exists', { address });
   },
 
   fetchFriends() {

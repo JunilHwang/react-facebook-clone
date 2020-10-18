@@ -10,13 +10,7 @@ export const useAuth = () => {
 
   const signIn = useCallback((userInfo) => dispatch(usersThunks.signIn(userInfo)), []);
 
-  const signUp = useCallback(async (formData) => {
-    if (formData.get('credentials') !== formData.get('repeatCredentials')) {
-      throw new Error('옳바른 비밀번호를 입력해주세요');
-    }
-    await userService.validateExists(formData.get('principal'));
-    await userService.signUp(formData);
-  }, []);
+  const signUp = useCallback((formData) => userService.signUp(formData), []);
 
   const fetchAuth = useCallback(() => {
     dispatch(usersThunks.fetchAuth());

@@ -1,27 +1,32 @@
 import React, { useCallback } from 'react';
 import { STEPS } from '@/pages/SignUp/helpers';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { userService } from '@/services';
+import { EMAIL_BLANK, PASSWORD_BLANK, REPEAT_PASSWORD_BLANK, NONE_MATCH_PASSWORD, EMAIL_EXISTS } from './errorMesages';
 
-const keys = ['email', 'credentials', 'repeatCredentials'];
+const keys = ['principal', 'credentials', 'repeatCredentials'];
 
 const initValues = keys.reduce((obj, k) => ({ ...obj, [k]: '' }), {});
 
 const blanks = {
-  email: '이메일을 입력해주세요',
-  credentials: '비밀번호를 입력해주세요',
-  repeatCredentials: '비밀번호 확인란을 입력해주세요',
+  principal: EMAIL_BLANK,
+  credentials: PASSWORD_BLANK,
+  repeatCredentials: REPEAT_PASSWORD_BLANK,
 };
 
 const EmailPasswordForm = ({ setStep }) => {
-  const handleSubmit = useCallback((values, { resetForm }) => {
-    console.log(values);
-    console.log(STEPS.PROFILE);
-    // setStep(STEPS.PROFILE);
+  const handleSubmit = useCallback(async (values, { resetForm, setErrors }) => {
+    const { principal } = values;
+    const isExists = await userService.validateExists(principal);
+    if (isExists) {
+      return setErrors({ principal: EMAIL_EXISTS });
+    }
     resetForm();
   }, []);
 
   const handleValidate = useCallback(
     (values) => {
+      const { credentials, repeatCredentials } = values;
       const errors = Object.entries(blanks).reduce((obj, [k, v]) => {
         if (values[k].trim().length === 0) {
           obj[k] = v;
@@ -29,10 +34,8 @@ const EmailPasswordForm = ({ setStep }) => {
         return obj;
       }, {});
 
-      const { credentials, repeatCredentials } = values;
-
       if (credentials !== repeatCredentials) {
-        errors.repeatCredentials = '비밀번호 확인란의 값이 비밀번호와 일치하지 않습니다.';
+        errors.repeatCredentials = NONE_MATCH_PASSWORD;
       }
 
       return errors;
@@ -45,8 +48,8 @@ const EmailPasswordForm = ({ setStep }) => {
   return (
     <Formik initialValues={initValues} onSubmit={handleSubmit} validate={handleValidate}>
       <Form>
-        <Field type="email" name="email" className="form-control" placeholder="이메일" />
-        <ErrorMessage name="email" render={ErrorWrapper} />
+        <Field type="principal" name="principal" className="form-control" placeholder="이메일" />
+        <ErrorMessage name="principal" render={ErrorWrapper} />
         <Field type="password" name="credentials" className="form-control" placeholder="비밀번호" minLength="5" />
         <ErrorMessage name="credentials" render={ErrorWrapper} />
         <Field type="password" name="repeatCredentials" className="form-control" placeholder="비밀번호 확인" />
