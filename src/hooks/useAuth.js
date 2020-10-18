@@ -24,5 +24,7 @@ export const useAuth = () => {
     if (!auth) throw new Error('로그인 후 이용해주세요');
   }, [auth]);
 
-  return { auth, signIn, signUp, fetchAuth, removeAuth, validateAuth };
+  const ErrorWrapper = useCallback((msg) => <div className="error">{msg}</div>, []);
+
+  return { auth, signIn, signUp, fetchAuth, removeAuth, validateAuth, ErrorWrapper };
 };
