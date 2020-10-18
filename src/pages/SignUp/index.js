@@ -1,75 +1,57 @@
-import React, { useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { buttonStyle, formStyle, linkStyle, textHelpStyle } from '../../layouts/PublicLayout';
-import css from 'styled-jsx/css';
-import { useAuth } from '@/hooks';
+import React, { useState } from 'react';
 
-const SignUp = () => {
-  const { signUp } = useAuth();
+import { STEPS } from './helpers';
+import EmailPasswordForm from './EmailPasswordForm';
+import ProfileForm from './ProfileForm';
 
-  const handleSignUp = useCallback(
-    (event) => {
-      event.preventDefault();
-      const $form = event.target;
-
-      signUp(new FormData($form))
-        .then(() => {
-          alert('회원가입이 완료되었습니다.');
-          $form.reset();
-        })
-        .catch((e) => alert(e.message));
-    },
-    [signUp]
-  );
-
-  return (
-    <>
-      <h1 className="text-center">계정 만들기</h1>
-      <form className={formStyle.className} onSubmit={handleSignUp}>
-        <input name="principal" type="email" className="form-control" placeholder="Email" required />
-        <input name="name" type="text" className="form-control" placeholder="Your Name" required />
-        <input name="file" type="file" className="form-control" placeholder="Profile" accept="image/*" />
-        <input
-          name="credentials"
-          type="password"
-          className="form-control"
-          placeholder="Password"
-          minLength="5"
-          required
-        />
-        <input
-          name="repeatCredentials"
-          type="password"
-          className="form-control"
-          placeholder="Repeat your password"
-          required
-        />
-        <button className={`btn btn-lg btn-primary btn-block ${buttonStyle.className}`} type="submit">
-          가입하기
-        </button>
-      </form>
-      <p className={`text-center ${textHelpStyle.className}`}>
-        이미 계정이 있으신가요?
-        <Link className={`text-center ${linkStyle.className}`} to="/login">
-          로그인 하기
-        </Link>
-      </p>
-      <style jsx>{signUpStyle}</style>
-      {formStyle.styles}
-      {buttonStyle.styles}
-      {textHelpStyle.styles}
-      {linkStyle.styles}
-    </>
-  );
+const renderForm = (step, setStep) => {
+  switch (step) {
+    case STEPS.EMAIL_PASSWORD:
+      return <EmailPasswordForm setStep={setStep} />;
+    case STEPS.PROFILE:
+      return <ProfileForm setStep={setStep} />;
+  }
 };
 
-export const signUpStyle = css`
-  input.form-control {
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    margin-bottom: 1rem;
-  }
-`;
+const SignUp = () => {
+  const [step, setStep] = useState(STEPS.EMAIL_PASSWORD);
+
+  return (
+    <div className="signup">
+      <h1 className="text-center">계정 만들기</h1>
+      {renderForm(step, setStep)}
+      <style jsx global>{`
+        .signup form {
+          max-width: 320px;
+          padding: 8px;
+          margin: 0 auto;
+        }
+        .signup input.form-control {
+          font-size: 16px;
+          height: auto;
+          padding: 10px;
+          margin-bottom: 1rem;
+        }
+        .signup button.btn {
+          background-color: #3b5999;
+          color: #fffffe;
+          font-weight: 800;
+          border-color: unset;
+          margin-top: 10px;
+        }
+        .signup button.btn-secondary {
+          background-color: #566888;
+        }
+        .signup .text-help {
+          margin-top: 10px;
+        }
+        .signup .login-here {
+          font-weight: 900;
+          color: #3a5999;
+        }
+      `}</style>
+    </div>
+  );
+};
 
 export default SignUp;
