@@ -5,7 +5,7 @@ const KEY = 'auth';
 
 export default Object.freeze({
   async validateExists(address) {
-    if (await socialAdapter.post('/user/', { address })) {
+    if (await socialAdapter.post('/user/exists', { address })) {
       throw new Error('이미 가입된 회원의 이메일 주소입니다.');
     }
   },
@@ -14,15 +14,21 @@ export default Object.freeze({
     return socialAdapter.get('/user/connections');
   },
 
-  signUp(userInfo) {
-    return socialAdapter.post('/user/join', userInfo);
+  signUp(formData) {
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+    return socialAdapter.post('/user/join', formData, config);
   },
 
-  // 로그인에 대한 API가 현재 없는 상태라서 로그인을 시도했을 때 /api/user/me를 받아오도록 임시로 처리
-  async setAuth(userInfo) {
-    const user = await socialAdapter.get('/user/me');
-    session.set(KEY, user);
-    return user;
+  async setAuth({ email, password }) {
+    try {
+      const user = await socialAdapter.post('/auth', {
+        principal: email,
+        credentials: password,
+      });
+      session.set(KEY, user);
+    } catch (e) {
+      throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');
+    }
   },
 
   getAuth() {
