@@ -8,7 +8,7 @@ const defaultProfileImageURL = 'https://slcp.lk/wp-content/uploads/2020/02/no-pr
 
 const NavItems = () => {
   const { auth, removeAuth } = useAuth();
-  const { seq, name, profileImageURL = defaultProfileImageURL } = auth?.user || {};
+  const { seq, name, profileImageURL = defaultProfileImageURL } = auth || {};
 
   const handleLogoutClick = useCallback(
     (event) => {
