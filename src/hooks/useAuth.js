@@ -8,10 +8,14 @@ export const useAuth = () => {
   const auth = useSelector(getAuth);
   const dispatch = useDispatch();
 
-  const signIn = useCallback((userInfo) => {}, []);
+  const signIn = useCallback((userInfo) => dispatch(usersThunks.signIn(userInfo)), []);
 
-  const signUp = useCallback((userInfo) => {
-    return userService.signUp(userInfo);
+  const signUp = useCallback(async (formData) => {
+    if (formData.get('credentials') !== formData.get('repeatCredentials')) {
+      throw new Error('옳바른 비밀번호를 입력해주세요');
+    }
+    await userService.validateExists(formData.get('principal'));
+    await userService.signUp(formData);
   }, []);
 
   const fetchAuth = useCallback(() => {

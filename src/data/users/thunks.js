@@ -3,8 +3,7 @@ import { setAuth } from './actions';
 
 export const signIn = (userInfo) => (dispatch) => {
   return userService
-    .validateExists(userInfo.email)
-    .then(() => userService.setAuth(userInfo))
+    .setAuth(userInfo)
     .then((auth) => dispatch(setAuth(auth)))
     .catch((e) => alert(e.message));
 };

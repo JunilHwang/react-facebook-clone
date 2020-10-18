@@ -4,9 +4,11 @@ import ProfileImage from './ProfileImage';
 import Conditional from '@/hocs/Conditional';
 import { useAuth } from '@/hooks';
 
+const defaultProfileImageURL = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
+
 const NavItems = () => {
   const { auth, removeAuth } = useAuth();
-  const { seq, name, profileImageUrl } = auth || {};
+  const { seq, name, profileImageURL = defaultProfileImageURL } = auth?.user || {};
 
   const handleLogoutClick = useCallback(
     (event) => {
@@ -24,8 +26,8 @@ const NavItems = () => {
         <NavItem to="/signup">회원가입</NavItem>
       </Conditional>
       <Conditional condition={auth}>
-        <NavItem to={`/?writer=${seq}`}>
-          <ProfileImage src={profileImageUrl} />
+        <NavItem to={`/u/${seq}`}>
+          <ProfileImage src={profileImageURL} />
           {name}
         </NavItem>
         <NavItem to="/logout" onClick={handleLogoutClick}>
