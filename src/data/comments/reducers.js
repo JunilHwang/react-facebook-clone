@@ -1,24 +1,37 @@
-import { SET_COMMENT, SET_COMMENTS } from '@/data/comments/actionTypes';
+import { SET_COMMENT, SET_COMMENTS, SET_COMMENTS_OF_POST } from '@/data/comments/actionTypes';
 
 export default (state, { type, payload }) => {
   switch (type) {
-    case SET_COMMENT:
+    case SET_COMMENT: {
+      const { postId, comment } = payload;
       return {
         ...state,
-        [payload.postId]: {
-          ...state[payload.postId],
-          [payload.seq]: { ...payload },
+        [postId]: {
+          ...state[postId],
+          [comment.seq]: { ...comment },
         },
       };
-    case SET_COMMENTS:
-      return payload.reduce((obj, comment) => {
-        obj[comment.postId] = obj[comment.postId] || {};
-        obj[comment.postId] = {
-          ...obj[comment.postId],
+    }
+    case SET_COMMENTS: {
+      return payload.reduce((obj, { postId, ...comment }) => {
+        obj[postId] = obj[postId] || {};
+        obj[postId] = {
+          ...obj[postId],
           [comment.seq]: comment,
         };
         return obj;
       }, {});
+    }
+    case SET_COMMENTS_OF_POST: {
+      const { postId, comments } = payload;
+      return {
+        ...state,
+        [postId]: comments.reduce((commentsById, comment) => {
+          commentsById[comment.seq] = comment;
+          return commentsById;
+        }, {}),
+      };
+    }
     default:
       return state;
   }
