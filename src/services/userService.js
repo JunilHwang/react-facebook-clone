@@ -18,7 +18,7 @@ export default Object.freeze({
     }
   },
 
-  fetchFreidns() {
+  fetchFriends() {
     return socialAdapter.get('/user/connections');
   },
 
