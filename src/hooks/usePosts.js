@@ -13,13 +13,16 @@ export const usePosts = () => {
   const userId = useSelector(selectWriterOfURIParam);
 
   useEffect(() => {
-    if (posts.length === 0 && userId === null) {
+    if (posts.length === 0) {
       fetchPostsOfUser(1);
     }
+  }, [posts, writer]);
+
+  useEffect(() => {
     if (userId !== null) {
       fetchPostsOfUser(userId);
     }
-  }, [posts, writer, userId]);
+  }, [userId]);
 
   const fetchPostsOfUser = useCallback((userId) => dispatch(postsThunks.fetchPostsOfUser(userId)), []);
 
