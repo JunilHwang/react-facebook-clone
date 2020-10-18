@@ -1,12 +1,14 @@
 import { commentService } from '@/services';
 import { setComment, setCommentsOfPost } from './actions';
 
-export const fetchComments = (userId, postId) => async (dispatch) => {
-  const comments = await commentService.fetchComments(userId, postId);
-  dispatch(setCommentsOfPost({ postId, comments }));
+export const fetchComments = (userId, postId) => (dispatch) => {
+  return commentService
+    .fetchComments(userId, postId)
+    .then((comments) => dispatch(setCommentsOfPost({ postId, comments })));
 };
 
-export const addComment = (userId, postId, contents) => async (dispatch) => {
-  const comment = await commentService.addComment(userId, postId, contents);
-  dispatch(setComment({ postId, comment }));
+export const addComment = (userId, postId, contents) => (dispatch) => {
+  return commentService
+    .addComment(userId, postId, contents)
+    .then((comment) => dispatch(setComment({ postId, comment })));
 };
