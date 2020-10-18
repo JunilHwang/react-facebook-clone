@@ -13,10 +13,10 @@ export const usePosts = () => {
   const userId = useSelector(selectWriterOfURIParam);
 
   useEffect(() => {
-    if (posts.length === 0) {
+    if (posts.length === 0 && userId === null) {
       fetchPostsOfUser(1);
     }
-  }, [posts, writer]);
+  }, [posts, userId]);
 
   useEffect(() => {
     if (userId !== null) {
