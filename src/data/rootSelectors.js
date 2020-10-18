@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
+import { createMatchSelector } from 'connected-react-router';
 
 export * from './posts/selectors';
 export * from './comments/selectors';
 export * from './users/selectors';
 
-export const selectRouter = (state) => state.router;
-export const selectWriterOfQuery = createSelector(
-  selectRouter,
-  ({ location: { query } }) => query.writer !== undefined
-);
+export const matchUser = createMatchSelector({ path: '/u/:userId' });
+export const selectWriterOfURIParam = createSelector(matchUser, (matched) => {
+  return matched.params.userId;
+});
