@@ -13,7 +13,7 @@ export const useComments = (postId) => {
   const addComment = useCallback(
     (contents) => {
       validateAuth();
-      dispatch(commentsThunks.addComment(writer.seq, postId, contents));
+      dispatch(commentsThunks.addComment(1, postId, contents)).catch((e) => alert(e.message));
     },
     [postId, writer]
   );

@@ -6,6 +6,6 @@ export default Object.freeze({
   },
 
   addComment(userId, postId, contents) {
-    return socialAdapter.post(`/user/${userId}/post/${postId}/comment`);
+    return socialAdapter.post(`/user/${userId}/post/${postId}/comment`, { contents });
   },
 });

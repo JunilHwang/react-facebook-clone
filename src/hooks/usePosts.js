@@ -24,12 +24,15 @@ export const usePosts = () => {
     }
   }, [userId]);
 
-  const fetchPostsOfUser = useCallback((userId) => dispatch(postsThunks.fetchPostsOfUser(userId)), []);
+  const fetchPostsOfUser = useCallback(
+    (userId) => dispatch(postsThunks.fetchPostsOfUser(userId)).catch((e) => alert(e.message)),
+    []
+  );
 
   const addPost = useCallback(
     (contents) => {
       validateAuth();
-      dispatch(postsThunks.addPost(writer.seq, contents));
+      dispatch(postsThunks.addPost(1, contents)).catch((e) => alert(e.error));
     },
     [writer]
   );
@@ -37,7 +40,7 @@ export const usePosts = () => {
   const toggleLike = useCallback(
     ({ seq }) => {
       validateAuth();
-      dispatch(postsThunks.toggleLikePost(writer.seq, seq));
+      dispatch(postsThunks.toggleLikePost(1, seq)).catch((e) => alert(e.error));
     },
     [validateAuth]
   );
