@@ -1,7 +1,7 @@
 import { SET_POST, SET_POSTS } from './actionTypes';
 import { combineReducers } from 'redux';
 
-const bySeq = (state = {}, { type, payload }) => {
+const byId = (state = {}, { type, payload }) => {
   switch (type) {
     case SET_POST:
       return {
@@ -29,4 +29,4 @@ const ids = (state = [], { type, payload }) => {
   }
 };
 
-export default combineReducers({ bySeq, ids });
+export default combineReducers({ byId, ids });
