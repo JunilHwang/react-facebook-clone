@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectAllPostsOrderByCreateAt } from '@/data/posts/selectors';
@@ -9,6 +9,12 @@ export const usePosts = () => {
   const posts = useSelector(selectAllPostsOrderByCreateAt);
   const dispatch = useDispatch();
   const { auth: writer, validateAuth } = useAuth();
+
+  useEffect(() => {
+    if (posts.length === 0) {
+      dispatch(postsThunks.fetchPostsOfUser(writer?.seq || 1));
+    }
+  }, [posts, writer]);
 
   const addPost = useCallback(
     (contents) => {

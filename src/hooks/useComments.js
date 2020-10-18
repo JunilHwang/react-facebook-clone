@@ -10,10 +10,6 @@ export const useComments = (postId) => {
   const dispatch = useDispatch();
   const { auth: writer, validateAuth } = useAuth();
 
-  const fetchComments = useCallback(() => {
-    dispatch(commentsThunks.fetchComments(writer.seq, postId));
-  }, [writer]);
-
   const addComment = useCallback(
     (contents) => {
       validateAuth();
@@ -22,5 +18,5 @@ export const useComments = (postId) => {
     [postId, writer]
   );
 
-  return { commentsOfPost, addComment, fetchComments };
+  return { commentsOfPost, addComment };
 };
