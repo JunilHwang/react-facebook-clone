@@ -5,16 +5,16 @@ export default (state, { type, payload }) => {
     case SET_COMMENT:
       return {
         ...state,
-        [payload.postSeq]: {
-          ...state[payload.postSeq],
+        [payload.postId]: {
+          ...state[payload.postId],
           [payload.seq]: { ...payload },
         },
       };
     case SET_COMMENTS:
       return payload.reduce((obj, comment) => {
-        obj[comment.postSeq] = obj[comment.postSeq] || {};
-        obj[comment.postSeq] = {
-          ...obj[comment.postSeq],
+        obj[comment.postId] = obj[comment.postId] || {};
+        obj[comment.postId] = {
+          ...obj[comment.postId],
           [comment.seq]: comment,
         };
         return obj;
