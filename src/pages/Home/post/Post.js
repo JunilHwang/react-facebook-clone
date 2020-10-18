@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import css from 'styled-jsx/css';
-import { CommentForm, Comments } from '../comment';
-import dayjs from 'dayjs';
-import { useComments } from '@/hooks';
 import { Link } from 'react-router-dom';
+
+import { CommentForm, Comments } from '../comment';
+import { useComments } from '@/hooks';
+import { fromNow } from '@/utils';
 
 const Post = ({ post, onToggleLike }) => {
   const { seq, writer, contents, createAt, likes, likesOfMe } = post;
@@ -21,15 +22,13 @@ const Post = ({ post, onToggleLike }) => {
     [onToggleLike, post]
   );
 
-  const fromNow = dayjs(createAt).from(Date.now());
-
   return (
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">
           <Link to={`/u/${writer.email.address}`}>{writer.name}</Link>
         </h5>
-        <h6 className="card-subtitle text-muted">{fromNow}</h6>
+        <h6 className="card-subtitle text-muted">{fromNow(createAt)}</h6>
         <p className="card-text">{contents}</p>
         <hr />
         <div className="card-info">
