@@ -2,13 +2,13 @@ import React, { useCallback } from 'react';
 import { STEPS } from '@/pages/SignUp/helpers';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { userService } from '@/services';
-import SignUpErrorMessage from '../SignUpErrorMessage';
+import { FormErrorMessage } from '@/constants';
 import { useAuth } from '@/hooks';
 
 const blanks = {
-  principal: SignUpErrorMessage.EMAIL_BLANK,
-  credentials: SignUpErrorMessage.PASSWORD_BLANK,
-  repeatCredentials: SignUpErrorMessage.REPEAT_PASSWORD_BLANK,
+  principal: FormErrorMessage.EMAIL_BLANK,
+  credentials: FormErrorMessage.PASSWORD_BLANK,
+  repeatCredentials: FormErrorMessage.REPEAT_PASSWORD_BLANK,
 };
 
 const EmailPasswordForm = ({ setStep, extendUserInfo, initialValues }) => {
@@ -19,7 +19,7 @@ const EmailPasswordForm = ({ setStep, extendUserInfo, initialValues }) => {
       const { principal } = values;
       const isExists = await userService.validateExists(principal);
       if (isExists) {
-        return setErrors({ principal: SignUpErrorMessage.EMAIL_EXISTS });
+        return setErrors({ principal: FormErrorMessage.EMAIL_EXISTS });
       }
       extendUserInfo({ ...values });
       setStep(STEPS.PROFILE);
@@ -38,7 +38,7 @@ const EmailPasswordForm = ({ setStep, extendUserInfo, initialValues }) => {
       }, {});
 
       if (credentials !== repeatCredentials) {
-        errors.repeatCredentials = SignUpErrorMessage.NONE_MATCH_PASSWORD;
+        errors.repeatCredentials = FormErrorMessage.NONE_MATCH_PASSWORD;
       }
 
       return errors;

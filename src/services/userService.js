@@ -1,5 +1,6 @@
 import { session } from '@/storages';
 import { socialAdapter } from '@/adatpers';
+import {AuthErrorMessage} from "@/constants";
 
 const KEY = 'auth';
 
@@ -25,7 +26,7 @@ export default Object.freeze({
       });
       session.set(KEY, user);
     } catch (e) {
-      throw new Error('아이디 또는 비밀번호가 일치하지 않습니다.');
+      throw new Error(AuthErrorMessage.NONE_MATCH_USER_INFO);
     }
   },
 

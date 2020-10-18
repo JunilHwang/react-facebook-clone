@@ -5,6 +5,7 @@ import EmailPasswordForm from './EmailPasswordForm';
 import ProfileForm from './ProfileForm';
 import { useAuth } from '@/hooks';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const initUserInfo = {
   principal: '',
@@ -60,6 +61,12 @@ const SignUp = () => {
     <div className="signup">
       <h1 className="text-center">계정 만들기</h1>
       {renderForm({ step, setStep, userInfo, extendUserInfo, handleSignUp })}
+      <p className="text-help text-center">
+        이미 계정이 있으신가요?{' '}
+        <Link className="text-center login-here" to="/login">
+          로그인 하기
+        </Link>
+      </p>
       <style jsx global>{`
         .signup form {
           max-width: 320px;
@@ -71,7 +78,10 @@ const SignUp = () => {
           font-size: 16px;
           height: auto;
           padding: 10px;
-          margin-bottom: 1rem;
+        }
+
+        .signup input.form-control:not(:first-child) {
+          margin-top: 10px;
         }
 
         .signup button.btn {
@@ -93,12 +103,6 @@ const SignUp = () => {
         .signup .login-here {
           font-weight: 900;
           color: #3a5999;
-        }
-
-        .signup .error {
-          margin: -10px 0 10px;
-          color: #d00;
-          font-size: 13px;
         }
       `}</style>
     </div>

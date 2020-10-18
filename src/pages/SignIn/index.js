@@ -6,7 +6,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { history } from '@/data/configureStore';
 import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '@/layouts/PublicLayout';
 import { useAuth } from '@/hooks';
-import FormErrorMessage from '@/pages/SignUp/FormErrorMessage';
+import FormErrorMessage from '@/constants/FormErrorMessage';
 
 const initialValues = { email: '', password: '' };
 
