@@ -3,41 +3,63 @@ import React, { useCallback, useState } from 'react';
 import { STEPS } from './helpers';
 import EmailPasswordForm from './EmailPasswordForm';
 import ProfileForm from './ProfileForm';
+import { useAuth } from '@/hooks';
+import { useHistory } from 'react-router';
 
-const renderForm = ({ step, setStep, formData, extendFormData }) => {
-  const props = { setStep, extendFormData };
-  const { name, file, principal, credentials, repeatCredentials } = formData;
+const initUserInfo = {
+  principal: '',
+  credentials: '',
+  repeatCredentials: '',
+  name: '',
+  file: '',
+};
+
+const renderForm = ({ step, setStep, userInfo, extendUserInfo, handleSignUp }) => {
+  const props = { setStep, extendUserInfo };
+  const { name, file, principal, credentials, repeatCredentials } = userInfo;
   switch (step) {
     case STEPS.EMAIL_PASSWORD:
       return <EmailPasswordForm {...props} initialValues={{ principal, credentials, repeatCredentials }} />;
     case STEPS.PROFILE:
-      return <ProfileForm {...props} initialValues={{ name, file }} />;
+      return <ProfileForm {...props} initialValues={{ name, file }} handleSignUp={handleSignUp} />;
   }
 };
 
 const SignUp = () => {
+  const { signUp } = useAuth();
+  const history = useHistory();
   const [step, setStep] = useState(STEPS.EMAIL_PASSWORD);
-  const [formData, setFormData] = useState({
-    principal: '',
-    credentials: '',
-    repeatCredentials: '',
-    name: '',
-    file: '',
-  });
-  const extendFormData = useCallback(
-    (newFormData) => {
-      setFormData({
-        ...formData,
-        ...newFormData,
+  const [userInfo, setUserInfo] = useState(initUserInfo);
+
+  const extendUserInfo = useCallback(
+    (newUserInfo) => {
+      setUserInfo({
+        ...userInfo,
+        ...newUserInfo,
       });
     },
-    [formData]
+    [userInfo]
   );
+
+  const handleSignUp = useCallback(() => {
+    const { principal, credentials, name } = userInfo;
+    const formData = new FormData();
+    formData.append('principal', principal);
+    formData.append('credentials', credentials);
+    formData.append('name', name);
+    signUp(formData)
+      .then(() => {
+        alert('회원가입이 완료되었습니다.');
+        setUserInfo(initUserInfo);
+        history.push('/login');
+      })
+      .catch((e) => alert(e.message));
+  }, [userInfo]);
 
   return (
     <div className="signup">
       <h1 className="text-center">계정 만들기</h1>
-      {renderForm({ step, setStep, formData, extendFormData })}
+      {renderForm({ step, setStep, userInfo, extendUserInfo, handleSignUp })}
       <style jsx global>{`
         .signup form {
           max-width: 320px;
