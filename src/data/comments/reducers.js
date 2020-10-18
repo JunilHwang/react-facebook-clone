@@ -7,18 +7,25 @@ export default (state = {}, { type, payload }) => {
       return {
         ...state,
         [postId]: {
-          ...state[postId],
-          [comment.seq]: { ...comment },
+          byId: {
+            ...state[postId].byId,
+            [comment.seq]: { ...comment },
+          },
+          ids: [...state[postId].ids, comment.seq],
         },
       };
     }
     case SET_COMMENTS: {
-      return payload.reduce((obj, { postId, ...comment }) => {
-        obj[postId] = obj[postId] || {};
-        obj[postId] = {
-          ...obj[postId],
-          [comment.seq]: comment,
-        };
+      const { postIds, commentsByPost } = payload;
+      return postIds.reduce((obj, postId, key) => {
+        obj[postId] = commentsByPost[key].reduce(
+          ({ byId, ids }, comment) => {
+            byId[comment.seq] = comment;
+            ids.push(comment.seq);
+            return { byId, ids };
+          },
+          { byId: {}, ids: [] }
+        );
         return obj;
       }, {});
     }
@@ -26,10 +33,14 @@ export default (state = {}, { type, payload }) => {
       const { postId, comments } = payload;
       return {
         ...state,
-        [postId]: comments.reduce((commentsById, comment) => {
-          commentsById[comment.seq] = comment;
-          return commentsById;
-        }, {}),
+        [postId]: comments.reduce(
+          ({ byId, ids }, comment) => {
+            byId[comment.seq] = comment;
+            ids.push(comment.seq);
+            return { byId, ids };
+          },
+          { byId: {}, ids: [] }
+        ),
       };
     }
     default:
