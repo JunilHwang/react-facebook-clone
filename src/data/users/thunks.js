@@ -1,26 +1,17 @@
 import { userService } from '@/services';
 import { setAuth } from './actions';
 
-export const signIn = (userInfo) => (dispatch) => {
-  return userService
-    .setAuth(userInfo)
-    .then((auth) => dispatch(setAuth(auth)))
-    .catch((e) => alert(e.message));
+export const signIn = (userInfo) => async (dispatch) => {
+  const auth = await userService.setAuth(userInfo);
+  dispatch(setAuth(auth));
 };
 
-export const fetchAuth = () => (dispatch) => {
-  return userService
-    .getAuth()
-    .then((auth) => dispatch(setAuth(auth)))
-    .catch((e) => {
-      alert(e.message);
-      dispatch(setAuth(null));
-    });
+export const fetchAuth = () => async (dispatch) => {
+  const auth = await userService.getAuth();
+  dispatch(setAuth(auth));
 };
 
-export const removeAuth = () => (dispatch) => {
-  return userService
-    .removeAuth()
-    .then(() => dispatch(setAuth(null)))
-    .catch((e) => alert(e.message));
+export const removeAuth = () => async (dispatch) => {
+  await userService.removeAuth();
+  dispatch(setAuth(null));
 };
