@@ -2,7 +2,7 @@ import { socialAdapter } from '@/adatpers';
 
 export default Object.freeze({
   fetchPostsOfUser(userId) {
-    return socialAdapter.get(`/user/${userId}/post/list`);
+    return socialAdapter.get(`/user/${userId}/post/list?limit=10&offset=0`);
   },
 
   addPost(userId, contents) {

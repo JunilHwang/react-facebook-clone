@@ -2,29 +2,36 @@ import { commentService, postService } from '@/services';
 import { setPost, setPosts } from './actions';
 import { setComments } from '@/data/comments/actions';
 
-export const fetchPostsOfUser = (userId) => (dispatch) =>
-  postService
-    .fetchPostsOfUser(userId)
-    .then((posts) => {
-      dispatch(setPosts(posts));
-      const postIds = posts.map(({ seq }) => seq);
-      const fetchAllCommentsByPost = postIds.map((postId) => commentService.fetchComments(userId, postId));
-      return Promise.all(fetchAllCommentsByPost)
-        .then((commentsByPost) => dispatch(setComments({ postIds, commentsByPost })))
-        .catch((e) => {
-          throw new Error(e);
-        });
-    })
-    .catch((e) => alert(e.message));
+export const fetchPostsOfUser = (userId) => async (dispatch) => {
+  try {
+    const posts = await postService.fetchPostsOfUser(userId);
+    dispatch(setPosts(posts));
+    const fetchAllCommentsByPost = posts.map(({ seq }) => commentService.fetchComments(userId, seq));
+    dispatch(
+      setComments({
+        postIds: posts.map(({ seq }) => seq),
+        commentsByPost: await Promise.all(fetchAllCommentsByPost),
+      })
+    );
+  } catch (e) {
+    alert(e.message);
+  }
+};
 
-export const addPost = (userId, contents) => (dispatch) =>
-  postService
-    .addPost(userId, contents)
-    .then((post) => dispatch(setPost(post)))
-    .catch((e) => alert(e.message));
+export const addPost = (userId, contents) => async (dispatch) => {
+  try {
+    const post = await postService.addPost(userId, contents);
+    dispatch(setPost(post));
+  } catch (e) {
+    alert(e.message);
+  }
+};
 
-export const toggleLikePost = (userId, postId) => (dispatch) =>
-  postService
-    .toggleLike(userId, postId)
-    .then((post) => dispatch(setPost(post)))
-    .catch((e) => alert(e.message));
+export const toggleLikePost = (userId, postId) => async (dispatch) => {
+  try {
+    const post = await postService.toggleLike(userId, postId);
+    dispatch(setPost(post));
+  } catch (e) {
+    alert(e.message);
+  }
+};
