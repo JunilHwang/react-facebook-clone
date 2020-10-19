@@ -6,8 +6,8 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { history } from '@/data/configureStore';
 import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '@/layouts/PublicLayout';
 import { useAuth } from '@/hooks';
-import FormErrorMessage from '@/constants/FormErrorMessage';
-import {AuthMessage} from "@/constants";
+import { FormErrorMessage } from '@/constants';
+import { AuthMessage } from '@/constants';
 
 const initialValues = { email: '', password: '' };
 
