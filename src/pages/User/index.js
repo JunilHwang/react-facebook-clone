@@ -13,10 +13,7 @@ const User = () => {
   const location = useSelector(getLocation);
   const userName = location?.pathname?.replace(/\/u\//, '');
 
-  const posts = useMemo(
-    () => postsState.ids.map((id) => postsState.entities[id]).filter((each) => each?.writer?.name === userName),
-    [postsState.entities, postsState.ids]
-  );
+  const posts = useMemo(() => postsState.filter((each) => each?.writer?.name === userName), [postsState]);
 
   const postList = useMemo(() => posts.map((post) => <Post key={post.seq} post={post} />), [posts, userName]);
 

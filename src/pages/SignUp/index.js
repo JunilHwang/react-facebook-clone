@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
 import EmailPasswordForm from '@/pages/SignUp/EmailPasswordForm';
 import ProfileForm from '@/pages/SignUp/ProfileForm';
 import { STEPS } from '@/pages/SignUp/helpers';
+import * as actions from '@/data/rootActions';
+
+const INITIAL_VALUES = { email: '', password: '', confirmPassword: '', name: '' };
 
 const renderForm = (step, setStep) => {
   switch (step) {
@@ -14,11 +19,15 @@ const renderForm = (step, setStep) => {
 
 function SignUp() {
   const [step, setStep] = useState(STEPS.EMAIL_PASSWORD);
+  const dispatch = useDispatch();
+  const handleSubmit = (values) => dispatch(actions.user.register(values));
 
   return (
     <div className="signup container">
       <h1 className="text-center">계정 만들기</h1>
-      {renderForm(step, setStep)}
+      <Formik initialValues={INITIAL_VALUES} onSubmit={handleSubmit}>
+        <Form>{renderForm(step, setStep)}</Form>
+      </Formik>
       <style jsx global>{`
         .signup form {
           max-width: 320px;
@@ -29,7 +38,6 @@ function SignUp() {
           font-size: 16px;
           height: auto;
           padding: 10px;
-          margin-bottom: 1rem;
         }
         .signup button.btn {
           background-color: #3b5999;

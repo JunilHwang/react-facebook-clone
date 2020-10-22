@@ -1,20 +1,18 @@
 import React, { useEffect, useMemo } from 'react';
-import Post from './Post';
-import PostForm from './PostForm';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '@/data/rootActions';
 import * as selectors from '@/data/rootSelectors';
+import Post from './Post';
+import PostForm from './PostForm';
+
+const byCreateAt = (left, right) => +new Date(right.createAt) - +new Date(left.createAt);
 
 const Home = () => {
   const dispatch = useDispatch();
-  const postsState = useSelector(selectors.posts.getPosts);
 
-  const posts = useMemo(() => postsState.ids.map((id) => postsState.entities[id]), [
-    postsState.entities,
-    postsState.ids,
-  ]);
+  const posts = useSelector(selectors.posts.getPosts);
 
-  const postList = useMemo(() => posts.map((post) => <Post key={post.seq} post={post} />), [posts]);
+  const postList = useMemo(() => posts.sort(byCreateAt).map((post) => <Post key={post.seq} post={post} />), [posts]);
 
   useEffect(() => {
     dispatch(actions.posts.getPosts());

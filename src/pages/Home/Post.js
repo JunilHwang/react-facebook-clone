@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 import * as actions from '@/data/rootActions';
@@ -13,10 +13,16 @@ const Post = ({ post }) => {
     seq,
     createAt,
     writer: { name, profileImageUrl },
+    userId,
     contents,
     likes,
     likesOfMe,
   } = post;
+
+  useEffect(() => {
+    dispatch(actions.comments.getComments(userId.value, seq));
+  }, []);
+
   const commentsCount = useSelector(selectors.comments.getCommentsCount(seq));
   const datetime = moment(createAt).fromNow();
   const likeHandler = (e) => {

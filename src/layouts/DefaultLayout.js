@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from '@/components/Navigation';
+import Navigation from '/components/Navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
 

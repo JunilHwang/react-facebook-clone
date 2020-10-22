@@ -4,11 +4,12 @@ import Comment from './Comment';
 import * as selectors from '@/data/rootSelectors';
 
 const CommentList = ({ postSeq }) => {
-  const comments = useSelector(selectors.comments.getCommentsByPost(postSeq));
+  const comments = useSelector(selectors.comments.getComments);
+  const commentsList = comments[postSeq] || [];
 
   return (
     <ul className="comment-list">
-      {comments.map((comment) => (
+      {commentsList.map((comment) => (
         <Comment key={comment.seq} comment={comment} />
       ))}
       <style jsx global>{`

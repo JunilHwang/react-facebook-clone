@@ -1,17 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Form, Formik, Field } from 'formik';
+import * as actions from '@/data/rootActions';
+import EmailInput from '@/components/Form/EmailInput';
+import PasswordInput from '@/components/Form/PasswordInput';
+import { composeValidators, required, validEmail } from '@/services/FormHelper/validators';
+
+const INITIAL_VALUES = {
+  email: '',
+  password: '',
+};
 
 function Login() {
+  const dispatch = useDispatch();
+  const handleSubmit = (values) => dispatch(actions.user.login(values));
+
   return (
     <div className="login container">
       <h1 className="text-center">로그인</h1>
-      <form>
-        <input type="email" className="form-control" placeholder="Email" required />
-        <input type="password" className="form-control" placeholder="Password" required />
-        <Link className="btn btn-lg btn-primary btn-block" to={'/'}>
-          로그인
-        </Link>
-      </form>
+      <Formik initialValues={INITIAL_VALUES} onSubmit={handleSubmit}>
+        <Form>
+          <Field
+            validate={composeValidators(required, validEmail)}
+            name="email"
+            component={EmailInput}
+            className="form-control"
+            placeholder="Email"
+          />
+          <Field
+            name="password"
+            validate={required}
+            component={PasswordInput}
+            className="form-control"
+            placeholder="Password"
+          />
+          <button type="submit" className="btn btn-lg btn-primary btn-block">
+            로그인
+          </button>
+        </Form>
+      </Formik>
       <p className="text-help text-center">
         계정이 필요하신가요?{' '}
         <Link className="text-center new-account" to="/signup">
