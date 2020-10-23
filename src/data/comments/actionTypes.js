@@ -1,2 +1,3 @@
 export const SET_COMMENTS = 'SET_COMMENTS';
-export const GET_COMMENTS = 'GET_COMMENTS';
+export const SET_COMMENTS_OF_POST = 'SET_COMMENTS_OF_POST';
+export const SET_COMMENT = 'SET_COMMENT';

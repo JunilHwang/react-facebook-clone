@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import configureStore from '@/data/configureStore';
 import App from './App';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/ko';
+import { Provider } from 'react-redux';
+import { configureStore } from './data/configureStore';
 
-const { store, history } = configureStore();
+dayjs.locale('ko');
+dayjs.extend(relativeTime);
+
+const { store } = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App history={history} />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

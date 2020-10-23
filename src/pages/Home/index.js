@@ -1,34 +1,47 @@
-import React, { useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '@/data/rootActions';
-import * as selectors from '@/data/rootSelectors';
-import Post from './Post';
-import PostForm from './PostForm';
-
-const byCreateAt = (left, right) => +new Date(right.createAt) - +new Date(left.createAt);
+import React from 'react';
+import css from 'styled-jsx/css';
+import { PostForm, Post } from './post';
+import { usePosts } from '@/hooks';
 
 const Home = () => {
-  const dispatch = useDispatch();
-
-  const posts = useSelector(selectors.posts.getPosts);
-
-  const postList = useMemo(() => posts.sort(byCreateAt).map((post) => <Post key={post.seq} post={post} />), [posts]);
-
-  useEffect(() => {
-    dispatch(actions.posts.getPosts());
-  }, []);
+  const { posts, toggleLike: handleToggleLike, addPost: handleAddPost } = usePosts();
 
   return (
     <div className="posts container">
-      <PostForm />
-      {postList}
-      <style jsx>{`
-        .container {
-          max-width: 600px;
-        }
-      `}</style>
+      <PostForm onAddPost={handleAddPost} />
+      {posts.map((post) => (
+        <Post key={`post_${post.seq}`} post={post} onToggleLike={handleToggleLike} />
+      ))}
+      <style jsx>{HomeStyle}</style>
     </div>
   );
 };
 
-export default Home;
+const HomeStyle = css`
+  .container {
+    max-width: 600px;
+  }
+
+  .comment-form {
+    margin: 20px;
+  }
+
+  .comment-form > textarea.form-control {
+    min-height: 20px;
+    line-height: 20px;
+    border-radius: 0.5rem;
+    resize: none;
+  }
+
+  .comment-form > button.btn {
+    float: right;
+    margin-bottom: 0;
+    margin-top: 16px;
+    background-color: #3b5999;
+    color: #fffffe;
+    border-color: unset;
+    font-weight: 800;
+  }
+`;
+
+export default React.memo(Home);

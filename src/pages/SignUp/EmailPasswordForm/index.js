@@ -1,60 +1,65 @@
-import React from 'react';
-import { Field, useFormikContext } from 'formik';
+import React, { useCallback } from 'react';
 import { STEPS } from '@/pages/SignUp/helpers';
-import PasswordInput from '@/components/Form/PasswordInput';
-import EmailInput from '@/components/Form/EmailInput';
-import {
-  composeValidators,
-  createConfirmedPasswordValidator,
-  required,
-  validUniqueEmail,
-} from '@/services/FormHelper/validators';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { userService } from '@/services';
+import { FormErrorMessage } from '@/constants';
+import { useAuth } from '@/hooks';
 
-const EmailPasswordForm = ({ setStep }) => {
-  const { values, validateField, validateForm } = useFormikContext();
-  const validConfirmPassword = createConfirmedPasswordValidator(values.password);
-  const handleClickNextStep = (e) => {
-    e.preventDefault();
-    validateField('email');
-    validateField('password');
-    validateField('confirmPassword');
-    validateForm().then((v) => {
-      if (Object.keys(v).length === 0) {
-        setStep(STEPS.PROFILE);
+const blanks = {
+  principal: FormErrorMessage.EMAIL_BLANK,
+  credentials: FormErrorMessage.PASSWORD_BLANK,
+  repeatCredentials: FormErrorMessage.REPEAT_PASSWORD_BLANK,
+};
+
+const EmailPasswordForm = ({ setStep, extendUserInfo, initialValues }) => {
+  const { ErrorWrapper } = useAuth();
+
+  const handleSubmit = useCallback(
+    async (values, { setErrors }) => {
+      const { principal } = values;
+      const isExists = await userService.validateExists(principal);
+      if (isExists) {
+        return setErrors({ principal: FormErrorMessage.EMAIL_EXISTS });
       }
-    });
-    // setStep(STEPS.PROFILE)
-  };
+      extendUserInfo({ ...values });
+      setStep(STEPS.PROFILE);
+    },
+    [extendUserInfo]
+  );
+
+  const handleValidate = useCallback(
+    (values) => {
+      const { credentials, repeatCredentials } = values;
+      const errors = Object.entries(blanks).reduce((obj, [k, v]) => {
+        if (values[k].trim().length === 0) {
+          obj[k] = v;
+        }
+        return obj;
+      }, {});
+
+      if (credentials !== repeatCredentials) {
+        errors.repeatCredentials = FormErrorMessage.NONE_MATCH_PASSWORD;
+      }
+
+      return errors;
+    },
+    [blanks]
+  );
 
   return (
-    <>
-      <Field
-        className="form-control"
-        component={EmailInput}
-        name="email"
-        placeholder="이메일"
-        validate={validUniqueEmail}
-      />
-      <Field
-        validate={required}
-        name="password"
-        component={PasswordInput}
-        type="password"
-        className="form-control"
-        placeholder="비밀번호"
-        minLength="5"
-      />
-      <Field
-        validate={composeValidators(required, validConfirmPassword)}
-        name="confirmPassword"
-        component={PasswordInput}
-        className="form-control"
-        placeholder="비밀번호 확인"
-      />
-      <button className="btn btn-lg btn-primary btn-block" onClick={handleClickNextStep}>
-        다음
-      </button>
-    </>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={handleValidate}>
+      <Form>
+        <Field type="principal" name="principal" className="form-control" placeholder="이메일" />
+        <ErrorMessage name="principal" render={ErrorWrapper} />
+        <Field type="password" name="credentials" className="form-control" placeholder="비밀번호" minLength="5" />
+        <ErrorMessage name="credentials" render={ErrorWrapper} />
+        <Field type="password" name="repeatCredentials" className="form-control" placeholder="비밀번호 확인" />
+        <ErrorMessage name="repeatCredentials" render={ErrorWrapper} />
+        <button className="btn btn-lg btn-primary btn-block" type="submit">
+          다음
+        </button>
+      </Form>
+    </Formik>
   );
 };
 

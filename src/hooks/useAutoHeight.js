@@ -1,11 +1,19 @@
-import { useRef, useLayoutEffect } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
-export default function useAutoHeight(lineHeight, contents) {
-  const ref = useRef(null);
-  // textarea 높이 자동 조절
+export const useAutoHeight = () => {
+  const $contentRef = useRef(null);
+
   useLayoutEffect(() => {
-    ref.current.style.height = 'auto';
-    ref.current.style.height = ref.current.scrollHeight + lineHeight + 'px';
-  }, [contents]);
-  return [ref];
-}
+    const handleInput = () => {
+      $contentRef.current.style.height = 'auto';
+      const { scrollHeight, clientHeight } = $contentRef.current;
+      if (scrollHeight !== clientHeight) {
+        $contentRef.current.style.height = scrollHeight + 'px';
+      }
+    };
+    $contentRef?.current?.addEventListener('input', handleInput);
+    return () => $contentRef?.current?.removeEventListener('input', handleInput);
+  }, [$contentRef]);
+
+  return $contentRef;
+};

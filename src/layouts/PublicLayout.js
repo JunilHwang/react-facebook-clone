@@ -1,39 +1,42 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React from 'react';
+import { Route } from 'react-router';
+import { resolve } from 'styled-jsx/css';
 
-function PublicLayout(props) {
-  const { component: Component, ...rest } = props;
-
+const PublicLayout = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(matchProps) => (
-        <>
-          <Component {...matchProps} />
-          <style jsx global>{`
-            * {
-              box-sizing: border-box;
-            }
-
-            html,
-            body {
-              font-family: Dotum, '맑은 고딕', 'roboto', 'Helvetica Neue', Helvetica, Arial, '맑은 고딕', malgun gothic,
-                '돋움', Dotum, sans-serif;
-              color: #202b3d;
-              background-color: #e9eaed;
-              font-size: 12px;
-              font-weight: 400;
-              line-height: 1.5;
-            }
-
-            body {
-              padding: 100px 0;
-            }
-          `}</style>
-        </>
+        <div className="container">
+          <Component {...matchProps} {...rest} />
+        </div>
       )}
     />
   );
-}
+};
+
+export const formStyle = resolve`
+  max-width: 320px;
+  padding: 8px;
+  margin: 0 auto;
+`;
+
+export const buttonStyle = resolve`
+  background-color: #3b5999;
+  color: #fffffe;
+  font-weight: 800;
+  border-color: unset;
+  margin-top: 10px;
+`;
+
+export const textHelpStyle = resolve`
+  margin-top: 10px;
+`;
+
+export const linkStyle = resolve`
+  font-weight: 900;
+  color: #3a5999;
+  margin-left: 4px;
+`;
 
 export default PublicLayout;

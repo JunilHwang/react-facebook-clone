@@ -1,25 +1,14 @@
-import React, { useMemo, useEffect } from 'react';
-import Post from '../Home/Post';
-import { getLocation } from 'connected-react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import * as selectors from '@/data/rootSelectors';
-import * as actions from '@/data/rootActions';
+import React, { useMemo } from 'react';
+import { usePosts } from '@/hooks';
+import Post from '@/pages/Home/post/Post';
 
 const User = () => {
-  const dispatch = useDispatch();
-  const postsState = useSelector(selectors.posts.getPosts);
-  // TODO: discuss with Harry
-  // const userName = props.computedMatch?.params?.name;
-  const location = useSelector(getLocation);
-  const userName = location?.pathname?.replace(/\/u\//, '');
+  const { posts, toggleLike: handleToggleLike } = usePosts();
 
-  const posts = useMemo(() => postsState.filter((each) => each?.writer?.name === userName), [postsState]);
-
-  const postList = useMemo(() => posts.map((post) => <Post key={post.seq} post={post} />), [posts, userName]);
-
-  useEffect(() => {
-    dispatch(actions.posts.getPosts());
-  }, []);
+  const postList = useMemo(
+    () => posts.map((post) => <Post key={`post_${post.seq}`} post={post} onToggleLike={handleToggleLike} />),
+    [posts]
+  );
 
   return (
     <div className="container">
