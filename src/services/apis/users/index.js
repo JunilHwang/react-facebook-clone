@@ -1,10 +1,9 @@
 import { socialApiClient } from '@/services/apis/clients';
 
-export const api = {
+export default {
   async getFriendsOfMine() {
     try {
-      const res = await socialApiClient.get('/api/user/connections');
-      return res.data.response;
+      return await socialApiClient.get('/api/user/connections');
     } catch (e) {
       throw Error(e.message);
     }
@@ -12,8 +11,7 @@ export const api = {
 
   async checkEmailExistence({ address }) {
     try {
-      const res = await socialApiClient.post('/api/user/exists', { address });
-      return res.data.response;
+      return await socialApiClient.post('/api/user/exists', { address });
     } catch (e) {
       throw Error(e.message);
     }

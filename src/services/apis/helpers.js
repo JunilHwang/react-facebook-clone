@@ -1,6 +1,9 @@
 export const socialApiResponseInterceptor =
-  ((res) => {
-    return res.response;
+  (({ data: { error, response, success } }) => {
+    if (!success) {
+      return Promise.reject(error);
+    }
+    return response;
   },
   (err) => {
     // Handle server error

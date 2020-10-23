@@ -1,9 +1,9 @@
 import { socialApiClient } from '@/services/apis/clients';
 
-export const api = {
+export default {
   async createPost(contents) {
     try {
-      await socialApiClient.post('/api/post', { contents });
+      return await socialApiClient.post('/api/post', { contents });
     } catch (e) {
       throw Error(e.message);
     }
@@ -19,8 +19,7 @@ export const api = {
 
   async getCommentList({ userId, postId }) {
     try {
-      const res = await socialApiClient.get(`/api/user/${userId}/post/${postId}/comment/list`);
-      return res.data.response;
+      return await socialApiClient.get(`/api/user/${userId}/post/${postId}/comment/list`);
     } catch (e) {
       throw Error(e.message);
     }
@@ -28,7 +27,7 @@ export const api = {
 
   async likePost({ userId, postId }) {
     try {
-      await socialApiClient.patch(`/api/user/${userId}/post/${postId}/like`);
+      return await socialApiClient.patch(`/api/user/${userId}/post/${postId}/like`);
     } catch (e) {
       throw Error(e.message);
     }
@@ -36,8 +35,7 @@ export const api = {
 
   async getAllPosts({ userId }) {
     try {
-      const res = await socialApiClient.get(`/api/user/${userId}/post/list`);
-      return res.data.response;
+      return await socialApiClient.get(`/api/user/${userId}/post/list`);
     } catch (e) {
       throw Error(e.message);
     }
