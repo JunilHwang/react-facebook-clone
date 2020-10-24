@@ -1,5 +1,5 @@
 import { isNil, isEmpty, test } from 'ramda';
-import apis from '@/services/apis';
+import {FormErrorMessage} from "@/constants";
 
 const emailRegex = new RegExp(
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -20,42 +20,32 @@ export const composeValidators = (...args) => (value) => {
 };
 
 export const createConfirmedPasswordValidator = (password) => (value) =>
-  password === value ? undefined : 'Does not match password';
+  password === value ? undefined : FormErrorMessage.NONE_MATCH_PASSWORD;
 
-export const required = (value) => (!isNil(value) && !isEmpty(value) ? undefined : 'Required');
+export const required = (value) => (!isNil(value) && !isEmpty(value) ? undefined : FormErrorMessage.BLANK);
 
 export const validEmail = (value) => (isEmail(value) ? undefined : 'Invalid Email');
 
-export const validPost = (value) => {
-  if (value.length < 5) {
-    return 'Min length of post is 5 characters';
+export const validContentsLength = (value, min, max) => {
+  if (value.length < min) {
+    return `최소 ${min}글자 이상 입력해주세요.`;
   }
 
-  if (value.length > 300) {
-    return 'Max length of post is 300 characters';
+  if (value.length > max) {
+    return `최대 ${max} 글자만 입력할 수 있습니다.`;
   }
-
-  return undefined;
 };
 
-export const validComment = (value) => {
-  if (value.length < 5) {
-    return 'Min length of comment is 5 characters';
-  }
+export const validPost = (value) => validContentsLength(value, 5, 300);
 
-  if (value.length > 300) {
-    return 'Max length of comment is 300 characters';
-  }
-
-  return undefined;
-};
+export const validComment = (value) => validContentsLength(value, 5, 300);
 
 export const validUniqueEmail = async (value) => {
   if (required(value)) return required(value);
   if (validEmail(value)) return validEmail(value);
 
   try {
-    const res = await apis.usersApi.checkEmailExistence({ address: value });
+    const res = await usersApi.checkEmailExistence({ address: value });
     return res ? 'Duplicated email' : undefined;
   } catch (e) {
     return undefined;

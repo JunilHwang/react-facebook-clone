@@ -9,15 +9,13 @@ const App = () => {
   return (
     <>
       <ConnectedRouter history={history}>
-        <>
-          <Switch>
-            <PublicLayout path="/login" component={SignIn} />
-            <PublicLayout path="/signup" component={SignUp} />
-            <DefaultLayout path="/u/:userId" component={User} />
-            <DefaultLayout path="/" component={Home} />
-            <Redirect path="*" to="/" />
-          </Switch>
-        </>
+        <Switch>
+          <PublicLayout path="/login" component={SignIn} />
+          <PublicLayout path="/signup" component={SignUp} />
+          <DefaultLayout path="/u/:userId" component={User} />
+          <DefaultLayout path="/" component={Home} />
+          <Redirect path="*" to="/" />
+        </Switch>
       </ConnectedRouter>
       <style jsx global>{`
         * {
