@@ -5,6 +5,7 @@ export default {
     try {
       return await socialApiClient.get('/api/user/connections');
     } catch (e) {
+      console.log(e);
       throw Error(e.message);
     }
   },

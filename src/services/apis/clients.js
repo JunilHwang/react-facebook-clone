@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { socialApiResponseInterceptor } from './helpers';
 
 const SOCIAL_SERVER_URL = 'http://15.164.170.69:8080';
 
@@ -8,6 +7,21 @@ const socialApiClient = axios.create({
   timeout: 5000,
 });
 
-socialApiClient.interceptors.response.use(socialApiResponseInterceptor);
+socialApiClient.interceptors.response.use(
+  ({ data: { error, response, success } }) => {
+    if (!success) {
+      return Promise.reject(error);
+    }
+    return response;
+  },
+  (err) => {
+    // Handle server error
+    if (err?.error?.status) {
+      return Promise.reject(err.error);
+    }
+    // Handle AxiosClient error
+    return Promise.reject(err);
+  }
+);
 
 export { socialApiClient };
