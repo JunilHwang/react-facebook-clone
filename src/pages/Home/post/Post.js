@@ -1,48 +1,62 @@
-import React, { useCallback } from 'react';
+import React, { useEffect } from 'react';
 import css from 'styled-jsx/css';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { CommentForm, Comments } from '../comment';
-import { useComments } from '@/hooks';
 import { fromNow } from '@/utils';
+import * as actions from '@/data/rootActions';
+import * as selectors from '@/data/rootSelectors';
 
-const Post = ({ post, onToggleLike }) => {
-  const { seq, writer, contents, createAt, likes, likesOfMe } = post;
-  const { commentsOfPost, addComment: handleAddComment } = useComments(seq);
+const defaultProfileImageURL = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
 
-  const handleLikeClick = useCallback(
-    (event) => {
-      event.preventDefault();
-      try {
-        onToggleLike(post);
-      } catch (e) {
-        alert(e.message);
-      }
-    },
-    [onToggleLike, post]
-  );
+const Post = ({ post }) => {
+  const dispatch = useDispatch();
+  const {
+    seq,
+    createAt,
+    writer: { name, profileImageUrl = defaultProfileImageURL },
+    userId,
+    contents,
+    likes,
+    likesOfMe,
+  } = post;
+
+  useEffect(() => {
+    dispatch(actions.comments.getComments(userId.value, seq));
+  }, []);
+
+  const commentsCount = useSelector(selectors.comments.getCommentsCount(seq));
+  const handleLikeClock = (e) => {
+    e.preventDefault();
+    dispatch(actions.posts.likePost(seq));
+  };
 
   return (
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">
-          <Link to={`/u/${writer.email.address}`}>{writer.name}</Link>
+          <Link className={profileStyle.className} to={`/u/${name}`}>
+            <img className="profile-image" src={profileImageUrl} alt={name} width={25} />
+            <span>{name}</span>
+          </Link>
         </h5>
         <h6 className="card-subtitle text-muted">{fromNow(createAt)}</h6>
         <p className="card-text">{contents}</p>
         <hr />
         <div className="card-info">
-          <button type="button" className="thumb-count" onClick={handleLikeClick}>
+          <button type="button" className="thumb-count" onClick={handleLikeClock}>
             <i className={`far fa-thumbs-up ${likesOfMe ? 'on' : ''}`}>{likes} 개</i>
           </button>
           <span className="comment-count">
-            <i className="far fa-comment-alt">{commentsOfPost.length} 개</i>
+            <i className="far fa-comment-alt">{commentsCount} 개</i>
           </span>
         </div>
       </div>
-      <Comments comments={commentsOfPost} />
-      <CommentForm onAddComment={handleAddComment} />
+      <Comments postSeq={seq} />
+      <CommentForm postSeq={seq} />
       <style jsx>{cardStyle}</style>
+      {profileStyle.styles}
     </div>
   );
 };
@@ -90,6 +104,26 @@ const cardStyle = css`
 
   .card .card-info .thumb-count .on {
     color: #007bff;
+  }
+
+  .card .profile-image {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    margin-right: 5px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+`;
+
+const profileStyle = css.resolve`
+  color: rgb(59, 89, 153);
+  display: inline-flex;
+  align-items: center;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
   }
 `;
 

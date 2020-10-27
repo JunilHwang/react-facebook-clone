@@ -17,7 +17,7 @@ const PostForm = () => {
     <>
       <Formik initialValues={INITIAL_VALUES} onSubmit={handleSubmit}>
         {({ errors }) => (
-          <Form className="write-form">
+          <Form className={formStyle.className}>
             <Field
               component={TextAreaInput}
               validate={composeValidators(required, validPost)}
@@ -26,32 +26,34 @@ const PostForm = () => {
               placeholder="무슨 생각을 하고 계신가요?"
               spellCheck="false"
             />
-            <button type="submit" className="btn btn-primary" disabled={Object.values(errors).length > 0}>
+            <button
+              type="submit"
+              className={`btn btn-primary ${buttonStyle.className}`}
+              disabled={Object.values(errors).length > 0}>
               공유하기
             </button>
           </Form>
         )}
       </Formik>
-      <style jsx>{WriteFormStyle}</style>
+      {formStyle.styles}
+      {buttonStyle.styles}
       {textareaStyle.styles}
     </>
   );
 };
 
-const WriteFormStyle = css`
-  form {
-    margin-bottom: 100px;
-  }
+const formStyle = css.resolve`
+  margin-bottom: 100px;
+`;
 
-  button.btn {
-    float: right;
-    margin-bottom: 0;
-    margin-top: 16px;
-    background-color: #3b5999;
-    color: #fffffe;
-    border: none;
-    font-weight: 800;
-  }
+const buttonStyle = css.resolve`
+  float: right;
+  margin-bottom: 0;
+  margin-top: 16px;
+  background-color: #3b5999;
+  color: #fffffe;
+  border: none;
+  font-weight: 800;
 `;
 
 const textareaStyle = css.resolve`
