@@ -5,7 +5,6 @@ import { ConnectedRouter } from 'connected-react-router';
 import { DefaultLayout, PublicLayout } from './layouts';
 
 const App = ({ history }) => {
-  console.log(history);
   return (
     <>
       <ConnectedRouter history={history}>

@@ -3,7 +3,7 @@ import * as ActionTypes from '@/data/rootActionTypes';
 const initialState = {
   user: {
     seq: 1,
-    name: 'harry',
+    name: 'junil',
     email: { address: 'tester00@gmail.com' },
     loginCount: 47,
     lastLoginAt: '2019-12-08T15:23:06.898',

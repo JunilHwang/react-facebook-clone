@@ -1,34 +1,39 @@
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
+import { Field, Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import css from 'styled-jsx/css';
-import { useAutoHeight } from '@/hooks';
-import {useFormHandler} from "@/hooks/useFormHandler";
 
-const PostForm = ({ onAddPost }) => {
-  const contentsRef = useAutoHeight();
-  const addPost = useCallback(() => {
-    try {
-      onAddPost(contentsRef.current.value);
-      return true;
-    } catch (e) {
-      alert(e.message);
-    }
-  }, [onAddPost]);
-  const { handleFormSubmit } = useFormHandler(addPost);
+import TextAreaInput from '@/components/Form/TextAreaInput';
+import { composeValidators, required, validPost } from '@/services/FormHelper/validators';
+import * as actions from '@/data/rootActions';
+
+const INITIAL_VALUES = { contents: '' };
+
+const PostForm = () => {
+  const dispatch = useDispatch();
+  const handleSubmit = ({ contents }, { resetForm }) => dispatch(actions.posts.addPost({ contents, resetForm }));
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
-        <textarea
-          className="form-control input-lg"
-          placeholder="무슨 생각을 하고 계신가요?"
-          spellCheck="false"
-          ref={contentsRef}
-        />
-        <button type="submit" className="btn btn-primary">
-          공유하기
-        </button>
-      </form>
+      <Formik initialValues={INITIAL_VALUES} onSubmit={handleSubmit}>
+        {({ errors }) => (
+          <Form className="write-form">
+            <Field
+              component={TextAreaInput}
+              validate={composeValidators(required, validPost)}
+              name="contents"
+              className={`input-lg form-control ${textareaStyle.className}`}
+              placeholder="무슨 생각을 하고 계신가요?"
+              spellCheck="false"
+            />
+            <button type="submit" className="btn btn-primary" disabled={Object.values(errors).length > 0}>
+              공유하기
+            </button>
+          </Form>
+        )}
+      </Formik>
       <style jsx>{WriteFormStyle}</style>
+      {textareaStyle.styles}
     </>
   );
 };
@@ -38,7 +43,19 @@ const WriteFormStyle = css`
     margin-bottom: 100px;
   }
 
-  textarea.form-control {
+  button.btn {
+    float: right;
+    margin-bottom: 0;
+    margin-top: 16px;
+    background-color: #3b5999;
+    color: #fffffe;
+    border: none;
+    font-weight: 800;
+  }
+`;
+
+const textareaStyle = css.resolve`
+  textarea {
     min-height: 100px;
     line-height: 20px;
     padding: 20px;
@@ -51,16 +68,6 @@ const WriteFormStyle = css`
 
   textarea:focus {
     box-shadow: #999999 0 0 50px;
-  }
-
-  button.btn {
-    float: right;
-    margin-bottom: 0;
-    margin-top: 16px;
-    background-color: #3b5999;
-    color: #fffffe;
-    border: none;
-    font-weight: 800;
   }
 `;
 
