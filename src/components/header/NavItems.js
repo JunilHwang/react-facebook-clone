@@ -1,37 +1,25 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import NavItem from './NavItem';
 import ProfileImage from './ProfileImage';
 import Conditional from '@/hocs/Conditional';
-import { useAuth } from '@/hooks';
-import { AuthMessage } from '@/constants';
 
 const defaultProfileImageURL = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
 
-const NavItems = () => {
-  const { auth, removeAuth } = useAuth();
-  const { seq, name, profileImageURL = defaultProfileImageURL } = auth || {};
-
-  const handleLogoutClick = useCallback(
-    (event) => {
-      event.preventDefault();
-      removeAuth();
-      alert(AuthMessage.SIGN_OUT);
-    },
-    [removeAuth]
-  );
+const NavItems = ({ user, onLogout }) => {
+  const { seq, name, profileImageURL = defaultProfileImageURL } = user || {};
 
   return (
     <ul className="nav">
-      <Conditional condition={!auth}>
+      <Conditional condition={!user}>
         <NavItem to="/login">로그인</NavItem>
         <NavItem to="/signup">회원가입</NavItem>
       </Conditional>
-      <Conditional condition={auth}>
+      <Conditional condition={user}>
         <NavItem to={`/u/${seq}`}>
           <ProfileImage src={profileImageURL} />
           {name}
         </NavItem>
-        <NavItem to="/logout" onClick={handleLogoutClick}>
+        <NavItem to="/logout" onClick={onLogout}>
           로그아웃
         </NavItem>
       </Conditional>

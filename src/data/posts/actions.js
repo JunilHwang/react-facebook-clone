@@ -1,6 +1,6 @@
 import * as ActionTypes from '@/data/rootActionTypes';
-import apis from '@/services/apis';
 import * as selectors from '@/data/rootSelectors';
+import apis from '@/services/apis';
 
 export const setPosts = (posts) => ({
   type: ActionTypes.SET_POSTS,

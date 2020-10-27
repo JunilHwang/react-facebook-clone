@@ -3,9 +3,8 @@ import { Home, SignIn, SignUp, User } from './pages';
 import { Redirect, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import { DefaultLayout, PublicLayout } from './layouts';
-import { history } from './data/configureStore';
 
-const App = () => {
+const App = ({ history }) => {
   return (
     <>
       <ConnectedRouter history={history}>
