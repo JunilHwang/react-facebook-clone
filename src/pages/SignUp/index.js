@@ -1,90 +1,45 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
+import EmailPasswordForm from '@/pages/SignUp/EmailPasswordForm';
+import ProfileForm from '@/pages/SignUp/ProfileForm';
+import { STEPS } from '@/pages/SignUp/helpers';
+import actions from '@/data/rootActions';
 
-import { STEPS } from './helpers';
-import EmailPasswordForm from './EmailPasswordForm';
-import ProfileForm from './ProfileForm';
-import { useAuth } from '@/hooks';
-import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
-import { AuthMessage } from '@/constants';
+const INITIAL_VALUES = { email: '', password: '', confirmPassword: '', name: '' };
 
-const initUserInfo = {
-  principal: '',
-  credentials: '',
-  repeatCredentials: '',
-  name: '',
-  file: '',
-};
-
-const renderForm = ({ step, setStep, userInfo, extendUserInfo, handleSignUp }) => {
-  const props = { setStep, extendUserInfo };
-  const { name, file, principal, credentials, repeatCredentials } = userInfo;
+const renderForm = (step, setStep) => {
   switch (step) {
     case STEPS.EMAIL_PASSWORD:
-      return <EmailPasswordForm {...props} initialValues={{ principal, credentials, repeatCredentials }} />;
+      return <EmailPasswordForm setStep={setStep} />;
     case STEPS.PROFILE:
-      return <ProfileForm {...props} initialValues={{ name, file }} handleSignUp={handleSignUp} />;
+      return <ProfileForm setStep={setStep} />;
   }
 };
 
-const SignUp = () => {
-  const { signUp } = useAuth();
-  const history = useHistory();
+function SignUp() {
   const [step, setStep] = useState(STEPS.EMAIL_PASSWORD);
-  const [userInfo, setUserInfo] = useState(initUserInfo);
+  const dispatch = useDispatch();
 
-  const extendUserInfo = useCallback(
-    (newUserInfo) => {
-      setUserInfo({
-        ...userInfo,
-        ...newUserInfo,
-      });
-    },
-    [userInfo]
-  );
-
-  const handleSignUp = useCallback(() => {
-    const { principal, credentials, name } = userInfo;
-    const formData = new FormData();
-    formData.append('principal', principal);
-    formData.append('credentials', credentials);
-    formData.append('name', name);
-    signUp(formData)
-      .then(() => {
-        alert(AuthMessage.SIGN_UP);
-        setUserInfo(initUserInfo);
-        history.push('/login');
-      })
-      .catch((e) => alert(e.message));
-  }, [userInfo]);
+  const handleSubmit = (values) => dispatch(actions.usersActions.signUp(values));
 
   return (
-    <div className="signup">
+    <div className="signup container">
       <h1 className="text-center">계정 만들기</h1>
-      {renderForm({ step, setStep, userInfo, extendUserInfo, handleSignUp })}
-      <p className="text-help text-center">
-        이미 계정이 있으신가요?{' '}
-        <Link className="text-center login-here" to="/login">
-          로그인 하기
-        </Link>
-      </p>
+      <Formik initialValues={INITIAL_VALUES} onSubmit={handleSubmit}>
+        <Form>{renderForm(step, setStep)}</Form>
+      </Formik>
       <style jsx global>{`
         .signup form {
           max-width: 320px;
           padding: 8px;
           margin: 0 auto;
         }
-
         .signup input.form-control {
           font-size: 16px;
           height: auto;
           padding: 10px;
         }
-
-        .signup input.form-control:not(:first-child) {
-          margin-top: 10px;
-        }
-
         .signup button.btn {
           background-color: #3b5999;
           color: #fffffe;
@@ -92,15 +47,12 @@ const SignUp = () => {
           border-color: unset;
           margin-top: 10px;
         }
-
         .signup button.btn-secondary {
           background-color: #566888;
         }
-
         .signup .text-help {
           margin-top: 10px;
         }
-
         .signup .login-here {
           font-weight: 900;
           color: #3a5999;
@@ -108,6 +60,6 @@ const SignUp = () => {
       `}</style>
     </div>
   );
-};
+}
 
 export default SignUp;
