@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
+import { Link } from 'react-router-dom';
+
 import EmailPasswordForm from '@/pages/SignUp/EmailPasswordForm';
 import ProfileForm from '@/pages/SignUp/ProfileForm';
 import { STEPS } from '@/pages/SignUp/helpers';
-import actions from '@/data/rootActions';
+import * as actions from '@/data/rootActions';
+import { linkStyle, textHelpStyle } from '@/layouts/PublicLayout';
 
 const INITIAL_VALUES = { email: '', password: '', confirmPassword: '', name: '' };
 
@@ -21,14 +24,24 @@ function SignUp() {
   const [step, setStep] = useState(STEPS.EMAIL_PASSWORD);
   const dispatch = useDispatch();
 
-  const handleSubmit = (values) => dispatch(actions.usersActions.signUp(values));
+  const handleSubmit = (values) => dispatch(actions.user.register(values));
 
   return (
     <div className="signup container">
       <h1 className="text-center">계정 만들기</h1>
       <Formik initialValues={INITIAL_VALUES} onSubmit={handleSubmit}>
-        <Form>{renderForm(step, setStep)}</Form>
+        <Form>
+          {renderForm(step, setStep)}
+          <p className={`text-center ${textHelpStyle.className}`}>
+            이미 계정이 있으신가요?
+            <Link className={`text-center ${linkStyle.className}`} to="/login">
+              로그인 하기
+            </Link>
+          </p>
+        </Form>
       </Formik>
+      {textHelpStyle.styles}
+      {linkStyle.styles}
       <style jsx global>{`
         .signup form {
           max-width: 320px;

@@ -1,13 +1,14 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import css from 'styled-jsx/css';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 
-import { history } from '@/data/configureStore';
 import { formStyle, buttonStyle, textHelpStyle, linkStyle } from '@/layouts/PublicLayout';
-import { useAuth } from '@/hooks';
-import { FormErrorMessage } from '@/constants';
-import { AuthMessage } from '@/constants';
+import { composeValidators, required, validEmail } from '@/services/FormHelper/validators';
+import EmailInput from '@/components/Form/EmailInput';
+import PasswordInput from '@/components/Form/PasswordInput';
+import * as actions from '@/data/rootActions';
 
 const initialValues = { email: '', password: '' };
 
@@ -18,46 +19,28 @@ export const inputStyle = css.resolve`
 `;
 
 const SignIn = () => {
-  const { signIn, ErrorWrapper } = useAuth();
-  const handleSubmit = useCallback(
-    ({ email, password }) => {
-      signIn({ email, password })
-        .then(() => {
-          alert(AuthMessage.SIGN_IN);
-          history.push('/');
-        })
-        .catch((e) => {
-          alert(e.message);
-        });
-    },
-    [signIn, history]
-  );
-
-  const handleValidate = useCallback(({ email, password }) => {
-    const errors = {};
-    if (email.trim().length === 0) {
-      errors.email = FormErrorMessage.EMAIL_BLANK;
-    }
-    if (password.trim().length === 0) {
-      errors.password = FormErrorMessage.PASSWORD_BLANK;
-    }
-    return errors;
-  }, []);
+  const dispatch = useDispatch();
+  const handleSubmit = (values) => dispatch(actions.user.login(values));
 
   return (
     <>
       <h1 className="text-center">로그인</h1>
-      <Formik onSubmit={handleSubmit} initialValues={initialValues} validate={handleValidate}>
+      <Formik onSubmit={handleSubmit} initialValues={initialValues}>
         <Form className={formStyle.className}>
-          <Field name="email" type="email" className={`form-control ${inputStyle.className}`} placeholder="Email" />
-          <ErrorMessage name="email" render={ErrorWrapper} />
           <Field
+            component={EmailInput}
+            validate={composeValidators(required, validEmail)}
+            name="email"
+            className={`form-control ${inputStyle.className}`}
+            placeholder="Email"
+          />
+          <Field
+            component={PasswordInput}
+            validate={required}
             name="password"
-            type="password"
             className={`form-control ${inputStyle.className}`}
             placeholder="Password"
           />
-          <ErrorMessage name="password" render={ErrorWrapper} />
           <button className={`btn btn-lg btn-primary btn-block ${buttonStyle.className}`} type="submit">
             로그인
           </button>

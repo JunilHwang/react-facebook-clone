@@ -1,4 +1,5 @@
 export const BLANK = '입력해주세요';
+export const EMAIL_FORMAT = '이메일 형식에 적합하지 않습니다.';
 export const EMAIL_BLANK = '이메일을 입력해주세요';
 export const PASSWORD_BLANK = '비밀번호를 입력해주세요';
 export const REPEAT_PASSWORD_BLANK = '비밀번호 확인란을 입력해주세요';

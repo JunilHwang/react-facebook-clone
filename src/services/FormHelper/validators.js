@@ -1,5 +1,6 @@
 import { isNil, isEmpty, test } from 'ramda';
-import {FormErrorMessage} from "@/constants";
+import { FormErrorMessage } from '@/constants';
+import { apis } from '@/services';
 
 const emailRegex = new RegExp(
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -24,11 +25,11 @@ export const createConfirmedPasswordValidator = (password) => (value) =>
 
 export const required = (value) => (!isNil(value) && !isEmpty(value) ? undefined : FormErrorMessage.BLANK);
 
-export const validEmail = (value) => (isEmail(value) ? undefined : 'Invalid Email');
+export const validEmail = (value) => (isEmail(value) ? undefined : FormErrorMessage.EMAIL_FORMAT);
 
 export const validContentsLength = (value, min, max) => {
   if (value.length < min) {
-    return `최소 ${min}글자 이상 입력해주세요.`;
+    return `최소 ${min} 글자 이상 입력해주세요.`;
   }
 
   if (value.length > max) {
@@ -45,8 +46,8 @@ export const validUniqueEmail = async (value) => {
   if (validEmail(value)) return validEmail(value);
 
   try {
-    const res = await usersApi.checkEmailExistence({ address: value });
-    return res ? 'Duplicated email' : undefined;
+    const res = await apis.usersApi.checkEmailExistence({ address: value });
+    return res ? FormErrorMessage.EMAIL_EXISTS : undefined;
   } catch (e) {
     return undefined;
   }

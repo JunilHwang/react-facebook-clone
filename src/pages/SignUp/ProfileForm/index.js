@@ -29,12 +29,6 @@ const ProfileForm = ({ setStep }) => {
       <button className="btn btn-lg btn-secondary btn-block" type="button" onClick={handleClickGoBack}>
         이전 단계
       </button>
-      <p className="text-help text-center">
-        이미 계정이 있으신가요?{' '}
-        <button className="text-center login-here" type="submit">
-          로그인 하기
-        </button>
-      </p>
     </>
   );
 };
