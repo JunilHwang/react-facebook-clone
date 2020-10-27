@@ -1,33 +1,14 @@
-import { SET_POST, SET_POSTS } from './actionTypes';
-import { combineReducers } from 'redux';
+import * as ActionTypes from '@/data/rootActionTypes';
 
-const byId = (state = {}, { type, payload }) => {
-  switch (type) {
-    case SET_POST:
-      return {
-        ...state,
-        [payload.seq]: { ...payload },
-      };
-    case SET_POSTS:
-      return payload.reduce((obj, post) => {
-        obj[post.seq] = post;
-        return obj;
-      }, {});
+const INITIAL_STATE = [];
+
+function posts(state = INITIAL_STATE, action = {}) {
+  switch (action.type) {
+    case ActionTypes.SET_POSTS:
+      return action.posts;
     default:
       return state;
   }
-};
+}
 
-const ids = (state = [], { type, payload }) => {
-  switch (type) {
-    case SET_POST:
-      const set = new Set([...state, payload.seq]);
-      return [...set];
-    case SET_POSTS:
-      return payload.map(({ seq }) => seq);
-    default:
-      return state;
-  }
-};
-
-export default combineReducers({ byId, ids });
+export default posts;

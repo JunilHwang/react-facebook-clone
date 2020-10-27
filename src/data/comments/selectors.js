@@ -1,8 +1,6 @@
-import { createSelector } from 'reselect';
+export const getComments = (state) => state.comments;
 
-export const selectAllComments = (state) => state.comments;
-export const selectCommentsOfPost = (postId) =>
-  createSelector(selectAllComments, (commentsByPost) => {
-    const { byId, ids } = commentsByPost[postId] || { byId: {}, ids: [] };
-    return ids.sort((a, b) => a - b).map((id) => byId[id]);
-  });
+export const getCommentsCount = (postId) => (state) => {
+  const comments = state.comments[postId];
+  return comments ? comments.length : 0;
+};
