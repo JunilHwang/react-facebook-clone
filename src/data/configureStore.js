@@ -17,8 +17,5 @@ export default function configureStore() {
     )
   );
 
-  return {
-    store,
-    history,
-  };
+  return { store, history };
 }

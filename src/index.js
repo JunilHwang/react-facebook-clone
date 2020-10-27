@@ -14,7 +14,7 @@ const { store, history } = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App histroy={history} />
+    <App history={history} />
   </Provider>,
   document.getElementById('root')
 );
