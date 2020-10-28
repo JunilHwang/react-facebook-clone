@@ -21,9 +21,9 @@ export default {
   async register({ email, password, profileImage, name }) {
     try {
       const formData = new FormData();
-      formData.append('email', email);
-      formData.append('password', password);
-      formData.append('profileImage', profileImage);
+      formData.append('principal', email);
+      formData.append('credentials', password);
+      formData.append('file', profileImage);
       formData.append('name', name);
       return await socialApiClient.post('/user/join', formData);
     } catch (e) {
