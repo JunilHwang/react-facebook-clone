@@ -1,4 +1,4 @@
-import * as ActionTypes from '@/data/rootActionTypes';
+import { LOGOUT, SET_USER } from './actionTypes';
 
 const initialState = {
   user: {
@@ -13,9 +13,9 @@ const initialState = {
 
 export default function user(state = initialState, action = {}) {
   switch (action.type) {
-    case ActionTypes.SET_USER:
+    case SET_USER:
       return action.user;
-    case ActionTypes.RESET_AUTH:
+    case LOGOUT:
       return {};
     default:
       return state;

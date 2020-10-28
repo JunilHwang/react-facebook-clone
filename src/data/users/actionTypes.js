@@ -1,4 +1,4 @@
-export const RESET_AUTH = 'RESET_AUTH';
+export const LOGOUT = 'LOGOUT';
 export const SET_USER = 'SET_USER';
 export const ADD_USER = 'ADD_USER';
 export const AUTH_USER = 'AUTH_USER';
