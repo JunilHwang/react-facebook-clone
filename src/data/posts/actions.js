@@ -9,7 +9,7 @@ import {
   POST_REQUEST_FAIL,
 } from './actionTypes';
 
-export const [
+export const {
   setPosts,
   addPost,
   getPosts,
@@ -17,7 +17,7 @@ export const [
   postRequestSuccess,
   postRequestLoading,
   postRequestFail,
-] = createActions(
+} = createActions(
   SET_POSTS,
   ADD_POST,
   GET_POSTS,

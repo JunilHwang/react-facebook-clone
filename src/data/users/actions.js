@@ -8,7 +8,7 @@ import {
   USER_REQUEST_LOADING,
 } from './actionTypes';
 
-export const [logout, setUser, addUser, userRequestSuccess, userRequestFail, userRequestLoading] = createActions(
+export const { logout, setUser, addUser, userRequestSuccess, userRequestFail, userRequestLoading } = createActions(
   LOGOUT,
   SET_USER,
   ADD_USER,

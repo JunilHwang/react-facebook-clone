@@ -1,16 +1,9 @@
 import { LOGOUT, SET_USER, USER_REQUEST_FAIL, USER_REQUEST_LOADING, USER_REQUEST_SUCCESS } from './actionTypes';
 import { combineReducers } from 'redux';
-import {RequestStatus} from "@/constants";
+import { RequestStatus } from '@/constants';
 
 const initialState = {
-  user: {
-    seq: 1,
-    name: 'junil',
-    email: { address: 'tester00@gmail.com' },
-    loginCount: 47,
-    lastLoginAt: '2019-12-08T15:23:06.898',
-    createAt: '2019-12-08T13:50:11.776',
-  },
+  user: null,
 };
 
 function auth(state = initialState, action = {}) {
@@ -18,7 +11,7 @@ function auth(state = initialState, action = {}) {
     case SET_USER:
       return action.payload;
     case LOGOUT:
-      return {};
+      return initialState;
     default:
       return state;
   }

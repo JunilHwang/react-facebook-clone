@@ -8,14 +8,14 @@ import {
   SET_COMMENTS,
 } from './actionTypes';
 
-export const [
+export const {
   setComments,
   getComments,
   addComment,
   commentRequestLoading,
   commentRequestSuccess,
   commentRequestFail,
-] = createActions(
+} = createActions(
   SET_COMMENTS,
   GET_COMMENTS,
   ADD_COMMENT,
