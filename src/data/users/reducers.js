@@ -17,7 +17,6 @@ export default function user(state = initialState, action = {}) {
       return action.user;
     case ActionTypes.RESET_AUTH:
       return {};
-
     default:
       return state;
   }
