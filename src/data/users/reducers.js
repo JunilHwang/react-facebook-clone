@@ -1,17 +1,24 @@
 import { LOGOUT, SET_USER, USER_REQUEST_FAIL, USER_REQUEST_LOADING, USER_REQUEST_SUCCESS } from './actionTypes';
 import { combineReducers } from 'redux';
 import { RequestStatus } from '@/constants';
+import { session } from '@/storages';
 
-const initialState = {
-  user: null,
-};
+const SESSION_KEY = 'auth';
 
-function auth(state = initialState, action = {}) {
+const initialState = () =>
+  session.get(SESSION_KEY, {
+    user: null,
+    apiToken: null,
+  });
+
+function auth(state = initialState(), action = {}) {
   switch (action.type) {
     case SET_USER:
+      session.set(SESSION_KEY, action.payload);
       return action.payload;
     case LOGOUT:
-      return initialState;
+      session.remove(SESSION_KEY);
+      return initialState();
     default:
       return state;
   }

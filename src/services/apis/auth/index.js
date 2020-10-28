@@ -1,7 +1,7 @@
 import { socialApiClient } from '@/services/apis/clients';
 
 export default {
-  async login({ principal, credentials }) {
+  async login({ email: principal, password: credentials }) {
     try {
       return await socialApiClient.post('/auth', { principal, credentials });
     } catch (e) {

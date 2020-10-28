@@ -20,7 +20,7 @@ export const inputStyle = css.resolve`
 
 const SignIn = () => {
   const dispatch = useDispatch();
-  const handleSubmit = (values) => dispatch(actions.user.login(values));
+  const handleSubmit = (values) => dispatch(actions.user.authUser(values));
 
   return (
     <>
