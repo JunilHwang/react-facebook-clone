@@ -9,8 +9,8 @@ import * as actions from '@/data/rootActions';
 const DefaultLayout = ({ component: Component, ...rest }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectors.users.getUser);
-  const logOut = () => {
-    dispatch(actions.router.push('/login'));
+  const logout = (event) => {
+    event.preventDefault();
     dispatch(actions.user.logout());
   };
 
@@ -19,7 +19,7 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
       {...rest}
       render={(matchProps) => (
         <>
-          <Header user={user} onLogout={logOut} />
+          <Header user={user} onLogout={logout} />
           <Component {...matchProps} {...rest} />
         </>
       )}

@@ -1,10 +1,15 @@
 import React from 'react';
-import { Home, SignIn, SignUp, User } from './pages';
 import { Redirect, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
+import { useDispatch } from 'react-redux';
+
+import { Home, SignIn, SignUp, User } from './pages';
 import { DefaultLayout, PublicLayout } from './layouts';
+import * as actions from '@/data/rootActions';
 
 const App = ({ history }) => {
+  const dispatch = useDispatch();
+  dispatch(actions.user.reloadUser());
   return (
     <>
       <ConnectedRouter history={history}>

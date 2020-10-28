@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router';
 import { resolve } from 'styled-jsx/css';
+import { useDispatch, useSelector } from 'react-redux';
+
+import * as selectors from '@/data/rootSelectors';
+import * as actions from '@/data/rootActions';
 
 const PublicLayout = ({ component: Component, ...rest }) => {
+  const user = useSelector(selectors.users.getUser);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user !== null) {
+      dispatch(actions.router.push('/'));
+    }
+  }, [user]);
   return (
     <Route
       {...rest}

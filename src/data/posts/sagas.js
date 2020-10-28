@@ -29,6 +29,7 @@ function* getPosts$() {
     const user = yield select(selectors.users.getUser);
     if (user === null) {
       yield put(actions.router.push('/login'));
+      return;
     }
     const friends = yield call(apis.usersApi.getFriendsOfMine);
     const connections = [...friends, user];
