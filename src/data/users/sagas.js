@@ -14,7 +14,7 @@ function* addUser$(action) {
     yield put(userRequestLoading(ADD_USER));
     yield call(apis.usersApi.register, payload);
     yield put(userRequestSuccess());
-    yield put(actions.router.push('/'));
+    yield put(actions.router.push('/login'));
   } catch (e) {
     yield put(userRequestFail(e.message));
   }

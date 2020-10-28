@@ -24,7 +24,7 @@ function SignUp() {
   const [step, setStep] = useState(STEPS.EMAIL_PASSWORD);
   const dispatch = useDispatch();
 
-  const handleSubmit = (values) => dispatch(actions.user.register(values));
+  const handleSubmit = (values) => dispatch(actions.user.addUser(values));
 
   return (
     <div className="signup container">
