@@ -5,9 +5,11 @@ import CommentItem from './CommentItem';
 import * as selectors from '@/data/rootSelectors';
 import { useSelector } from 'react-redux';
 
-const Comments = ({ postSeq }) => {
+const sorting = (a, b) => new Date(a.createAt) - new Date(b.createAt);
+
+const Comments = ({ postId }) => {
   const comments = useSelector(selectors.comments.getComments);
-  const commentsList = comments[postSeq] || [];
+  const commentsList = (comments[postId] || []).sort(sorting);
 
   return (
     <>

@@ -10,19 +10,13 @@ import * as actions from '@/data/rootActions';
 
 const INITIAL_VALUES = { contents: '' };
 
-const CommentForm = ({ postSeq }) => {
+const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
-  const post = useSelector(selectors.posts.getPost(postSeq));
+  const post = useSelector(selectors.posts.getPost(postId));
 
   const handleSubmit = ({ contents }, { resetForm }) => {
-    dispatch(
-      actions.comments.createComment({
-        postId: postSeq,
-        postWriterId: post.userId.value,
-        contents,
-        resetForm,
-      })
-    );
+    const { userId } = post.writer;
+    dispatch(actions.comments.addComment({ postId, userId, contents, resetForm }));
   };
 
   return (

@@ -45,15 +45,19 @@ const Post = ({ post }) => {
         <hr />
         <div className="card-info">
           <button type="button" className="thumb-count" onClick={handleLikeClock}>
-            <i className={`far fa-thumbs-up ${likesOfMe ? 'on' : ''}`}>{likes} 개</i>
+            <i className={`far fa-thumbs-up ${likesOfMe ? 'on' : ''}`} />
+            &nbsp;
+            {likes} 개
           </button>
           <span className="comment-count">
-            <i className="far fa-comment-alt">{commentsCount} 개</i>
+            <i className="far fa-comment-alt" />
+            &nbsp;
+            {commentsCount} 개
           </span>
         </div>
       </div>
-      <Comments postSeq={postId} />
-      <CommentForm postSeq={postId} />
+      <Comments postId={postId} />
+      <CommentForm postId={postId} />
       <style jsx>{cardStyle}</style>
       {profileStyle.styles}
     </div>
