@@ -13,28 +13,22 @@ const defaultProfileImageURL = 'https://slcp.lk/wp-content/uploads/2020/02/no-pr
 const Post = ({ post }) => {
   const dispatch = useDispatch();
   const {
-    seq,
+    seq: postId,
     createAt,
-    writer: { name, profileImageUrl = defaultProfileImageURL },
-    userId,
+    writer: { name, userId, profileImageUrl = defaultProfileImageURL },
     contents,
     likes,
     likesOfMe,
   } = post;
 
   useEffect(() => {
-    dispatch(
-      actions.comments.getComments({
-        userId: userId,
-        postId: seq,
-      })
-    );
-  }, [userId, seq]);
+    dispatch(actions.comments.getComments({ userId, postId }));
+  }, [userId, postId]);
 
-  const commentsCount = useSelector(selectors.comments.getCommentsCount(seq));
+  const commentsCount = useSelector(selectors.comments.getCommentsCount(postId));
   const handleLikeClock = (e) => {
     e.preventDefault();
-    dispatch(actions.posts.likePost(seq));
+    dispatch(actions.posts.likePost(postId));
   };
 
   return (
@@ -58,8 +52,8 @@ const Post = ({ post }) => {
           </span>
         </div>
       </div>
-      <Comments postSeq={seq} />
-      <CommentForm postSeq={seq} />
+      <Comments postSeq={postId} />
+      <CommentForm postSeq={postId} />
       <style jsx>{cardStyle}</style>
       {profileStyle.styles}
     </div>
