@@ -23,8 +23,13 @@ const Post = ({ post }) => {
   } = post;
 
   useEffect(() => {
-    dispatch(actions.comments.getComments(userId.value, seq));
-  }, []);
+    dispatch(
+      actions.comments.getComments({
+        userId: userId,
+        postId: seq,
+      })
+    );
+  }, [userId, seq]);
 
   const commentsCount = useSelector(selectors.comments.getCommentsCount(seq));
   const handleLikeClock = (e) => {

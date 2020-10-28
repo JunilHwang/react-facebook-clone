@@ -32,11 +32,15 @@ function* getPosts$() {
       return;
     }
     const friends = yield call(apis.usersApi.getFriendsOfMine);
-    const connections = [...friends, user];
-    const postsOfConnections = yield all(
-      connections.map(({ seq: userId }) => call(apis.postsApi.getAllPosts, { userId }))
-    );
-    const posts = [].concat.apply([], postsOfConnections);
+    const connections = [...friends, user].map(({ name, email, seq }) => ({ name, email, userId: seq }));
+    const postsOfConnections = yield all(connections.map(({ userId }) => call(apis.postsApi.getAllPosts, { userId })));
+    const posts = postsOfConnections
+      .flatMap((v) => v)
+      .map((post, key) => ({
+        ...post,
+        writer: { ...connections[key] },
+      }));
+    console.log(posts);
     yield put(setPosts(posts));
     yield put(postRequestSuccess());
   } catch (e) {
