@@ -4,6 +4,7 @@ import apis from '@/services/apis';
 import * as selectors from '@/data/rootSelectors';
 import { setPosts, getPosts, postRequestFail, postRequestLoading, postRequestSuccess } from '@/data/posts/actions';
 import { ADD_POST, GET_POSTS, LIKE_POST } from '@/data/posts/actionTypes';
+import * as actions from '@/data/rootActions';
 
 export default function* posts() {
   yield all([takeLatest(ADD_POST, addPost$), takeLatest(GET_POSTS, getPosts$), takeLatest(LIKE_POST, likePost$)]);
@@ -25,7 +26,10 @@ function* addPost$(action) {
 function* getPosts$() {
   try {
     yield put(postRequestLoading(GET_POSTS));
-    const user = select(selectors.users.getUser);
+    const user = yield select(selectors.users.getUser);
+    if (user === null) {
+      yield put(actions.router.push('/login'));
+    }
     const friends = yield call(apis.usersApi.getFriendsOfMine);
     const connections = [...friends, user];
     const postsOfConnections = yield all(
