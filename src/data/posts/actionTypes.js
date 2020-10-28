@@ -1,1 +1,8 @@
 export const SET_POSTS = 'SET_POSTS';
+export const ADD_POST = 'ADD_POST';
+export const GET_POSTS = 'GET_POSTS';
+export const LIKE_POST = 'LIKE_POST';
+
+export const POST_REQUEST_LOADING = 'POST_REQUEST_LOADING';
+export const POST_REQUEST_SUCCESS = 'POST_REQUEST_SUCCESS';
+export const POST_REQUEST_FAIL = 'POST_REQUEST_FAIL';

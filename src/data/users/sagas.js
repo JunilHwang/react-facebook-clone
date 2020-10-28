@@ -5,10 +5,10 @@ import { userRequestFail, userRequestLoading, userRequestSuccess } from '@/data/
 import * as actions from '@/data/rootActions';
 
 export default function* users() {
-  yield all([takeLatest(ADD_USER, addUser), takeLatest(AUTH_USER, authUser)]);
+  yield all([takeLatest(ADD_USER, addUser$), takeLatest(AUTH_USER, authUser$)]);
 }
 
-function* addUser(action) {
+function* addUser$(action) {
   try {
     const { payload } = action;
     yield put(userRequestLoading(ADD_USER));
@@ -20,7 +20,7 @@ function* addUser(action) {
   }
 }
 
-function* authUser(action) {
+function* authUser$(action) {
   try {
     const { payload } = action;
     yield put(userRequestLoading(AUTH_USER));
