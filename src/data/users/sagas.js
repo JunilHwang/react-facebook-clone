@@ -1,17 +1,34 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
-import { ADD_USER, AUTH_USER } from '@/data/users/actionTypes';
-import { apis } from '@/services';
-import { setUser, userRequestFail, userRequestLoading, userRequestSuccess } from './actions';
+import { SIGN_UP, AUTH_USER, LOGOUT, RELOAD_USER } from './actionTypes';
+import { apis, authService } from '@/services';
+import { setUser, reloadUser, userRequestFail, userRequestLoading, userRequestSuccess } from './actions';
 import * as actions from '@/data/rootActions';
 
 export default function* users() {
-  yield all([takeLatest(ADD_USER, addUser$), takeLatest(AUTH_USER, authUser$)]);
+  yield all([
+    takeLatest(RELOAD_USER, reloadUser$),
+    takeLatest(SIGN_UP, signUp$),
+    takeLatest(AUTH_USER, authUser$),
+    takeLatest(LOGOUT, logout$),
+  ]);
 }
 
-function* addUser$(action) {
+function* reloadUser$() {
+  try {
+    const auth = authService.get();
+    yield put(setUser(auth));
+    if (auth.user === null) {
+      yield put(actions.router.push('/login'));
+    }
+  } catch (e) {
+    yield put(userRequestFail(e.message));
+  }
+}
+
+function* signUp$(action) {
   try {
     const { payload } = action;
-    yield put(userRequestLoading(ADD_USER));
+    yield put(userRequestLoading(SIGN_UP));
     yield call(apis.usersApi.register, payload);
     yield put(userRequestSuccess());
     yield put(actions.router.push('/login'));
@@ -24,10 +41,19 @@ function* authUser$(action) {
   try {
     const { payload } = action;
     yield put(userRequestLoading(AUTH_USER));
-    const authInfo = yield call(apis.authApi.login, payload);
+    const auth = yield call(apis.authApi.login, payload);
+    authService.set(auth);
     yield put(userRequestSuccess());
-    yield put(setUser(authInfo));
-    yield put(actions.router.push('/'));
+    yield put(reloadUser());
+  } catch (e) {
+    yield put(userRequestFail(e.message));
+  }
+}
+
+function* logout$() {
+  try {
+    authService.remove();
+    yield put(reloadUser());
   } catch (e) {
     yield put(userRequestFail(e.message));
   }
