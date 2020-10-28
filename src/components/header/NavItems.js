@@ -6,7 +6,7 @@ import Conditional from '@/hocs/Conditional';
 const defaultProfileImageURL = 'https://slcp.lk/wp-content/uploads/2020/02/no-profile-photo.png';
 
 const NavItems = ({ user, onLogout }) => {
-  const { seq, name, profileImageURL = defaultProfileImageURL } = user || {};
+  const { seq, name, profileImageUrl = defaultProfileImageURL } = user || {};
 
   return (
     <ul className="nav">
@@ -16,7 +16,7 @@ const NavItems = ({ user, onLogout }) => {
       </Conditional>
       <Conditional condition={user}>
         <NavItem to={`/u/${seq}`}>
-          <ProfileImage src={profileImageURL} />
+          <ProfileImage src={profileImageUrl} />
           {name}
         </NavItem>
         <NavItem to="/logout" onClick={onLogout}>
