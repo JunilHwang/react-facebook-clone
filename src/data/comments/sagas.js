@@ -1,7 +1,7 @@
 import { all, call, takeLatest, put } from 'redux-saga/effects';
 import { apis } from '@/services';
 import { ADD_COMMENT, GET_COMMENTS } from './actionTypes';
-import { setComments, commentRequestFail, commentRequestLoading, commentRequestSuccess, getComments } from '@/actions';
+import { setComments, commentRequestFail, commentRequestLoading, commentRequestSuccess, getComments } from './actions';
 
 export default function* comments() {
   yield all([takeLatest(GET_COMMENTS, getComments$), takeLatest(ADD_COMMENT, addComment$)]);
