@@ -3,11 +3,16 @@ import { all, call, takeLatest, put, select } from 'redux-saga/effects';
 import apis from '@/services/apis';
 import * as selectors from '@/data/rootSelectors';
 import { setPosts, getPosts, postRequestFail, postRequestLoading, postRequestSuccess } from '@/data/posts/actions';
-import { ADD_POST, GET_POSTS, LIKE_POST } from '@/data/posts/actionTypes';
+import { ADD_POST, GET_POSTS, GET_POSTS_OF_USER, LIKE_POST } from '@/data/posts/actionTypes';
 import * as actions from '@/data/rootActions';
 
 export default function* posts() {
-  yield all([takeLatest(ADD_POST, addPost$), takeLatest(GET_POSTS, getPosts$), takeLatest(LIKE_POST, likePost$)]);
+  yield all([
+    takeLatest(ADD_POST, addPost$),
+    takeLatest(GET_POSTS, getPosts$),
+    takeLatest(GET_POSTS_OF_USER, getPostsOfUser$),
+    takeLatest(LIKE_POST, likePost$),
+  ]);
 }
 
 function* addPost$(action) {
@@ -47,6 +52,29 @@ function* getPosts$() {
         }))
       )
       .flatMap((v) => v);
+    yield put(setPosts(allPosts));
+    yield put(postRequestSuccess());
+  } catch (e) {
+    yield put(postRequestFail(e.message));
+  }
+}
+
+function* getPostsOfUser$(actions) {
+  try {
+    const { payload: userId } = actions;
+    if (userId === null) {
+      yield put(actions.router.goBack());
+      return;
+    }
+    yield put(postRequestLoading(GET_POSTS_OF_USER));
+    const me = yield select(selectors.users.getUser);
+    const friends = yield call(apis.usersApi.getFriendsOfMine);
+    const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId });
+    const { email = {}, name = null, profileImageUrl = null } = [...friends, me].find((v) => v.seq === userId) || {};
+    const allPosts = postsOfUser.map((post) => ({
+      ...post,
+      writer: { userId, email, name, profileImageUrl },
+    }));
     yield put(setPosts(allPosts));
     yield put(postRequestSuccess());
   } catch (e) {

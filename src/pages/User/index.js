@@ -1,14 +1,20 @@
-import React, { useMemo } from 'react';
-import { usePosts } from '@/hooks';
-import Post from '@/pages/Home/post/Post';
+import React, { useEffect, useMemo } from 'react';
+import { Post } from '@/pages/Home/post';
+import { useDispatch, useSelector } from 'react-redux';
+import * as selectors from '@/data/rootSelectors';
+import * as actions from '@/data/rootActions';
+
+const byCreateAt = (left, right) => new Date(right.createAt) - new Date(left.createAt);
 
 const User = () => {
-  const { posts, toggleLike: handleToggleLike } = usePosts();
+  const dispatch = useDispatch();
+  const userId = useSelector(selectors.selectWriterOfURIParam);
+  const posts = useSelector(selectors.posts.getPosts);
+  const postList = useMemo(() => posts.sort(byCreateAt).map((post) => <Post key={post.seq} post={post} />), [posts]);
 
-  const postList = useMemo(
-    () => posts.map((post) => <Post key={`post_${post.seq}`} post={post} onToggleLike={handleToggleLike} />),
-    [posts]
-  );
+  useEffect(() => {
+    dispatch(actions.posts.getPostsOfUser(userId));
+  }, [userId]);
 
   return (
     <div className="container">
