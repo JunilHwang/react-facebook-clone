@@ -26,10 +26,11 @@ function* getPosts$() {
   try {
     yield put(postRequestLoading(GET_POSTS));
     const user = select(selectors.users.getUser);
-    const friends = yield apis.usersApi.getFriendsOfMine();
+    const friends = yield call(apis.usersApi.getFriendsOfMine);
     const connections = [...friends, user];
-    const postsOfConnectionsPromise = connections.map(({ seq: userId }) => apis.postsApi.getAllPosts({ userId }));
-    const postsOfConnections = yield Promise.all(postsOfConnectionsPromise);
+    const postsOfConnections = yield all(
+      connections.map(({ seq: userId }) => call(apis.postsApi.getAllPosts, { userId }))
+    );
     const posts = [].concat.apply([], postsOfConnections);
     yield put(setPosts(posts));
     yield put(postRequestSuccess());
