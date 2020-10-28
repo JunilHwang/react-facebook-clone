@@ -3,7 +3,7 @@ import { socialApiClient } from '@/services/apis/clients';
 export default {
   async createPost(contents) {
     try {
-      return await socialApiClient.post('/api/post', { contents });
+      return await socialApiClient.post('/post', { contents });
     } catch (e) {
       throw Error(e.message);
     }
@@ -11,7 +11,7 @@ export default {
 
   async createComment({ userId, postId, contents }) {
     try {
-      return await socialApiClient.post(`/api/user/${userId}/post/${postId}/comment`, { contents });
+      return await socialApiClient.post(`/user/${userId}/post/${postId}/comment`, { contents });
     } catch (e) {
       throw Error(e.message);
     }
@@ -19,7 +19,7 @@ export default {
 
   async getCommentList({ userId, postId }) {
     try {
-      return await socialApiClient.get(`/api/user/${userId}/post/${postId}/comment/list`);
+      return await socialApiClient.get(`/user/${userId}/post/${postId}/comment/list`);
     } catch (e) {
       throw Error(e.message);
     }
@@ -27,7 +27,7 @@ export default {
 
   async likePost({ userId, postId }) {
     try {
-      return await socialApiClient.patch(`/api/user/${userId}/post/${postId}/like`);
+      return await socialApiClient.patch(`/user/${userId}/post/${postId}/like`);
     } catch (e) {
       throw Error(e.message);
     }
@@ -35,7 +35,7 @@ export default {
 
   async getAllPosts({ userId }) {
     try {
-      return await socialApiClient.get(`/api/user/${userId}/post/list`);
+      return await socialApiClient.get(`/user/${userId}/post/list`);
     } catch (e) {
       throw Error(e.message);
     }

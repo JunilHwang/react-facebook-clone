@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SOCIAL_SERVER_URL = 'http://15.164.170.69:8080';
+const SOCIAL_SERVER_URL = 'http://15.164.170.69:8081/api';
 
 const socialApiClient = axios.create({
   baseURL: SOCIAL_SERVER_URL,
