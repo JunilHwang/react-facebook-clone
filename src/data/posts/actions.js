@@ -5,9 +5,9 @@ import {
   GET_POSTS,
   GET_POSTS_OF_USER,
   LIKE_POST,
-  POST_REQUEST_SUCCESS,
-  POST_REQUEST_LOADING,
-  POST_REQUEST_FAIL,
+  SET_STATUS_ADD_POST,
+  SET_STATUS_LOAD_POST,
+  SET_STATUS_SCROLL_POST,
 } from './actionTypes';
 
 export const {
@@ -16,16 +16,16 @@ export const {
   getPosts,
   getPostsOfUser,
   likePost,
-  postRequestSuccess,
-  postRequestLoading,
-  postRequestFail,
+  setStatusAddPost,
+  setStatusLoadPost,
+  setStatusScrollPost,
 } = createActions(
   SET_POSTS,
   ADD_POST,
   GET_POSTS,
   GET_POSTS_OF_USER,
   LIKE_POST,
-  POST_REQUEST_SUCCESS,
-  POST_REQUEST_LOADING,
-  POST_REQUEST_FAIL
+  SET_STATUS_ADD_POST,
+  SET_STATUS_LOAD_POST,
+  SET_STATUS_SCROLL_POST,
 );

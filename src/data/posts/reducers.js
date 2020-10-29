@@ -1,6 +1,6 @@
-import { RequestStatus } from '@/constants';
 import { combineReducers } from 'redux';
-import { POST_REQUEST_FAIL, POST_REQUEST_LOADING, POST_REQUEST_SUCCESS, SET_POSTS } from './actionTypes';
+import { SET_POSTS, SET_STATUS_ADD_POST, SET_STATUS_LOAD_POST, SET_STATUS_SCROLL_POST } from './actionTypes';
+import { StatusTypes } from '@/services';
 
 const INITIAL_STATE = [];
 
@@ -13,14 +13,29 @@ function data(state = INITIAL_STATE, action = {}) {
   }
 }
 
-function status(state = RequestStatus.SUCCESS, action = {}) {
+const initStateOfStatus = {
+  add: StatusTypes.Ready,
+  posts: StatusTypes.Ready,
+  scroll: StatusTypes.Ready,
+};
+
+function status(state = initStateOfStatus, action = {}) {
   switch (action.type) {
-    case POST_REQUEST_LOADING:
-      return RequestStatus.LOADING;
-    case POST_REQUEST_SUCCESS:
-      return RequestStatus.SUCCESS;
-    case POST_REQUEST_FAIL:
-      return RequestStatus.FAIL;
+    case SET_STATUS_ADD_POST:
+      return {
+        ...state,
+        add: action.payload,
+      };
+    case SET_STATUS_LOAD_POST:
+      return {
+        ...state,
+        posts: action.payload,
+      };
+    case SET_STATUS_SCROLL_POST:
+      return {
+        ...state,
+        scroll: action.payload,
+      };
     default:
       return state;
   }

@@ -2,9 +2,10 @@ import { all, call, takeLatest, put, select } from 'redux-saga/effects';
 
 import apis from '@/services/apis';
 import * as selectors from '@/data/rootSelectors';
-import { setPosts, getPosts, postRequestFail, postRequestLoading, postRequestSuccess } from '@/data/posts/actions';
+import { setPosts, getPosts, setStatusAddPost, setStatusLoadPost, setStatusScrollPost } from '@/data/posts/actions';
 import { ADD_POST, GET_POSTS, GET_POSTS_OF_USER, LIKE_POST } from '@/data/posts/actionTypes';
 import * as actions from '@/data/rootActions';
+import { StatusTypes } from '@/services';
 
 export default function* posts() {
   yield all([
@@ -18,24 +19,24 @@ export default function* posts() {
 function* addPost$(action) {
   try {
     const { contents, resetForm } = action.payload;
-    put(postRequestLoading());
+    yield put(setStatusAddPost(StatusTypes.Loading));
     yield call(apis.postsApi.createPost, contents);
+    yield put(setStatusAddPost(StatusTypes.Loaded));
     yield put(getPosts());
     resetForm();
-    yield put(postRequestSuccess());
   } catch (e) {
-    yield put(postRequestFail(e.message));
+    yield put(setStatusAddPost(StatusTypes.Error(e.message)));
   }
 }
 
 function* getPosts$() {
   try {
-    yield put(postRequestLoading());
     const user = yield select(selectors.users.getUser);
     if (user === null) {
       yield put(actions.router.push('/login'));
       return;
     }
+    yield put(setStatusLoadPost(StatusTypes.Loading));
     const friends = yield call(apis.usersApi.getFriendsOfMine);
     const connections = [...friends, user].map(({ name, email, profileImageUrl, seq }) => ({
       name,
@@ -53,9 +54,9 @@ function* getPosts$() {
       )
       .flatMap((v) => v);
     yield put(setPosts(allPosts));
-    yield put(postRequestSuccess());
+    yield put(setStatusLoadPost(StatusTypes.Loaded));
   } catch (e) {
-    yield put(postRequestFail(e.message));
+    yield put(setStatusLoadPost(StatusTypes.Error(e.message)));
   }
 }
 
@@ -66,7 +67,7 @@ function* getPostsOfUser$(actions) {
       yield put(actions.router.goBack());
       return;
     }
-    yield put(postRequestLoading());
+    yield put(setStatusLoadPost(StatusTypes.Loading));
     const me = yield select(selectors.users.getUser);
     const friends = yield call(apis.usersApi.getFriendsOfMine);
     const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId });
@@ -76,21 +77,20 @@ function* getPostsOfUser$(actions) {
       writer: { userId, email, name, profileImageUrl },
     }));
     yield put(setPosts(allPosts));
-    yield put(postRequestSuccess());
+    yield put(setStatusLoadPost(StatusTypes.Loaded));
   } catch (e) {
-    yield put(postRequestFail(e.message));
+    yield put(setStatusLoadPost(StatusTypes.Error(e.message)));
   }
 }
 
 function* likePost$(action) {
   try {
-    yield put(postRequestLoading());
     const user = yield select(selectors.users.getUser);
     const { payload: postId } = action;
     const userId = user.seq;
     yield call(apis.postsApi.likePost, { userId, postId });
     yield put(getPosts());
-  } catch (error) {
-    yield put(postRequestFail(e.message));
+  } catch (e) {
+    yield put(setStatusLoadPost(StatusTypes.Error(e.message)));
   }
 }
