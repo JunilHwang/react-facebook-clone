@@ -85,10 +85,10 @@ function* getPostsOfUser$(actions) {
 function* likePost$(action) {
   try {
     yield put(postRequestLoading(LIKE_POST));
-    const user = select(selectors.users.getUser);
-    const { postId } = action.payload;
+    const user = yield select(selectors.users.getUser);
+    const { payload: postId } = action;
     const userId = user.seq;
-    yield apis.postsApi.likePost({ userId, postId });
+    yield call(apis.postsApi.likePost, { userId, postId });
     yield put(getPosts());
   } catch (error) {
     yield put(postRequestFail(e.message));
