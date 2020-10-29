@@ -14,9 +14,9 @@ function data(state = INITIAL_STATE, action = {}) {
 }
 
 const initStateOfStatus = {
-  add: StatusTypes.Loading,
-  posts: StatusTypes.Loading,
-  scroll: StatusTypes.Loading,
+  add: StatusTypes.Loaded,
+  posts: StatusTypes.Loaded,
+  scroll: StatusTypes.Loaded,
 };
 
 function status(state = initStateOfStatus, action = {}) {

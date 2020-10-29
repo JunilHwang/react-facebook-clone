@@ -21,11 +21,11 @@ function* addPost$(action) {
     const { contents, resetForm } = action.payload;
     yield put(setStatusAddPost(StatusTypes.Loading));
     yield call(apis.postsApi.createPost, contents);
-    yield put(setStatusAddPost(StatusTypes.Ready));
+    yield put(setStatusAddPost(StatusTypes.Loaded));
     yield put(getPosts());
     resetForm();
   } catch (e) {
-    yield put(setStatusAddPost(StatusTypes.Ready));
+    yield put(setStatusAddPost(StatusTypes.Loaded));
   }
 }
 
