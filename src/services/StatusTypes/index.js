@@ -1,9 +1,8 @@
-import PostsTypes from './PostsTypes';
-import CommentsTypes from './CommentsTypes';
-import UsersTypes from './UsersTypes';
+import { taggedSum } from 'daggy';
 
-export default {
-  PostsTypes,
-  CommentsTypes,
-  UsersTypes,
-};
+export default taggedSum('PostsTypes', {
+  Ready: [],
+  Loading: [],
+  Loaded: [],
+  Error: ['message'],
+});
