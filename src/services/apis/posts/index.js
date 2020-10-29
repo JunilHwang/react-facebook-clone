@@ -33,9 +33,14 @@ export default {
     }
   },
 
-  async getAllPosts({ userId }) {
+  async getAllPosts({ userId, offset, limit }) {
     try {
-      return await socialApiClient.get(`/user/${userId}/post/list`);
+      return await socialApiClient.get(`/user/${userId}/post/list`, {
+        params: {
+          offset: offset || 0,
+          limit: limit || 5,
+        },
+      });
     } catch (e) {
       throw Error(e.message);
     }

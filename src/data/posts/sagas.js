@@ -3,7 +3,7 @@ import { all, call, takeLatest, put, select } from 'redux-saga/effects';
 import apis from '@/services/apis';
 import * as selectors from '@/data/rootSelectors';
 import { setPosts, getPosts, setStatusAddPost, setStatusLoadPost, setStatusScrollPost } from '@/data/posts/actions';
-import { ADD_POST, GET_POSTS, GET_POSTS_OF_USER, LIKE_POST } from '@/data/posts/actionTypes';
+import { ADD_POST, GET_POSTS, GET_NEXT_POSTS, GET_POSTS_OF_USER, LIKE_POST } from '@/data/posts/actionTypes';
 import * as actions from '@/data/rootActions';
 import { StatusTypes } from '@/services';
 
@@ -11,6 +11,7 @@ export default function* posts() {
   yield all([
     takeLatest(ADD_POST, addPost$),
     takeLatest(GET_POSTS, getPosts$),
+    takeLatest(GET_NEXT_POSTS, getPosts$),
     takeLatest(GET_POSTS_OF_USER, getPostsOfUser$),
     takeLatest(LIKE_POST, likePost$),
   ]);
@@ -29,14 +30,17 @@ function* addPost$(action) {
   }
 }
 
-function* getPosts$() {
+function* getPosts$(action) {
+  const { type, payload = {} } = action;
+  const { offset = null, limit = null } = payload;
+  const setStatus = type === GET_POSTS ? setStatusLoadPost : setStatusScrollPost;
   try {
     const user = yield select(selectors.users.getUser);
     if (user === null) {
       yield put(actions.router.push('/login'));
       return;
     }
-    yield put(setStatusLoadPost(StatusTypes.Loading));
+    yield put(setStatus(StatusTypes.Loading));
     const friends = yield call(apis.usersApi.getFriendsOfMine);
     const connections = [...friends, user].map(({ name, email, profileImageUrl, seq }) => ({
       name,
@@ -44,7 +48,10 @@ function* getPosts$() {
       profileImageUrl,
       userId: seq,
     }));
-    const postsOfConnections = yield all(connections.map(({ userId }) => call(apis.postsApi.getAllPosts, { userId })));
+    const postsOfConnections = yield all(
+      connections.map(({ userId }) => call(apis.postsApi.getAllPosts, { userId, offset, limit }))
+    );
+    const nowAllPosts = yield select(selectors.posts.getPosts);
     const allPosts = postsOfConnections
       .map((posts, key) =>
         posts.map((post) => ({
@@ -53,10 +60,10 @@ function* getPosts$() {
         }))
       )
       .flatMap((v) => v);
-    yield put(setPosts(allPosts));
-    yield put(setStatusLoadPost(StatusTypes.Loaded));
+    yield put(setPosts(type === GET_POSTS ? allPosts : [...nowAllPosts, ...allPosts]));
+    yield put(setStatus(StatusTypes.Loaded));
   } catch (e) {
-    yield put(setStatusLoadPost(StatusTypes.Error(e.message)));
+    yield put(setStatus(StatusTypes.Error(e.message)));
   }
 }
 
