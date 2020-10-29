@@ -6,9 +6,6 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
 import { Provider } from 'react-redux';
 import configureStore from './data/configureStore';
-import StatusTypes from '@/services/StatusTypes';
-
-console.log(StatusTypes);
 
 dayjs.locale('ko');
 dayjs.extend(relativeTime);

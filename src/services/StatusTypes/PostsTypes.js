@@ -1,10 +1,10 @@
-import { tagged, taggedSum } from 'daggy';
-
-const Post = tagged('Post', ['seq', 'contents', 'comments', 'likes', 'likesOfMe', 'writer', 'createAt']);
+import { taggedSum } from 'daggy';
 
 const PostsTypes = taggedSum('PostsTypes', {
-  Loading: ['loadingMessage'],
-  Posts: [Post],
+  Ready: [],
+  InitLoading: [],
+  ScrollLoading: [],
+  Loaded: [],
   Error: ['errorMessage'],
 });
 

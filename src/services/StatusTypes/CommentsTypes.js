@@ -1,10 +1,9 @@
-import { tagged, taggedSum } from 'daggy';
-
-const Comment = tagged('Comment', ['seq', 'writer', 'contents', 'createAt']);
+import { taggedSum } from 'daggy';
 
 const CommentsTypes = taggedSum('CommentsTypes', {
-  Loading: ['loadingMessage'],
-  Comments: [Comment],
+  Ready: [],
+  InitLoading: [],
+  Loaded: [],
   Error: ['errorMessage'],
 });
 
