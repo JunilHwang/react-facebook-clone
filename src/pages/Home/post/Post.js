@@ -36,7 +36,7 @@ const Post = ({ post }) => {
       <div className="card-body">
         <h5 className="card-title">
           <Link className={profileStyle.className} to={`/u/${userId}`}>
-            <img className="profile-image" src={profileImageUrl} alt={userId} width={25} />
+            <img className="profile-image" src={profileImageUrl || defaultProfileImageURL} alt={userId} width={25} />
             <span>{name}</span>
           </Link>
         </h5>

@@ -88,7 +88,7 @@ function* getPostsOfUser$(action) {
     const me = yield select(selectors.users.getUser);
     const friends = yield call(apis.usersApi.getFriendsOfMine);
     const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId, offset });
-    const { email = {}, name = null, profileImageUrl = null } = [...friends, me].find((v) => v.seq === userId) || {};
+    const { email = {}, name = null, profileImageUrl = null } = [...friends, me].find((v) => v.seq === userId);
     const allPosts = postsOfUser.map((post) => ({
       ...post,
       writer: { userId, email, name, profileImageUrl },

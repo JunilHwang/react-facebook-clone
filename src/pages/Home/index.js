@@ -5,32 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PostForm, Post } from './post';
 import * as selectors from '@/data/rootSelectors';
 import * as actions from '@/data/rootActions';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 
 const byCreateAt = (left, right) => new Date(right.createAt) - new Date(left.createAt);
 
 const Home = () => {
-  const dispatch = useDispatch();
   const posts = useSelector(selectors.posts.getPosts);
   const postsStatus = useSelector(selectors.posts.getStatus);
   const postList = useMemo(() => posts.sort(byCreateAt).map((post) => <Post key={post.seq} post={post} />), [posts]);
   const $bottom = useRef(null);
 
-  useLayoutEffect(() => {
-    let called = 0;
-    const callback = ([entry]) => {
-      if (entry.isIntersecting) {
-        dispatch(actions.posts.getNextPosts({ offset: called * 5 }));
-        called += 1;
-      }
-      console.log(called);
-    };
-    const observer = new IntersectionObserver(callback, {
-      root: null,
-      rootMargin: '50px',
-      threshold: 1,
-    });
-    observer.observe($bottom.current);
-  }, []);
+  useInfiniteScroll($bottom, actions.posts.getNextPosts);
 
   return (
     <div className="posts container">
