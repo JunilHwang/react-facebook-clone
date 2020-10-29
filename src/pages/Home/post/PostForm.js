@@ -1,17 +1,19 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import css from 'styled-jsx/css';
 
 import TextAreaInput from '@/components/Form/TextAreaInput';
 import { composeValidators, required, validPost } from '@/services/FormHelper/validators';
 import * as actions from '@/data/rootActions';
+import * as selectors from '@/data/rootSelectors';
 
 const INITIAL_VALUES = { contents: '' };
 
 const PostForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = ({ contents }, { resetForm }) => dispatch(actions.posts.addPost({ contents, resetForm }));
+  const postStatus = useSelector(selectors.posts.getStatus);
 
   return (
     <>
@@ -26,12 +28,23 @@ const PostForm = () => {
               placeholder="무슨 생각을 하고 계신가요?"
               spellCheck="false"
             />
-            <button
-              type="submit"
-              className={`btn btn-primary ${buttonStyle.className}`}
-              disabled={Object.values(errors).length > 0}>
-              공유하기
-            </button>
+            {postStatus.add.cata({
+              Ready: () => (
+                <button
+                  type="submit"
+                  className={`btn btn-primary ${buttonStyle.className}`}
+                  disabled={Object.values(errors).length > 0}>
+                  공유하기
+                </button>
+              ),
+              Loading: () => (
+                <button type="submit" className={`btn btn-primary ${buttonStyle.className}`} disabled={true}>
+                  추가중
+                </button>
+              ),
+              Loaded: () => null,
+              Error: () => null,
+            })}
           </Form>
         )}
       </Formik>
