@@ -40,7 +40,7 @@ function* addPost$(action) {
 
 function* getPosts$(action) {
   const { type, payload = {} } = action;
-  const { offset = null, limit = null } = payload;
+  const { offset = 0 } = payload;
   const setStatus = type === GET_POSTS ? setStatusLoadPost : setStatusScrollPost;
   try {
     const user = yield select(selectors.users.getUser);
@@ -57,7 +57,7 @@ function* getPosts$(action) {
       userId: seq,
     }));
     const postsOfConnections = yield all(
-      connections.map(({ userId }) => call(apis.postsApi.getAllPosts, { userId, offset, limit }))
+      connections.map(({ userId }) => call(apis.postsApi.getAllPosts, { userId, offset }))
     );
     const nowAllPosts = yield select(selectors.posts.getPosts);
     const allPosts = postsOfConnections
@@ -77,7 +77,7 @@ function* getPosts$(action) {
 
 function* getPostsOfUser$(action) {
   const { type, payload = {} } = action;
-  const { userId, limit = null, offset = null } = payload;
+  const { userId, offset = 0 } = payload;
   const setStatus = type === GET_POSTS_OF_USER ? setStatusLoadPost : setStatusScrollPost;
   try {
     if (userId === null) {
@@ -87,7 +87,7 @@ function* getPostsOfUser$(action) {
     yield put(setStatus(StatusTypes.Loading));
     const me = yield select(selectors.users.getUser);
     const friends = yield call(apis.usersApi.getFriendsOfMine);
-    const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId, offset, limit });
+    const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId, offset });
     const { email = {}, name = null, profileImageUrl = null } = [...friends, me].find((v) => v.seq === userId) || {};
     const allPosts = postsOfUser.map((post) => ({
       ...post,
