@@ -1,25 +1,19 @@
 import { createActions } from 'redux-actions';
 import {
   ADD_COMMENT,
-  COMMENT_REQUEST_FAIL,
-  COMMENT_REQUEST_LOADING,
-  COMMENT_REQUEST_SUCCESS,
   GET_COMMENTS,
   SET_COMMENTS,
+  SET_COMMENT_STATUS,
 } from './actionTypes';
 
 export const {
   setComments,
   getComments,
   addComment,
-  commentRequestLoading,
-  commentRequestSuccess,
-  commentRequestFail,
+  setCommentStatus,
 } = createActions(
   SET_COMMENTS,
   GET_COMMENTS,
   ADD_COMMENT,
-  COMMENT_REQUEST_LOADING,
-  COMMENT_REQUEST_SUCCESS,
-  COMMENT_REQUEST_FAIL
+  SET_COMMENT_STATUS,
 );

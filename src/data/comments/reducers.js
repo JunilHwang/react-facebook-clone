@@ -1,6 +1,5 @@
-import { RequestStatus } from '@/constants';
 import { combineReducers } from 'redux';
-import { COMMENT_REQUEST_FAIL, COMMENT_REQUEST_LOADING, COMMENT_REQUEST_SUCCESS, SET_COMMENTS } from './actionTypes';
+import { SET_COMMENTS, SET_COMMENT_STATUS } from './actionTypes';
 
 function data(state = {}, action = {}) {
   switch (action.type) {
@@ -18,12 +17,12 @@ function data(state = {}, action = {}) {
 
 function status(state = {}, action = {}) {
   switch (action.type) {
-    case COMMENT_REQUEST_LOADING:
-      return RequestStatus.LOADING;
-    case COMMENT_REQUEST_SUCCESS:
-      return RequestStatus.SUCCESS;
-    case COMMENT_REQUEST_FAIL:
-      return RequestStatus.FAIL;
+    case SET_COMMENT_STATUS:
+      const { postId, status } = action.payload;
+      return {
+        ...state,
+        [postId]: status,
+      };
     default:
       return state;
   }
