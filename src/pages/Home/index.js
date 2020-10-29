@@ -22,11 +22,10 @@ const Home = () => {
     <div className="posts container">
       <PostForm />
       {postsStatus.posts.cata({
-        Ready: () => <div>로딩 전</div>,
-        Loading: () => <div>포스트 로딩 중</div>,
+        Loading: () => <div className="card">포스트 로딩 중</div>,
         Loaded: () => postList,
         Error: (message) => (
-          <div>
+          <div className="card">
             <strong>{message}</strong>
           </div>
         ),

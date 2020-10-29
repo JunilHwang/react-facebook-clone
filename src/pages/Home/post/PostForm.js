@@ -29,7 +29,7 @@ const PostForm = () => {
               spellCheck="false"
             />
             {postStatus.add.cata({
-              Ready: () => (
+              Loaded: () => (
                 <button
                   type="submit"
                   className={`btn btn-primary ${buttonStyle.className}`}
@@ -42,7 +42,6 @@ const PostForm = () => {
                   추가중
                 </button>
               ),
-              Loaded: () => null,
               Error: () => null,
             })}
           </Form>
