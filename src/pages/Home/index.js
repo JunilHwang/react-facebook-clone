@@ -11,6 +11,7 @@ const byCreateAt = (left, right) => new Date(right.createAt) - new Date(left.cre
 const Home = () => {
   const dispatch = useDispatch();
   const posts = useSelector(selectors.posts.getPosts);
+  const postsStatus = useSelector(selectors.posts.getStatus);
   const postList = useMemo(() => posts.sort(byCreateAt).map((post) => <Post key={post.seq} post={post} />), [posts]);
 
   useEffect(() => {
@@ -20,7 +21,16 @@ const Home = () => {
   return (
     <div className="posts container">
       <PostForm />
-      {postList}
+      {postsStatus.posts.cata({
+        Ready: () => <div>로딩 전</div>,
+        Loading: () => <div>포스트 로딩 중</div>,
+        Loaded: () => postList,
+        Error: (message) => (
+          <div>
+            <strong>{message}</strong>
+          </div>
+        ),
+      })}
       <style jsx>{HomeStyle}</style>
     </div>
   );
