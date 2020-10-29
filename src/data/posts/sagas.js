@@ -89,11 +89,12 @@ function* getPostsOfUser$(action) {
     const friends = yield call(apis.usersApi.getFriendsOfMine);
     const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId, offset });
     const { email = {}, name = null, profileImageUrl = null } = [...friends, me].find((v) => v.seq === userId);
+    const nowAllPosts = yield select(selectors.posts.getPosts);
     const allPosts = postsOfUser.map((post) => ({
       ...post,
       writer: { userId, email, name, profileImageUrl },
     }));
-    yield put(setPosts(allPosts));
+    yield put(setPosts(type === GET_POSTS_OF_USER ? allPosts : [...nowAllPosts, ...allPosts]));
     yield put(setStatus(StatusTypes.Loaded));
   } catch (e) {
     yield put(setStatus(StatusTypes.Error(e.message)));
