@@ -18,7 +18,7 @@ export default function* posts() {
 function* addPost$(action) {
   try {
     const { contents, resetForm } = action.payload;
-    put(postRequestLoading(ADD_POST));
+    put(postRequestLoading());
     yield call(apis.postsApi.createPost, contents);
     yield put(getPosts());
     resetForm();
@@ -30,7 +30,7 @@ function* addPost$(action) {
 
 function* getPosts$() {
   try {
-    yield put(postRequestLoading(GET_POSTS));
+    yield put(postRequestLoading());
     const user = yield select(selectors.users.getUser);
     if (user === null) {
       yield put(actions.router.push('/login'));
@@ -66,7 +66,7 @@ function* getPostsOfUser$(actions) {
       yield put(actions.router.goBack());
       return;
     }
-    yield put(postRequestLoading(GET_POSTS_OF_USER));
+    yield put(postRequestLoading());
     const me = yield select(selectors.users.getUser);
     const friends = yield call(apis.usersApi.getFriendsOfMine);
     const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId });
@@ -84,7 +84,7 @@ function* getPostsOfUser$(actions) {
 
 function* likePost$(action) {
   try {
-    yield put(postRequestLoading(LIKE_POST));
+    yield put(postRequestLoading());
     const user = yield select(selectors.users.getUser);
     const { payload: postId } = action;
     const userId = user.seq;

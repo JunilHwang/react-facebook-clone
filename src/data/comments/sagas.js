@@ -9,7 +9,7 @@ export default function* comments() {
 
 function* getComments$(action) {
   try {
-    yield put(commentRequestLoading(GET_COMMENTS));
+    yield put(commentRequestLoading());
     const { userId, postId } = action.payload;
     const comments = yield call(apis.postsApi.getCommentList, { userId, postId });
     yield put(setComments({ postId, comments }));
@@ -21,7 +21,7 @@ function* getComments$(action) {
 
 function* addComment$(action) {
   try {
-    yield put(commentRequestLoading(ADD_COMMENT));
+    yield put(commentRequestLoading());
     const { userId, postId, contents, resetForm } = action.payload;
     yield call(apis.postsApi.createComment, { userId, postId, contents });
     yield put(getComments({ userId, postId }));

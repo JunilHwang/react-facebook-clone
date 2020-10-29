@@ -28,7 +28,7 @@ function* reloadUser$() {
 function* signUp$(action) {
   try {
     const { payload } = action;
-    yield put(userRequestLoading(SIGN_UP));
+    yield put(userRequestLoading());
     yield call(apis.usersApi.register, payload);
     yield put(userRequestSuccess());
     yield put(authUser(payload));
@@ -40,7 +40,7 @@ function* signUp$(action) {
 function* authUser$(action) {
   try {
     const { payload } = action;
-    yield put(userRequestLoading(AUTH_USER));
+    yield put(userRequestLoading());
     const auth = yield call(apis.authApi.login, payload);
     authService.set(auth);
     yield put(userRequestSuccess());
