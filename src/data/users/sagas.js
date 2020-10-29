@@ -1,7 +1,7 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 import { SIGN_UP, AUTH_USER, LOGOUT, RELOAD_USER } from './actionTypes';
 import { apis, authService } from '@/services';
-import { setUser, reloadUser, userRequestFail, userRequestLoading, userRequestSuccess } from './actions';
+import { setUser, reloadUser, authUser, userRequestFail, userRequestLoading, userRequestSuccess } from './actions';
 import * as actions from '@/data/rootActions';
 
 export default function* users() {
@@ -31,7 +31,7 @@ function* signUp$(action) {
     yield put(userRequestLoading(SIGN_UP));
     yield call(apis.usersApi.register, payload);
     yield put(userRequestSuccess());
-    yield put(actions.router.push('/login'));
+    yield put(authUser(payload));
   } catch (e) {
     yield put(userRequestFail(e.message));
   }
