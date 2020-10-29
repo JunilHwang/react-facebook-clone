@@ -5,6 +5,4 @@ export const getCommentsCount = (postId) => (state) => {
   return comments ? comments.length : 0;
 };
 
-export const getStatusOf = (postId) => (state) => {
-  return state.comments.status[postId];
-}
+export const getStatusOf = (state) => state.comments.status;
