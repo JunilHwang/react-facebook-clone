@@ -3,7 +3,14 @@ import { all, call, takeLatest, put, select } from 'redux-saga/effects';
 import apis from '@/services/apis';
 import * as selectors from '@/data/rootSelectors';
 import { setPosts, getPosts, setStatusAddPost, setStatusLoadPost, setStatusScrollPost } from '@/data/posts/actions';
-import { ADD_POST, GET_POSTS, GET_NEXT_POSTS, GET_POSTS_OF_USER, LIKE_POST } from '@/data/posts/actionTypes';
+import {
+  ADD_POST,
+  GET_POSTS,
+  GET_NEXT_POSTS,
+  GET_POSTS_OF_USER,
+  LIKE_POST,
+  GET_NEXT_POSTS_OF_USER,
+} from '@/data/posts/actionTypes';
 import * as actions from '@/data/rootActions';
 import { StatusTypes } from '@/services';
 
@@ -13,6 +20,7 @@ export default function* posts() {
     takeLatest(GET_POSTS, getPosts$),
     takeLatest(GET_NEXT_POSTS, getPosts$),
     takeLatest(GET_POSTS_OF_USER, getPostsOfUser$),
+    takeLatest(GET_NEXT_POSTS_OF_USER, getPostsOfUser$),
     takeLatest(LIKE_POST, likePost$),
   ]);
 }
@@ -67,26 +75,28 @@ function* getPosts$(action) {
   }
 }
 
-function* getPostsOfUser$(actions) {
+function* getPostsOfUser$(action) {
+  const { type, payload = {} } = action;
+  const { userId, limit = null, offset = null } = payload;
+  const setStatus = type === GET_POSTS_OF_USER ? setStatusLoadPost : setStatusScrollPost;
   try {
-    const { payload: userId } = actions;
     if (userId === null) {
       yield put(actions.router.goBack());
       return;
     }
-    yield put(setStatusLoadPost(StatusTypes.Loading));
+    yield put(setStatus(StatusTypes.Loading));
     const me = yield select(selectors.users.getUser);
     const friends = yield call(apis.usersApi.getFriendsOfMine);
-    const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId });
+    const postsOfUser = yield call(apis.postsApi.getAllPosts, { userId, offset, limit });
     const { email = {}, name = null, profileImageUrl = null } = [...friends, me].find((v) => v.seq === userId) || {};
     const allPosts = postsOfUser.map((post) => ({
       ...post,
       writer: { userId, email, name, profileImageUrl },
     }));
     yield put(setPosts(allPosts));
-    yield put(setStatusLoadPost(StatusTypes.Loaded));
+    yield put(setStatus(StatusTypes.Loaded));
   } catch (e) {
-    yield put(setStatusLoadPost(StatusTypes.Error(e.message)));
+    yield put(setStatus(StatusTypes.Error(e.message)));
   }
 }
 

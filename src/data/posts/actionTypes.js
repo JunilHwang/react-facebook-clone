@@ -3,6 +3,7 @@ export const ADD_POST = 'ADD_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const GET_NEXT_POSTS = 'GET_NEXT_POSTS';
 export const GET_POSTS_OF_USER = 'GET_POSTS_OF_USER';
+export const GET_NEXT_POSTS_OF_USER = 'GET_NEXT_POSTS_OF_USER';
 export const LIKE_POST = 'LIKE_POST';
 
 export const SET_STATUS_ADD_POST = 'SET_STATUS_ADD_POST';
